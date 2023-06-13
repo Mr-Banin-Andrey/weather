@@ -1,17 +1,14 @@
-//
-//  ViewController.swift
-//  Weather
-//
-//  Created by Андрей Банин on 13.6.23..
-//
+
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainCityViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        view.backgroundColor = .cyan
     }
 
 

@@ -9,21 +9,32 @@
 /* Begin PBXBuildFile section */
 		9D573BEA2A38B84100F8E4F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D573BE92A38B84100F8E4F3 /* AppDelegate.swift */; };
 		9D573BEC2A38B84100F8E4F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D573BEB2A38B84100F8E4F3 /* SceneDelegate.swift */; };
-		9D573BEE2A38B84100F8E4F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D573BED2A38B84100F8E4F3 /* ViewController.swift */; };
-		9D573BF12A38B84100F8E4F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D573BEF2A38B84100F8E4F3 /* Main.storyboard */; };
+		9D573BEE2A38B84100F8E4F3 /* MainCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D573BED2A38B84100F8E4F3 /* MainCityViewController.swift */; };
 		9D573BF32A38B84300F8E4F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D573BF22A38B84300F8E4F3 /* Assets.xcassets */; };
 		9D573BF62A38B84300F8E4F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D573BF42A38B84300F8E4F3 /* LaunchScreen.storyboard */; };
+		9D573C0C2A38C64800F8E4F3 /* MainCityCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D573C0B2A38C64800F8E4F3 /* MainCityCoordinator.swift */; };
+		9D573C0E2A38C65B00F8E4F3 /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D573C0D2A38C65B00F8E4F3 /* Coordinatable.swift */; };
+		9D573C112A38C67200F8E4F3 /* WholeDayCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D573C102A38C67200F8E4F3 /* WholeDayCoordinator.swift */; };
+		9D573C132A38C69700F8E4F3 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D573C122A38C69700F8E4F3 /* SettingsCoordinator.swift */; };
+		9D573C152A38C6AF00F8E4F3 /* SummaryOfTheDayCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D573C142A38C6AF00F8E4F3 /* SummaryOfTheDayCoordinator.swift */; };
+		9D573C182A38CE5B00F8E4F3 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 9D573C172A38CE5B00F8E4F3 /* Alamofire */; };
+		9D573C1B2A38D0D100F8E4F3 /* PermissionToUseLocationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D573C1A2A38D0D100F8E4F3 /* PermissionToUseLocationCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9D573BE62A38B84100F8E4F3 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D573BE92A38B84100F8E4F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9D573BEB2A38B84100F8E4F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9D573BED2A38B84100F8E4F3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		9D573BF02A38B84100F8E4F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9D573BED2A38B84100F8E4F3 /* MainCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCityViewController.swift; sourceTree = "<group>"; };
 		9D573BF22A38B84300F8E4F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9D573BF52A38B84300F8E4F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9D573BF72A38B84300F8E4F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9D573C0B2A38C64800F8E4F3 /* MainCityCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCityCoordinator.swift; sourceTree = "<group>"; };
+		9D573C0D2A38C65B00F8E4F3 /* Coordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinatable.swift; sourceTree = "<group>"; };
+		9D573C102A38C67200F8E4F3 /* WholeDayCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WholeDayCoordinator.swift; sourceTree = "<group>"; };
+		9D573C122A38C69700F8E4F3 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
+		9D573C142A38C6AF00F8E4F3 /* SummaryOfTheDayCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryOfTheDayCoordinator.swift; sourceTree = "<group>"; };
+		9D573C1A2A38D0D100F8E4F3 /* PermissionToUseLocationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionToUseLocationCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D573C182A38CE5B00F8E4F3 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +68,132 @@
 		9D573BE82A38B84100F8E4F3 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				9D573BFD2A38BF4400F8E4F3 /* App */,
+				9D573BFE2A38BF4A00F8E4F3 /* Coordinators */,
+				9D573BFF2A38BF5A00F8E4F3 /* Modules */,
+				9D573C072A38C47400F8E4F3 /* NetworkService */,
+				9D573C002A38C0E300F8E4F3 /* Resources */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		9D573BFD2A38BF4400F8E4F3 /* App */ = {
+			isa = PBXGroup;
+			children = (
 				9D573BE92A38B84100F8E4F3 /* AppDelegate.swift */,
 				9D573BEB2A38B84100F8E4F3 /* SceneDelegate.swift */,
-				9D573BED2A38B84100F8E4F3 /* ViewController.swift */,
-				9D573BEF2A38B84100F8E4F3 /* Main.storyboard */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		9D573BFE2A38BF4A00F8E4F3 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				9D573C0D2A38C65B00F8E4F3 /* Coordinatable.swift */,
+				9D573C0B2A38C64800F8E4F3 /* MainCityCoordinator.swift */,
+				9D573C1A2A38D0D100F8E4F3 /* PermissionToUseLocationCoordinator.swift */,
+				9D573C122A38C69700F8E4F3 /* SettingsCoordinator.swift */,
+				9D573C142A38C6AF00F8E4F3 /* SummaryOfTheDayCoordinator.swift */,
+				9D573C102A38C67200F8E4F3 /* WholeDayCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		9D573BFF2A38BF5A00F8E4F3 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				9D573C192A38D02700F8E4F3 /* PermissionToUseLocation */,
+				9D573C032A38C1A900F8E4F3 /* MainCity */,
+				9D573C042A38C1FD00F8E4F3 /* Settings */,
+				9D573C062A38C2AC00F8E4F3 /* SummaryOfTheDay */,
+				9D573C052A38C27900F8E4F3 /* WholeDay */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		9D573C002A38C0E300F8E4F3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
 				9D573BF22A38B84300F8E4F3 /* Assets.xcassets */,
+				9D573C012A38C11B00F8E4F3 /* System */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		9D573C012A38C11B00F8E4F3 /* System */ = {
+			isa = PBXGroup;
+			children = (
 				9D573BF42A38B84300F8E4F3 /* LaunchScreen.storyboard */,
 				9D573BF72A38B84300F8E4F3 /* Info.plist */,
 			);
-			path = Weather;
+			path = System;
+			sourceTree = "<group>";
+		};
+		9D573C032A38C1A900F8E4F3 /* MainCity */ = {
+			isa = PBXGroup;
+			children = (
+				9D573C092A38C60300F8E4F3 /* Model */,
+				9D573C0A2A38C60D00F8E4F3 /* ViewModel */,
+				9D573C082A38C4BD00F8E4F3 /* View */,
+			);
+			path = MainCity;
+			sourceTree = "<group>";
+		};
+		9D573C042A38C1FD00F8E4F3 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		9D573C052A38C27900F8E4F3 /* WholeDay */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = WholeDay;
+			sourceTree = "<group>";
+		};
+		9D573C062A38C2AC00F8E4F3 /* SummaryOfTheDay */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SummaryOfTheDay;
+			sourceTree = "<group>";
+		};
+		9D573C072A38C47400F8E4F3 /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NetworkService;
+			sourceTree = "<group>";
+		};
+		9D573C082A38C4BD00F8E4F3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9D573BED2A38B84100F8E4F3 /* MainCityViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9D573C092A38C60300F8E4F3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9D573C0A2A38C60D00F8E4F3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9D573C192A38D02700F8E4F3 /* PermissionToUseLocation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PermissionToUseLocation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +212,9 @@
 			dependencies = (
 			);
 			name = Weather;
+			packageProductDependencies = (
+				9D573C172A38CE5B00F8E4F3 /* Alamofire */,
+			);
 			productName = Weather;
 			productReference = 9D573BE62A38B84100F8E4F3 /* Weather.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +243,9 @@
 				Base,
 			);
 			mainGroup = 9D573BDD2A38B84100F8E4F3;
+			packageReferences = (
+				9D573C162A38CE5B00F8E4F3 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 9D573BE72A38B84100F8E4F3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -127,7 +262,6 @@
 			files = (
 				9D573BF62A38B84300F8E4F3 /* LaunchScreen.storyboard in Resources */,
 				9D573BF32A38B84300F8E4F3 /* Assets.xcassets in Resources */,
-				9D573BF12A38B84100F8E4F3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,8 +272,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D573BEE2A38B84100F8E4F3 /* ViewController.swift in Sources */,
+				9D573BEE2A38B84100F8E4F3 /* MainCityViewController.swift in Sources */,
 				9D573BEA2A38B84100F8E4F3 /* AppDelegate.swift in Sources */,
+				9D573C152A38C6AF00F8E4F3 /* SummaryOfTheDayCoordinator.swift in Sources */,
+				9D573C0E2A38C65B00F8E4F3 /* Coordinatable.swift in Sources */,
+				9D573C1B2A38D0D100F8E4F3 /* PermissionToUseLocationCoordinator.swift in Sources */,
+				9D573C112A38C67200F8E4F3 /* WholeDayCoordinator.swift in Sources */,
+				9D573C132A38C69700F8E4F3 /* SettingsCoordinator.swift in Sources */,
+				9D573C0C2A38C64800F8E4F3 /* MainCityCoordinator.swift in Sources */,
 				9D573BEC2A38B84100F8E4F3 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -147,14 +287,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		9D573BEF2A38B84100F8E4F3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9D573BF02A38B84100F8E4F3 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		9D573BF42A38B84300F8E4F3 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -216,7 +348,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -270,7 +402,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -291,9 +423,9 @@
 				INFOPLIST_FILE = Weather/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -318,9 +450,9 @@
 				INFOPLIST_FILE = Weather/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -356,6 +488,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9D573C162A38CE5B00F8E4F3 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 5.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9D573C172A38CE5B00F8E4F3 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9D573C162A38CE5B00F8E4F3 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9D573BDE2A38B84100F8E4F3 /* Project object */;
 }

@@ -1,9 +1,3 @@
-//
-//  AppDelegate.swift
-//  Weather
-//
-//  Created by Андрей Банин on 13.6.23..
-//
 
 import UIKit
 
