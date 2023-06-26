@@ -19,6 +19,7 @@
 		9D573C152A38C6AF00F8E4F3 /* SummaryOfTheDayCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D573C142A38C6AF00F8E4F3 /* SummaryOfTheDayCoordinator.swift */; };
 		9D573C182A38CE5B00F8E4F3 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 9D573C172A38CE5B00F8E4F3 /* Alamofire */; };
 		9D573C1B2A38D0D100F8E4F3 /* PermissionToUseLocationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D573C1A2A38D0D100F8E4F3 /* PermissionToUseLocationCoordinator.swift */; };
+		9D5907B82A49CB9700A53961 /* Rubik-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9D5907B72A49CB9700A53961 /* Rubik-VariableFont_wght.ttf */; };
 		9D7D89A42A3CC34000CB0ED0 /* PermissionToUseLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7D89A32A3CC34000CB0ED0 /* PermissionToUseLocationView.swift */; };
 		9D7D89A62A3CC42500CB0ED0 /* PermissionToUseLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7D89A52A3CC42500CB0ED0 /* PermissionToUseLocationViewController.swift */; };
 		9DE2445A2A431C7F00FACD44 /* PermissionToUseLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE244592A431C7F00FACD44 /* PermissionToUseLocationModel.swift */; };
@@ -39,6 +40,7 @@
 		9D573C122A38C69700F8E4F3 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		9D573C142A38C6AF00F8E4F3 /* SummaryOfTheDayCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryOfTheDayCoordinator.swift; sourceTree = "<group>"; };
 		9D573C1A2A38D0D100F8E4F3 /* PermissionToUseLocationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionToUseLocationCoordinator.swift; sourceTree = "<group>"; };
+		9D5907B72A49CB9700A53961 /* Rubik-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		9D7D89A32A3CC34000CB0ED0 /* PermissionToUseLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionToUseLocationView.swift; sourceTree = "<group>"; };
 		9D7D89A52A3CC42500CB0ED0 /* PermissionToUseLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionToUseLocationViewController.swift; sourceTree = "<group>"; };
 		9DE244592A431C7F00FACD44 /* PermissionToUseLocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionToUseLocationModel.swift; sourceTree = "<group>"; };
@@ -57,6 +59,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9D3C511D2A48D24D00D625B3 /* FontRubic */ = {
+			isa = PBXGroup;
+			children = (
+				9D5907B72A49CB9700A53961 /* Rubik-VariableFont_wght.ttf */,
+			);
+			path = FontRubic;
+			sourceTree = "<group>";
+		};
 		9D573BDD2A38B84100F8E4F3 = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				9D573BF22A38B84300F8E4F3 /* Assets.xcassets */,
+				9D3C511D2A48D24D00D625B3 /* FontRubic */,
 				9D573C012A38C11B00F8E4F3 /* System */,
 			);
 			path = Resources;
@@ -297,6 +308,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D5907B82A49CB9700A53961 /* Rubik-VariableFont_wght.ttf in Resources */,
 				9D573BF62A38B84300F8E4F3 /* LaunchScreen.storyboard in Resources */,
 				9D573BF32A38B84300F8E4F3 /* Assets.xcassets in Resources */,
 			);

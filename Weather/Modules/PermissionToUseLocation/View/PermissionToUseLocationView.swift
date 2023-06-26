@@ -24,8 +24,7 @@ final class PermissionToUseLocationView: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.numberOfLines = 3
-        label.font = UIFont(name: "Rubik-SemiBold", size: 16)
-        label.lineBreakMode = .byWordWrapping
+        label.font = UIFont(name: "Rubik-Light_SemiBold", size: 16)
         label.textColor = UIColor(named: "figmaColorBeige")
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -35,7 +34,7 @@ final class PermissionToUseLocationView: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor(named: "figmaColorBeige")
-        label.font = UIFont(name: "Rubik-SemiBold", size: 12)
+        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 2
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -46,7 +45,7 @@ final class PermissionToUseLocationView: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = UIColor(named: "figmaColorBeige")
-        label.font = UIFont(name: "Rubik-SemiBold", size: 12)
+        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 2
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -59,7 +58,7 @@ final class PermissionToUseLocationView: UIView {
         button.backgroundColor = UIColor(named: "figmaColorOrange")
         button.setTitle(" ИСПОЛЬЗОВАТЬ МЕСТОПОЛОЖЕНИЕ  УСТРОЙСТВА ", for: .normal)
         button.setTitleColor(UIColor(named: "figmaColorBeige"), for: .normal)
-//        button.titleLabel?.font = UIFont(name: "Rubik-Medium", size: 8)
+        button.titleLabel?.font = UIFont(name: "Rubik-Light_Medium", size: 12)
         button.addTarget(self, action: #selector(agreeUseLocation), for: .touchUpInside)
         return button
     }()
@@ -69,7 +68,7 @@ final class PermissionToUseLocationView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("НЕТ, Я БУДУ ДОБАВЛЯТЬ ЛОКАЦИИ", for: .normal)
         button.setTitleColor(UIColor(named: "figmaColorBeige"), for: .normal)
-        button.titleLabel?.font = UIFont(name: "Rubik-Medium", size: 14)
+        button.titleLabel?.font = UIFont(name: "Rubik-Light_Regular", size: 16)
         button.addTarget(self, action: #selector(refuseUseLocation), for: .touchUpInside)
         return button
     }()
@@ -80,6 +79,14 @@ final class PermissionToUseLocationView: UIView {
         self.backgroundColor = UIColor(named: "figmaColorBlue")
         
         self.setupUi()
+        
+//        for family in UIFont.familyNames.sorted() {
+//            let names = UIFont.fontNames(forFamilyName: family)
+////            if family == "Rubik" {
+//                print("Family: \(family), names: \(names)")
+////            }
+//
+//        }
     }
     
     required init?(coder: NSCoder) {
@@ -123,6 +130,7 @@ final class PermissionToUseLocationView: UIView {
             make.top.equalTo(self.thirdParagraphLabel.snp.bottom).offset(40)
             make.centerX.equalTo(self.snp.centerX)
             make.leading.trailing.equalToSuperview().inset(16)
+            make.height.equalTo(40)
         }
         
         self.refuseButton.snp.makeConstraints { make in
