@@ -20,4 +20,8 @@ class MainCityCoordinator: Coordinatable {
         let mainCityVc = MainCityViewController()
         navigationController.pushViewController(mainCityVc, animated: true)
     }
+    
+//    func showSettings() {
+//        
+//    }
 }

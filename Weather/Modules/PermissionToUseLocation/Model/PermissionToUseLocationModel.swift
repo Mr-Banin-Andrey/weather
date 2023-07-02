@@ -11,7 +11,7 @@ struct PermissionToUseLocationModel {
 struct TextTitle {
     let textTitle: [PermissionToUseLocationModel] = [
         PermissionToUseLocationModel(
-            firstParagraph: "Разрешить приложению  Weather использовать данные \nо местоположении вашего устройства ",
+            firstParagraph: "Разрешить приложению  Weather использовать данные о местоположении вашего устройства ",
             secondParagraph: "Чтобы получить более точные прогнозы погоды во время движения или путешествия",
             thirdParagraph: "Вы можете изменить свой выбор в любое время из меню приложения"
         )

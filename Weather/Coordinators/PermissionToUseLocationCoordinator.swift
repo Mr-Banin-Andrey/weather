@@ -13,11 +13,16 @@ class PermissionToUseLocationCoordinator: Coordinatable {
     }
     
     func start() {
-        showperToUseLocalVc()
+        showPerToUseLocalVc()
     }
     
-    func showperToUseLocalVc() {
+    func showPerToUseLocalVc() {
         let perToUseLocalVc = PermissionToUseLocationViewController()
         navigationController.pushViewController(perToUseLocalVc, animated: true)
     }
+    
+//    func showMainCityVc() {
+//        let mainCityVc = MainCityViewController()
+//        navigationController.pushViewController(mainCityVc, animated: true)
+//    }
 }

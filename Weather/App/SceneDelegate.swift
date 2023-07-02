@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         self.window = window
         
-        let coordinator = PermissionToUseLocationCoordinator(navigationController: navigationController)
+        let coordinator = MainCityCoordinator(navigationController: navigationController)
         self.rootCoordinator = coordinator
         
         window.makeKeyAndVisible()

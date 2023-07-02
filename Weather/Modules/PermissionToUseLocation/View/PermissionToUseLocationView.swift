@@ -60,6 +60,7 @@ final class PermissionToUseLocationView: UIView {
         button.setTitleColor(UIColor(named: "figmaColorBeige"), for: .normal)
         button.titleLabel?.font = UIFont(name: "Rubik-Light_Medium", size: 12)
         button.addTarget(self, action: #selector(agreeUseLocation), for: .touchUpInside)
+        button.layer.cornerRadius = 10
         return button
     }()
     
@@ -80,13 +81,6 @@ final class PermissionToUseLocationView: UIView {
         
         self.setupUi()
         
-//        for family in UIFont.familyNames.sorted() {
-//            let names = UIFont.fontNames(forFamilyName: family)
-////            if family == "Rubik" {
-//                print("Family: \(family), names: \(names)")
-////            }
-//
-//        }
     }
     
     required init?(coder: NSCoder) {
