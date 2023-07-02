@@ -16,9 +16,11 @@ class MainCityViewController: UIViewController {
         super.viewDidLoad()
 
         
-        view.backgroundColor = .cyan
+        view.backgroundColor = .systemBackground
         
-        manCityView.navigationController(navItem: navigationItem) //navTitle: "то что передам из апи погода")
+        manCityView.navigationController(navItem: navigationItem, navTitle: "то что передам из апи погода")
+        
+        manCityView.settingsPageControl(scrollDelegate: self, numberOfPages: 2)
     }
 
 
@@ -35,4 +37,13 @@ extension MainCityViewController: MainCityViewDelegate {
     }
     
     
+}
+
+extension MainCityViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        manCityView.pageControl.currentPage = Int(scrollView.contentOffset.x / UIScreen.main.bounds.width)
+        print(" currentPage", Int(scrollView.contentOffset.x / UIScreen.main.bounds.width))
+        print(" scrollView", scrollView.contentOffset.x)
+        print(" UIScreen", UIScreen.main.bounds.width)
+    }
 }
