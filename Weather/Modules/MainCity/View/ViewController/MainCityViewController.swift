@@ -18,9 +18,9 @@ class MainCityViewController: UIViewController {
         
         view.backgroundColor = .systemBackground
         
-        manCityView.navigationController(navItem: navigationItem, navTitle: "то что передам из апи погода")
-        
+        manCityView.navigationController(navItem: navigationItem, navTitle: "то что передам 7°/13° ")
         manCityView.settingsPageControl(scrollDelegate: self, numberOfPages: 2)
+        manCityView.configureTableView(delegate: self, dataSource: self)
     }
 
 
@@ -46,4 +46,33 @@ extension MainCityViewController: UIScrollViewDelegate {
         print(" scrollView", scrollView.contentOffset.x)
         print(" UIScreen", UIScreen.main.bounds.width)
     }
+}
+
+extension MainCityViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 {
+            guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "cardOfTheDayId") as? CardOfTheDayHeader else { return nil }
+            
+//            header.setup(user: )
+            return header
+        }
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "defaultId", for: indexPath)
+
+        cell.backgroundColor = .gray
+        return cell
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        2
+    }
+    
 }

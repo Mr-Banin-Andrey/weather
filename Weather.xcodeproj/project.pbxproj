@@ -24,6 +24,7 @@
 		9D7D89A62A3CC42500CB0ED0 /* PermissionToUseLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7D89A52A3CC42500CB0ED0 /* PermissionToUseLocationViewController.swift */; };
 		9DB90D112A518F0D00F57180 /* MainCityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D102A518F0D00F57180 /* MainCityView.swift */; };
 		9DB90D132A51A0CD00F57180 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D122A51A0CD00F57180 /* AppCoordinator.swift */; };
+		9DB90D2D2A53038900F57180 /* CardOfTheDayHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D2C2A53038900F57180 /* CardOfTheDayHeader.swift */; };
 		9DE2445A2A431C7F00FACD44 /* PermissionToUseLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE244592A431C7F00FACD44 /* PermissionToUseLocationModel.swift */; };
 		9DE2445D2A4325D700FACD44 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9DE2445C2A4325D700FACD44 /* SnapKit */; };
 /* End PBXBuildFile section */
@@ -47,6 +48,7 @@
 		9D7D89A52A3CC42500CB0ED0 /* PermissionToUseLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionToUseLocationViewController.swift; sourceTree = "<group>"; };
 		9DB90D102A518F0D00F57180 /* MainCityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCityView.swift; sourceTree = "<group>"; };
 		9DB90D122A51A0CD00F57180 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		9DB90D2C2A53038900F57180 /* CardOfTheDayHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardOfTheDayHeader.swift; sourceTree = "<group>"; };
 		9DE244592A431C7F00FACD44 /* PermissionToUseLocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionToUseLocationModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -194,6 +196,7 @@
 		9D573C082A38C4BD00F8E4F3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9DB90D292A53023F00F57180 /* TableView */,
 				9DB90D0F2A518EDF00F57180 /* View */,
 				9DB90D0E2A518ED500F57180 /* ViewController */,
 			);
@@ -262,6 +265,30 @@
 				9DB90D102A518F0D00F57180 /* MainCityView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		9DB90D292A53023F00F57180 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				9DB90D2B2A5302C500F57180 /* Cells */,
+				9DB90D2A2A5302B800F57180 /* Headers */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		9DB90D2A2A5302B800F57180 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				9DB90D2C2A53038900F57180 /* CardOfTheDayHeader.swift */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		9DB90D2B2A5302C500F57180 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -347,6 +374,7 @@
 				9D573BEA2A38B84100F8E4F3 /* AppDelegate.swift in Sources */,
 				9D573C152A38C6AF00F8E4F3 /* SummaryOfTheDayCoordinator.swift in Sources */,
 				9DB90D112A518F0D00F57180 /* MainCityView.swift in Sources */,
+				9DB90D2D2A53038900F57180 /* CardOfTheDayHeader.swift in Sources */,
 				9D573C0E2A38C65B00F8E4F3 /* Coordinatable.swift in Sources */,
 				9DE2445A2A431C7F00FACD44 /* PermissionToUseLocationModel.swift in Sources */,
 				9DB90D132A51A0CD00F57180 /* AppCoordinator.swift in Sources */,

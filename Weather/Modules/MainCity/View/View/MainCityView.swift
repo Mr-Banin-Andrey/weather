@@ -32,6 +32,14 @@ class MainCityView: UIView {
         return pageControl
     }()
     
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+//        tableView.backgroundColor = .systemBackground
+        tableView.backgroundColor = .cyan
+        return tableView
+    }()
+    
     private lazy var leftButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "бургер"), for: .normal)
@@ -92,9 +100,23 @@ class MainCityView: UIView {
         self.pageControl.numberOfPages = numberOfPages
     }
     
+    func configureTableView(delegate: UITableViewDelegate, dataSource: UITableViewDataSource) {
+        self.tableView.delegate = delegate
+        self.tableView.dataSource = dataSource
+        
+        self.tableView.register(CardOfTheDayHeader.self, forHeaderFooterViewReuseIdentifier: "cardOfTheDayId") // card Of The Day
+//        self.tableView.register(<#T##nib: UINib?##UINib?#>, forCellReuseIdentifier: <#T##String#>) // hourly weather
+//        self.tableView.register(<#T##aClass: AnyClass?##AnyClass?#>, forHeaderFooterViewReuseIdentifier: <#T##String#>) // "every day weather" and 25 days
+//        self.tableView.register(<#T##nib: UINib?##UINib?#>, forCellReuseIdentifier: <#T##String#>) // cells by day
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "defaultId")
+    }
+    
     private func setupUi() {
         self.addSubview(self.scrollView)
         self.addSubview(self.pageControl)
+        self.scrollView.addSubview(self.tableView)
+        
+        let widthScreen = UIScreen.main.bounds.width
         
         self.scrollView.snp.makeConstraints { make in
             make.top.equalTo(self.snp.top)
@@ -107,6 +129,14 @@ class MainCityView: UIView {
             make.centerX.equalTo(scrollView.snp.centerX)
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top)
         }
+        
+        self.tableView.snp.makeConstraints { make in
+            make.top.equalTo(self.pageControl.snp.bottom) //
+            make.leading.equalTo(self.scrollView.snp.leading)
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom) //.offset(500)
+            make.width.equalTo(widthScreen)
+        }
+        
     }
     
     @objc private func showSettings() {
