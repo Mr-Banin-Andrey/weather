@@ -147,3 +147,9 @@ class MainCityView: UIView {
         delegate?.showPermissionToUseLocationView()
     }
 }
+
+//public extension UIImageView {
+//    func tintImage(color: UIColor) {
+//        image = image?.tint(color: color)
+//    }
+//}

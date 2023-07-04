@@ -13,11 +13,12 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         return cardView
     }()
     
-    private lazy var ellipseImageView: UIButton = { // изменить на лабел , добавить фото и изменить цвет
-        let image = UIButton()
+    private lazy var ellipseImageView: UIImageView = {
+        let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.setImage(UIImage(named: "Ellipse"), for: .normal)
-        image.tintColor = .yellow
+        image.image = UIImage(named: "Ellipse")
+        image.tintColor =  UIColor(named: "figmaColorYellow")
+        image.backgroundColor = UIColor(named: "figmaColorBlue")
         return image
     }()
     
@@ -25,15 +26,14 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.image = UIImage(named: "восход")
-//        image.tintColor = UIColor(named: "figmaColorYellow")
         return image
     }()
+    
     
     private lazy var sunsetImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = UIImage(named: "закат")
-//        image.tintColor = UIColor(named: "figmaColorYellow")
+        image.image = UIImage(named: "заход")
         return image
     }()
     
@@ -66,6 +66,8 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
     }
     
     private func setupUi() {
+        
+        
         self.addSubview(self.cardView)
         self.addSubview(self.ellipseImageView)
         self.addSubview(self.sunriseImageView)
