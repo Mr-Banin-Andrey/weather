@@ -55,6 +55,44 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         return label
     }()
     
+    private lazy var weatherDayStackView: UIStackView = {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .vertical
+        stack.distribution = .equalSpacing
+        stack.spacing = 5
+        stack.alignment = .center
+        return stack
+    }()
+    
+    private lazy var fromMinToMaxDegreeLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Rubik-Light_Regular", size: 16)
+        label.textColor = .white
+        label.text = "7°/13°"
+        return label
+    }()
+    
+    private lazy var degreeNowLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Rubik-Light_Medium", size: 36)
+        label.textColor = .white
+        label.text = "13°"
+        return label
+    }()
+    
+    private lazy var probabilityOfPrecipitationLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Rubik-Light_Regular", size: 16)
+        label.textColor = .white
+        label.text = "Возможен небольшой дождь"
+        return label
+    }()
+    
+    
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         
@@ -67,13 +105,17 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
     
     private func setupUi() {
         
-        
         self.addSubview(self.cardView)
         self.addSubview(self.ellipseImageView)
         self.addSubview(self.sunriseImageView)
         self.addSubview(self.sunriseTimeLabel)
         self.addSubview(self.sunsetImageView)
         self.addSubview(self.sunsetTimeLabel)
+        self.addSubview(self.weatherDayStackView)
+        self.weatherDayStackView.addArrangedSubview(self.fromMinToMaxDegreeLabel)
+        self.weatherDayStackView.addArrangedSubview(self.degreeNowLabel)
+        self.weatherDayStackView.addArrangedSubview(self.probabilityOfPrecipitationLabel)
+        
         
         self.cardView.snp.makeConstraints { make in
             make.top.equalTo(self.snp.top) //.inset(20)
@@ -118,6 +160,11 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
 //            make.leading.equalTo(self.cardView.snp.leading).inset(16)
             make.trailing.equalTo(self.cardView.snp.trailing).inset(16)
             make.bottom.equalTo(self.cardView.snp.bottom).inset(26)
+        }
+        
+        self.weatherDayStackView.snp.makeConstraints { make in
+            make.top.equalTo(self.cardView.snp.top).inset(32)
+            make.centerX.equalTo(self.cardView.snp.centerX)
         }
     }
 }
