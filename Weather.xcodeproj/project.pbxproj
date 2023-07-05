@@ -25,6 +25,8 @@
 		9DB90D112A518F0D00F57180 /* MainCityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D102A518F0D00F57180 /* MainCityView.swift */; };
 		9DB90D132A51A0CD00F57180 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D122A51A0CD00F57180 /* AppCoordinator.swift */; };
 		9DB90D2D2A53038900F57180 /* CardOfTheDayHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D2C2A53038900F57180 /* CardOfTheDayHeader.swift */; };
+		9DB90D342A555CBA00F57180 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D332A555CBA00F57180 /* CustomImageView.swift */; };
+		9DB90D372A5587FC00F57180 /* DefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D362A5587FC00F57180 /* DefaultView.swift */; };
 		9DE2445A2A431C7F00FACD44 /* PermissionToUseLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE244592A431C7F00FACD44 /* PermissionToUseLocationModel.swift */; };
 		9DE2445D2A4325D700FACD44 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9DE2445C2A4325D700FACD44 /* SnapKit */; };
 /* End PBXBuildFile section */
@@ -49,6 +51,8 @@
 		9DB90D102A518F0D00F57180 /* MainCityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCityView.swift; sourceTree = "<group>"; };
 		9DB90D122A51A0CD00F57180 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		9DB90D2C2A53038900F57180 /* CardOfTheDayHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardOfTheDayHeader.swift; sourceTree = "<group>"; };
+		9DB90D332A555CBA00F57180 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
+		9DB90D362A5587FC00F57180 /* DefaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultView.swift; sourceTree = "<group>"; };
 		9DE244592A431C7F00FACD44 /* PermissionToUseLocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionToUseLocationModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -139,6 +143,8 @@
 		9D573C002A38C0E300F8E4F3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9DB90D352A5585B000F57180 /* DefaultView */,
+				9DB90D322A555BF600F57180 /* CustomClass */,
 				9D573BF22A38B84300F8E4F3 /* Assets.xcassets */,
 				9D3C511D2A48D24D00D625B3 /* FontRubic */,
 				9D573C012A38C11B00F8E4F3 /* System */,
@@ -291,6 +297,22 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		9DB90D322A555BF600F57180 /* CustomClass */ = {
+			isa = PBXGroup;
+			children = (
+				9DB90D332A555CBA00F57180 /* CustomImageView.swift */,
+			);
+			path = CustomClass;
+			sourceTree = "<group>";
+		};
+		9DB90D352A5585B000F57180 /* DefaultView */ = {
+			isa = PBXGroup;
+			children = (
+				9DB90D362A5587FC00F57180 /* DefaultView.swift */,
+			);
+			path = DefaultView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -372,6 +394,7 @@
 			files = (
 				9D573BEE2A38B84100F8E4F3 /* MainCityViewController.swift in Sources */,
 				9D573BEA2A38B84100F8E4F3 /* AppDelegate.swift in Sources */,
+				9DB90D372A5587FC00F57180 /* DefaultView.swift in Sources */,
 				9D573C152A38C6AF00F8E4F3 /* SummaryOfTheDayCoordinator.swift in Sources */,
 				9DB90D112A518F0D00F57180 /* MainCityView.swift in Sources */,
 				9DB90D2D2A53038900F57180 /* CardOfTheDayHeader.swift in Sources */,
@@ -380,6 +403,7 @@
 				9DB90D132A51A0CD00F57180 /* AppCoordinator.swift in Sources */,
 				9D573C1B2A38D0D100F8E4F3 /* PermissionToUseLocationCoordinator.swift in Sources */,
 				9D573C112A38C67200F8E4F3 /* WholeDayCoordinator.swift in Sources */,
+				9DB90D342A555CBA00F57180 /* CustomImageView.swift in Sources */,
 				9D573C132A38C69700F8E4F3 /* SettingsCoordinator.swift in Sources */,
 				9D7D89A42A3CC34000CB0ED0 /* PermissionToUseLocationView.swift in Sources */,
 				9D573C0C2A38C64800F8E4F3 /* MainCityCoordinator.swift in Sources */,
