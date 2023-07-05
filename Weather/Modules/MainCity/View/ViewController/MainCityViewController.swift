@@ -4,7 +4,7 @@ import UIKit
 
 class MainCityViewController: UIViewController {
     
-    private lazy var manCityView = MainCityView(delegate: self)
+    private lazy var manCityView = MainCityView(delegate: self)    
     
     override func loadView() {
         super.loadView()
@@ -20,7 +20,7 @@ class MainCityViewController: UIViewController {
         
         manCityView.navigationController(navItem: navigationItem, navTitle: "то что передам 7°/13° ")
         manCityView.settingsPageControl(scrollDelegate: self, numberOfPages: 2)
-        manCityView.configureTableView(delegate: self, dataSource: self)
+        manCityView.configureTableView(delegateTable: self, dataSourceTable: self)
     }
 
 
@@ -65,6 +65,7 @@ extension MainCityViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "defaultId", for: indexPath)
 
         cell.backgroundColor = .gray

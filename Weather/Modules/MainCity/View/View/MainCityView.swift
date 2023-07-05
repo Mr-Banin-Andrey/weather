@@ -33,7 +33,7 @@ class MainCityView: UIView {
     }()
     
     private lazy var tableView: UITableView = {
-        let tableView = UITableView()
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
 //        tableView.backgroundColor = .systemBackground
         tableView.backgroundColor = .cyan
@@ -69,6 +69,25 @@ class MainCityView: UIView {
         return label
     }()
     
+    private lazy var layout: UICollectionViewFlowLayout = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumLineSpacing = 8
+        layout.minimumInteritemSpacing = 8
+        layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        return layout
+    }()
+    
+    lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.layout)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: "customCell")
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "defaultID")
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .secondarySystemBackground
+        return collectionView
+    }()
     
     init(delegate: MainCityViewDelegate) {
         self.delegate = delegate
@@ -100,9 +119,14 @@ class MainCityView: UIView {
         self.pageControl.numberOfPages = numberOfPages
     }
     
-    func configureTableView(delegate: UITableViewDelegate, dataSource: UITableViewDataSource) {
-        self.tableView.delegate = delegate
-        self.tableView.dataSource = dataSource
+    func configureTableView(
+        delegateTable: UITableViewDelegate,
+        dataSourceTable: UITableViewDataSource //,
+//        delegateCollection: UITableViewDelegate,
+//        dataSourceCollection: UITableViewDataSource
+    ) {
+        self.tableView.delegate = delegateTable
+        self.tableView.dataSource = dataSourceTable
         
         self.tableView.register(CardOfTheDayHeader.self, forHeaderFooterViewReuseIdentifier: "cardOfTheDayId") // card Of The Day
 //        self.tableView.register(<#T##nib: UINib?##UINib?#>, forCellReuseIdentifier: <#T##String#>) // hourly weather

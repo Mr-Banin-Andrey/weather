@@ -5,7 +5,7 @@ import SnapKit
 
 class CardOfTheDayHeader: UITableViewHeaderFooterView {
     
-    let customImageView = CustomImageView()
+    private let customImageView = CustomImageView()
     
     private lazy var cardView: UIView = {
         let cardView = UIView()
@@ -19,7 +19,6 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.image = UIImage(named: "Ellipse")
-        customImageView.editColorImageView(color: UIColor(named: "figmaColorYellow") ?? .black, imageView: image)
         return image
     }()
     
@@ -190,15 +189,17 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         label.font = UIFont(name: "Rubik-Light_Regular", size: 16)
         label.textColor = UIColor(named: "figmaColorYellow")
         label.text = "17:48,  пт 16 апреля"
+        
         return label
     }()
     
     private lazy var detailedWeatherForTheDayButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Подробнее на 24 часа", for: .normal)
+        button.titleLabel?.font = UIFont(name: "Rubik-Light_Regular", size: 16)
+        button.setAttributedTitle("Подробнее на 24 часа".underLined, for: .normal)
         button.setTitleColor(.black, for: .normal)
-//        button.addTarget(<#T##target: Any?##Any?#>, action: <#T##Selector#>, for: <#T##UIControl.Event#>)
+        button.addTarget(self, action: #selector(showWholeDay), for: .touchUpInside)
         return button
     }()
     
@@ -256,11 +257,10 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         self.addSubview(self.detailedWeatherForTheDayButton)
         
         self.cardView.snp.makeConstraints { make in
-            make.top.equalTo(self.snp.top) //.inset(20)
-            make.leading.equalTo(self.snp.leading).inset(16)
-            make.trailing.equalTo(self.snp.trailing).inset(16)
+            make.top.equalToSuperview().inset(20)
+            make.leading.equalToSuperview().inset(16)
+            make.trailing.equalToSuperview().inset(16)
             make.height.equalTo(212)
-//            make.bottom.equalToSuperview() //.inset(16)
         }
         
         self.semicircleImageView.snp.makeConstraints { make in
@@ -273,7 +273,6 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         self.sunriseImageView.snp.makeConstraints { make in
             make.top.equalTo(self.cardView.snp.top).inset(144)
             make.leading.equalTo(self.cardView.snp.leading).inset(24)
-//            make.trailing.equalTo(self.cardView.snp.trailing).inset(301)
             make.bottom.equalTo(self.cardView.snp.bottom).offset(-51)
             make.width.equalTo(17)
         }
@@ -281,13 +280,11 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         self.sunriseTimeLabel.snp.makeConstraints { make in
             make.top.equalTo(self.sunriseImageView.snp.bottom).offset(5)
             make.leading.equalTo(self.cardView.snp.leading).inset(16)
-//            make.trailing.equalTo(self.cardView.snp.trailing).inset(301)
             make.bottom.equalTo(self.cardView.snp.bottom).inset(26)
         }
         
         self.sunsetImageView.snp.makeConstraints { make in
             make.top.equalTo(self.cardView.snp.top).inset(144)
-//            make.leading.equalTo(self.cardView.snp.leading).inset(24)
             make.trailing.equalTo(self.cardView.snp.trailing).inset(24)
             make.bottom.equalTo(self.cardView.snp.bottom).offset(-51)
             make.width.equalTo(17)
@@ -295,7 +292,6 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         
         self.sunsetTimeLabel.snp.makeConstraints { make in
             make.top.equalTo(self.sunriseImageView.snp.bottom).offset(5)
-//            make.leading.equalTo(self.cardView.snp.leading).inset(16)
             make.trailing.equalTo(self.cardView.snp.trailing).inset(16)
             make.bottom.equalTo(self.cardView.snp.bottom).inset(26)
         }
@@ -307,7 +303,7 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         
         self.precipitationDayStackView.snp.makeConstraints { make in
             make.centerX.equalTo(self.cardView.snp.centerX)
-            make.top.equalTo(self.cardView.snp.top).inset(130)
+            make.top.equalTo(self.cardView.snp.top).inset(136)
         }
         
         self.timeAndDateNowLabel.snp.makeConstraints { make in
@@ -316,16 +312,14 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         }
         
         self.detailedWeatherForTheDayButton.snp.makeConstraints { make in
-            make.centerX.equalTo(self.snp.centerX)
-            make.top.equalTo(self.cardView.snp.bottom).inset(33)
-            
+            make.top.equalTo(self.cardView.snp.bottom).offset(33)
             make.height.equalTo(20)
-            
+            make.trailing.equalToSuperview().inset(16)
             make.bottom.equalToSuperview() //.offset(20)
         }
     }
     
-    
+    @objc private func showWholeDay() {
+        
+    }
 }
-
-
