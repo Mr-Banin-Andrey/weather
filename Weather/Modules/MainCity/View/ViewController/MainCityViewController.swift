@@ -54,9 +54,9 @@ extension MainCityViewController: UITableViewDelegate, UITableViewDataSource {
         if section == 0 {
             guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "cardOfTheDayId") as? CardOfTheDayHeader else { return nil }
             
-//            header.setup(user: )
             return header
         }
+
         return nil
     }
     
@@ -65,15 +65,18 @@ extension MainCityViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "defaultId", for: indexPath)
-
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CollectionViewCell", for: indexPath) as? HourlyWeatherCollectionViewCell else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "defaultId", for: indexPath)
+            
+            return cell
+        }
+            
         cell.backgroundColor = .gray
         return cell
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        2
+        1
     }
     
 }
