@@ -39,6 +39,8 @@ class HourlyWeatherCellInTableViewCell: UICollectionViewCell {
             self.text.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             self.text.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             self.text.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+//            self.text.widthAnchor.constraint(equalToConstant: 25),
+//            self.text.heightAnchor.constraint(equalToConstant: 25)
         ])
     }
     

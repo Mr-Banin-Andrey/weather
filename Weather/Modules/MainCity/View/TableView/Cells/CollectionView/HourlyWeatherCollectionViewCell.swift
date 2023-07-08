@@ -53,51 +53,58 @@ class HourlyWeatherCollectionViewCell: UITableViewCell {
         let widthScreen = UIScreen.main.bounds.width
         
         NSLayoutConstraint.activate([
-            self.collectionView.topAnchor.constraint(equalTo: self.topAnchor),
+            self.collectionView.topAnchor.constraint(equalTo: self.topAnchor), // constant: 24),
             self.collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-//            self.collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            self.collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            self.collectionView.widthAnchor.constraint(equalToConstant: widthScreen)
+            self.collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+//            self.collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor), // constant: -24),
+//            self.collectionView.widthAnchor.constraint(equalToConstant: widthScreen),
+            self.collectionView.heightAnchor.constraint(equalToConstant: 84)
         ])
     }
     
 }
 
-extension HourlyWeatherCollectionViewCell:  UICollectionViewDataSource, UICollectionViewDelegate {
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
-    }
+extension HourlyWeatherCollectionViewCell:  UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+//    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+//        return 1
+//    }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "customCell", for: indexPath) as? HourlyWeatherCellInTableViewCell else {
+//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "customCell", for: indexPath) as? HourlyWeatherCellInTableViewCell else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath)
-            return cell
-        }
-            
+//            return cell
+//        }
             
         cell.backgroundColor = UIColor.yellow
-        cell.setup(with: "Text")
+//        cell.setup(with: "Text")
         return cell
     }
     
-   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//
+//        let insert = (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.sectionInset ?? .zero
+//        print("🍉 1 insert", insert)
+//
+//        let interItemSpacing = (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.minimumInteritemSpacing ?? 0
+//        print("🍉 2 interItemSpacing", interItemSpacing)
+//
+//        let wight = collectionView.frame.width - (Constants.numberOfItemsInLine - 1) * interItemSpacing - insert.left - insert.right
+//        print("🍉 3 wight", wight)
+//
+//        let itemWight = floor(wight / Constants.numberOfItemsInLine)
+//        print("🍉 4 itemWight", itemWight)
+//
+//
+//        return CGSize(width: itemWight, height: itemWight)
+//    }
     
-        let insert = (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.sectionInset ?? .zero
-        let interItemSpacing = (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.minimumInteritemSpacing ?? 0
-        
-        let wight = collectionView.frame.width - (Constants.numberOfItemsInLine - 1) * interItemSpacing - insert.left - insert.right
-        let itemWight = floor(wight / Constants.numberOfItemsInLine)
-        
-        return CGSize(width: itemWight, height: itemWight)
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-            let cell = cell as! CollectionViewTableViewCell
-            cell.collectionView.reloadData()
-            cell.collectionView.contentOffset = .zero
-        }
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//            let cell = cell as! CollectionViewTableViewCell
+//            cell.collectionView.reloadData()
+//            cell.collectionView.contentOffset = .zero
+//        }
 }

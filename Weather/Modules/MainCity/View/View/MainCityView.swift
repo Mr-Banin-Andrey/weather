@@ -18,6 +18,9 @@ class MainCityView: UIView {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
 //        scrollView.backgroundColor = .darkGray
         scrollView.isPagingEnabled = true
+//        scrollView.isDirectionalLockEnabled = false
+//        scrollView.scrollsToTop = true
+//        scrollView
         return scrollView
     }()
     
@@ -109,8 +112,8 @@ class MainCityView: UIView {
         
         self.tableView.register(CardOfTheDayHeader.self, forHeaderFooterViewReuseIdentifier: "cardOfTheDayId") // card Of The Day
         self.tableView.register(HourlyWeatherCollectionViewCell.self, forCellReuseIdentifier: "CollectionViewCell") // hourly weather
-//        self.tableView.register(HourlyWeatherCollectionViewCell.self, forHeaderFooterViewReuseIdentifier: "CollectionViewCell") // "every day weather" and 25 days
-//        self.tableView.register(<#T##nib: UINib?##UINib?#>, forCellReuseIdentifier: <#T##String#>) // cells by day
+        self.tableView.register(TwentyFiveDaysLabelHeader.self, forHeaderFooterViewReuseIdentifier: "TwentyFiveDaysLabelHeader") // "every day weather" and 25 days
+        self.tableView.register(DailyForecastCell.self, forCellReuseIdentifier: "DailyForecastCell") // cells by day
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "defaultId")
     }
     

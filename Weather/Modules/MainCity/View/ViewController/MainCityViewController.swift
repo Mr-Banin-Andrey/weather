@@ -19,7 +19,7 @@ class MainCityViewController: UIViewController {
         view.backgroundColor = .systemBackground
         
         manCityView.navigationController(navItem: navigationItem, navTitle: "то что передам 7°/13° ")
-        manCityView.settingsPageControl(scrollDelegate: self, numberOfPages: 2)
+        manCityView.settingsPageControl(scrollDelegate: self, numberOfPages: 1)
         manCityView.configureTableView(delegateTable: self, dataSourceTable: self)
     }
 
@@ -42,9 +42,10 @@ extension MainCityViewController: MainCityViewDelegate {
 extension MainCityViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         manCityView.pageControl.currentPage = Int(scrollView.contentOffset.x / UIScreen.main.bounds.width)
+        
         print(" currentPage", Int(scrollView.contentOffset.x / UIScreen.main.bounds.width))
         print(" scrollView", scrollView.contentOffset.x)
-        print(" UIScreen", UIScreen.main.bounds.width)
+//        print(" UIScreen", UIScreen.main.bounds.width)
     }
 }
 
@@ -52,31 +53,67 @@ extension MainCityViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
-            guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "cardOfTheDayId") as? CardOfTheDayHeader else { return nil }
+            guard
+                let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "cardOfTheDayId") as? CardOfTheDayHeader
+            else { return nil }
             
             return header
         }
 
+        if section == 1 {
+            guard
+                let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TwentyFiveDaysLabelHeader") as? TwentyFiveDaysLabelHeader
+            else { return nil }
+            
+            return header
+        }
+        
         return nil
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        
+        
+        if section == 0 {
+            return 1
+        }
+        
+        if section == 1 {
+            return 5
+        }
+        
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CollectionViewCell", for: indexPath) as? HourlyWeatherCollectionViewCell else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "defaultId", for: indexPath)
+        if indexPath.section == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "CollectionViewCell", for: indexPath) as? HourlyWeatherCollectionViewCell else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "defaultId", for: indexPath)
+                
+                return cell
+            }
             
+            cell.backgroundColor = .gray
             return cell
         }
+        
+        if indexPath.section == 1 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "DailyForecastCell", for: indexPath) as? DailyForecastCell else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "defaultId", for: indexPath)
+                
+                return cell
+            }
             
-        cell.backgroundColor = .gray
+            cell.backgroundColor = .gray
+            return cell
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "defaultId", for: indexPath)
         return cell
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        1
+        2
     }
     
 }
