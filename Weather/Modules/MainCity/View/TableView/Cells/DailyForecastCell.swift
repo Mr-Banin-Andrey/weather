@@ -25,7 +25,7 @@ class DailyForecastCell: UITableViewCell {
     private lazy var precipitationImage: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = UIImage(named: "Frame-2")
+        image.image = UIImage(named: "precipitationImage")
         return image
     }()
     
@@ -81,15 +81,55 @@ class DailyForecastCell: UITableViewCell {
         self.addSubview(self.descriptionWeather)
         self.addSubview(self.fromMinToMaxDegreeLabel)
         self.addSubview(self.transitionImage)
-        
-        
+
+
         self.backView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(5)
             make.leading.equalToSuperview().inset(16)
             make.trailing.equalToSuperview().inset(16)
-            make.bottom.equalToSuperview().inset(5)
+            make.bottom.equalToSuperview().inset(5).priority(.high)
             make.height.equalTo(56)
         }
+        
+        self.dateLabel.snp.makeConstraints { make in
+            make.top.equalTo(self.backView.snp.top).inset(5)
+            make.leading.equalTo(self.backView.snp.leading).inset(10)
+            make.height.equalTo(19)
+            make.width.equalTo(48)
+        }
+        
+        self.precipitationImage.snp.makeConstraints { make in
+            make.leading.equalTo(self.backView.snp.leading).inset(10)
+            make.bottom.equalTo(self.backView.snp.bottom).inset(10)
+        }
+        
+        self.precipitationLabel.snp.makeConstraints { make in
+            make.leading.equalTo(self.precipitationImage.snp.trailing).offset(5)
+            make.bottom.equalTo(self.backView.snp.bottom).inset(10)
+        }
+        
+        self.descriptionWeather.snp.makeConstraints { make in
+            make.top.equalTo(self.backView.snp.top).inset(19)
+            make.leading.equalTo(self.dateLabel.snp.trailing).offset(16)
+            make.trailing.equalTo(self.backView.snp.trailing).inset(75)
+            make.height.equalTo(19)
+            make.bottom.equalTo(self.backView.snp.bottom).inset(18)
+        }
+        
+        self.fromMinToMaxDegreeLabel.snp.makeConstraints { make in
+            make.top.equalTo(self.backView.snp.top).inset(17)
+            make.leading.equalTo(self.descriptionWeather.snp.trailing).offset(5)
+            make.height.equalTo(22)
+            make.bottom.equalTo(self.backView.snp.bottom).inset(17)
+        }
+        
+        self.transitionImage.snp.makeConstraints { make in
+            make.top.equalTo(self.backView.snp.top).inset(23)
+            make.trailing.equalTo(self.backView.snp.trailing).inset(10)
+            make.height.equalTo(10)
+            make.width.equalTo(6)
+        }
+        
     }
     
 }

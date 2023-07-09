@@ -40,6 +40,7 @@ class MainCityView: UIView {
         tableView.translatesAutoresizingMaskIntoConstraints = false
 //        tableView.backgroundColor = .systemBackground
         tableView.backgroundColor = .cyan
+        tableView.separatorStyle = .none
         return tableView
     }()
     
@@ -110,10 +111,12 @@ class MainCityView: UIView {
         self.tableView.delegate = delegateTable
         self.tableView.dataSource = dataSourceTable
         
-        self.tableView.register(CardOfTheDayHeader.self, forHeaderFooterViewReuseIdentifier: "cardOfTheDayId") // card Of The Day
-        self.tableView.register(HourlyWeatherCollectionViewCell.self, forCellReuseIdentifier: "CollectionViewCell") // hourly weather
-        self.tableView.register(TwentyFiveDaysLabelHeader.self, forHeaderFooterViewReuseIdentifier: "TwentyFiveDaysLabelHeader") // "every day weather" and 25 days
-        self.tableView.register(DailyForecastCell.self, forCellReuseIdentifier: "DailyForecastCell") // cells by day
+        self.tableView.register(CardOfTheDayHeader.self, forHeaderFooterViewReuseIdentifier: "cardOfTheDayId")
+        self.tableView.register(HourlyWeatherCollectionViewCell.self, forCellReuseIdentifier: "CollectionViewCell")
+        
+        self.tableView.register(TwentyFiveDaysLabelHeader.self, forHeaderFooterViewReuseIdentifier: "TwentyFiveDaysLabelHeader")
+        self.tableView.register(DailyForecastCell.self, forCellReuseIdentifier: "DailyForecastCell")
+        
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "defaultId")
     }
     

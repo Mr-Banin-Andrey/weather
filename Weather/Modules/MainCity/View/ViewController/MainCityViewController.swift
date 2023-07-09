@@ -22,8 +22,7 @@ class MainCityViewController: UIViewController {
         manCityView.settingsPageControl(scrollDelegate: self, numberOfPages: 1)
         manCityView.configureTableView(delegateTable: self, dataSourceTable: self)
     }
-
-
+    
 }
 
 extension MainCityViewController: MainCityViewDelegate {
@@ -72,8 +71,6 @@ extension MainCityViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        
         if section == 0 {
             return 1
         }
@@ -93,7 +90,7 @@ extension MainCityViewController: UITableViewDelegate, UITableViewDataSource {
                 return cell
             }
             
-            cell.backgroundColor = .gray
+            cell.backgroundColor = .systemBackground
             return cell
         }
         
@@ -104,7 +101,7 @@ extension MainCityViewController: UITableViewDelegate, UITableViewDataSource {
                 return cell
             }
             
-            cell.backgroundColor = .gray
+            cell.backgroundColor = .systemBackground
             return cell
         }
         
