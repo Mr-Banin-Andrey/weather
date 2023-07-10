@@ -29,7 +29,7 @@ class HourlyWeatherCollectionViewCell: UITableViewCell {
         collectionView.register(HourlyWeatherCellInTableViewCell.self, forCellWithReuseIdentifier: "customCell")
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .secondarySystemBackground
+        collectionView.backgroundColor = .systemBackground
 //        collectionView.isPagingEnabled = false
 //        collectionView.
         return collectionView
@@ -48,17 +48,18 @@ class HourlyWeatherCollectionViewCell: UITableViewCell {
     }
     
     private func setupUi() {
-        self.addSubview(collectionView)
+        self.contentView.addSubview(collectionView)
         
-        let widthScreen = UIScreen.main.bounds.width
+//        let widthScreen = UIScreen.main.bounds.width
         
         NSLayoutConstraint.activate([
-            self.collectionView.topAnchor.constraint(equalTo: self.topAnchor), // constant: 24),
-            self.collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            self.collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-//            self.collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor), // constant: -24),
+            self.collectionView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 8),
+            self.collectionView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
+            self.collectionView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16),
+            
+            self.collectionView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -5),
 //            self.collectionView.widthAnchor.constraint(equalToConstant: widthScreen),
-            self.collectionView.heightAnchor.constraint(equalToConstant: 84)
+            self.collectionView.heightAnchor.constraint(equalToConstant: 85)
         ])
     }
     
@@ -70,22 +71,29 @@ extension HourlyWeatherCollectionViewCell:  UICollectionViewDataSource, UICollec
 //    }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return 20
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "customCell", for: indexPath) as? HourlyWeatherCellInTableViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "customCell", for: indexPath) as? HourlyWeatherCellInTableViewCell else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath)
-//            return cell
-//        }
+            return cell
+        }
             
-        cell.backgroundColor = UIColor.yellow
+        cell.directionalLayoutMargins = .zero //IEdgeInsetsZero
+        cell.preservesSuperviewLayoutMargins = false
+        cell.setup()
+//        cell.backgroundColor = UIColor.yellow
 //        cell.setup(with: "Text")
         return cell
     }
     
-//   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
+   func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+   ) -> CGSize {
+
 //        let insert = (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.sectionInset ?? .zero
 //        print("🍉 1 insert", insert)
 //
@@ -97,14 +105,9 @@ extension HourlyWeatherCollectionViewCell:  UICollectionViewDataSource, UICollec
 //
 //        let itemWight = floor(wight / Constants.numberOfItemsInLine)
 //        print("🍉 4 itemWight", itemWight)
-//
-//
-//        return CGSize(width: itemWight, height: itemWight)
-//    }
+
+
+        return CGSize(width: 42, height: 85)
+    }
     
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//            let cell = cell as! CollectionViewTableViewCell
-//            cell.collectionView.reloadData()
-//            cell.collectionView.contentOffset = .zero
-//        }
 }

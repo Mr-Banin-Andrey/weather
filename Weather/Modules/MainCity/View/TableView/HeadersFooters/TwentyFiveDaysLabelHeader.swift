@@ -41,14 +41,14 @@ class TwentyFiveDaysLabelHeader: UITableViewHeaderFooterView {
         self.addSubview(self.twentyFiveDaysButton)
         
         self.nameDailyForecastLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(24)
+            make.top.equalToSuperview()
             make.leading.equalToSuperview().inset(16)
             make.bottom.equalToSuperview().inset(10)
             make.height.equalTo(20)
         }
         
         self.twentyFiveDaysButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(24)
+            make.top.equalToSuperview()
             make.trailing.equalToSuperview().inset(16)
             make.bottom.equalToSuperview().inset(10)
             make.height.equalTo(20)
