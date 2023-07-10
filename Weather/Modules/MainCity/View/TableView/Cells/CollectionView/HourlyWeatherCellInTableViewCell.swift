@@ -57,11 +57,11 @@ class HourlyWeatherCellInTableViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup() {
-        backView.backgroundColor = UIColor(named: "figmaColorBlue")
-        clockLabel.textColor = .white
-        gradusLabel.textColor = .white
-    }
+//    func setup() {
+//        backView.backgroundColor = UIColor(named: "figmaColorBlue")
+//        clockLabel.textColor = .white
+//        gradusLabel.textColor = .white
+//    }
     
     private func setupConstraints() {
         self.contentView.addSubview(self.backView)

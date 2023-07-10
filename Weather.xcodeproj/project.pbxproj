@@ -34,6 +34,7 @@
 		9DB90D462A59AAFA00F57180 /* DailyForecastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D452A59AAFA00F57180 /* DailyForecastCell.swift */; };
 		9DB90D4D2A5C2BAC00F57180 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D4C2A5C2BAC00F57180 /* SettingsViewController.swift */; };
 		9DB90D4F2A5C2BD400F57180 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D4E2A5C2BD400F57180 /* SettingsView.swift */; };
+		9DB90D512A5C655400F57180 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D502A5C655400F57180 /* SettingsModel.swift */; };
 		9DE2445A2A431C7F00FACD44 /* PermissionToUseLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE244592A431C7F00FACD44 /* PermissionToUseLocationModel.swift */; };
 		9DE2445D2A4325D700FACD44 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9DE2445C2A4325D700FACD44 /* SnapKit */; };
 /* End PBXBuildFile section */
@@ -67,6 +68,7 @@
 		9DB90D452A59AAFA00F57180 /* DailyForecastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyForecastCell.swift; sourceTree = "<group>"; };
 		9DB90D4C2A5C2BAC00F57180 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9DB90D4E2A5C2BD400F57180 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		9DB90D502A5C655400F57180 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		9DE244592A431C7F00FACD44 /* PermissionToUseLocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionToUseLocationModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -354,6 +356,7 @@
 		9DB90D492A5C2B8300F57180 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9DB90D502A5C655400F57180 /* SettingsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				9D573C152A38C6AF00F8E4F3 /* SummaryOfTheDayCoordinator.swift in Sources */,
 				9DB90D112A518F0D00F57180 /* MainCityView.swift in Sources */,
 				9DB90D2D2A53038900F57180 /* CardOfTheDayHeader.swift in Sources */,
+				9DB90D512A5C655400F57180 /* SettingsModel.swift in Sources */,
 				9DB90D3D2A56022300F57180 /* HourlyWeatherCollectionViewCell.swift in Sources */,
 				9D573C0E2A38C65B00F8E4F3 /* Coordinatable.swift in Sources */,
 				9DE2445A2A431C7F00FACD44 /* PermissionToUseLocationModel.swift in Sources */,

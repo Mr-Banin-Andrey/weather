@@ -82,7 +82,7 @@ extension HourlyWeatherCollectionViewCell:  UICollectionViewDataSource, UICollec
             
         cell.directionalLayoutMargins = .zero //IEdgeInsetsZero
         cell.preservesSuperviewLayoutMargins = false
-        cell.setup()
+//        cell.setup()
 //        cell.backgroundColor = UIColor.yellow
 //        cell.setup(with: "Text")
         return cell

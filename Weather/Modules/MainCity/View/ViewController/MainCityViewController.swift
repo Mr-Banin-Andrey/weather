@@ -27,6 +27,11 @@ class MainCityViewController: UIViewController {
         manCityView.configureTableView(delegateTable: self, dataSourceTable: self)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.navigationBar.isHidden = false
+    }
 }
 
 extension MainCityViewController: MainCityViewDelegate {

@@ -22,8 +22,29 @@ class SettingsViewController: UIViewController {
         
         self.navigationController?.navigationBar.isHidden = true
     }
+    
+
 }
 
 extension SettingsViewController: SettingsViewDelegate {
+    func selectedTemp() {
+        print("selectedTemp")
+    }
     
+    func selectedSpeedWind() {
+        print("selectedSpeedWind")
+    }
+    
+    func selectedTimeFormat() {
+        print("selectedTimeFormat")
+    }
+    
+    func selectedNotifications() {
+        print("selectedNotifications")
+    }
+    
+    func installSettings() {
+        print("installSettings")
+        self.navigationController?.popViewController(animated: true)
+    }
 }
