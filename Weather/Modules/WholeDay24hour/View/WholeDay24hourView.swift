@@ -59,7 +59,7 @@ class WholeDay24hourView: UIView {
         super.init(frame: .zero)
         
         self.backgroundColor = .systemBackground
-        self.safeAreaLayoutGuide.owningView?.backgroundColor = .cyan
+//        self.safeAreaLayoutGuide.owningView?.backgroundColor = .cyan
         
         self.customViewBarItem()
         self.setupUi()

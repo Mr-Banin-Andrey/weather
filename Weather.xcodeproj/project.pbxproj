@@ -38,6 +38,7 @@
 		9DB90D5B2A5D592900F57180 /* WholeDay24hourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D5A2A5D592900F57180 /* WholeDay24hourViewController.swift */; };
 		9DB90D5D2A5D594900F57180 /* WholeDay24hourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D5C2A5D594900F57180 /* WholeDay24hourView.swift */; };
 		9DB90D622A5D9D0000F57180 /* WholeDay24hourTimetableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D612A5D9D0000F57180 /* WholeDay24hourTimetableHeader.swift */; };
+		9DB90D642A5DED8600F57180 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D632A5DED8600F57180 /* File.swift */; };
 		9DE2445A2A431C7F00FACD44 /* PermissionToUseLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE244592A431C7F00FACD44 /* PermissionToUseLocationModel.swift */; };
 		9DE2445D2A4325D700FACD44 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9DE2445C2A4325D700FACD44 /* SnapKit */; };
 /* End PBXBuildFile section */
@@ -75,6 +76,7 @@
 		9DB90D5A2A5D592900F57180 /* WholeDay24hourViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WholeDay24hourViewController.swift; sourceTree = "<group>"; };
 		9DB90D5C2A5D594900F57180 /* WholeDay24hourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WholeDay24hourView.swift; sourceTree = "<group>"; };
 		9DB90D612A5D9D0000F57180 /* WholeDay24hourTimetableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WholeDay24hourTimetableHeader.swift; sourceTree = "<group>"; };
+		9DB90D632A5DED8600F57180 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		9DE244592A431C7F00FACD44 /* PermissionToUseLocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionToUseLocationModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -341,6 +343,7 @@
 			isa = PBXGroup;
 			children = (
 				9DB90D362A5587FC00F57180 /* DefaultView.swift */,
+				9DB90D632A5DED8600F57180 /* File.swift */,
 			);
 			path = DefaultView;
 			sourceTree = "<group>";
@@ -518,6 +521,7 @@
 				9DB90D372A5587FC00F57180 /* DefaultView.swift in Sources */,
 				9D573C152A38C6AF00F8E4F3 /* SummaryOfTheDayCoordinator.swift in Sources */,
 				9DB90D112A518F0D00F57180 /* MainCityView.swift in Sources */,
+				9DB90D642A5DED8600F57180 /* File.swift in Sources */,
 				9DB90D2D2A53038900F57180 /* CardOfTheDayHeader.swift in Sources */,
 				9DB90D512A5C655400F57180 /* SettingsModel.swift in Sources */,
 				9DB90D3D2A56022300F57180 /* HourlyWeatherCollectionViewCell.swift in Sources */,
