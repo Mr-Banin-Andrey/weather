@@ -3,9 +3,15 @@ import Foundation
 import UIKit
 import SnapKit
 
+protocol CardOfTheDayHeaderDelegate: AnyObject {
+    func showWholeDay10()
+}
+
 class CardOfTheDayHeader: UITableViewHeaderFooterView {
     
     private let customImageView = CustomImageView()
+    
+    weak var delegate: CardOfTheDayHeaderDelegate?
     
     private lazy var cardView: UIView = {
         let cardView = UIView()
@@ -22,7 +28,6 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         return image
     }()
     
-    
     private lazy var sunriseImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -30,7 +35,6 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         customImageView.editColorImageView(color: UIColor(named: "figmaColorYellow") ?? .black, imageView: image)
         return image
     }()
-    
     
     private lazy var sunsetImageView: UIImageView = {
         let image = UIImageView()
@@ -320,6 +324,13 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
     }
     
     @objc private func showWholeDay() {
+        print("1 showWholeDay")
+//        delegate?.showWholeDay10()
         
+        
+        let wholeDay = WholeDay24hourViewController()
+//        navigationController?.pushViewController(wholeDay, animated: true)
+        
+        UINavigationController().pushViewController(wholeDay, animated: true)
     }
 }

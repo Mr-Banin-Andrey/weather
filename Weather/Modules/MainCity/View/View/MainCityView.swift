@@ -143,7 +143,7 @@ class MainCityView: UIView {
     }
     
     private func setupUi() {
-        let widthScreen = UIScreen.main.bounds.width
+//        let widthScreen = UIScreen.main.bounds.width
 //        let heightScreen = UIScreen.main.bounds.height
         
 //        self.contentView.frame.size = CGSize(width: widthScreen, height: heightScreen )
@@ -188,7 +188,7 @@ class MainCityView: UIView {
 //            make.top.equalTo(self.pageControl.snp.bottom) //
 //            make.leading.equalTo(self.scrollView.snp.leading)
 //            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
-//\
+//
             make.top.equalTo(self.snp.top)
             make.leading.equalTo(self.snp.leading)
             make.trailing.equalTo(self.snp.trailing)

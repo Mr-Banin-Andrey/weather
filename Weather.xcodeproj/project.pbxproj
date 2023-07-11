@@ -35,6 +35,9 @@
 		9DB90D4D2A5C2BAC00F57180 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D4C2A5C2BAC00F57180 /* SettingsViewController.swift */; };
 		9DB90D4F2A5C2BD400F57180 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D4E2A5C2BD400F57180 /* SettingsView.swift */; };
 		9DB90D512A5C655400F57180 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D502A5C655400F57180 /* SettingsModel.swift */; };
+		9DB90D5B2A5D592900F57180 /* WholeDay24hourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D5A2A5D592900F57180 /* WholeDay24hourViewController.swift */; };
+		9DB90D5D2A5D594900F57180 /* WholeDay24hourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D5C2A5D594900F57180 /* WholeDay24hourView.swift */; };
+		9DB90D622A5D9D0000F57180 /* WholeDay24hourTimetableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D612A5D9D0000F57180 /* WholeDay24hourTimetableHeader.swift */; };
 		9DE2445A2A431C7F00FACD44 /* PermissionToUseLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE244592A431C7F00FACD44 /* PermissionToUseLocationModel.swift */; };
 		9DE2445D2A4325D700FACD44 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9DE2445C2A4325D700FACD44 /* SnapKit */; };
 /* End PBXBuildFile section */
@@ -69,6 +72,9 @@
 		9DB90D4C2A5C2BAC00F57180 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9DB90D4E2A5C2BD400F57180 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9DB90D502A5C655400F57180 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
+		9DB90D5A2A5D592900F57180 /* WholeDay24hourViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WholeDay24hourViewController.swift; sourceTree = "<group>"; };
+		9DB90D5C2A5D594900F57180 /* WholeDay24hourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WholeDay24hourView.swift; sourceTree = "<group>"; };
+		9DB90D612A5D9D0000F57180 /* WholeDay24hourTimetableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WholeDay24hourTimetableHeader.swift; sourceTree = "<group>"; };
 		9DE244592A431C7F00FACD44 /* PermissionToUseLocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionToUseLocationModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -152,7 +158,7 @@
 				9D573C032A38C1A900F8E4F3 /* MainCity */,
 				9D573C042A38C1FD00F8E4F3 /* Settings */,
 				9D573C062A38C2AC00F8E4F3 /* SummaryOfTheDay */,
-				9D573C052A38C27900F8E4F3 /* WholeDay */,
+				9D573C052A38C27900F8E4F3 /* WholeDay24hour */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -198,11 +204,14 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		9D573C052A38C27900F8E4F3 /* WholeDay */ = {
+		9D573C052A38C27900F8E4F3 /* WholeDay24hour */ = {
 			isa = PBXGroup;
 			children = (
+				9DB90D592A5D431E00F57180 /* Controller */,
+				9DB90D572A5D431200F57180 /* Model */,
+				9DB90D582A5D431800F57180 /* View */,
 			);
-			path = WholeDay;
+			path = WholeDay24hour;
 			sourceTree = "<group>";
 		};
 		9D573C062A38C2AC00F8E4F3 /* SummaryOfTheDay */ = {
@@ -377,6 +386,54 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		9DB90D572A5D431200F57180 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9DB90D582A5D431800F57180 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9DB90D5E2A5D9C5800F57180 /* TableView */,
+				9DB90D5C2A5D594900F57180 /* WholeDay24hourView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9DB90D592A5D431E00F57180 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9DB90D5A2A5D592900F57180 /* WholeDay24hourViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9DB90D5E2A5D9C5800F57180 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				9DB90D602A5D9C7000F57180 /* Cells */,
+				9DB90D5F2A5D9C6800F57180 /* Headers */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		9DB90D5F2A5D9C6800F57180 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				9DB90D612A5D9D0000F57180 /* WholeDay24hourTimetableHeader.swift */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		9DB90D602A5D9C7000F57180 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -467,12 +524,15 @@
 				9D573C0E2A38C65B00F8E4F3 /* Coordinatable.swift in Sources */,
 				9DE2445A2A431C7F00FACD44 /* PermissionToUseLocationModel.swift in Sources */,
 				9DB90D4F2A5C2BD400F57180 /* SettingsView.swift in Sources */,
+				9DB90D5D2A5D594900F57180 /* WholeDay24hourView.swift in Sources */,
 				9DB90D462A59AAFA00F57180 /* DailyForecastCell.swift in Sources */,
 				9DB90D132A51A0CD00F57180 /* AppCoordinator.swift in Sources */,
+				9DB90D5B2A5D592900F57180 /* WholeDay24hourViewController.swift in Sources */,
 				9D573C1B2A38D0D100F8E4F3 /* PermissionToUseLocationCoordinator.swift in Sources */,
 				9D573C112A38C67200F8E4F3 /* WholeDayCoordinator.swift in Sources */,
 				9DB90D342A555CBA00F57180 /* CustomImageView.swift in Sources */,
 				9D573C132A38C69700F8E4F3 /* SettingsCoordinator.swift in Sources */,
+				9DB90D622A5D9D0000F57180 /* WholeDay24hourTimetableHeader.swift in Sources */,
 				9DB90D4D2A5C2BAC00F57180 /* SettingsViewController.swift in Sources */,
 				9D7D89A42A3CC34000CB0ED0 /* PermissionToUseLocationView.swift in Sources */,
 				9DB90D3B2A55F73900F57180 /* extensionString.swift in Sources */,

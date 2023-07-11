@@ -44,19 +44,25 @@ extension MainCityViewController: MainCityViewDelegate {
     
     func showPermissionToUseLocationView() {
         print("showPermissionToUseLocationView")
+        
+        //временное решение
+        let wholeDay = WholeDay24hourViewController()
+        navigationController?.pushViewController(wholeDay, animated: true)
     }
-    
-    
 }
+
+//extension MainCityViewController: CardOfTheDayHeaderDelegate {
+//
+//    func showWholeDay10() {
+//        print("2 showWholeDay")
+//        let wholeDay = WholeDay24hourViewController()
+//        navigationController?.pushViewController(wholeDay, animated: true)
+//    }
+//}
 
 //extension MainCityViewController: UIScrollViewDelegate {
 //    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        
-        
 //        manCityView.pageControl.currentPage = Int(scrollView.contentOffset.x / UIScreen.main.bounds.width)
-        
-        
 //        print(" currentPage", Int(scrollView.contentOffset.x / UIScreen.main.bounds.width))
 //        print(" scrollView", scrollView.contentOffset.x)
 //        print(" ---------------------------------------------")
