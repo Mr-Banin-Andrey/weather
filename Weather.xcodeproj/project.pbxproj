@@ -26,7 +26,7 @@
 		9DB90D132A51A0CD00F57180 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D122A51A0CD00F57180 /* AppCoordinator.swift */; };
 		9DB90D2D2A53038900F57180 /* CardOfTheDayHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D2C2A53038900F57180 /* CardOfTheDayHeader.swift */; };
 		9DB90D342A555CBA00F57180 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D332A555CBA00F57180 /* CustomImageView.swift */; };
-		9DB90D372A5587FC00F57180 /* DefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D362A5587FC00F57180 /* DefaultView.swift */; };
+		9DB90D372A5587FC00F57180 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D362A5587FC00F57180 /* CustomView.swift */; };
 		9DB90D3B2A55F73900F57180 /* extensionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D3A2A55F73900F57180 /* extensionString.swift */; };
 		9DB90D3D2A56022300F57180 /* HourlyWeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D3C2A56022300F57180 /* HourlyWeatherCollectionViewCell.swift */; };
 		9DB90D412A5756F700F57180 /* HourlyWeatherCellInTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D402A5756F700F57180 /* HourlyWeatherCellInTableViewCell.swift */; };
@@ -38,7 +38,8 @@
 		9DB90D5B2A5D592900F57180 /* WholeDay24hourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D5A2A5D592900F57180 /* WholeDay24hourViewController.swift */; };
 		9DB90D5D2A5D594900F57180 /* WholeDay24hourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D5C2A5D594900F57180 /* WholeDay24hourView.swift */; };
 		9DB90D622A5D9D0000F57180 /* WholeDay24hourTimetableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D612A5D9D0000F57180 /* WholeDay24hourTimetableHeader.swift */; };
-		9DB90D642A5DED8600F57180 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D632A5DED8600F57180 /* File.swift */; };
+		9DB90D642A5DED8600F57180 /* DashedViewHorizontal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D632A5DED8600F57180 /* DashedViewHorizontal.swift */; };
+		9DB90D662A5E8B9A00F57180 /* DashedViewVertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D652A5E8B9A00F57180 /* DashedViewVertical.swift */; };
 		9DE2445A2A431C7F00FACD44 /* PermissionToUseLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE244592A431C7F00FACD44 /* PermissionToUseLocationModel.swift */; };
 		9DE2445D2A4325D700FACD44 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9DE2445C2A4325D700FACD44 /* SnapKit */; };
 /* End PBXBuildFile section */
@@ -64,7 +65,7 @@
 		9DB90D122A51A0CD00F57180 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		9DB90D2C2A53038900F57180 /* CardOfTheDayHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardOfTheDayHeader.swift; sourceTree = "<group>"; };
 		9DB90D332A555CBA00F57180 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
-		9DB90D362A5587FC00F57180 /* DefaultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultView.swift; sourceTree = "<group>"; };
+		9DB90D362A5587FC00F57180 /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		9DB90D3A2A55F73900F57180 /* extensionString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensionString.swift; sourceTree = "<group>"; };
 		9DB90D3C2A56022300F57180 /* HourlyWeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyWeatherCollectionViewCell.swift; sourceTree = "<group>"; };
 		9DB90D402A5756F700F57180 /* HourlyWeatherCellInTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyWeatherCellInTableViewCell.swift; sourceTree = "<group>"; };
@@ -76,7 +77,8 @@
 		9DB90D5A2A5D592900F57180 /* WholeDay24hourViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WholeDay24hourViewController.swift; sourceTree = "<group>"; };
 		9DB90D5C2A5D594900F57180 /* WholeDay24hourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WholeDay24hourView.swift; sourceTree = "<group>"; };
 		9DB90D612A5D9D0000F57180 /* WholeDay24hourTimetableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WholeDay24hourTimetableHeader.swift; sourceTree = "<group>"; };
-		9DB90D632A5DED8600F57180 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		9DB90D632A5DED8600F57180 /* DashedViewHorizontal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashedViewHorizontal.swift; sourceTree = "<group>"; };
+		9DB90D652A5E8B9A00F57180 /* DashedViewVertical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashedViewVertical.swift; sourceTree = "<group>"; };
 		9DE244592A431C7F00FACD44 /* PermissionToUseLocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionToUseLocationModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -168,9 +170,9 @@
 		9D573C002A38C0E300F8E4F3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				9DB90D352A5585B000F57180 /* DefaultView */,
-				9DB90D322A555BF600F57180 /* CustomClass */,
 				9D573BF22A38B84300F8E4F3 /* Assets.xcassets */,
+				9DB90D352A5585B000F57180 /* CustomView */,
+				9DB90D322A555BF600F57180 /* CustomClass */,
 				9D3C511D2A48D24D00D625B3 /* FontRubic */,
 				9D573C012A38C11B00F8E4F3 /* System */,
 			);
@@ -339,13 +341,13 @@
 			path = CustomClass;
 			sourceTree = "<group>";
 		};
-		9DB90D352A5585B000F57180 /* DefaultView */ = {
+		9DB90D352A5585B000F57180 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
-				9DB90D362A5587FC00F57180 /* DefaultView.swift */,
-				9DB90D632A5DED8600F57180 /* File.swift */,
+				9DB90D672A5ECE7100F57180 /* DashedView */,
+				9DB90D362A5587FC00F57180 /* CustomView.swift */,
 			);
-			path = DefaultView;
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 		9DB90D382A55F6E500F57180 /* extensionSystemValue */ = {
@@ -437,6 +439,15 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		9DB90D672A5ECE7100F57180 /* DashedView */ = {
+			isa = PBXGroup;
+			children = (
+				9DB90D632A5DED8600F57180 /* DashedViewHorizontal.swift */,
+				9DB90D652A5E8B9A00F57180 /* DashedViewVertical.swift */,
+			);
+			path = DashedView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -518,15 +529,16 @@
 			files = (
 				9D573BEE2A38B84100F8E4F3 /* MainCityViewController.swift in Sources */,
 				9D573BEA2A38B84100F8E4F3 /* AppDelegate.swift in Sources */,
-				9DB90D372A5587FC00F57180 /* DefaultView.swift in Sources */,
+				9DB90D372A5587FC00F57180 /* CustomView.swift in Sources */,
 				9D573C152A38C6AF00F8E4F3 /* SummaryOfTheDayCoordinator.swift in Sources */,
 				9DB90D112A518F0D00F57180 /* MainCityView.swift in Sources */,
-				9DB90D642A5DED8600F57180 /* File.swift in Sources */,
+				9DB90D642A5DED8600F57180 /* DashedViewHorizontal.swift in Sources */,
 				9DB90D2D2A53038900F57180 /* CardOfTheDayHeader.swift in Sources */,
 				9DB90D512A5C655400F57180 /* SettingsModel.swift in Sources */,
 				9DB90D3D2A56022300F57180 /* HourlyWeatherCollectionViewCell.swift in Sources */,
 				9D573C0E2A38C65B00F8E4F3 /* Coordinatable.swift in Sources */,
 				9DE2445A2A431C7F00FACD44 /* PermissionToUseLocationModel.swift in Sources */,
+				9DB90D662A5E8B9A00F57180 /* DashedViewVertical.swift in Sources */,
 				9DB90D4F2A5C2BD400F57180 /* SettingsView.swift in Sources */,
 				9DB90D5D2A5D594900F57180 /* WholeDay24hourView.swift in Sources */,
 				9DB90D462A59AAFA00F57180 /* DailyForecastCell.swift in Sources */,

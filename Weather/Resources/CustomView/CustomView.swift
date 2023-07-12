@@ -3,7 +3,7 @@
 import Foundation
 import UIKit
 
-struct DefaultView {
+struct CustomView {
     var gradusImageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false

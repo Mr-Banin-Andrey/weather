@@ -1,6 +1,6 @@
 import UIKit
 
-public class DashedView: UIView {
+public class DashedViewHorizontal: UIView {
 
     public struct Configuration {
         public var color: UIColor
@@ -65,7 +65,7 @@ public class DashedView: UIView {
 
 }
 
-private extension DashedView {
+private extension DashedViewHorizontal {
     func drawDottedLine(
         start: CGPoint,
         end: CGPoint,
