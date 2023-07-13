@@ -43,6 +43,9 @@
 		9DB90D6B2A5FE73900F57180 /* WholeDay24hourTimetableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D6A2A5FE73900F57180 /* WholeDay24hourTimetableCell.swift */; };
 		9DB90D6D2A5FF43900F57180 /* ListFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D6C2A5FF43900F57180 /* ListFonts.swift */; };
 		9DB90D702A60048D00F57180 /* ListColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D6F2A60048D00F57180 /* ListColors.swift */; };
+		9DB90D752A605E4500F57180 /* SummaryOfTheDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D742A605E4500F57180 /* SummaryOfTheDayViewController.swift */; };
+		9DB90D772A605E5400F57180 /* SummaryOfTheDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D762A605E5400F57180 /* SummaryOfTheDayView.swift */; };
+		9DB90D7D2A60680400F57180 /* SummaryOfTheDayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D7C2A60680400F57180 /* SummaryOfTheDayTableViewCell.swift */; };
 		9DE2445A2A431C7F00FACD44 /* PermissionToUseLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE244592A431C7F00FACD44 /* PermissionToUseLocationModel.swift */; };
 		9DE2445D2A4325D700FACD44 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9DE2445C2A4325D700FACD44 /* SnapKit */; };
 /* End PBXBuildFile section */
@@ -85,6 +88,9 @@
 		9DB90D6A2A5FE73900F57180 /* WholeDay24hourTimetableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WholeDay24hourTimetableCell.swift; sourceTree = "<group>"; };
 		9DB90D6C2A5FF43900F57180 /* ListFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFonts.swift; sourceTree = "<group>"; };
 		9DB90D6F2A60048D00F57180 /* ListColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListColors.swift; sourceTree = "<group>"; };
+		9DB90D742A605E4500F57180 /* SummaryOfTheDayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryOfTheDayViewController.swift; sourceTree = "<group>"; };
+		9DB90D762A605E5400F57180 /* SummaryOfTheDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryOfTheDayView.swift; sourceTree = "<group>"; };
+		9DB90D7C2A60680400F57180 /* SummaryOfTheDayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryOfTheDayTableViewCell.swift; sourceTree = "<group>"; };
 		9DE244592A431C7F00FACD44 /* PermissionToUseLocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionToUseLocationModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -229,6 +235,9 @@
 		9D573C062A38C2AC00F8E4F3 /* SummaryOfTheDay */ = {
 			isa = PBXGroup;
 			children = (
+				9DB90D732A604AB000F57180 /* Controller */,
+				9DB90D722A604AAB00F57180 /* View */,
+				9DB90D712A604AA100F57180 /* Model */,
 			);
 			path = SummaryOfTheDay;
 			sourceTree = "<group>";
@@ -465,6 +474,54 @@
 			path = Colors;
 			sourceTree = "<group>";
 		};
+		9DB90D712A604AA100F57180 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9DB90D722A604AAB00F57180 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9DB90D782A6065FE00F57180 /* TableView */,
+				9DB90D762A605E5400F57180 /* SummaryOfTheDayView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9DB90D732A604AB000F57180 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9DB90D742A605E4500F57180 /* SummaryOfTheDayViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9DB90D782A6065FE00F57180 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				9DB90D792A60660700F57180 /* Cells */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		9DB90D792A60660700F57180 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				9DB90D7B2A60661F00F57180 /* CollectionView */,
+				9DB90D7C2A60680400F57180 /* SummaryOfTheDayTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		9DB90D7B2A60661F00F57180 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -550,6 +607,7 @@
 				9DB90D372A5587FC00F57180 /* CustomView.swift in Sources */,
 				9D573C152A38C6AF00F8E4F3 /* SummaryOfTheDayCoordinator.swift in Sources */,
 				9DB90D112A518F0D00F57180 /* MainCityView.swift in Sources */,
+				9DB90D772A605E5400F57180 /* SummaryOfTheDayView.swift in Sources */,
 				9DB90D642A5DED8600F57180 /* DashedViewHorizontal.swift in Sources */,
 				9DB90D2D2A53038900F57180 /* CardOfTheDayHeader.swift in Sources */,
 				9DB90D512A5C655400F57180 /* SettingsModel.swift in Sources */,
@@ -557,6 +615,7 @@
 				9D573C0E2A38C65B00F8E4F3 /* Coordinatable.swift in Sources */,
 				9DE2445A2A431C7F00FACD44 /* PermissionToUseLocationModel.swift in Sources */,
 				9DB90D662A5E8B9A00F57180 /* DashedViewVertical.swift in Sources */,
+				9DB90D7D2A60680400F57180 /* SummaryOfTheDayTableViewCell.swift in Sources */,
 				9DB90D4F2A5C2BD400F57180 /* SettingsView.swift in Sources */,
 				9DB90D5D2A5D594900F57180 /* WholeDay24hourView.swift in Sources */,
 				9DB90D462A59AAFA00F57180 /* DailyForecastCell.swift in Sources */,
@@ -569,6 +628,7 @@
 				9D573C132A38C69700F8E4F3 /* SettingsCoordinator.swift in Sources */,
 				9DB90D622A5D9D0000F57180 /* WholeDay24hourTimetableHeader.swift in Sources */,
 				9DB90D4D2A5C2BAC00F57180 /* SettingsViewController.swift in Sources */,
+				9DB90D752A605E4500F57180 /* SummaryOfTheDayViewController.swift in Sources */,
 				9D7D89A42A3CC34000CB0ED0 /* PermissionToUseLocationView.swift in Sources */,
 				9DB90D3B2A55F73900F57180 /* extensionString.swift in Sources */,
 				9DB90D6B2A5FE73900F57180 /* WholeDay24hourTimetableCell.swift in Sources */,

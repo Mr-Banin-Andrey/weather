@@ -3,20 +3,20 @@ import Foundation
 import UIKit
 import SnapKit
 
-protocol WholeDay24hourViewDelegate: AnyObject {
-    func comeBack()
+protocol SummaryOfTheDayViewDelegate: AnyObject {
+    
 }
 
-class WholeDay24hourView: UIView {
+class SummaryOfTheDayView: UIView {
     
-    weak var delegate: WholeDay24hourViewDelegate?
+    weak var delegate: SummaryOfTheDayViewDelegate?
     
     private lazy var customViewBack: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
+
     private lazy var backButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(systemName: "arrow.backward"), for: .normal)
@@ -25,7 +25,7 @@ class WholeDay24hourView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
+
     private lazy var backLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: ListFonts.regular400.rawValue, size: 16)
@@ -33,7 +33,7 @@ class WholeDay24hourView: UIView {
         label.text = "Прогноз на 24 часа"
         return label
     }()
-    
+
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -42,7 +42,7 @@ class WholeDay24hourView: UIView {
         label.textColor = .black
         return label
     }()
-    
+
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -54,12 +54,12 @@ class WholeDay24hourView: UIView {
         return tableView
     }()
     
-    init(delegate: WholeDay24hourViewDelegate) {
+    init(delegate: SummaryOfTheDayViewDelegate) {
         self.delegate = delegate
         super.init(frame: .zero)
         
         self.backgroundColor = .systemBackground
-        
+
         self.customViewBarItem()
         self.setupUi()
     }
@@ -67,6 +67,7 @@ class WholeDay24hourView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     
     func navigationController(navItem: UINavigationItem) {
         let barCustomLeftButtom = UIBarButtonItem(customView: customViewBack)
@@ -117,7 +118,6 @@ class WholeDay24hourView: UIView {
     }
     
     @objc private func comeBack() {
-        print("comeBack")
-        delegate?.comeBack()
+        
     }
 }

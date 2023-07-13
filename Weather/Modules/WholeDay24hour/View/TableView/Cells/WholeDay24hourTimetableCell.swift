@@ -105,7 +105,6 @@ class WholeDay24hourTimetableCell: UITableViewCell {
         stack.axis = .horizontal
         stack.distribution = .equalSpacing
         stack.spacing = 30
-//        stack.alignment = .leading
         return stack
     }()
     
@@ -153,7 +152,6 @@ class WholeDay24hourTimetableCell: UITableViewCell {
         stack.axis = .horizontal
         stack.distribution = .equalSpacing
         stack.spacing = 30
-//        stack.alignment = .leading
         return stack
     }()
     
@@ -201,7 +199,6 @@ class WholeDay24hourTimetableCell: UITableViewCell {
         stack.axis = .horizontal
         stack.distribution = .equalSpacing
         stack.spacing = 30
-//        stack.alignment = .leading
         return stack
     }()
     
