@@ -36,55 +36,8 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
         return line
     }()
     
+//    degree - CircleImage, Label - One
     private lazy var circleOneImage: UIImageView = {
-        let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = UIImage(systemName: "circle.fill")
-        image.tintColor = .white
-        return image
-    }()
-    
-    private lazy var circleTwoImage: UIImageView = {
-        let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = UIImage(systemName: "circle.fill")
-        image.tintColor = .white
-        return image
-    }()
-    
-    private lazy var circleThreeImage: UIImageView = {
-        let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = UIImage(systemName: "circle.fill")
-        image.tintColor = .white
-        return image
-    }()
-    
-    private lazy var circleFourImage: UIImageView = {
-        let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = UIImage(systemName: "circle.fill")
-        image.tintColor = .white
-        return image
-    }()
-    
-    private lazy var circleFiveImage: UIImageView = {
-        let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = UIImage(systemName: "circle.fill")
-        image.tintColor = .white
-        return image
-    }()
-    
-    private lazy var circleSixImage: UIImageView = {
-        let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = UIImage(systemName: "circle.fill")
-        image.tintColor = .white
-        return image
-    }()
-    
-    private lazy var circleSevenImage: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.image = UIImage(systemName: "circle.fill")
@@ -101,60 +54,116 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
         return label
     }()
     
+//    degree - CircleImage, Label - Two
+    private lazy var circleTwoImage: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(systemName: "circle.fill")
+        image.tintColor = .white
+        return image
+    }()
+    
     private lazy var degreeLabelTwo: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
         label.textColor = .black
-        label.text = "12°"
+        label.text = "13°"
         return label
     }()
-
+    
+//    degree - CircleImage, Label - Three
+    private lazy var circleThreeImage: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(systemName: "circle.fill")
+        image.tintColor = .white
+        return image
+    }()
+    
     private lazy var degreeLabelThree: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
         label.textColor = .black
-        label.text = "11°"
+        label.text = "13°"
         return label
     }()
 
+//    degree - CircleImage, Label - Four
+    private lazy var circleFourImage: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(systemName: "circle.fill")
+        image.tintColor = .white
+        return image
+    }()
+    
     private lazy var degreeLabelFour: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
         label.textColor = .black
-        label.text = "10°"
+        label.text = "13°"
         return label
     }()
-
+    
+//    degree - CircleImage, Label - Five
+    private lazy var circleFiveImage: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(systemName: "circle.fill")
+        image.tintColor = .white
+        return image
+    }()
+    
     private lazy var degreeLabelFive: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
         label.textColor = .black
-        label.text = "8°"
+        label.text = "13°"
         return label
     }()
+    
+//    degree - CircleImage, Label - Six
+    private lazy var circleSixImage: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(systemName: "circle.fill")
+        image.tintColor = .white
+        return image
+    }()
+    
     private lazy var degreeLabelSix: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
         label.textColor = .black
-        label.text = "7°"
+        label.text = "13°"
         return label
     }()
+    
+//    degree - CircleImage, Label - Seven
+    private lazy var circleSevenImage: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(systemName: "circle.fill")
+        image.tintColor = .white
+        return image
+    }()
+    
     private lazy var degreeLabelSeven: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
         label.textColor = .black
-        label.text = "6°"
+        label.text = "13°"
         return label
     }()
     
-//    private lazy var
     
+//    precipitation Stack, Image, Label, divisionLineView, TimeLabel - One
     private lazy var precipitationStackViewOne: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -181,7 +190,6 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
         return label
     }()
     
-    
     private lazy var divisionLineViewOne: UIView = {
         let line = UIView()
         line.layer.borderWidth = 4
@@ -191,6 +199,292 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
         line.widthAnchor.constraint(equalToConstant: 4).isActive = true
         return line
     }()
+    
+    private lazy var precipitationTimeLabelOne: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.textColor = .black
+        label.text = "12:00"
+        return label
+    }()
+    
+//    precipitation Stack, Image, Label, divisionLineView, TimeLabel - Two
+    private lazy var precipitationStackViewTwo: UIStackView = {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .vertical
+        stack.distribution = .equalSpacing
+        stack.spacing = 7
+        stack.alignment = .center
+        return stack
+    }()
+
+    private lazy var precipitationImageViewTwo: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(named: "precipitationImage")
+        return image
+    }()
+
+    private lazy var precipitationLabelTwo: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.textColor = .black
+        label.text = "47%"
+        return label
+    }()
+
+    private lazy var divisionLineViewTwo: UIView = {
+        let line = UIView()
+        line.layer.borderWidth = 4
+        line.layer.borderColor = UIColor(named: "figmaColorBlue")?.cgColor
+        line.translatesAutoresizingMaskIntoConstraints = false
+        line.heightAnchor.constraint(equalToConstant: 8).isActive = true
+        line.widthAnchor.constraint(equalToConstant: 4).isActive = true
+        return line
+    }()
+
+    private lazy var precipitationTimeLabelTwo: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.textColor = .black
+        label.text = "12:00"
+        return label
+    }()
+
+//    precipitation Stack, Image, Label, divisionLineView, TimeLabel - Three
+    private lazy var precipitationStackViewThree: UIStackView = {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .vertical
+        stack.distribution = .equalSpacing
+        stack.spacing = 7
+        stack.alignment = .center
+        return stack
+    }()
+
+    private lazy var precipitationImageViewThree: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(named: "precipitationImage")
+        return image
+    }()
+
+    private lazy var precipitationLabelThree: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.textColor = .black
+        label.text = "47%"
+        return label
+    }()
+
+    private lazy var divisionLineViewThree: UIView = {
+        let line = UIView()
+        line.layer.borderWidth = 4
+        line.layer.borderColor = UIColor(named: "figmaColorBlue")?.cgColor
+        line.translatesAutoresizingMaskIntoConstraints = false
+        line.heightAnchor.constraint(equalToConstant: 8).isActive = true
+        line.widthAnchor.constraint(equalToConstant: 4).isActive = true
+        return line
+    }()
+
+    private lazy var precipitationTimeLabelThree: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.textColor = .black
+        label.text = "12:00"
+        return label
+    }()
+    
+//    precipitation Stack, Image, Label, divisionLineView, TimeLabel - Four
+    private lazy var precipitationStackViewFour: UIStackView = {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .vertical
+        stack.distribution = .equalSpacing
+        stack.spacing = 7
+        stack.alignment = .center
+        return stack
+    }()
+
+    private lazy var precipitationImageViewFour: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(named: "precipitationImage")
+        return image
+    }()
+
+    private lazy var precipitationLabelFour: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.textColor = .black
+        label.text = "47%"
+        return label
+    }()
+
+    private lazy var divisionLineViewFour: UIView = {
+        let line = UIView()
+        line.layer.borderWidth = 4
+        line.layer.borderColor = UIColor(named: "figmaColorBlue")?.cgColor
+        line.translatesAutoresizingMaskIntoConstraints = false
+        line.heightAnchor.constraint(equalToConstant: 8).isActive = true
+        line.widthAnchor.constraint(equalToConstant: 4).isActive = true
+        return line
+    }()
+
+    private lazy var precipitationTimeLabelFour: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.textColor = .black
+        label.text = "12:00"
+        return label
+    }()
+
+//    precipitation Image, Label, divisionLineView, TimeLabel - Five
+    private lazy var precipitationStackViewFive: UIStackView = {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .vertical
+        stack.distribution = .equalSpacing
+        stack.spacing = 7
+        stack.alignment = .center
+        return stack
+    }()
+
+    private lazy var precipitationImageViewFive: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(named: "precipitationImage")
+        return image
+    }()
+
+    private lazy var precipitationLabelFive: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.textColor = .black
+        label.text = "47%"
+        return label
+    }()
+
+    private lazy var divisionLineViewFive: UIView = {
+        let line = UIView()
+        line.layer.borderWidth = 4
+        line.layer.borderColor = UIColor(named: "figmaColorBlue")?.cgColor
+        line.translatesAutoresizingMaskIntoConstraints = false
+        line.heightAnchor.constraint(equalToConstant: 8).isActive = true
+        line.widthAnchor.constraint(equalToConstant: 4).isActive = true
+        return line
+    }()
+
+    private lazy var precipitationTimeLabelFive: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.textColor = .black
+        label.text = "12:00"
+        return label
+    }()
+
+//    precipitation Image, Label, divisionLineView, TimeLabel - Six
+    private lazy var precipitationStackViewSix: UIStackView = {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .vertical
+        stack.distribution = .equalSpacing
+        stack.spacing = 7
+        stack.alignment = .center
+        return stack
+    }()
+
+    private lazy var precipitationImageViewSix: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(named: "precipitationImage")
+        return image
+    }()
+
+    private lazy var precipitationLabelSix: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.textColor = .black
+        label.text = "47%"
+        return label
+    }()
+
+    private lazy var divisionLineViewSix: UIView = {
+        let line = UIView()
+        line.layer.borderWidth = 4
+        line.layer.borderColor = UIColor(named: "figmaColorBlue")?.cgColor
+        line.translatesAutoresizingMaskIntoConstraints = false
+        line.heightAnchor.constraint(equalToConstant: 8).isActive = true
+        line.widthAnchor.constraint(equalToConstant: 4).isActive = true
+        return line
+    }()
+
+    private lazy var precipitationTimeLabelSix: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.textColor = .black
+        label.text = "12:00"
+        return label
+    }()
+
+//    precipitation Image, Label, divisionLineView, TimeLabel - seven
+    private lazy var precipitationStackViewSeven: UIStackView = {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .vertical
+        stack.distribution = .equalSpacing
+        stack.spacing = 7
+        stack.alignment = .center
+        return stack
+    }()
+
+    private lazy var precipitationImageViewSeven: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(named: "precipitationImage")
+        return image
+    }()
+
+    private lazy var precipitationLabelSeven: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.textColor = .black
+        label.text = "47%"
+        return label
+    }()
+
+    private lazy var divisionLineViewSeven: UIView = {
+        let line = UIView()
+        line.layer.borderWidth = 4
+        line.layer.borderColor = UIColor(named: "figmaColorBlue")?.cgColor
+        line.translatesAutoresizingMaskIntoConstraints = false
+        line.heightAnchor.constraint(equalToConstant: 8).isActive = true
+        line.widthAnchor.constraint(equalToConstant: 4).isActive = true
+        return line
+    }()
+
+    private lazy var precipitationTimeLabelSeven: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.textColor = .black
+        label.text = "12:00"
+        return label
+    }()
+    
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -210,6 +504,7 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
         self.addSubview(self.backView)
         self.addSubview(self.lineVertical)
         self.addSubview(self.lineHorizontal)
+        self.addSubview(self.timeLineView)
         
         self.addSubview(self.circleOneImage)
         self.addSubview(self.circleTwoImage)
@@ -226,14 +521,49 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
         self.addSubview(self.degreeLabelFive)
         self.addSubview(self.degreeLabelSix)
         self.addSubview(self.degreeLabelSeven)
-
-        self.addSubview(self.timeLineView)
         
         self.addSubview(self.precipitationStackViewOne)
         self.precipitationStackViewOne.addArrangedSubview(self.precipitationImageViewOne)
         self.precipitationStackViewOne.addArrangedSubview(self.precipitationLabelOne)
         self.precipitationStackViewOne.addArrangedSubview(self.divisionLineViewOne)
-//        self.addSubview(self.divisionLineViewOne)
+        self.precipitationStackViewOne.addArrangedSubview(self.precipitationTimeLabelOne)
+        
+        self.addSubview(self.precipitationStackViewTwo)
+        self.precipitationStackViewTwo.addArrangedSubview(self.precipitationImageViewTwo)
+        self.precipitationStackViewTwo.addArrangedSubview(self.precipitationLabelTwo)
+        self.precipitationStackViewTwo.addArrangedSubview(self.divisionLineViewTwo)
+        self.precipitationStackViewTwo.addArrangedSubview(self.precipitationTimeLabelTwo)
+
+        self.addSubview(self.precipitationStackViewThree)
+        self.precipitationStackViewThree.addArrangedSubview(self.precipitationImageViewThree)
+        self.precipitationStackViewThree.addArrangedSubview(self.precipitationLabelThree)
+        self.precipitationStackViewThree.addArrangedSubview(self.divisionLineViewThree)
+        self.precipitationStackViewThree.addArrangedSubview(self.precipitationTimeLabelThree)
+
+        self.addSubview(self.precipitationStackViewFour)
+        self.precipitationStackViewFour.addArrangedSubview(self.precipitationImageViewFour)
+        self.precipitationStackViewFour.addArrangedSubview(self.precipitationLabelFour)
+        self.precipitationStackViewFour.addArrangedSubview(self.divisionLineViewFour)
+        self.precipitationStackViewFour.addArrangedSubview(self.precipitationTimeLabelFour)
+
+        self.addSubview(self.precipitationStackViewFive)
+        self.precipitationStackViewFive.addArrangedSubview(self.precipitationImageViewFive)
+        self.precipitationStackViewFive.addArrangedSubview(self.precipitationLabelFive)
+        self.precipitationStackViewFive.addArrangedSubview(self.divisionLineViewFive)
+        self.precipitationStackViewFive.addArrangedSubview(self.precipitationTimeLabelFive)
+
+        self.addSubview(self.precipitationStackViewSix)
+        self.precipitationStackViewSix.addArrangedSubview(self.precipitationImageViewSix)
+        self.precipitationStackViewSix.addArrangedSubview(self.precipitationLabelSix)
+        self.precipitationStackViewSix.addArrangedSubview(self.divisionLineViewSix)
+        self.precipitationStackViewSix.addArrangedSubview(self.precipitationTimeLabelSix)
+
+        self.addSubview(self.precipitationStackViewSeven)
+        self.precipitationStackViewSeven.addArrangedSubview(self.precipitationImageViewSeven)
+        self.precipitationStackViewSeven.addArrangedSubview(self.precipitationLabelSeven)
+        self.precipitationStackViewSeven.addArrangedSubview(self.divisionLineViewSeven)
+        self.precipitationStackViewSeven.addArrangedSubview(self.precipitationTimeLabelSeven)
+        
         
         self.backView.snp.makeConstraints { make in
             make.height.equalTo(152)
@@ -339,29 +669,101 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
             make.leading.equalTo(self.backView.snp.leading).inset(array[6])
         }
         
-        
-        
+        // precipitation Image, Label, divisionLineView, TimeLabel - one
         self.divisionLineViewOne.snp.makeConstraints { make in
             make.leading.equalTo(self.backView.snp.leading).inset(array[0])
             make.bottom.equalTo(self.backView.snp.bottom).inset(32)
         }
         
+        // precipitation Image, Label, divisionLineView, TimeLabel - two
+        self.divisionLineViewTwo.snp.makeConstraints { make in
+            make.leading.equalTo(self.backView.snp.leading).inset(array[1])
+            make.bottom.equalTo(self.backView.snp.bottom).inset(32)
+        }
         
+        // precipitation Image, Label, divisionLineView, TimeLabel - three
+        self.divisionLineViewThree.snp.makeConstraints { make in
+            make.leading.equalTo(self.backView.snp.leading).inset(array[2])
+            make.bottom.equalTo(self.backView.snp.bottom).inset(32)
+        }
+        
+        // precipitation Image, Label, divisionLineView, TimeLabel - Four
+        self.divisionLineViewFour.snp.makeConstraints { make in
+            make.leading.equalTo(self.backView.snp.leading).inset(array[3])
+            make.bottom.equalTo(self.backView.snp.bottom).inset(32)
+        }
+        
+        // precipitation Image, Label, divisionLineView, TimeLabel - Five
+        self.divisionLineViewFive.snp.makeConstraints { make in
+            make.leading.equalTo(self.backView.snp.leading).inset(array[4])
+            make.bottom.equalTo(self.backView.snp.bottom).inset(32)
+        }
+        
+        // precipitation Image, Label, divisionLineView, TimeLabel - Six
+        self.divisionLineViewSix.snp.makeConstraints { make in
+            make.leading.equalTo(self.backView.snp.leading).inset(array[5])
+            make.bottom.equalTo(self.backView.snp.bottom).inset(32)
+        }
+        
+        // precipitation Image, Label, divisionLineView, TimeLabel - Seven
+        self.divisionLineViewSeven.snp.makeConstraints { make in
+            make.leading.equalTo(self.backView.snp.leading).inset(array[6])
+            make.bottom.equalTo(self.backView.snp.bottom).inset(32)
+        }
     }
-    
+
+
+
     private func linePoint() -> [CGFloat] {
         
-        var array:[CGFloat] = [20]
-        let wight = UIScreen.main.bounds.width
-        let countPoint = wight / 7
+        let indentFirstPoint: CGFloat = 24
+        var array:[CGFloat] = [indentFirstPoint]
+        let wightScreen = UIScreen.main.bounds.width
+        let countPoint = wightScreen / 7
 
         for index in 1...6 {
             let value = CGFloat(index) * countPoint
-            
-            array.append(value+20)
+            array.append(value+indentFirstPoint)
         }
 
         return array
+    }
+    
+    func setupForecast() {
+    // переписать высоту для кружочков
+//        circleOneImage.snp.makeConstraints { make in
+//            make.top.equalTo(self.backView.snp.top).inset(27)   --- min
+//            make.top.equalTo(self.backView.snp.top).inset(45)   --- max
+//        }
+    
+//        degreeLabelOne.text
+//        precipitationLabelOne.text
+//        precipitationTimeLabelOne.text
+        
+//        degreeLabelTwo.text
+//        precipitationLabelTwo.text
+//        precipitationTimeLabelTwo.text
+
+//        degreeLabelThree.text
+//        precipitationLabelThree.text
+//        precipitationTimeLabelThree.text
+
+//        degreeLabelFour.text
+//        precipitationLabelFour.text
+//        precipitationTimeLabelFour.text
+
+//        degreeLabelFive.text
+//        precipitationLabelFive.text
+//        precipitationTimeLabelFive.text
+
+//        degreeLabelSix.text
+//        precipitationLabelSix.text
+//        precipitationTimeLabelSix.text
+        
+//        degreeLabelSeven.text
+//        precipitationLabelSeven.text
+//        precipitationTimeLabelSeven.text
+
     }
 }
 
