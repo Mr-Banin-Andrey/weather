@@ -74,10 +74,12 @@ class MainCityView: UIView {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Rubik-Light_Medium", size: 18)
+        label.font = UIFont(name: ListFonts.medium500.rawValue, size: 18)
         label.textColor = .black
         return label
     }()
+    
+
     
     init(delegate: MainCityViewDelegate) {
         self.delegate = delegate

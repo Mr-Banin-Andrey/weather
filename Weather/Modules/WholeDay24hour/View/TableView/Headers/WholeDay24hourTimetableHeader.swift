@@ -10,28 +10,28 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
     private lazy var backView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(named: "figmaColorWhite")
+        view.backgroundColor = UIColor(named: ListColors.white.rawValue)
         return view
     }()
     
     private lazy var lineHorizontal: DashedViewHorizontal = {
         let view = DashedViewHorizontal()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.config.color = UIColor(named: "figmaColorBlue") ?? .black
+        view.config.color = UIColor(named: ListColors.blue.rawValue) ?? .black
         return view
     }()
     
     private lazy var lineVertical: DashedViewVertical = {
         let view = DashedViewVertical()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.config.color = UIColor(named: "figmaColorBlue") ?? .black
+        view.config.color = UIColor(named: ListColors.blue.rawValue) ?? .black
         return view
     }()
     
     private lazy var timeLineView: UIView = {
         let line = UIView()
         line.layer.borderWidth = 1
-        line.layer.borderColor = UIColor(named: "figmaColorBlue")?.cgColor
+        line.layer.borderColor = UIColor(named: ListColors.blue.rawValue)?.cgColor
         line.translatesAutoresizingMaskIntoConstraints = false
         return line
     }()
@@ -48,7 +48,7 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
     private lazy var degreeLabelOne: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.textColor = .black
         label.text = "13°"
         return label
@@ -66,7 +66,7 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
     private lazy var degreeLabelTwo: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.textColor = .black
         label.text = "13°"
         return label
@@ -84,7 +84,7 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
     private lazy var degreeLabelThree: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.textColor = .black
         label.text = "13°"
         return label
@@ -102,7 +102,7 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
     private lazy var degreeLabelFour: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.textColor = .black
         label.text = "13°"
         return label
@@ -120,7 +120,7 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
     private lazy var degreeLabelFive: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.textColor = .black
         label.text = "13°"
         return label
@@ -138,7 +138,7 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
     private lazy var degreeLabelSix: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.textColor = .black
         label.text = "13°"
         return label
@@ -156,7 +156,7 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
     private lazy var degreeLabelSeven: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.textColor = .black
         label.text = "13°"
         return label
@@ -184,7 +184,7 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
     private lazy var precipitationLabelOne: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.textColor = .black
         label.text = "47%"
         return label
@@ -193,7 +193,7 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
     private lazy var divisionLineViewOne: UIView = {
         let line = UIView()
         line.layer.borderWidth = 4
-        line.layer.borderColor = UIColor(named: "figmaColorBlue")?.cgColor
+        line.layer.borderColor = UIColor(named: ListColors.blue.rawValue)?.cgColor
         line.translatesAutoresizingMaskIntoConstraints = false
         line.heightAnchor.constraint(equalToConstant: 8).isActive = true
         line.widthAnchor.constraint(equalToConstant: 4).isActive = true
@@ -203,7 +203,7 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
     private lazy var precipitationTimeLabelOne: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.textColor = .black
         label.text = "12:00"
         return label
@@ -230,7 +230,7 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
     private lazy var precipitationLabelTwo: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.textColor = .black
         label.text = "47%"
         return label
@@ -239,7 +239,7 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
     private lazy var divisionLineViewTwo: UIView = {
         let line = UIView()
         line.layer.borderWidth = 4
-        line.layer.borderColor = UIColor(named: "figmaColorBlue")?.cgColor
+        line.layer.borderColor = UIColor(named: ListColors.blue.rawValue)?.cgColor
         line.translatesAutoresizingMaskIntoConstraints = false
         line.heightAnchor.constraint(equalToConstant: 8).isActive = true
         line.widthAnchor.constraint(equalToConstant: 4).isActive = true
@@ -249,7 +249,7 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
     private lazy var precipitationTimeLabelTwo: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.textColor = .black
         label.text = "12:00"
         return label
@@ -276,7 +276,7 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
     private lazy var precipitationLabelThree: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.textColor = .black
         label.text = "47%"
         return label
@@ -285,7 +285,7 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
     private lazy var divisionLineViewThree: UIView = {
         let line = UIView()
         line.layer.borderWidth = 4
-        line.layer.borderColor = UIColor(named: "figmaColorBlue")?.cgColor
+        line.layer.borderColor = UIColor(named: ListColors.blue.rawValue)?.cgColor
         line.translatesAutoresizingMaskIntoConstraints = false
         line.heightAnchor.constraint(equalToConstant: 8).isActive = true
         line.widthAnchor.constraint(equalToConstant: 4).isActive = true
@@ -295,7 +295,7 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
     private lazy var precipitationTimeLabelThree: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.textColor = .black
         label.text = "12:00"
         return label
@@ -322,7 +322,7 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
     private lazy var precipitationLabelFour: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.textColor = .black
         label.text = "47%"
         return label
@@ -331,7 +331,7 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
     private lazy var divisionLineViewFour: UIView = {
         let line = UIView()
         line.layer.borderWidth = 4
-        line.layer.borderColor = UIColor(named: "figmaColorBlue")?.cgColor
+        line.layer.borderColor = UIColor(named: ListColors.blue.rawValue)?.cgColor
         line.translatesAutoresizingMaskIntoConstraints = false
         line.heightAnchor.constraint(equalToConstant: 8).isActive = true
         line.widthAnchor.constraint(equalToConstant: 4).isActive = true
@@ -341,7 +341,7 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
     private lazy var precipitationTimeLabelFour: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.textColor = .black
         label.text = "12:00"
         return label
@@ -368,7 +368,7 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
     private lazy var precipitationLabelFive: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.textColor = .black
         label.text = "47%"
         return label
@@ -377,7 +377,7 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
     private lazy var divisionLineViewFive: UIView = {
         let line = UIView()
         line.layer.borderWidth = 4
-        line.layer.borderColor = UIColor(named: "figmaColorBlue")?.cgColor
+        line.layer.borderColor = UIColor(named: ListColors.blue.rawValue)?.cgColor
         line.translatesAutoresizingMaskIntoConstraints = false
         line.heightAnchor.constraint(equalToConstant: 8).isActive = true
         line.widthAnchor.constraint(equalToConstant: 4).isActive = true
@@ -387,7 +387,7 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
     private lazy var precipitationTimeLabelFive: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.textColor = .black
         label.text = "12:00"
         return label
@@ -414,7 +414,7 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
     private lazy var precipitationLabelSix: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.textColor = .black
         label.text = "47%"
         return label
@@ -423,7 +423,7 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
     private lazy var divisionLineViewSix: UIView = {
         let line = UIView()
         line.layer.borderWidth = 4
-        line.layer.borderColor = UIColor(named: "figmaColorBlue")?.cgColor
+        line.layer.borderColor = UIColor(named: ListColors.blue.rawValue)?.cgColor
         line.translatesAutoresizingMaskIntoConstraints = false
         line.heightAnchor.constraint(equalToConstant: 8).isActive = true
         line.widthAnchor.constraint(equalToConstant: 4).isActive = true
@@ -433,7 +433,7 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
     private lazy var precipitationTimeLabelSix: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.textColor = .black
         label.text = "12:00"
         return label
@@ -460,7 +460,7 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
     private lazy var precipitationLabelSeven: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.textColor = .black
         label.text = "47%"
         return label
@@ -469,7 +469,7 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
     private lazy var divisionLineViewSeven: UIView = {
         let line = UIView()
         line.layer.borderWidth = 4
-        line.layer.borderColor = UIColor(named: "figmaColorBlue")?.cgColor
+        line.layer.borderColor = UIColor(named: ListColors.blue.rawValue)?.cgColor
         line.translatesAutoresizingMaskIntoConstraints = false
         line.heightAnchor.constraint(equalToConstant: 8).isActive = true
         line.widthAnchor.constraint(equalToConstant: 4).isActive = true
@@ -479,7 +479,7 @@ class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
     private lazy var precipitationTimeLabelSeven: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.textColor = .black
         label.text = "12:00"
         return label

@@ -4,7 +4,7 @@ import UIKit
 import SnapKit
 
 protocol WholeDay24hourViewDelegate: AnyObject {
-    
+    func comeBack()
 }
 
 class WholeDay24hourView: UIView {
@@ -28,8 +28,8 @@ class WholeDay24hourView: UIView {
     
     private lazy var backLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 16)
-        label.textColor = #colorLiteral(red: 0.6681012511, green: 0.6539016962, blue: 0.6535986066, alpha: 1)
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 16)
+        label.textColor = UIColor(named: ListColors.gray.rawValue)
         label.text = "Прогноз на 24 часа"
         return label
     }()
@@ -38,7 +38,7 @@ class WholeDay24hourView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Kharkiv,Ukraine"
-        label.font = UIFont(name: "Rubik-Light_Medium", size: 18)
+        label.font = UIFont(name: ListFonts.medium500.rawValue, size: 18)
         label.textColor = .black
         return label
     }()
@@ -46,11 +46,11 @@ class WholeDay24hourView: UIView {
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = .systemBackground
+        tableView.backgroundColor =  .systemBackground
 //        tableView.backgroundColor = .cyan
-//        tableView.separatorStyle = .none
-        tableView.separatorStyle = .singleLine
-        tableView.separatorColor = UIColor(named: "figmaColorBlue")
+        tableView.separatorStyle = .none
+//        tableView.separatorStyle = .singleLine
+//        tableView.separatorColor = UIColor(named: ListColors.blue.rawValue)
         return tableView
     }()
     
@@ -80,8 +80,8 @@ class WholeDay24hourView: UIView {
     ) {
         self.tableView.delegate = delegateTable
         self.tableView.dataSource = dataSourceTable
-        self.tableView.register(WholeDay24hourTimetableHeader.self, forHeaderFooterViewReuseIdentifier: "TimetableHeader")
-//        self.tableView.register(.self, forCellReuseIdentifier: "")
+        self.tableView.register(WholeDay24hourTimetableHeader.self, forHeaderFooterViewReuseIdentifier: "headerId")
+        self.tableView.register(WholeDay24hourTimetableCell.self, forCellReuseIdentifier: "customId")
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "defaultId")
     }
     
@@ -118,6 +118,7 @@ class WholeDay24hourView: UIView {
     }
     
     @objc private func comeBack() {
-        
+        print("comeBack")
+        delegate?.comeBack()
     }
 }

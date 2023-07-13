@@ -19,7 +19,7 @@ class SettingsView: UIView {
     private lazy var backView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(named: "figmaColorWhite")
+        view.backgroundColor = UIColor(named: ListColors.white.rawValue)
         view.layer.cornerRadius = 10
         return view
     }()
@@ -28,7 +28,7 @@ class SettingsView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .black
-        label.font = UIFont(name: "Rubik-Light_Medium", size: 18)
+        label.font = UIFont(name: ListFonts.medium500.rawValue, size: 18)
         label.text = "Настройки"
         return label
     }()
@@ -55,8 +55,8 @@ class SettingsView: UIView {
     private lazy var tempLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = #colorLiteral(red: 0.587769568, green: 0.5679551959, blue: 0.5726220608, alpha: 1)
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 16)
+        label.textColor = UIColor(named: ListColors.gray.rawValue)
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 16)
         label.text = "Температура"
         return label
     }()
@@ -64,8 +64,8 @@ class SettingsView: UIView {
     private lazy var tempSegmentedControl: UISegmentedControl = {
         let segmentedControl = UISegmentedControl(items: SettingsModel().temperature)
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        segmentedControl.selectedSegmentTintColor = UIColor(named: "figmaColorBlue")
-        segmentedControl.backgroundColor = UIColor(named: "figmaColorBeige")
+        segmentedControl.selectedSegmentTintColor = UIColor(named: ListColors.blue.rawValue)
+        segmentedControl.backgroundColor = UIColor(named: ListColors.beige.rawValue )
         segmentedControl.addTarget(self, action: #selector(selectedTemp), for: .valueChanged)
         settingsFontSegmentedControl(segmentedControl: segmentedControl)
         return segmentedControl
@@ -84,8 +84,8 @@ class SettingsView: UIView {
     private lazy var speedWindLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = #colorLiteral(red: 0.587769568, green: 0.5679551959, blue: 0.5726220608, alpha: 1)
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 16)
+        label.textColor = UIColor(named: ListColors.gray.rawValue)
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 16)
         label.text = "Скорость ветра"
         return label
     }()
@@ -93,8 +93,8 @@ class SettingsView: UIView {
     private lazy var speedWindSegmentedControl: UISegmentedControl = {
         let segmentedControl = UISegmentedControl(items: SettingsModel().windSpeed)
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        segmentedControl.selectedSegmentTintColor = UIColor(named: "figmaColorBlue")
-        segmentedControl.backgroundColor = UIColor(named: "figmaColorBeige")
+        segmentedControl.selectedSegmentTintColor = UIColor(named: ListColors.blue.rawValue)
+        segmentedControl.backgroundColor = UIColor(named: ListColors.beige.rawValue )
         segmentedControl.addTarget(self, action: #selector(selectedSpeedWind), for: .valueChanged)
         settingsFontSegmentedControl(segmentedControl: segmentedControl)
         return segmentedControl
@@ -113,8 +113,8 @@ class SettingsView: UIView {
     private lazy var timeFormatLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = #colorLiteral(red: 0.587769568, green: 0.5679551959, blue: 0.5726220608, alpha: 1)
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 16)
+        label.textColor = UIColor(named: ListColors.gray.rawValue)
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 16)
         label.text = "Формат времени"
         return label
     }()
@@ -122,8 +122,8 @@ class SettingsView: UIView {
     private lazy var timeFormatSegmentedControl: UISegmentedControl = {
         let segmentedControl = UISegmentedControl(items: SettingsModel().timeFormat)
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        segmentedControl.selectedSegmentTintColor = UIColor(named: "figmaColorBlue")
-        segmentedControl.backgroundColor = UIColor(named: "figmaColorBeige")
+        segmentedControl.selectedSegmentTintColor = UIColor(named: ListColors.blue.rawValue)
+        segmentedControl.backgroundColor = UIColor(named: ListColors.beige.rawValue )
         segmentedControl.addTarget(self, action: #selector(selectedTimeFormat), for: .valueChanged)
         settingsFontSegmentedControl(segmentedControl: segmentedControl)
         return segmentedControl
@@ -142,8 +142,8 @@ class SettingsView: UIView {
     private lazy var notificationsLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = #colorLiteral(red: 0.587769568, green: 0.5679551959, blue: 0.5726220608, alpha: 1)
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 16)
+        label.textColor = UIColor(named: ListColors.gray.rawValue)
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 16)
         label.text = "Уведомления"
         return label
     }()
@@ -152,8 +152,8 @@ class SettingsView: UIView {
         let segmentedControl = UISegmentedControl(items: SettingsModel().notifications)
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         segmentedControl.selectedSegmentIndex = 1
-        segmentedControl.selectedSegmentTintColor = UIColor(named: "figmaColorBlue")
-        segmentedControl.backgroundColor = UIColor(named: "figmaColorBeige")
+        segmentedControl.selectedSegmentTintColor = UIColor(named: ListColors.blue.rawValue)
+        segmentedControl.backgroundColor = UIColor(named: ListColors.beige.rawValue )
         segmentedControl.addTarget(self, action: #selector(selectedNotifications), for: .valueChanged)
         settingsFontSegmentedControl(segmentedControl: segmentedControl)
         return segmentedControl
@@ -164,10 +164,10 @@ class SettingsView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(installSettings), for: .touchUpInside)
         button.setTitle("Установить ", for: .normal)
-        button.setTitleColor(UIColor(named: "figmaColorBeige"), for: .normal)
-        button.titleLabel?.font = UIFont(name: "Rubik-Light_Regular", size: 16)
+        button.setTitleColor(UIColor(named: ListColors.beige.rawValue ), for: .normal)
+        button.titleLabel?.font = UIFont(name: ListFonts.regular400.rawValue, size: 16)
         button.layer.cornerRadius = 10
-        button.backgroundColor = UIColor(named: "figmaColorOrange")
+        button.backgroundColor = UIColor(named: ListColors.orange.rawValue)
         return button
     }()
     
@@ -175,7 +175,7 @@ class SettingsView: UIView {
         self.delegate = delegate
         super.init(frame: .zero)
         
-        self.backgroundColor = UIColor(named: "figmaColorBlue")
+        self.backgroundColor = UIColor(named: ListColors.blue.rawValue)
         self.setupUi()
     }
     
@@ -250,7 +250,7 @@ class SettingsView: UIView {
     
     private func settingsFontSegmentedControl(segmentedControl: UISegmentedControl) {
         
-        guard let font = UIFont(name: "Rubik-Light_Regular", size: 16) else { return }
+        guard let font = UIFont(name: ListFonts.regular400.rawValue, size: 16) else { return }
         
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.font : font,
                                                  NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)

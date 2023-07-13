@@ -1,5 +1,4 @@
 
-
 import Foundation
 import UIKit
 import SnapKit
@@ -10,7 +9,7 @@ class TwentyFiveDaysLabelHeader: UITableViewHeaderFooterView {
     private lazy var nameDailyForecastLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Rubik-Light_Medium", size: 18)
+        label.font = UIFont(name: ListFonts.medium500.rawValue, size: 18)
         label.textColor = .black
         label.text = "Ежедневный прогноз"
         return label
@@ -19,7 +18,7 @@ class TwentyFiveDaysLabelHeader: UITableViewHeaderFooterView {
     private lazy var twentyFiveDaysButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.font = UIFont(name: "Rubik-Light_Regular", size: 16)
+        button.titleLabel?.font = UIFont(name: ListFonts.regular400.rawValue, size: 16)
         button.setAttributedTitle("25 дней".underLined, for: .normal)
         button.setTitleColor(.black, for: .normal)
         button.addTarget(self, action: #selector(showTwentyFiveDays), for: .touchUpInside)

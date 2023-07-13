@@ -1,9 +1,3 @@
-//
-//  HourlyWeatherCellInTableViewCell.swift
-//  Weather
-//
-//  Created by Андрей Банин on 6.7.23..
-//
 
 import Foundation
 import UIKit
@@ -17,14 +11,14 @@ class HourlyWeatherCellInTableViewCell: UICollectionViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 22
         view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor(named: "figmaColorBlue")?.cgColor
+        view.layer.borderColor = UIColor(named: ListColors.blue.rawValue)?.cgColor
         return view
     }()
     
     private lazy var clockLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.text = "09:41"
         label.textColor = .black
         return label
@@ -40,7 +34,7 @@ class HourlyWeatherCellInTableViewCell: UICollectionViewCell {
     private lazy var gradusLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 16)
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 16)
         label.text = "23°"
         label.textColor = .black
         return label
@@ -58,7 +52,7 @@ class HourlyWeatherCellInTableViewCell: UICollectionViewCell {
     }
     
 //    func setup() {
-//        backView.backgroundColor = UIColor(named: "figmaColorBlue")
+//        backView.backgroundColor = UIColor(named: ListColors.blue.rawValue)
 //        clockLabel.textColor = .white
 //        gradusLabel.textColor = .white
 //    }

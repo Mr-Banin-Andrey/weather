@@ -24,8 +24,8 @@ final class PermissionToUseLocationView: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.numberOfLines = 3
-        label.font = UIFont(name: "Rubik-Light_SemiBold", size: 16)
-        label.textColor = UIColor(named: "figmaColorBeige")
+        label.font = UIFont(name: ListFonts.semiBold600.rawValue, size: 16)
+        label.textColor = UIColor(named: ListColors.beige.rawValue)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -33,8 +33,8 @@ final class PermissionToUseLocationView: UIView {
     private lazy var secondParagraphLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.textColor = UIColor(named: "figmaColorBeige")
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.textColor = UIColor(named: ListColors.beige.rawValue)
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 2
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -44,21 +44,23 @@ final class PermissionToUseLocationView: UIView {
     private lazy var thirdParagraphLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.textColor = UIColor(named: "figmaColorBeige")
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 14)
+        label.textColor = UIColor(named: ListColors.beige.rawValue)
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.lineBreakMode = .byWordWrapping
         label.numberOfLines = 2
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
+    
+    
     private lazy var agreeButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = UIColor(named: "figmaColorOrange")
+        button.backgroundColor = UIColor(named: ListColors.orange.rawValue)
         button.setTitle(" ИСПОЛЬЗОВАТЬ МЕСТОПОЛОЖЕНИЕ  УСТРОЙСТВА ", for: .normal)
-        button.setTitleColor(UIColor(named: "figmaColorBeige"), for: .normal)
-        button.titleLabel?.font = UIFont(name: "Rubik-Light_Medium", size: 12)
+        button.setTitleColor(UIColor(named: ListColors.beige.rawValue), for: .normal)
+        button.titleLabel?.font = UIFont(name: ListFonts.medium500.rawValue, size: 12)
         button.addTarget(self, action: #selector(agreeUseLocation), for: .touchUpInside)
         button.layer.cornerRadius = 10
         return button
@@ -68,8 +70,8 @@ final class PermissionToUseLocationView: UIView {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("НЕТ, Я БУДУ ДОБАВЛЯТЬ ЛОКАЦИИ", for: .normal)
-        button.setTitleColor(UIColor(named: "figmaColorBeige"), for: .normal)
-        button.titleLabel?.font = UIFont(name: "Rubik-Light_Regular", size: 16)
+        button.setTitleColor(UIColor(named: ListColors.beige.rawValue), for: .normal)
+        button.titleLabel?.font = UIFont(name: ListFonts.regular400.rawValue, size: 16)
         button.addTarget(self, action: #selector(refuseUseLocation), for: .touchUpInside)
         return button
     }()
@@ -77,7 +79,7 @@ final class PermissionToUseLocationView: UIView {
     init(delegate: PermissionToUseLocationDelegate) {
         self.delegate = delegate
         super.init(frame: .zero)
-        self.backgroundColor = UIColor(named: "figmaColorBlue")
+        self.backgroundColor = UIColor(named: ListColors.blue.rawValue)
         
         self.setupUi()
         

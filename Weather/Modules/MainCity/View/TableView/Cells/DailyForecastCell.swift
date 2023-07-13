@@ -8,7 +8,7 @@ class DailyForecastCell: UITableViewCell {
     private lazy var backView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(named: "figmaColorWhite")
+        view.backgroundColor = UIColor(named: ListColors.white.rawValue)
         view.layer.cornerRadius = 5
         return view
     }()
@@ -16,8 +16,8 @@ class DailyForecastCell: UITableViewCell {
     private lazy var dateLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 16)
-        label.textColor = #colorLiteral(red: 0.6681012511, green: 0.6539016962, blue: 0.6535986066, alpha: 1)
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 16)
+        label.textColor = UIColor(named: ListColors.gray.rawValue)
         label.text = "08/07"
         return label
     }()
@@ -32,8 +32,8 @@ class DailyForecastCell: UITableViewCell {
     private lazy var precipitationLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 12)
-        label.textColor = UIColor(named: "figmaColorBlue")
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 12)
+        label.textColor = UIColor(named: ListColors.blue.rawValue)
         label.text = "57%"
         return label
     }()
@@ -41,7 +41,7 @@ class DailyForecastCell: UITableViewCell {
     private lazy var descriptionWeather: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 16)
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 16)
         label.textColor = .black
         label.text = "Местами дождь"
         return label
@@ -50,7 +50,7 @@ class DailyForecastCell: UITableViewCell {
     private lazy var fromMinToMaxDegreeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Rubik-Light_Regular", size: 18)
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 18)
         label.textColor = .black
         label.text = "7°-13°"
         return label
