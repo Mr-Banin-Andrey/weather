@@ -72,8 +72,8 @@ class SummaryOfTheDayView: UIView {
         self.tableView.delegate = delegateTable
         self.tableView.dataSource = dataSourceTable
 //        self.tableView.register(AllDay24HourTimetableHeader.self, forHeaderFooterViewReuseIdentifier: "headerId")
-//        self.tableView.register(AllDay24HourTimetableCell.self, forCellReuseIdentifier: "customId")
-//        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "defaultId")
+        self.tableView.register(SummaryOfTheDayTableViewCell.self, forCellReuseIdentifier: "weatherId")
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "defaultId")
     }
     
     func navigationController(navItem: UINavigationItem) {

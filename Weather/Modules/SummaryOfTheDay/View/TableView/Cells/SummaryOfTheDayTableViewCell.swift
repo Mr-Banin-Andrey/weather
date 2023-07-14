@@ -38,8 +38,8 @@ class SummaryOfTheDayTableViewCell: UITableViewCell {
         return stack
     }()
     
-    //MARK: - 1. speed wind
-    private lazy var windSpeedGeneralStackView: UIStackView = {
+    //MARK: - 1. temperatureFeels
+    private lazy var temperatureFeelsGeneralStackView: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
@@ -48,39 +48,39 @@ class SummaryOfTheDayTableViewCell: UITableViewCell {
         return stack
     }()
     
-    private lazy var windSpeedImageLabelStackView: UIStackView = {
+    private lazy var temperatureFeelsImageLabelStackView: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
         stack.distribution = .fillProportionally
-        stack.spacing = 3
+        stack.spacing = 15
         stack.alignment = .center
         return stack
     }()
     
-    private lazy var windSpeedImage: UIImageView = {
+    private lazy var temperatureFeelsImage: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = UIImage(named: "ветер-1")
+        image.image = UIImage(named: "Frame-6")
         image.heightAnchor.constraint(equalToConstant: 10).isActive = true
         image.widthAnchor.constraint(equalToConstant: 15).isActive = true
         return image
     }()
     
-    private lazy var windSpeedNameLabel: UILabel = {
+    private lazy var temperatureFeelsNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Ветер"
+        label.text = "По ощущениям"
         label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.textColor = .black
         return label
     }()
     
-    private lazy var windSpeedValueLabel: UILabel = {
+    private lazy var temperatureFeelsValueLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "2 m/s CCЗ"
-        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
+        label.text = "11°"
+        label.font = UIFont(name: ListFonts.regular400.rawValue, size: 18)
         label.textColor = UIColor(named: ListColors.gray.rawValue)
         return label
     }()
