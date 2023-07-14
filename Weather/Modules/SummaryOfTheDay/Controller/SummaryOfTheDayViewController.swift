@@ -17,12 +17,14 @@ class SummaryOfTheDayViewController: UIViewController {
         super.viewDidLoad()
         
         self.summaryOfTheDayView.navigationController(navItem: navigationItem)
-        self.summaryOfTheDayView.configureTableView(delegateTable: self, dataSourceTable: self)
+//        self.summaryOfTheDayView.configureTableView(delegateTable: self, dataSourceTable: self)
     }
 }
 
 extension SummaryOfTheDayViewController: SummaryOfTheDayViewDelegate {
-    
+    func comeBack() {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 
 extension SummaryOfTheDayViewController: UITableViewDelegate, UITableViewDataSource {
@@ -44,7 +46,7 @@ extension SummaryOfTheDayViewController: UITableViewDelegate, UITableViewDataSou
 //    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 //        if section == 0 {
 //            guard
-//                let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "headerId") as? WholeDay24hourTimetableHeader
+//                let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "headerId") as? AllDay24HourTimetableHeader
 //            else { return nil }
 //
 //            return header
@@ -53,20 +55,20 @@ extension SummaryOfTheDayViewController: UITableViewDelegate, UITableViewDataSou
 //    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "defaultId", for: indexPath)
-            return cell
-        }
-        
-        if indexPath.section == 1 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "customId", for: indexPath) as? WholeDay24hourTimetableCell else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "defaultId", for: indexPath)
-                return cell
-            }
-//            let abs = cell.indexPath.row
-            
-            return cell
-        }
+//        if indexPath.section == 0 {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "defaultId", for: indexPath)
+//            return cell
+//        }
+//        
+//        if indexPath.section == 1 {
+//            guard let cell = tableView.dequeueReusableCell(withIdentifier: "customId", for: indexPath) as? AllDay24HourTimetableCell else {
+//                let cell = tableView.dequeueReusableCell(withIdentifier: "defaultId", for: indexPath)
+//                return cell
+//            }
+////            let abs = cell.indexPath.row
+//            
+//            return cell
+//        }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "defaultId", for: indexPath)
         return cell

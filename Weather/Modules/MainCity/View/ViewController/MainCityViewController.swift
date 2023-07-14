@@ -46,7 +46,7 @@ extension MainCityViewController: MainCityViewDelegate {
         print("showPermissionToUseLocationView")
         
         //временное решение
-        let wholeDay = WholeDay24hourViewController()
+        let wholeDay = AllDay24HourViewController()
         navigationController?.pushViewController(wholeDay, animated: true)
     }
 }
@@ -55,7 +55,7 @@ extension MainCityViewController: MainCityViewDelegate {
 //
 //    func showWholeDay10() {
 //        print("2 showWholeDay")
-//        let wholeDay = WholeDay24hourViewController()
+//        let wholeDay = AllDay24HourViewController()
 //        navigationController?.pushViewController(wholeDay, animated: true)
 //    }
 //}
@@ -136,6 +136,13 @@ extension MainCityViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+
+        if indexPath.section == 1 {
+            let summaryOfTheDay = SummaryOfTheDayViewController()
+            self.navigationController?.pushViewController(summaryOfTheDay, animated: true)
+        }
+    }
     
 }

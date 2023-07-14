@@ -4,31 +4,31 @@ import UIKit
 import SnapKit
 
 
-class WholeDay24hourViewController: UIViewController {
+class AllDay24HourViewController: UIViewController {
     
-    private lazy var wholeDay24hourView = WholeDay24hourView(delegate: self)
+    private lazy var allDay24HourView = AllDay24HourView(delegate: self)
     
     override func loadView() {
         super.loadView()
         
-        view = wholeDay24hourView
+        view = allDay24HourView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.wholeDay24hourView.navigationController(navItem: navigationItem)
-        self.wholeDay24hourView.configureTableView(delegateTable: self, dataSourceTable: self)
+        self.allDay24HourView.navigationController(navItem: navigationItem)
+        self.allDay24HourView.configureTableView(delegateTable: self, dataSourceTable: self)
     }
 }
 
-extension WholeDay24hourViewController: WholeDay24hourViewDelegate {
+extension AllDay24HourViewController: AllDay24HourViewDelegate {
     func comeBack() {
         self.navigationController?.popViewController(animated: true)
     }
 }
 
-extension WholeDay24hourViewController: UITableViewDelegate, UITableViewDataSource {
+extension AllDay24HourViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
@@ -47,7 +47,7 @@ extension WholeDay24hourViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             guard
-                let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "headerId") as? WholeDay24hourTimetableHeader
+                let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "headerId") as? AllDay24HourTimetableHeader
             else { return nil }
             
             return header
@@ -62,7 +62,7 @@ extension WholeDay24hourViewController: UITableViewDelegate, UITableViewDataSour
         }
         
         if indexPath.section == 1 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "customId", for: indexPath) as? WholeDay24hourTimetableCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "customId", for: indexPath) as? AllDay24HourTimetableCell else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "defaultId", for: indexPath)
                 return cell
             }

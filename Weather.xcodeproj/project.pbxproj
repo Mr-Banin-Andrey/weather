@@ -14,7 +14,7 @@
 		9D573BF62A38B84300F8E4F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D573BF42A38B84300F8E4F3 /* LaunchScreen.storyboard */; };
 		9D573C0C2A38C64800F8E4F3 /* MainCityCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D573C0B2A38C64800F8E4F3 /* MainCityCoordinator.swift */; };
 		9D573C0E2A38C65B00F8E4F3 /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D573C0D2A38C65B00F8E4F3 /* Coordinatable.swift */; };
-		9D573C112A38C67200F8E4F3 /* WholeDayCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D573C102A38C67200F8E4F3 /* WholeDayCoordinator.swift */; };
+		9D573C112A38C67200F8E4F3 /* AllDay24HourCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D573C102A38C67200F8E4F3 /* AllDay24HourCoordinator.swift */; };
 		9D573C132A38C69700F8E4F3 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D573C122A38C69700F8E4F3 /* SettingsCoordinator.swift */; };
 		9D573C152A38C6AF00F8E4F3 /* SummaryOfTheDayCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D573C142A38C6AF00F8E4F3 /* SummaryOfTheDayCoordinator.swift */; };
 		9D573C182A38CE5B00F8E4F3 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 9D573C172A38CE5B00F8E4F3 /* Alamofire */; };
@@ -35,12 +35,12 @@
 		9DB90D4D2A5C2BAC00F57180 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D4C2A5C2BAC00F57180 /* SettingsViewController.swift */; };
 		9DB90D4F2A5C2BD400F57180 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D4E2A5C2BD400F57180 /* SettingsView.swift */; };
 		9DB90D512A5C655400F57180 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D502A5C655400F57180 /* SettingsModel.swift */; };
-		9DB90D5B2A5D592900F57180 /* WholeDay24hourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D5A2A5D592900F57180 /* WholeDay24hourViewController.swift */; };
-		9DB90D5D2A5D594900F57180 /* WholeDay24hourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D5C2A5D594900F57180 /* WholeDay24hourView.swift */; };
-		9DB90D622A5D9D0000F57180 /* WholeDay24hourTimetableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D612A5D9D0000F57180 /* WholeDay24hourTimetableHeader.swift */; };
+		9DB90D5B2A5D592900F57180 /* AllDay24HourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D5A2A5D592900F57180 /* AllDay24HourViewController.swift */; };
+		9DB90D5D2A5D594900F57180 /* AllDay24HourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D5C2A5D594900F57180 /* AllDay24HourView.swift */; };
+		9DB90D622A5D9D0000F57180 /* AllDay24HourTimetableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D612A5D9D0000F57180 /* AllDay24HourTimetableHeader.swift */; };
 		9DB90D642A5DED8600F57180 /* DashedViewHorizontal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D632A5DED8600F57180 /* DashedViewHorizontal.swift */; };
 		9DB90D662A5E8B9A00F57180 /* DashedViewVertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D652A5E8B9A00F57180 /* DashedViewVertical.swift */; };
-		9DB90D6B2A5FE73900F57180 /* WholeDay24hourTimetableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D6A2A5FE73900F57180 /* WholeDay24hourTimetableCell.swift */; };
+		9DB90D6B2A5FE73900F57180 /* AllDay24HourTimetableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D6A2A5FE73900F57180 /* AllDay24HourTimetableCell.swift */; };
 		9DB90D6D2A5FF43900F57180 /* ListFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D6C2A5FF43900F57180 /* ListFonts.swift */; };
 		9DB90D702A60048D00F57180 /* ListColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D6F2A60048D00F57180 /* ListColors.swift */; };
 		9DB90D752A605E4500F57180 /* SummaryOfTheDayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D742A605E4500F57180 /* SummaryOfTheDayViewController.swift */; };
@@ -60,7 +60,7 @@
 		9D573BF72A38B84300F8E4F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D573C0B2A38C64800F8E4F3 /* MainCityCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCityCoordinator.swift; sourceTree = "<group>"; };
 		9D573C0D2A38C65B00F8E4F3 /* Coordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinatable.swift; sourceTree = "<group>"; };
-		9D573C102A38C67200F8E4F3 /* WholeDayCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WholeDayCoordinator.swift; sourceTree = "<group>"; };
+		9D573C102A38C67200F8E4F3 /* AllDay24HourCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllDay24HourCoordinator.swift; sourceTree = "<group>"; };
 		9D573C122A38C69700F8E4F3 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		9D573C142A38C6AF00F8E4F3 /* SummaryOfTheDayCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryOfTheDayCoordinator.swift; sourceTree = "<group>"; };
 		9D573C1A2A38D0D100F8E4F3 /* PermissionToUseLocationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionToUseLocationCoordinator.swift; sourceTree = "<group>"; };
@@ -80,12 +80,12 @@
 		9DB90D4C2A5C2BAC00F57180 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9DB90D4E2A5C2BD400F57180 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9DB90D502A5C655400F57180 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
-		9DB90D5A2A5D592900F57180 /* WholeDay24hourViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WholeDay24hourViewController.swift; sourceTree = "<group>"; };
-		9DB90D5C2A5D594900F57180 /* WholeDay24hourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WholeDay24hourView.swift; sourceTree = "<group>"; };
-		9DB90D612A5D9D0000F57180 /* WholeDay24hourTimetableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WholeDay24hourTimetableHeader.swift; sourceTree = "<group>"; };
+		9DB90D5A2A5D592900F57180 /* AllDay24HourViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllDay24HourViewController.swift; sourceTree = "<group>"; };
+		9DB90D5C2A5D594900F57180 /* AllDay24HourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllDay24HourView.swift; sourceTree = "<group>"; };
+		9DB90D612A5D9D0000F57180 /* AllDay24HourTimetableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllDay24HourTimetableHeader.swift; sourceTree = "<group>"; };
 		9DB90D632A5DED8600F57180 /* DashedViewHorizontal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashedViewHorizontal.swift; sourceTree = "<group>"; };
 		9DB90D652A5E8B9A00F57180 /* DashedViewVertical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashedViewVertical.swift; sourceTree = "<group>"; };
-		9DB90D6A2A5FE73900F57180 /* WholeDay24hourTimetableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WholeDay24hourTimetableCell.swift; sourceTree = "<group>"; };
+		9DB90D6A2A5FE73900F57180 /* AllDay24HourTimetableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllDay24HourTimetableCell.swift; sourceTree = "<group>"; };
 		9DB90D6C2A5FF43900F57180 /* ListFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListFonts.swift; sourceTree = "<group>"; };
 		9DB90D6F2A60048D00F57180 /* ListColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListColors.swift; sourceTree = "<group>"; };
 		9DB90D742A605E4500F57180 /* SummaryOfTheDayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryOfTheDayViewController.swift; sourceTree = "<group>"; };
@@ -163,7 +163,7 @@
 				9D573C1A2A38D0D100F8E4F3 /* PermissionToUseLocationCoordinator.swift */,
 				9D573C122A38C69700F8E4F3 /* SettingsCoordinator.swift */,
 				9D573C142A38C6AF00F8E4F3 /* SummaryOfTheDayCoordinator.swift */,
-				9D573C102A38C67200F8E4F3 /* WholeDayCoordinator.swift */,
+				9D573C102A38C67200F8E4F3 /* AllDay24HourCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -175,7 +175,7 @@
 				9D573C032A38C1A900F8E4F3 /* MainCity */,
 				9D573C042A38C1FD00F8E4F3 /* Settings */,
 				9D573C062A38C2AC00F8E4F3 /* SummaryOfTheDay */,
-				9D573C052A38C27900F8E4F3 /* WholeDay24hour */,
+				9D573C052A38C27900F8E4F3 /* AllDay24Hour */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -222,14 +222,14 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		9D573C052A38C27900F8E4F3 /* WholeDay24hour */ = {
+		9D573C052A38C27900F8E4F3 /* AllDay24Hour */ = {
 			isa = PBXGroup;
 			children = (
 				9DB90D592A5D431E00F57180 /* Controller */,
 				9DB90D572A5D431200F57180 /* Model */,
 				9DB90D582A5D431800F57180 /* View */,
 			);
-			path = WholeDay24hour;
+			path = AllDay24Hour;
 			sourceTree = "<group>";
 		};
 		9D573C062A38C2AC00F8E4F3 /* SummaryOfTheDay */ = {
@@ -419,7 +419,7 @@
 			isa = PBXGroup;
 			children = (
 				9DB90D5E2A5D9C5800F57180 /* TableView */,
-				9DB90D5C2A5D594900F57180 /* WholeDay24hourView.swift */,
+				9DB90D5C2A5D594900F57180 /* AllDay24HourView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -427,7 +427,7 @@
 		9DB90D592A5D431E00F57180 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				9DB90D5A2A5D592900F57180 /* WholeDay24hourViewController.swift */,
+				9DB90D5A2A5D592900F57180 /* AllDay24HourViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -444,7 +444,7 @@
 		9DB90D5F2A5D9C6800F57180 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
-				9DB90D612A5D9D0000F57180 /* WholeDay24hourTimetableHeader.swift */,
+				9DB90D612A5D9D0000F57180 /* AllDay24HourTimetableHeader.swift */,
 			);
 			path = Headers;
 			sourceTree = "<group>";
@@ -452,7 +452,7 @@
 		9DB90D602A5D9C7000F57180 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				9DB90D6A2A5FE73900F57180 /* WholeDay24hourTimetableCell.swift */,
+				9DB90D6A2A5FE73900F57180 /* AllDay24HourTimetableCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -617,21 +617,21 @@
 				9DB90D662A5E8B9A00F57180 /* DashedViewVertical.swift in Sources */,
 				9DB90D7D2A60680400F57180 /* SummaryOfTheDayTableViewCell.swift in Sources */,
 				9DB90D4F2A5C2BD400F57180 /* SettingsView.swift in Sources */,
-				9DB90D5D2A5D594900F57180 /* WholeDay24hourView.swift in Sources */,
+				9DB90D5D2A5D594900F57180 /* AllDay24HourView.swift in Sources */,
 				9DB90D462A59AAFA00F57180 /* DailyForecastCell.swift in Sources */,
 				9DB90D132A51A0CD00F57180 /* AppCoordinator.swift in Sources */,
 				9DB90D6D2A5FF43900F57180 /* ListFonts.swift in Sources */,
-				9DB90D5B2A5D592900F57180 /* WholeDay24hourViewController.swift in Sources */,
+				9DB90D5B2A5D592900F57180 /* AllDay24HourViewController.swift in Sources */,
 				9D573C1B2A38D0D100F8E4F3 /* PermissionToUseLocationCoordinator.swift in Sources */,
-				9D573C112A38C67200F8E4F3 /* WholeDayCoordinator.swift in Sources */,
+				9D573C112A38C67200F8E4F3 /* AllDay24HourCoordinator.swift in Sources */,
 				9DB90D342A555CBA00F57180 /* CustomImageView.swift in Sources */,
 				9D573C132A38C69700F8E4F3 /* SettingsCoordinator.swift in Sources */,
-				9DB90D622A5D9D0000F57180 /* WholeDay24hourTimetableHeader.swift in Sources */,
+				9DB90D622A5D9D0000F57180 /* AllDay24HourTimetableHeader.swift in Sources */,
 				9DB90D4D2A5C2BAC00F57180 /* SettingsViewController.swift in Sources */,
 				9DB90D752A605E4500F57180 /* SummaryOfTheDayViewController.swift in Sources */,
 				9D7D89A42A3CC34000CB0ED0 /* PermissionToUseLocationView.swift in Sources */,
 				9DB90D3B2A55F73900F57180 /* extensionString.swift in Sources */,
-				9DB90D6B2A5FE73900F57180 /* WholeDay24hourTimetableCell.swift in Sources */,
+				9DB90D6B2A5FE73900F57180 /* AllDay24HourTimetableCell.swift in Sources */,
 				9DB90D432A599B7D00F57180 /* TwentyFiveDaysLabelHeader.swift in Sources */,
 				9D573C0C2A38C64800F8E4F3 /* MainCityCoordinator.swift in Sources */,
 				9D573BEC2A38B84100F8E4F3 /* SceneDelegate.swift in Sources */,

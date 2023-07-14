@@ -328,9 +328,9 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
 //        delegate?.showWholeDay10()
         
         
-        let wholeDay = WholeDay24hourViewController()
-//        navigationController?.pushViewController(wholeDay, animated: true)
+        let allDay24Hour = AllDay24HourViewController()
+//        navigationController?.pushViewController(allDay24Hour, animated: true)
         
-        UINavigationController().pushViewController(wholeDay, animated: true)
+        UINavigationController().pushViewController(allDay24Hour, animated: true)
     }
 }

@@ -3,7 +3,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-class WholeDay24hourTimetableCell: UITableViewCell {
+class AllDay24HourTimetableCell: UITableViewCell {
     
     //MARK: - Properties
     

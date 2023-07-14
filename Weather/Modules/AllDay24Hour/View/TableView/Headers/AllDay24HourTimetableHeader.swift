@@ -3,7 +3,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-class WholeDay24hourTimetableHeader: UITableViewHeaderFooterView {
+class AllDay24HourTimetableHeader: UITableViewHeaderFooterView {
     // между кружками 56 поинтов, общие кол-во кружков 7, показывает каждые 3 часа
     // высота линии графика 18 поинтов - сдвиг 3 поинта
         

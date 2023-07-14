@@ -3,20 +3,14 @@ import Foundation
 import UIKit
 import SnapKit
 
-protocol WholeDay24hourViewDelegate: AnyObject {
+protocol AllDay24HourViewDelegate: AnyObject {
     func comeBack()
 }
 
-class WholeDay24hourView: UIView {
+class AllDay24HourView: UIView {
     
-    weak var delegate: WholeDay24hourViewDelegate?
-    
-    private lazy var customViewBack: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
+    weak var delegate: AllDay24HourViewDelegate?
+        
     private lazy var backButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(systemName: "arrow.backward"), for: .normal)
@@ -30,7 +24,7 @@ class WholeDay24hourView: UIView {
         let label = UILabel()
         label.font = UIFont(name: ListFonts.regular400.rawValue, size: 16)
         label.textColor = UIColor(named: ListColors.gray.rawValue)
-        label.text = "Прогноз на 24 часа"
+        label.text = "   Прогноз на 24 часа"
         return label
     }()
     
@@ -54,13 +48,12 @@ class WholeDay24hourView: UIView {
         return tableView
     }()
     
-    init(delegate: WholeDay24hourViewDelegate) {
+    init(delegate: AllDay24HourViewDelegate) {
         self.delegate = delegate
         super.init(frame: .zero)
         
         self.backgroundColor = .systemBackground
         
-        self.customViewBarItem()
         self.setupUi()
     }
     
@@ -69,8 +62,10 @@ class WholeDay24hourView: UIView {
     }
     
     func navigationController(navItem: UINavigationItem) {
-        let barCustomLeftButtom = UIBarButtonItem(customView: customViewBack)
-        navItem.leftBarButtonItem = barCustomLeftButtom
+        let barCustomLeftButtom = UIBarButtonItem(customView: backLabel)
+        let leftButtonTwo = UIBarButtonItem(customView: backButton)
+        
+        navItem.leftBarButtonItems = [leftButtonTwo, barCustomLeftButtom]
     }
     
     func configureTableView(
@@ -79,23 +74,9 @@ class WholeDay24hourView: UIView {
     ) {
         self.tableView.delegate = delegateTable
         self.tableView.dataSource = dataSourceTable
-        self.tableView.register(WholeDay24hourTimetableHeader.self, forHeaderFooterViewReuseIdentifier: "headerId")
-        self.tableView.register(WholeDay24hourTimetableCell.self, forCellReuseIdentifier: "customId")
+        self.tableView.register(AllDay24HourTimetableHeader.self, forHeaderFooterViewReuseIdentifier: "headerId")
+        self.tableView.register(AllDay24HourTimetableCell.self, forCellReuseIdentifier: "customId")
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "defaultId")
-    }
-    
-    private func customViewBarItem() {
-        customViewBack.addSubview(self.backButton)
-        customViewBack.addSubview(self.backLabel)
-        
-        self.backButton.snp.makeConstraints { make in
-            make.height.equalTo(20)
-        }
-        
-        self.backLabel.snp.makeConstraints { make in
-            make.height.equalTo(20)
-            make.leading.equalTo(self.backButton.snp.trailing).offset(30)
-        }
     }
     
     private func setupUi() {

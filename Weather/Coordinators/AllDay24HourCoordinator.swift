@@ -2,7 +2,7 @@
 //
 //import UIKit
 //
-//class WholeDayCoordinator: Coordinatable {
+//class AllDay24HourCoordinator: Coordinatable {
 //    
 //    var child: [Coordinatable] = []
 //    
