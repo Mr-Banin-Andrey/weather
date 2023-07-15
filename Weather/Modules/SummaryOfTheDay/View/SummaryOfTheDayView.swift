@@ -91,7 +91,7 @@ class SummaryOfTheDayView: UIView {
         self.titleLabel.snp.makeConstraints { make in
             make.height.equalTo(22)
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top).inset(15)
-            make.leading.equalTo(self.snp.leading).inset(50)
+            make.leading.equalTo(self.snp.leading).inset(16)
         }
         
         self.tableView.snp.makeConstraints { make in
