@@ -42,10 +42,7 @@ class SummaryOfTheDayView: UIView {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor =  .systemBackground
-//        tableView.backgroundColor = .cyan
         tableView.separatorStyle = .none
-//        tableView.separatorStyle = .singleLine
-//        tableView.separatorColor = UIColor(named: ListColors.blue.rawValue)
         return tableView
     }()
     
@@ -71,8 +68,11 @@ class SummaryOfTheDayView: UIView {
     ) {
         self.tableView.delegate = delegateTable
         self.tableView.dataSource = dataSourceTable
-//        self.tableView.register(AllDay24HourTimetableHeader.self, forHeaderFooterViewReuseIdentifier: "headerId")
-        self.tableView.register(SummaryOfTheDayTableViewCell.self, forCellReuseIdentifier: "weatherId")
+        
+        self.tableView.register(SummaryOfTheDayCollectionView.self, forCellReuseIdentifier: "dayCollectionViewId")
+        self.tableView.register(DayAndNightWeatherTableViewCell.self, forCellReuseIdentifier: "dayAndNightWeatherId")
+        self.tableView.register(SunAndMoonTableViewCell.self, forCellReuseIdentifier: "sunAndMoonId")
+        self.tableView.register(AirQualityTableViewCell.self, forCellReuseIdentifier: "airQualityId")
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "defaultId")
     }
     
@@ -95,7 +95,7 @@ class SummaryOfTheDayView: UIView {
         }
         
         self.tableView.snp.makeConstraints { make in
-            make.top.equalTo(self.titleLabel.snp.bottom).offset(15)
+            make.top.equalTo(self.titleLabel.snp.bottom) //.offset(15)
             make.leading.equalTo(self.safeAreaLayoutGuide.snp.leading)
             make.trailing.equalTo(self.safeAreaLayoutGuide.snp.trailing)
             make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)

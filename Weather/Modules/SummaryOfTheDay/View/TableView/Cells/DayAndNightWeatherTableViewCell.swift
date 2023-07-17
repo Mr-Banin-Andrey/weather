@@ -3,7 +3,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-class SummaryOfTheDayTableViewCell: UITableViewCell {
+class DayAndNightWeatherTableViewCell: UITableViewCell {
     
     //MARK: - Properties
     private lazy var backView: UIView = {

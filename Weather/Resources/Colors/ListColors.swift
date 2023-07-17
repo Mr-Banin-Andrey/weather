@@ -8,4 +8,5 @@ enum ListColors: String {
     case orange = "figmaColorOrange"
     case white = "figmaColorWhite"
     case yellow = "figmaColorYellow"
+    case green = "figmaColorGreen"
 }

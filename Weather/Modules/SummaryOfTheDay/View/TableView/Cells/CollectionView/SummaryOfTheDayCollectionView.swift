@@ -2,7 +2,7 @@
 import Foundation
 import UIKit
 
-class HourlyWeatherCollectionViewCell: UITableViewCell {
+class SummaryOfTheDayCollectionView: UITableViewCell {
         
 //    var collectionView: UICollectionView!
 
@@ -16,8 +16,7 @@ class HourlyWeatherCollectionViewCell: UITableViewCell {
     private lazy var layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 16
-
+        layout.minimumLineSpacing = 12
         return layout
     }()
     
@@ -25,8 +24,8 @@ class HourlyWeatherCollectionViewCell: UITableViewCell {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.layout)
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(HourlyWeatherCellInTableViewCell.self, forCellWithReuseIdentifier: "customCell")
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
+        collectionView.register(SummaryOfTheDayCollectionViewCell.self, forCellWithReuseIdentifier: "SummaryOfTheDayCustomCell")
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "summaryOfTheDayDefaultId")
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = .systemBackground
 //        collectionView.isPagingEnabled = false
@@ -52,19 +51,19 @@ class HourlyWeatherCollectionViewCell: UITableViewCell {
 //        let widthScreen = UIScreen.main.bounds.width
         
         NSLayoutConstraint.activate([
-            self.collectionView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 8),
+            self.collectionView.topAnchor.constraint(equalTo: self.contentView.topAnchor), // constant: 8),
             self.collectionView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
             self.collectionView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16),
             
-            self.collectionView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -5),
+            self.collectionView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor), // constant: -5),
 //            self.collectionView.widthAnchor.constraint(equalToConstant: widthScreen),
-            self.collectionView.heightAnchor.constraint(equalToConstant: 85)
+            self.collectionView.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
     
 }
 
-extension HourlyWeatherCollectionViewCell:  UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension SummaryOfTheDayCollectionView:  UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 //    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
 //        return 1
 //    }
@@ -74,13 +73,13 @@ extension HourlyWeatherCollectionViewCell:  UICollectionViewDataSource, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "customCell", for: indexPath) as? HourlyWeatherCellInTableViewCell else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath)
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SummaryOfTheDayCustomCell", for: indexPath) as? SummaryOfTheDayCollectionViewCell else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "summaryOfTheDayDefaultId", for: indexPath)
             return cell
         }
             
-        cell.directionalLayoutMargins = .zero //IEdgeInsetsZero
-        cell.preservesSuperviewLayoutMargins = false
+//        cell.directionalLayoutMargins = .zero //IEdgeInsetsZero
+//        cell.preservesSuperviewLayoutMargins = false
 //        cell.setup()
 //        cell.backgroundColor = UIColor.yellow
 //        cell.setup(with: "Text")
@@ -106,7 +105,7 @@ extension HourlyWeatherCollectionViewCell:  UICollectionViewDataSource, UICollec
 //        print("🍉 4 itemWight", itemWight)
 
 
-        return CGSize(width: 42, height: 85)
+        return CGSize(width: 90, height: 40)
     }
     
 }

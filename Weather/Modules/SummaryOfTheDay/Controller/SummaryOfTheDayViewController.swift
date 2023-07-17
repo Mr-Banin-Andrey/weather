@@ -30,13 +30,13 @@ extension SummaryOfTheDayViewController: SummaryOfTheDayViewDelegate {
 extension SummaryOfTheDayViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if section == 0 {
-//           return 1
-//        }
-//        if section == 1 {
-//            return 2
-//        }
-        return 2
+        if section == 0 {
+           return 1
+        }
+        if section == 1 {
+            return 4
+        }
+        return 0
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -55,23 +55,56 @@ extension SummaryOfTheDayViewController: UITableViewDelegate, UITableViewDataSou
 //    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        if indexPath.section == 0 {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "defaultId", for: indexPath)
-//            return cell
-//        }
-//        self.tableView.register(SummaryOfTheDayTableViewCell.self, forCellReuseIdentifier: "weatherId")
-//        if indexPath.section == 0 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "weatherId", for: indexPath) as? SummaryOfTheDayTableViewCell else {
+        if indexPath.section == 0 {
+            guard
+                let cell = tableView.dequeueReusableCell(withIdentifier: "dayCollectionViewId", for: indexPath) as? SummaryOfTheDayCollectionView
+            else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "defaultId", for: indexPath)
                 return cell
             }
-////            let abs = cell.indexPath.row
-//            
+            cell.selectionStyle = .none
             return cell
-//        }
-//
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "defaultId", for: indexPath)
-//        return cell
+        }
+//        self.tableView.register(SummaryOfTheDayTableViewCell.self, forCellReuseIdentifier: "weatherId")
+        
+        if indexPath.section == 1 {
+            
+            if indexPath.row < 2 {
+                guard
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "dayAndNightWeatherId", for: indexPath) as? DayAndNightWeatherTableViewCell
+                else {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "defaultId", for: indexPath)
+                    return cell
+                }
+                cell.selectionStyle = .none
+                return cell
+            }
+            
+            if indexPath.row == 2 {
+                guard
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "sunAndMoonId", for: indexPath) as? SunAndMoonTableViewCell
+                else {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "defaultId", for: indexPath)
+                    return cell
+                }
+                cell.selectionStyle = .none
+                return cell
+            }
+            
+            if indexPath.row == 3 {
+                guard
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "airQualityId", for: indexPath) as? AirQualityTableViewCell
+                else {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "defaultId", for: indexPath)
+                    return cell
+                }
+                cell.selectionStyle = .none
+                return cell
+            }
+        }
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: "defaultId", for: indexPath)
+        return cell
     }
     
 }
