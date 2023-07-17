@@ -27,12 +27,10 @@ class SummaryOfTheDayCollectionView: UITableViewCell {
         collectionView.register(SummaryOfTheDayCollectionViewCell.self, forCellWithReuseIdentifier: "SummaryOfTheDayCustomCell")
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "summaryOfTheDayDefaultId")
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .systemBackground
 //        collectionView.isPagingEnabled = false
 //        collectionView.
         return collectionView
     }()
-    
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -49,14 +47,12 @@ class SummaryOfTheDayCollectionView: UITableViewCell {
         self.contentView.addSubview(collectionView)
         
 //        let widthScreen = UIScreen.main.bounds.width
-        
         NSLayoutConstraint.activate([
-            self.collectionView.topAnchor.constraint(equalTo: self.contentView.topAnchor), // constant: 8),
+            self.collectionView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
             self.collectionView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
             self.collectionView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16),
+            self.collectionView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
             
-            self.collectionView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor), // constant: -5),
-//            self.collectionView.widthAnchor.constraint(equalToConstant: widthScreen),
             self.collectionView.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
@@ -67,44 +63,48 @@ extension SummaryOfTheDayCollectionView:  UICollectionViewDataSource, UICollecti
 //    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
 //        return 1
 //    }
-
+    
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return 7
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SummaryOfTheDayCustomCell", for: indexPath) as? SummaryOfTheDayCollectionViewCell else {
+        guard
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SummaryOfTheDayCustomCell", for: indexPath) as? SummaryOfTheDayCollectionViewCell
+        else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "summaryOfTheDayDefaultId", for: indexPath)
             return cell
         }
-            
+        
+        if cell.isSelected {
+            cell.setupSelect()
+        } else {
+            cell.setupDeselect()
+        }
 //        cell.directionalLayoutMargins = .zero //IEdgeInsetsZero
 //        cell.preservesSuperviewLayoutMargins = false
-//        cell.setup()
 //        cell.backgroundColor = UIColor.yellow
 //        cell.setup(with: "Text")
         return cell
     }
     
-   func collectionView(
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        cell?.backgroundColor = UIColor(named: ListColors.blue.rawValue)
+    }
+    
+//    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+//         let cell = collectionView.cellForItem(at: indexPath)
+//         cell?.backgroundColor = nil
+//    }
+    
+    func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
-   ) -> CGSize {
-
-//        let insert = (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.sectionInset ?? .zero
-//        print("🍉 1 insert", insert)
-//
-//        let interItemSpacing = (collectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.minimumInteritemSpacing ?? 0
-//        print("🍉 2 interItemSpacing", interItemSpacing)
-//
-//        let wight = collectionView.frame.width - (Constants.numberOfItemsInLine - 1) * interItemSpacing - insert.left - insert.right
-//        print("🍉 3 wight", wight)
-//
-//        let itemWight = floor(wight / Constants.numberOfItemsInLine)
-//        print("🍉 4 itemWight", itemWight)
-
-
+    ) -> CGSize {
         return CGSize(width: 90, height: 40)
     }
     

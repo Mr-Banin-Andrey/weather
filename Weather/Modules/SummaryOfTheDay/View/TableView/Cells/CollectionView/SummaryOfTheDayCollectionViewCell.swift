@@ -10,9 +10,9 @@ class SummaryOfTheDayCollectionViewCell: UICollectionViewCell {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 5
-//        view.layer.borderWidth = 1
+        view.layer.borderWidth = 1
 //        view.borderColor = UIColor(named: ListColors.blue.rawValue)?.cgColor
-        view.backgroundColor = UIColor(named: ListColors.blue.rawValue)
+//        view.backgroundColor = UIColor(named: ListColors.blue.rawValue)
         return view
     }()
     
@@ -41,6 +41,17 @@ class SummaryOfTheDayCollectionViewCell: UICollectionViewCell {
 //        clockLabel.textColor = .white
 //        gradusLabel.textColor = .white
 //    }
+    
+    func setupSelect() {
+        self.backView.backgroundColor = UIColor(named: ListColors.blue.rawValue)
+        self.dateLabel.textColor = .white
+    }
+    
+    func setupDeselect() {
+        self.backView.backgroundColor = nil
+        self.dateLabel.textColor = .black
+    }
+    
     
     private func setupConstraints() {
         self.contentView.addSubview(self.backView)
