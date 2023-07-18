@@ -5,7 +5,6 @@ import SnapKit
 
 class HourlyWeatherCellInTableViewCell: UICollectionViewCell {
     
-    
     private lazy var backView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -44,7 +43,6 @@ class HourlyWeatherCellInTableViewCell: UICollectionViewCell {
         super.init(frame: frame)
         
         self.setupConstraints()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -55,6 +53,16 @@ class HourlyWeatherCellInTableViewCell: UICollectionViewCell {
 //        backView.backgroundColor = UIColor(named: ListColors.blue.rawValue)
 //        clockLabel.textColor = .white
 //        gradusLabel.textColor = .white
+//    }
+    
+//    func setupSelect() {
+//        self.backView.backgroundColor = UIColor(named: ListColors.blue.rawValue)
+//        self.dateLabel.textColor = .white
+//    }
+//    
+//    func setupDeselect() {
+//        self.backView.backgroundColor = nil
+//        self.dateLabel.textColor = .black
 //    }
     
     private func setupConstraints() {

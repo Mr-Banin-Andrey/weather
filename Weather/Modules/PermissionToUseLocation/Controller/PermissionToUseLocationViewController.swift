@@ -18,11 +18,13 @@ class PermissionToUseLocationViewController: UIViewController {
         view = permissionToUseLocationView
         
         self.permissionToUseLocationView.setupText(text: TextTitle().textTitle[0])
-        
-        
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.navigationBar.isHidden = false
+    }
 }
 
 extension PermissionToUseLocationViewController: PermissionToUseLocationDelegate {
@@ -37,10 +39,9 @@ extension PermissionToUseLocationViewController: PermissionToUseLocationDelegate
     func doNotGiveAccessToTheLocation() {
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.delegate = self
+        
         print("do not give ❌")
     }
-    
-    
 }
 
 extension PermissionToUseLocationViewController: CLLocationManagerDelegate {

@@ -52,7 +52,6 @@ class SummaryOfTheDayView: UIView {
         
         self.backgroundColor = .systemBackground
 
-//        self.customViewBarItem()
         self.setupUi()
     }
     

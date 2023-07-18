@@ -35,8 +35,7 @@ class MainCityView: UIView {
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = .systemBackground
-//        tableView.backgroundColor = .cyan
+//        tableView.backgroundColor = .systemBackground
         tableView.separatorStyle = .none
         return tableView
     }()
@@ -78,8 +77,6 @@ class MainCityView: UIView {
         label.textColor = .black
         return label
     }()
-    
-
     
     init(delegate: MainCityViewDelegate) {
         self.delegate = delegate
@@ -140,7 +137,6 @@ class MainCityView: UIView {
         self.tableView.register(HourlyWeatherCollectionViewCell.self, forCellReuseIdentifier: "CollectionViewCell")
         self.tableView.register(TwentyFiveDaysLabelHeader.self, forHeaderFooterViewReuseIdentifier: "TwentyFiveDaysLabelHeader")
         self.tableView.register(DailyForecastCell.self, forCellReuseIdentifier: "DailyForecastCell")
-        
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "defaultId")
     }
     

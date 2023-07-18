@@ -19,11 +19,6 @@ class MainCityViewController: UIViewController {
         view.backgroundColor = .systemBackground
         
         manCityView.navigationController(navItem: navigationItem, navTitle: "то что передам 7°/13° ")
-//        manCityView.settingsPageControl(
-//            scrollDelegate: self,
-//            scrollFrame: self.view.bounds,
-//            numberOfPages: 1)
-        
         manCityView.configureTableView(delegateTable: self, dataSourceTable: self)
     }
     
@@ -31,6 +26,15 @@ class MainCityViewController: UIViewController {
         super.viewWillAppear(animated)
         
         self.navigationController?.navigationBar.isHidden = false
+    }
+    
+    @objc private func showAllDay() {
+        let allDay = AllDay24HourViewController()
+        navigationController?.pushViewController(allDay, animated: true)
+    }
+    
+    @objc private func showTwentyFiveDays() {
+        print("showTwentyFiveDays")
     }
 }
 
@@ -44,21 +48,10 @@ extension MainCityViewController: MainCityViewDelegate {
     
     func showPermissionToUseLocationView() {
         print("showPermissionToUseLocationView")
-        
-        //временное решение
-        let wholeDay = AllDay24HourViewController()
-        navigationController?.pushViewController(wholeDay, animated: true)
+        let permissionToUseLocation = PermissionToUseLocationViewController()
+        navigationController?.pushViewController(permissionToUseLocation, animated: true)
     }
 }
-
-//extension MainCityViewController: CardOfTheDayHeaderDelegate {
-//
-//    func showWholeDay10() {
-//        print("2 showWholeDay")
-//        let wholeDay = AllDay24HourViewController()
-//        navigationController?.pushViewController(wholeDay, animated: true)
-//    }
-//}
 
 //extension MainCityViewController: UIScrollViewDelegate {
 //    func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -93,6 +86,7 @@ extension MainCityViewController: UITableViewDelegate, UITableViewDataSource {
                 let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "cardOfTheDayId") as? CardOfTheDayHeader
             else { return nil }
             
+            header.detailedWeatherForTheDayButton.addTarget(self, action: #selector(showAllDay), for: .touchUpInside)
             return header
         }
 
@@ -101,16 +95,16 @@ extension MainCityViewController: UITableViewDelegate, UITableViewDataSource {
                 let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TwentyFiveDaysLabelHeader") as? TwentyFiveDaysLabelHeader
             else { return nil }
             
+            header.twentyFiveDaysButton.addTarget(self, action: #selector(showTwentyFiveDays), for: .touchUpInside)
             return header
         }
         
         return nil
     }
     
-    
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
+            
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "CollectionViewCell", for: indexPath) as? HourlyWeatherCollectionViewCell else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "defaultId", for: indexPath)
                 

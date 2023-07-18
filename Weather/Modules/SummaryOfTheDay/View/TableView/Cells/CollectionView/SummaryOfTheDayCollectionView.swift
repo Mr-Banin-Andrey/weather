@@ -3,16 +3,7 @@ import Foundation
 import UIKit
 
 class SummaryOfTheDayCollectionView: UITableViewCell {
-        
-//    var collectionView: UICollectionView!
-
-//    let layout = UICollectionViewFlowLayout()
-//    layout.scrollDirection = UICollectionView.ScrollDirection.horizontal
-    
-//    private enum Constants {
-//        static let numberOfItemsInLine: CGFloat = 3
-//    }
-    
+            
     private lazy var layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -27,8 +18,6 @@ class SummaryOfTheDayCollectionView: UITableViewCell {
         collectionView.register(SummaryOfTheDayCollectionViewCell.self, forCellWithReuseIdentifier: "SummaryOfTheDayCustomCell")
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "summaryOfTheDayDefaultId")
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-//        collectionView.isPagingEnabled = false
-//        collectionView.
         return collectionView
     }()
     
@@ -60,14 +49,10 @@ class SummaryOfTheDayCollectionView: UITableViewCell {
 }
 
 extension SummaryOfTheDayCollectionView:  UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-//    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-//        return 1
-//    }
-    
-    
+
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
+        return 14
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -83,22 +68,21 @@ extension SummaryOfTheDayCollectionView:  UICollectionViewDataSource, UICollecti
         } else {
             cell.setupDeselect()
         }
-//        cell.directionalLayoutMargins = .zero //IEdgeInsetsZero
-//        cell.preservesSuperviewLayoutMargins = false
-//        cell.backgroundColor = UIColor.yellow
-//        cell.setup(with: "Text")
+
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath)
-        cell?.backgroundColor = UIColor(named: ListColors.blue.rawValue)
+        if let cell = collectionView.cellForItem(at: indexPath) as? SummaryOfTheDayCollectionViewCell {
+            cell.setupSelect()
+        }
     }
     
-//    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-//         let cell = collectionView.cellForItem(at: indexPath)
-//         cell?.backgroundColor = nil
-//    }
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? SummaryOfTheDayCollectionViewCell {
+            cell.setupDeselect()
+        }
+    }
     
     func collectionView(
         _ collectionView: UICollectionView,

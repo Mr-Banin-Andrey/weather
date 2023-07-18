@@ -3,15 +3,15 @@ import Foundation
 import UIKit
 import SnapKit
 
-protocol CardOfTheDayHeaderDelegate: AnyObject {
-    func showWholeDay10()
-}
+//protocol CardOfTheDayHeaderDelegate: AnyObject {
+//    func showWholeDay()
+//}
 
 class CardOfTheDayHeader: UITableViewHeaderFooterView {
     
     private let customImageView = CustomImageView()
     
-    weak var delegate: CardOfTheDayHeaderDelegate?
+//    weak var delegate: CardOfTheDayHeaderDelegate?
     
     private lazy var cardView: UIView = {
         let cardView = UIView()
@@ -197,13 +197,12 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         return label
     }()
     
-    private lazy var detailedWeatherForTheDayButton: UIButton = {
+    lazy var detailedWeatherForTheDayButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont(name: ListFonts.regular400.rawValue, size: 16)
         button.setAttributedTitle("Подробнее на 24 часа".underLined, for: .normal)
         button.setTitleColor(.black, for: .normal)
-        button.addTarget(self, action: #selector(showWholeDay), for: .touchUpInside)
         return button
     }()
     
@@ -261,9 +260,9 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         self.addSubview(self.detailedWeatherForTheDayButton)
         
         self.cardView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(20)
-            make.leading.equalToSuperview().inset(16)
-            make.trailing.equalToSuperview().inset(16)
+            make.top.equalTo(self.snp.top).inset(20)
+            make.leading.equalTo(self.snp.leading).inset(16)
+            make.trailing.equalTo(self.snp.trailing).inset(16)
             make.height.equalTo(212)
         }
         
@@ -318,19 +317,8 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         self.detailedWeatherForTheDayButton.snp.makeConstraints { make in
             make.top.equalTo(self.cardView.snp.bottom).offset(33)
             make.height.equalTo(20)
-            make.trailing.equalToSuperview().inset(16)
-            make.bottom.equalToSuperview() //.offset(20)
+            make.trailing.equalTo(self.snp.trailing).inset(16)
+            make.bottom.equalTo(self.snp.bottom).offset(-20)
         }
-    }
-    
-    @objc private func showWholeDay() {
-        print("1 showWholeDay")
-//        delegate?.showWholeDay10()
-        
-        
-        let allDay24Hour = AllDay24HourViewController()
-//        navigationController?.pushViewController(allDay24Hour, animated: true)
-        
-        UINavigationController().pushViewController(allDay24Hour, animated: true)
     }
 }
