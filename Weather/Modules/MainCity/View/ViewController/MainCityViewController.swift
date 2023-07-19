@@ -6,6 +6,20 @@ class MainCityViewController: UIViewController {
     
     private lazy var manCityView = MainCityView(delegate: self)    
     
+    private var cardOfTheDayModel: CardOfTheDayModel
+    
+    init(cardOfTheDayModel: CardOfTheDayModel) {
+        self.cardOfTheDayModel = cardOfTheDayModel
+        
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     override func loadView() {
         super.loadView()
         
@@ -18,7 +32,7 @@ class MainCityViewController: UIViewController {
         
         view.backgroundColor = .systemBackground
         
-        manCityView.navigationController(navItem: navigationItem, navTitle: "то что передам 7°/13° ")
+//        manCityView.navigationController(navItem: navigationItem, navTitle: "то что передам 7°/13° ")
         manCityView.configureTableView(delegateTable: self, dataSourceTable: self)
     }
     
@@ -78,7 +92,7 @@ extension MainCityViewController: UITableViewDelegate, UITableViewDataSource {
             else { return nil }
             
             header.detailedWeatherForTheDayButton.addTarget(self, action: #selector(showAllDay), for: .touchUpInside)
-            header.setupValue(weather: CardDay().cardDay[0])
+            header.setupValue(weather: cardOfTheDayModel)
             return header
         }
 

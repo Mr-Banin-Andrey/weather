@@ -21,34 +21,34 @@ class MainCityView: UIView {
         return tableView
     }()
     
-    private lazy var leftButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "бургер"), for: .normal)
-        button.tintColor = .black
-        button.addTarget(self, action: #selector(showSettings), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.widthAnchor.constraint(equalToConstant: 34).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 18).isActive = true
-        return button
-    }()
-    
-    private lazy var rightButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setImage(UIImage(named: "месторасположение"), for: .normal)
-        button.tintColor = .black
-        button.addTarget(self, action: #selector(showPermissionToUseLocation), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.widthAnchor.constraint(equalToConstant: 24).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 32).isActive = true
-        return button
-    }()
-    
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont(name: ListFonts.medium500.rawValue, size: 18)
-        label.textColor = .black
-        return label
-    }()
+//    private lazy var leftButton: UIButton = {
+//        let button = UIButton()
+//        button.setImage(UIImage(named: "бургер"), for: .normal)
+//        button.tintColor = .black
+//        button.addTarget(self, action: #selector(showSettings), for: .touchUpInside)
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.widthAnchor.constraint(equalToConstant: 34).isActive = true
+//        button.heightAnchor.constraint(equalToConstant: 18).isActive = true
+//        return button
+//    }()
+//    
+//    private lazy var rightButton: UIButton = {
+//        let button = UIButton(type: .custom)
+//        button.setImage(UIImage(named: "месторасположение"), for: .normal)
+//        button.tintColor = .black
+//        button.addTarget(self, action: #selector(showPermissionToUseLocation), for: .touchUpInside)
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.widthAnchor.constraint(equalToConstant: 24).isActive = true
+//        button.heightAnchor.constraint(equalToConstant: 32).isActive = true
+//        return button
+//    }()
+//    
+//    private lazy var titleLabel: UILabel = {
+//        let label = UILabel()
+//        label.font = UIFont(name: ListFonts.medium500.rawValue, size: 18)
+//        label.textColor = .black
+//        return label
+//    }()
     
     init(delegate: MainCityViewDelegate) {
         self.delegate = delegate
@@ -61,19 +61,19 @@ class MainCityView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func navigationController(navItem: UINavigationItem, navTitle: String) {
-        
-        titleLabel.text = navTitle
-        navItem.titleView = titleLabel
-        
-        let barCustomRightButtom = UIBarButtonItem(customView: rightButton)
-        navItem.rightBarButtonItems = [barCustomRightButtom]
-        navItem.rightBarButtonItem = barCustomRightButtom
-
-        let barCustomLeftButtom = UIBarButtonItem(customView: leftButton)
-        navItem.leftBarButtonItems = [barCustomLeftButtom]
-        navItem.leftBarButtonItem = barCustomLeftButtom
-    }
+//    func navigationController(navItem: UINavigationItem, navTitle: String) {
+//
+//        titleLabel.text = navTitle
+//        navItem.titleView = titleLabel
+//
+//        let barCustomRightButtom = UIBarButtonItem(customView: rightButton)
+//        navItem.rightBarButtonItems = [barCustomRightButtom]
+//        navItem.rightBarButtonItem = barCustomRightButtom
+//
+//        let barCustomLeftButtom = UIBarButtonItem(customView: leftButton)
+//        navItem.leftBarButtonItems = [barCustomLeftButtom]
+//        navItem.leftBarButtonItem = barCustomLeftButtom
+//    }
     
     func configureTableView(
         delegateTable: UITableViewDelegate,
@@ -101,11 +101,11 @@ class MainCityView: UIView {
         }
     }
     
-    @objc private func showSettings() {
-        delegate?.showSettingsView()
-    }
-    
-    @objc private func showPermissionToUseLocation() {
-        delegate?.showPermissionToUseLocationView()
-    }
+//    @objc private func showSettings() {
+//        delegate?.showSettingsView()
+//    }
+//
+//    @objc private func showPermissionToUseLocation() {
+//        delegate?.showPermissionToUseLocationView()
+//    }
 }
