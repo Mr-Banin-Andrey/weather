@@ -53,15 +53,6 @@ extension MainCityViewController: MainCityViewDelegate {
     }
 }
 
-//extension MainCityViewController: UIScrollViewDelegate {
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        manCityView.pageControl.currentPage = Int(scrollView.contentOffset.x / UIScreen.main.bounds.width)
-//        print(" currentPage", Int(scrollView.contentOffset.x / UIScreen.main.bounds.width))
-//        print(" scrollView", scrollView.contentOffset.x)
-//        print(" ---------------------------------------------")
-//    }
-//}
-
 extension MainCityViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -87,6 +78,7 @@ extension MainCityViewController: UITableViewDelegate, UITableViewDataSource {
             else { return nil }
             
             header.detailedWeatherForTheDayButton.addTarget(self, action: #selector(showAllDay), for: .touchUpInside)
+            header.setupValue(weather: CardDay().cardDay[0])
             return header
         }
 
@@ -131,8 +123,6 @@ extension MainCityViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-
         if indexPath.section == 1 {
             let summaryOfTheDay = SummaryOfTheDayViewController()
             self.navigationController?.pushViewController(summaryOfTheDay, animated: true)

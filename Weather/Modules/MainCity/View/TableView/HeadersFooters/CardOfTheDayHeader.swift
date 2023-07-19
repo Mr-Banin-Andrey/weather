@@ -3,16 +3,10 @@ import Foundation
 import UIKit
 import SnapKit
 
-//protocol CardOfTheDayHeaderDelegate: AnyObject {
-//    func showWholeDay()
-//}
-
 class CardOfTheDayHeader: UITableViewHeaderFooterView {
     
     private let customImageView = CustomImageView()
-    
-//    weak var delegate: CardOfTheDayHeaderDelegate?
-    
+        
     private lazy var cardView: UIView = {
         let cardView = UIView()
         cardView.translatesAutoresizingMaskIntoConstraints = false
@@ -49,7 +43,6 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: ListFonts.medium500.rawValue, size: 14)
         label.textColor = .white
-        label.text = "09:41"
         return label
     }()
     
@@ -58,7 +51,6 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: ListFonts.medium500.rawValue, size: 14)
         label.textColor = .white
-        label.text = "09:41"
         return label
     }()
     
@@ -77,7 +69,6 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: ListFonts.regular400.rawValue, size: 16)
         label.textColor = .white
-        label.text = "7°/13°"
         return label
     }()
     
@@ -86,7 +77,6 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: ListFonts.medium500.rawValue, size: 36)
         label.textColor = .white
-        label.text = "13"
         return label
     }()
     
@@ -95,7 +85,6 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: ListFonts.regular400.rawValue, size: 16)
         label.textColor = .white
-        label.text = "Возможен небольшой дождь"
         return label
     }()
     
@@ -131,7 +120,6 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.textColor = .white
-        label.text = "0 УФ"
         return label
     }()
     
@@ -157,7 +145,6 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.textColor = .white
-        label.text = "3 м/с"
         return label
     }()
     
@@ -183,7 +170,6 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.textColor = .white
-        label.text = "75%"
         return label
     }()
     
@@ -193,7 +179,6 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         label.font = UIFont(name: ListFonts.regular400.rawValue, size: 16)
         label.textColor = UIColor(named: ListColors.yellow.rawValue)
         label.text = "17:48,  пт 16 апреля"
-        
         return label
     }()
     
@@ -216,10 +201,23 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func twoFontInLabel() -> NSMutableAttributedString {
+    func setupValue(weather: CardOfTheDayModel) {
+        
+        self.sunriseTimeLabel.text = weather.sunriseTime
+        self.sunsetTimeLabel.text = weather.sunsetTime
+        
+        self.fromMinToMaxDegreeLabel.text = weather.tempMinMax
+        self.degreeNowLabel.attributedText = twoFontInLabel(value: weather.tempNow)
+        self.probabilityOfPrecipitationLabel.text = weather.descriptionWeather
+        self.uVIndexLabel.text = "\(String(weather.uvIndex)) УФ"
+        self.windLabel.text = "\(String(weather.windSpeed)) м/с"
+        self.precipitationLabel.text = "\(String(weather.precipitation)) %"
+    }
+    
+    private func twoFontInLabel(value:String) -> NSMutableAttributedString {
         let fontFirst = [NSAttributedString.Key.font : UIFont(name: ListFonts.medium500.rawValue, size: 36)]
         let fontSecond = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 40, weight: .ultraLight) ]
-        let mutblStringFirst = NSMutableAttributedString(string:"13", attributes:fontFirst as [NSAttributedString.Key : Any])
+        let mutblStringFirst = NSMutableAttributedString(string:value, attributes:fontFirst as [NSAttributedString.Key : Any])
         let mutblStringSecond = NSMutableAttributedString(string:"°", attributes:fontSecond as [NSAttributedString.Key : Any])
         
         mutblStringFirst.append(mutblStringSecond)
@@ -227,9 +225,7 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
     }
     
     private func setupUi() {
-        
-        self.degreeNowLabel.attributedText = self.twoFontInLabel()
-        
+                
         self.addSubview(self.cardView)
         self.addSubview(self.semicircleImageView)
         self.addSubview(self.sunriseImageView)
