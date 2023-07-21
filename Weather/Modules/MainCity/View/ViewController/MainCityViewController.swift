@@ -11,7 +11,6 @@ class MainCityViewController: UIViewController {
     init(cardOfTheDayModel: CardOfTheDayModel) {
         self.cardOfTheDayModel = cardOfTheDayModel
         
-        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -29,10 +28,7 @@ class MainCityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
         view.backgroundColor = .systemBackground
-        
-//        manCityView.navigationController(navItem: navigationItem, navTitle: "то что передам 7°/13° ")
         manCityView.configureTableView(delegateTable: self, dataSourceTable: self)
     }
     
@@ -53,18 +49,7 @@ class MainCityViewController: UIViewController {
 }
 
 extension MainCityViewController: MainCityViewDelegate {
-    
-    func showSettingsView() {
-        print("showSettingsView")
-        let settings = SettingsViewController()
-        navigationController?.pushViewController(settings, animated: true)
-    }
-    
-    func showPermissionToUseLocationView() {
-        print("showPermissionToUseLocationView")
-        let permissionToUseLocation = PermissionToUseLocationViewController()
-        navigationController?.pushViewController(permissionToUseLocation, animated: true)
-    }
+
 }
 
 extension MainCityViewController: UITableViewDelegate, UITableViewDataSource {

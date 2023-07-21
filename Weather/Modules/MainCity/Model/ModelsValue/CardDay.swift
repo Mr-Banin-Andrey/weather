@@ -17,7 +17,7 @@ struct CardDay {
                           precipitation: 0,
                           sunriseTime: "06:00",
                           sunsetTime: "19:00"),
-        CardOfTheDayModel(tempNow: "15°",
+        CardOfTheDayModel(tempNow: "15",
                           tempMinMax: "5°/17°",
                           descriptionWeather: "Возможен небольшой дождь",
                           uvIndex: 2,

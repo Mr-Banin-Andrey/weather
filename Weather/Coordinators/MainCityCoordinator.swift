@@ -17,7 +17,7 @@ class MainCityCoordinator: Coordinatable {
     }
     
     func showMainCiryVC() {
-        let mainCityVc = MainCityPageViewController() //MainCityViewController(cardOfTheDayModel: <#CardOfTheDayModel#>)
+        let mainCityVc = RootViewController() 
         navigationController.pushViewController(mainCityVc, animated: true)
     }
     

@@ -5,14 +5,13 @@ import SnapKit
 
 
 protocol MainCityViewDelegate: AnyObject {
-    func showSettingsView()
-    func showPermissionToUseLocationView()
+
 }
 
 class MainCityView: UIView {
     
     private weak var delegate: MainCityViewDelegate?
-        
+
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -20,35 +19,6 @@ class MainCityView: UIView {
         tableView.separatorStyle = .none
         return tableView
     }()
-    
-//    private lazy var leftButton: UIButton = {
-//        let button = UIButton()
-//        button.setImage(UIImage(named: "бургер"), for: .normal)
-//        button.tintColor = .black
-//        button.addTarget(self, action: #selector(showSettings), for: .touchUpInside)
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        button.widthAnchor.constraint(equalToConstant: 34).isActive = true
-//        button.heightAnchor.constraint(equalToConstant: 18).isActive = true
-//        return button
-//    }()
-//    
-//    private lazy var rightButton: UIButton = {
-//        let button = UIButton(type: .custom)
-//        button.setImage(UIImage(named: "месторасположение"), for: .normal)
-//        button.tintColor = .black
-//        button.addTarget(self, action: #selector(showPermissionToUseLocation), for: .touchUpInside)
-//        button.translatesAutoresizingMaskIntoConstraints = false
-//        button.widthAnchor.constraint(equalToConstant: 24).isActive = true
-//        button.heightAnchor.constraint(equalToConstant: 32).isActive = true
-//        return button
-//    }()
-//    
-//    private lazy var titleLabel: UILabel = {
-//        let label = UILabel()
-//        label.font = UIFont(name: ListFonts.medium500.rawValue, size: 18)
-//        label.textColor = .black
-//        return label
-//    }()
     
     init(delegate: MainCityViewDelegate) {
         self.delegate = delegate
@@ -61,24 +31,10 @@ class MainCityView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    func navigationController(navItem: UINavigationItem, navTitle: String) {
-//
-//        titleLabel.text = navTitle
-//        navItem.titleView = titleLabel
-//
-//        let barCustomRightButtom = UIBarButtonItem(customView: rightButton)
-//        navItem.rightBarButtonItems = [barCustomRightButtom]
-//        navItem.rightBarButtonItem = barCustomRightButtom
-//
-//        let barCustomLeftButtom = UIBarButtonItem(customView: leftButton)
-//        navItem.leftBarButtonItems = [barCustomLeftButtom]
-//        navItem.leftBarButtonItem = barCustomLeftButtom
-//    }
-    
     func configureTableView(
         delegateTable: UITableViewDelegate,
         dataSourceTable: UITableViewDataSource
-
+        
     ) {
         self.tableView.delegate = delegateTable
         self.tableView.dataSource = dataSourceTable
@@ -92,7 +48,7 @@ class MainCityView: UIView {
     
     private func setupUi() {
         self.addSubview(self.tableView)
-                
+        
         self.tableView.snp.makeConstraints { make in
             make.top.equalTo(self.snp.top)
             make.leading.equalTo(self.snp.leading)
@@ -101,11 +57,5 @@ class MainCityView: UIView {
         }
     }
     
-//    @objc private func showSettings() {
-//        delegate?.showSettingsView()
-//    }
-//
-//    @objc private func showPermissionToUseLocation() {
-//        delegate?.showPermissionToUseLocationView()
-//    }
 }
+

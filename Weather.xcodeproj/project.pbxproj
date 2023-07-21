@@ -20,6 +20,7 @@
 		9D573C182A38CE5B00F8E4F3 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 9D573C172A38CE5B00F8E4F3 /* Alamofire */; };
 		9D573C1B2A38D0D100F8E4F3 /* PermissionToUseLocationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D573C1A2A38D0D100F8E4F3 /* PermissionToUseLocationCoordinator.swift */; };
 		9D5907B82A49CB9700A53961 /* Rubik-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9D5907B72A49CB9700A53961 /* Rubik-VariableFont_wght.ttf */; };
+		9D6CF66C2A6B12E400259A3C /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6CF66B2A6B12E400259A3C /* RootViewController.swift */; };
 		9D7D89A42A3CC34000CB0ED0 /* PermissionToUseLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7D89A32A3CC34000CB0ED0 /* PermissionToUseLocationView.swift */; };
 		9D7D89A62A3CC42500CB0ED0 /* PermissionToUseLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7D89A52A3CC42500CB0ED0 /* PermissionToUseLocationViewController.swift */; };
 		9DB90D112A518F0D00F57180 /* MainCityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D102A518F0D00F57180 /* MainCityView.swift */; };
@@ -76,6 +77,7 @@
 		9D573C142A38C6AF00F8E4F3 /* SummaryOfTheDayCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryOfTheDayCoordinator.swift; sourceTree = "<group>"; };
 		9D573C1A2A38D0D100F8E4F3 /* PermissionToUseLocationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionToUseLocationCoordinator.swift; sourceTree = "<group>"; };
 		9D5907B72A49CB9700A53961 /* Rubik-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		9D6CF66B2A6B12E400259A3C /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		9D7D89A32A3CC34000CB0ED0 /* PermissionToUseLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionToUseLocationView.swift; sourceTree = "<group>"; };
 		9D7D89A52A3CC42500CB0ED0 /* PermissionToUseLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionToUseLocationViewController.swift; sourceTree = "<group>"; };
 		9DB90D102A518F0D00F57180 /* MainCityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCityView.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 		9D573C082A38C4BD00F8E4F3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9D6CF66A2A6B12C100259A3C /* RootViewController */,
 				9DB90D8C2A672E6400F57180 /* PageViewController */,
 				9DB90D292A53023F00F57180 /* TableView */,
 				9DB90D0F2A518EDF00F57180 /* View */,
@@ -309,6 +312,14 @@
 				9D7D89A12A3CC2A200CB0ED0 /* View */,
 			);
 			path = PermissionToUseLocation;
+			sourceTree = "<group>";
+		};
+		9D6CF66A2A6B12C100259A3C /* RootViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9D6CF66B2A6B12E400259A3C /* RootViewController.swift */,
+			);
+			path = RootViewController;
 			sourceTree = "<group>";
 		};
 		9D7D89A02A3CC29A00CB0ED0 /* Model */ = {
@@ -696,6 +707,7 @@
 				9D7D89A42A3CC34000CB0ED0 /* PermissionToUseLocationView.swift in Sources */,
 				9DB90D3B2A55F73900F57180 /* extensionString.swift in Sources */,
 				9DB90D922A67F56200F57180 /* HourlyWeatherCollectionModel.swift in Sources */,
+				9D6CF66C2A6B12E400259A3C /* RootViewController.swift in Sources */,
 				9DB90D6B2A5FE73900F57180 /* AllDay24HourTimetableCell.swift in Sources */,
 				9DB90D432A599B7D00F57180 /* TwentyFiveDaysLabelHeader.swift in Sources */,
 				9D573C0C2A38C64800F8E4F3 /* MainCityCoordinator.swift in Sources */,
