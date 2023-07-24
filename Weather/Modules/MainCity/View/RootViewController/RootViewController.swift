@@ -4,7 +4,14 @@ import UIKit
 import SnapKit
 
 class RootViewController: UIViewController {
-        
+    
+//    var mainCityPageViewController: MainCityPageViewController? {
+//        didSet {
+//            mainCityPageViewController?.delegateMain = self
+//            
+//        }
+//    }
+    
     private lazy var leftButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "бургер"), for: .normal)
@@ -43,6 +50,7 @@ class RootViewController: UIViewController {
         pageControl.preferredCurrentPageIndicatorImage = UIImage(systemName: "circle.fill")
         pageControl.currentPage = 0
         pageControl.numberOfPages = CardDay().cardDay.count
+        pageControl.addTarget(self, action: #selector(didChangePageControl), for: .valueChanged)
         return pageControl
     }()
     
@@ -55,8 +63,6 @@ class RootViewController: UIViewController {
         
         self.setupNavigationController(navigationItem: navigationItem, navigationController: navigationController ?? UINavigationController())
         self.setupUi()
-//        pageControl.currentPage = viewCity.currentIndex
-//        view.bringSubviewToFront(pageControl)
     }
     
     func setupNavigationController(navigationItem: UINavigationItem, navigationController: UINavigationController) {
@@ -77,22 +83,28 @@ class RootViewController: UIViewController {
     }
     
     private func setupUi() {
+        
         self.addChild(viewCity)
+        self.view.addSubview(viewCity.view)
         self.view.addSubview(self.pageControl)
-        self.view.addSubview(self.viewCity.view)
         
         self.pageControl.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             make.centerX.equalTo(self.view.safeAreaLayoutGuide.snp.centerX)
         }
-        self.viewCity.view.snp.makeConstraints { make in
-            make.top.equalTo(self.pageControl.snp.bottom)
+        viewCity.view.snp.makeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).inset(25)
             make.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading)
             make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
         }
     }
     
+    @objc private func didChangePageControl() {
+//        mainCityPageViewController?.scrollToViewController(index: pageControl.currentPage)
+        viewCity.scrollToViewController(index: pageControl.currentPage)
+        print("didChangePageControl", pageControl.currentPage)
+    }
     
     @objc private func showSettings() {
         let settings = SettingsViewController()
@@ -105,9 +117,20 @@ class RootViewController: UIViewController {
     }
 }
 
-extension RootViewController: MainCityPageDelegate {
-    func pageControlCurrentIndex(index: Array<MainCityViewController>.Index) {
-        pageControl.currentPage = index
+extension RootViewController: MainCityPageViewControllerDelegate {
+    
+    func didUpdatePageCount(mainCityPageViewController: UIPageViewController, didUpdatePageCount count: Int) {
+
+        pageControl.numberOfPages = count
+        print("RootViewController count", count)
     }
+    
+    func didUpdatePageIndex(mainCityPageViewController: UIPageViewController, didUpdatePageIndex index: Int) {
+        
+        pageControl.currentPage = index
+        print("RootViewController index", index)
+        
+    }
+    
 }
 

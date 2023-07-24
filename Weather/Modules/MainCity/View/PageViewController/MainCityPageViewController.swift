@@ -1,24 +1,18 @@
 
 import UIKit
 
-protocol MainCityPageDelegate: AnyObject {
-    func pageControlCurrentIndex(index: Array<MainCityViewController>.Index)
+protocol MainCityPageViewControllerDelegate: AnyObject {
+    
+    func didUpdatePageCount(mainCityPageViewController: UIPageViewController, didUpdatePageCount count: Int)
+    
+    func didUpdatePageIndex(mainCityPageViewController: UIPageViewController, didUpdatePageIndex index: Int)
 }
 
 class MainCityPageViewController: UIPageViewController {
         
     var cities = [CardOfTheDayModel]()
-    
-    var currentIndex: Array<MainCityViewController>.Index = 1
-    
-    weak var delegateMain: MainCityPageDelegate?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
         
-        cities = CardDay().cardDay
-    }
-    
+    weak var delegateMain: MainCityPageViewControllerDelegate?
     
     lazy var arrayCityViewController: [MainCityViewController] = {
         var citiesVC = [MainCityViewController]()
@@ -28,73 +22,98 @@ class MainCityPageViewController: UIPageViewController {
         return citiesVC
     }()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        cities = CardDay().cardDay
+    }
+    
     override init(
         transitionStyle style: UIPageViewController.TransitionStyle,
         navigationOrientation: UIPageViewController.NavigationOrientation,
         options: [UIPageViewController.OptionsKey : Any]? = nil
     ) {
         super.init(transitionStyle: .scroll, navigationOrientation: navigationOrientation, options: nil)
-                
+        
         self.view.backgroundColor = .cyan
         self.dataSource = self
         self.delegate = self
+
         
-        setViewControllers([arrayCityViewController[0]], direction: .forward, animated: true)
+        if let initialVc = arrayCityViewController.first {
+            setViewControllerToBeDisplayed(viewController: initialVc)
+        }
+        
+//        delegateMain?.didUpdatePageCount(mainCityPageViewController: self, didUpdatePageCount: 2)
+//        delegateMain?.didUpdatePageIndex(mainCityPageViewController: self, didUpdatePageIndex: 0)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func setViewControllerToBeDisplayed(
+        viewController: UIViewController,
+        direction: UIPageViewController.NavigationDirection = .forward
+    ) {
+        setViewControllers([viewController], direction: direction, animated: true, completion: { (finished) -> Void in
+            self.notifyPageControlOfNewIndex()
+        })
+    }
+    
+    func scrollToViewController(index newIndex: Int) {
+        if let firstViewController = viewControllers?.first,
+           let currentIndex = arrayCityViewController.firstIndex(of: firstViewController as! MainCityViewController) {
+            let direction: UIPageViewController.NavigationDirection = newIndex >= currentIndex ? .forward : .reverse
+            let nextViewController = arrayCityViewController[newIndex]
+            setViewControllerToBeDisplayed(viewController: nextViewController, direction: direction)
+        }
+    }
+    
+    
+    private func notifyPageControlOfNewIndex() {
+        if let firstViewController = viewControllers?.first,
+           let index = arrayCityViewController.firstIndex(of: firstViewController as! MainCityViewController) {
+            delegateMain?.didUpdatePageIndex(mainCityPageViewController: self, didUpdatePageIndex: index)
+        }
+    }
 }
 
-extension MainCityPageViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+extension MainCityPageViewController: UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
         guard let viewController = viewController as? MainCityViewController else { return nil }
-        
         if let index = arrayCityViewController.firstIndex(of: viewController) {
             if index > 0 {
                 return arrayCityViewController[index - 1]
             }
         }
-        
         return nil
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        
         guard let viewController = viewController as? MainCityViewController else { return nil }
         if let index = arrayCityViewController.firstIndex(of: viewController) {
             if index < cities.count - 1 {
                 return arrayCityViewController[index + 1]
             }
         }
-        
         return nil
     }
+}
     
-    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+extension MainCityPageViewController: UIPageViewControllerDelegate {
+    
+    func pageViewController(
+        _ pageViewController: UIPageViewController,
+        didFinishAnimating finished: Bool,
+        previousViewControllers: [UIViewController],
+        transitionCompleted completed: Bool
+    ) {
 
-//        guard let pageController = pageController else { return }
-
-        guard let viewControllers = pageViewController.viewControllers else { return }
-        guard let currentIndex = self.arrayCityViewController.firstIndex(of: viewControllers[0] as! MainCityViewController) else { return }
-
-        print("🍒 currentIndex", currentIndex)
-        print("-------------")
-        self.delegateMain?.pageControlCurrentIndex(index: currentIndex)
-
-//        pageControl.currentPage = currentIndex
-
+        notifyPageControlOfNewIndex()
+        
     }
-    
-//    func presentationCount(for pageViewController: UIPageViewController) -> Int {
-//        return cities.count
-//    }
-//
-//    
-//    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
-//        return 0
-//    }
 }

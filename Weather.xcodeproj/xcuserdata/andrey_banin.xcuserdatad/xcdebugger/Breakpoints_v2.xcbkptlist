@@ -3,4 +3,102 @@
    uuid = "C568AF9D-1448-463A-AAAA-46B96EA019BD"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "37A5BE14-7E00-45F6-B3AD-9C9395CF8CBB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Weather/Modules/MainCity/View/RootViewController/RootViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "didUpdatePageCount(mainCityPageViewController:didUpdatePageCount:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "37A5BE14-7E00-45F6-B3AD-9C9395CF8CBB - 9a6daa7dd0d5fa2d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Weather.RootViewController.didUpdatePageCount(mainCityPageViewController: __C.UIViewController, didUpdatePageCount: Swift.Int) -&gt; ()"
+                  moduleName = "Weather"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Shared/Swift/Weather/Weather/Modules/MainCity/View/RootViewController/RootViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "124"
+                  endingLineNumber = "124"
+                  offsetFromSymbolStart = "60">
+               </Location>
+               <Location
+                  uuid = "37A5BE14-7E00-45F6-B3AD-9C9395CF8CBB - 8c6e3b1842bc373"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Weather.RootViewController.didUpdatePageCount(mainCityPageViewController: __C.UIPageViewController, didUpdatePageCount: Swift.Int) -&gt; ()"
+                  moduleName = "Weather"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Shared/Swift/Weather/Weather/Modules/MainCity/View/RootViewController/RootViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "124"
+                  endingLineNumber = "124"
+                  offsetFromSymbolStart = "60">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2547E9CE-850B-460B-BD09-A9C4FE4132C1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Weather/Modules/MainCity/View/RootViewController/RootViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
+            landmarkName = "didUpdatePageIndex(mainCityPageViewController:didUpdatePageIndex:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2547E9CE-850B-460B-BD09-A9C4FE4132C1 - 4fe10328fddb2186"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Weather.RootViewController.didUpdatePageIndex(mainCityPageViewController: __C.UIViewController, didUpdatePageIndex: Swift.Int) -&gt; ()"
+                  moduleName = "Weather"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Shared/Swift/Weather/Weather/Modules/MainCity/View/RootViewController/RootViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "130"
+                  endingLineNumber = "130"
+                  offsetFromSymbolStart = "60">
+               </Location>
+               <Location
+                  uuid = "2547E9CE-850B-460B-BD09-A9C4FE4132C1 - 1b700a74b4dd7928"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Weather.RootViewController.didUpdatePageIndex(mainCityPageViewController: __C.UIPageViewController, didUpdatePageIndex: Swift.Int) -&gt; ()"
+                  moduleName = "Weather"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Shared/Swift/Weather/Weather/Modules/MainCity/View/RootViewController/RootViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "130"
+                  endingLineNumber = "130"
+                  offsetFromSymbolStart = "60">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

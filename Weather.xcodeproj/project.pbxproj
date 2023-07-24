@@ -58,6 +58,7 @@
 		9DB90D972A67F97800F57180 /* CardDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D962A67F97800F57180 /* CardDay.swift */; };
 		9DB90D992A67FAF100F57180 /* HourlyWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D982A67FAF100F57180 /* HourlyWeather.swift */; };
 		9DB90D9C2A67FD3400F57180 /* ImageWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D9B2A67FD3400F57180 /* ImageWeather.swift */; };
+		9DDCDB2C2A6D106300CD6CBC /* NetworkServiceWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDCDB2B2A6D106300CD6CBC /* NetworkServiceWeather.swift */; };
 		9DE2445A2A431C7F00FACD44 /* PermissionToUseLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE244592A431C7F00FACD44 /* PermissionToUseLocationModel.swift */; };
 		9DE2445D2A4325D700FACD44 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9DE2445C2A4325D700FACD44 /* SnapKit */; };
 /* End PBXBuildFile section */
@@ -115,6 +116,7 @@
 		9DB90D962A67F97800F57180 /* CardDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDay.swift; sourceTree = "<group>"; };
 		9DB90D982A67FAF100F57180 /* HourlyWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyWeather.swift; sourceTree = "<group>"; };
 		9DB90D9B2A67FD3400F57180 /* ImageWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWeather.swift; sourceTree = "<group>"; };
+		9DDCDB2B2A6D106300CD6CBC /* NetworkServiceWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceWeather.swift; sourceTree = "<group>"; };
 		9DE244592A431C7F00FACD44 /* PermissionToUseLocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionToUseLocationModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -270,6 +272,7 @@
 		9D573C072A38C47400F8E4F3 /* NetworkService */ = {
 			isa = PBXGroup;
 			children = (
+				9DDCDB2B2A6D106300CD6CBC /* NetworkServiceWeather.swift */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";
@@ -713,6 +716,7 @@
 				9D573C0C2A38C64800F8E4F3 /* MainCityCoordinator.swift in Sources */,
 				9DB90D902A67EED200F57180 /* CardOfTheDayModel.swift in Sources */,
 				9D573BEC2A38B84100F8E4F3 /* SceneDelegate.swift in Sources */,
+				9DDCDB2C2A6D106300CD6CBC /* NetworkServiceWeather.swift in Sources */,
 				9DB90D412A5756F700F57180 /* HourlyWeatherCellInTableViewCell.swift in Sources */,
 				9DB90D812A65811F00F57180 /* AirQualityTableViewCell.swift in Sources */,
 				9DB90D942A67F63B00F57180 /* DailyForecastModel.swift in Sources */,
