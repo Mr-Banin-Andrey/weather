@@ -48,7 +48,7 @@ class RootViewController: UIViewController {
         pageControl.pageIndicatorTintColor = .black
         pageControl.preferredIndicatorImage = UIImage(systemName: "circle")
         pageControl.preferredCurrentPageIndicatorImage = UIImage(systemName: "circle.fill")
-        pageControl.currentPage = 0
+//        pageControl.currentPage = 0
         pageControl.numberOfPages = CardDay().cardDay.count
         pageControl.addTarget(self, action: #selector(didChangePageControl), for: .valueChanged)
         return pageControl
@@ -80,6 +80,10 @@ class RootViewController: UIViewController {
         let barCustomLeftButtom = UIBarButtonItem(customView: leftButton)
         navigationItem.leftBarButtonItems = [barCustomLeftButtom]
         navigationItem.leftBarButtonItem = barCustomLeftButtom
+    }
+    
+    func setupPage(index: Int) {
+        pageControl.currentPage = index
     }
     
     private func setupUi() {

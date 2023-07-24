@@ -74,6 +74,7 @@ class MainCityPageViewController: UIPageViewController {
     private func notifyPageControlOfNewIndex() {
         if let firstViewController = viewControllers?.first,
            let index = arrayCityViewController.firstIndex(of: firstViewController as! MainCityViewController) {
+            print("notifyPageControlOfNewIndex", index)
             delegateMain?.didUpdatePageIndex(mainCityPageViewController: self, didUpdatePageIndex: index)
         }
     }
@@ -113,7 +114,16 @@ extension MainCityPageViewController: UIPageViewControllerDelegate {
         transitionCompleted completed: Bool
     ) {
 
-        notifyPageControlOfNewIndex()
+        if completed {
+            if let currentViewController = pageViewController.viewControllers?.first,
+               let index = arrayCityViewController.firstIndex(of: currentViewController as! MainCityViewController) {
+                print("index -", index)
+                RootViewController().setupPage(index: index)
+//                delegateMain?.didUpdatePageIndex(mainCityPageViewController: self, didUpdatePageIndex: index)
+            }
+        }
+        
+//        notifyPageControlOfNewIndex()
         
     }
 }
