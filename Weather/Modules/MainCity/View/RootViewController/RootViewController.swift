@@ -8,7 +8,6 @@ class RootViewController: UIViewController {
 //    var mainCityPageViewController: MainCityPageViewController? {
 //        didSet {
 //            mainCityPageViewController?.delegateMain = self
-//            
 //        }
 //    }
     
@@ -48,7 +47,7 @@ class RootViewController: UIViewController {
         pageControl.pageIndicatorTintColor = .black
         pageControl.preferredIndicatorImage = UIImage(systemName: "circle")
         pageControl.preferredCurrentPageIndicatorImage = UIImage(systemName: "circle.fill")
-//        pageControl.currentPage = 0
+        pageControl.currentPage = 0
         pageControl.numberOfPages = CardDay().cardDay.count
         pageControl.addTarget(self, action: #selector(didChangePageControl), for: .valueChanged)
         return pageControl
@@ -63,6 +62,13 @@ class RootViewController: UIViewController {
         
         self.setupNavigationController(navigationItem: navigationItem, navigationController: navigationController ?? UINavigationController())
         self.setupUi()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(editIndex(notification:)), name: Notification.Name.init("editIndex"), object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.init("editIndex"), object: nil)
+        print("notification remove")
     }
     
     func setupNavigationController(navigationItem: UINavigationItem, navigationController: UINavigationController) {
@@ -82,9 +88,6 @@ class RootViewController: UIViewController {
         navigationItem.leftBarButtonItem = barCustomLeftButtom
     }
     
-    func setupPage(index: Int) {
-        pageControl.currentPage = index
-    }
     
     private func setupUi() {
         
@@ -105,9 +108,17 @@ class RootViewController: UIViewController {
     }
     
     @objc private func didChangePageControl() {
+        
 //        mainCityPageViewController?.scrollToViewController(index: pageControl.currentPage)
         viewCity.scrollToViewController(index: pageControl.currentPage)
-        print("didChangePageControl", pageControl.currentPage)
+//        print("didChangePageControl", pageControl.currentPage)
+    }
+    
+    @objc private func editIndex(notification: Notification) {
+        guard let dictIndex = notification.userInfo as? [String: Int] else { return }
+        
+        let index = dictIndex["index"] ?? 0
+        pageControl.currentPage = index
     }
     
     @objc private func showSettings() {
@@ -123,18 +134,17 @@ class RootViewController: UIViewController {
 
 extension RootViewController: MainCityPageViewControllerDelegate {
     
-    func didUpdatePageCount(mainCityPageViewController: UIPageViewController, didUpdatePageCount count: Int) {
-
-        pageControl.numberOfPages = count
-        print("RootViewController count", count)
-    }
-    
-    func didUpdatePageIndex(mainCityPageViewController: UIPageViewController, didUpdatePageIndex index: Int) {
-        
-        pageControl.currentPage = index
-        print("RootViewController index", index)
-        
-    }
+//    func didUpdatePageCount(mainCityPageViewController: UIPageViewController, didUpdatePageCount count: Int) {
+//
+//        pageControl.numberOfPages = count
+//        print("RootViewController count", count)
+//    }
+//    
+//    func didUpdatePageIndex(mainCityPageViewController: UIPageViewController, didUpdatePageIndex index: Int) {
+//        pageControl.currentPage = index
+//        print("RootViewController index", index)
+//        
+//    }
     
 }
 

@@ -3,9 +3,9 @@ import UIKit
 
 protocol MainCityPageViewControllerDelegate: AnyObject {
     
-    func didUpdatePageCount(mainCityPageViewController: UIPageViewController, didUpdatePageCount count: Int)
-    
-    func didUpdatePageIndex(mainCityPageViewController: UIPageViewController, didUpdatePageIndex index: Int)
+//    func didUpdatePageCount(mainCityPageViewController: UIPageViewController, didUpdatePageCount count: Int)
+//
+//    func didUpdatePageIndex(mainCityPageViewController: UIPageViewController, didUpdatePageIndex index: Int)
 }
 
 class MainCityPageViewController: UIPageViewController {
@@ -27,7 +27,7 @@ class MainCityPageViewController: UIPageViewController {
 
         cities = CardDay().cardDay
     }
-    
+        
     override init(
         transitionStyle style: UIPageViewController.TransitionStyle,
         navigationOrientation: UIPageViewController.NavigationOrientation,
@@ -56,9 +56,12 @@ class MainCityPageViewController: UIPageViewController {
         viewController: UIViewController,
         direction: UIPageViewController.NavigationDirection = .forward
     ) {
-        setViewControllers([viewController], direction: direction, animated: true, completion: { (finished) -> Void in
-            self.notifyPageControlOfNewIndex()
-        })
+        setViewControllers([viewController], direction: direction, animated: true
+                           
+//                           completion: { (finished) -> Void in
+//            self.notifyPageControlOfNewIndex()
+//        }
+        )
     }
     
     func scrollToViewController(index newIndex: Int) {
@@ -71,13 +74,13 @@ class MainCityPageViewController: UIPageViewController {
     }
     
     
-    private func notifyPageControlOfNewIndex() {
-        if let firstViewController = viewControllers?.first,
-           let index = arrayCityViewController.firstIndex(of: firstViewController as! MainCityViewController) {
-            print("notifyPageControlOfNewIndex", index)
-            delegateMain?.didUpdatePageIndex(mainCityPageViewController: self, didUpdatePageIndex: index)
-        }
-    }
+//    private func notifyPageControlOfNewIndex() {
+//        if let firstViewController = viewControllers?.first,
+//           let index = arrayCityViewController.firstIndex(of: firstViewController as! MainCityViewController) {
+//            print("notifyPageControlOfNewIndex", index)
+//            delegateMain?.didUpdatePageIndex(mainCityPageViewController: self, didUpdatePageIndex: index)
+//        }
+//    }
 }
 
 extension MainCityPageViewController: UIPageViewControllerDataSource {
@@ -117,8 +120,11 @@ extension MainCityPageViewController: UIPageViewControllerDelegate {
         if completed {
             if let currentViewController = pageViewController.viewControllers?.first,
                let index = arrayCityViewController.firstIndex(of: currentViewController as! MainCityViewController) {
-                print("index -", index)
-                RootViewController().setupPage(index: index)
+                
+                let dict = ["index": index]
+                
+                NotificationCenter.default.post(name: Notification.Name.init("editIndex"), object: self, userInfo: dict)
+
 //                delegateMain?.didUpdatePageIndex(mainCityPageViewController: self, didUpdatePageIndex: index)
             }
         }
