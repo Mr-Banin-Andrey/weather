@@ -4,26 +4,61 @@ import Alamofire
 
 class NetworkServiceWeather {
     
-    func loadWeather(url: URL) {
+    func loadWeather() {
         
-        //X-Yandex-API-Key: <значение ключа>
-        let token = "7af1f1ca-8964-40f5-8570-7abc1ba95755"
+        let token = "4a008062-0c53-450d-a584-132047fd7220"
         
-//        GET https://api.weather.yandex.ru/v2/forecast? lat=55.75396&lon=37.620393&lang=ru_RU&limit=7&hours=true&extra=true&X-Yandex-API-Key=7af1f1ca-8964-40f5-8570-7abc1ba95755
-//         lat=<широта>
-//         & lon=<долгота>
-//         & [lang=<"ru_RU">]
-//         & [limit=<7>]
-//         & [hours=<true>]
-//         & [extra=<true>]
-//        X-Yandex-API-Key: <значение ключа>
+        guard let url = urlComponents().url else { return }
         
-        AF.request(url).response { response in
-            debugPrint(response)
-//            debugPrint(response.result)
-//            print(response.debugDescription)
-//            print(response.result)
-//            print(response)
+        AF.request(url,
+                   method: .get,
+                   headers: [
+                    "lat" : "55.75396",
+                    "lon" : "37.620393",
+                    "lang" : "ru_RU",
+                    "limit" : "7",
+                    "hours" : "true",
+                    "extra" : "false",
+                    "X-Yandex-API-Key" : token
+                   ])
+        .validate()
+        .responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                print(value)
+                
+            case .failure(let error):
+                print(error)
+            }
         }
     }
+    
+    
+    private func urlComponents() -> URLComponents {
+        var urlComponents = URLComponents()
+        
+        urlComponents.scheme = "https"
+        urlComponents.host = "api.weather.yandex.ru"
+        urlComponents.path = "/v2/forecast"
+        return urlComponents
+    }
 }
+//class ApiManager {
+//   let  url = "https://15f1-61-246-140-18.in.ngrok.io/Legal251AppAPI_IOS/api/lgapp/index.php?parameter=sendotp"
+//   static let sharedInstance = ApiManager()
+//
+//    func callingApi<Input: Encodable, Output: Decodable>(signUp : Input, type: Output.Type) {
+//        let headers: HTTPHeaders = [
+////            "Authkey":
+//        ]
+//        AF.request(url, method: .post,
+//                  parameters: signUp,
+//                  encoder: JSONParameterEncoder.default,
+//                  headers: headers).responseDecodable(of: Output.self, decoder: JSONDecoder()) { response in
+//                     switch response.result {
+//                         case .success(let result): print(result)
+//                         case .failure(let error): print(error)
+//                     }
+//        }
+//    }
+//}
