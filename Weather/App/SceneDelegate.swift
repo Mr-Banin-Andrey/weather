@@ -22,7 +22,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
         coordinator.start()
         
-        NetworkServiceWeather().loadWeather()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

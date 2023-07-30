@@ -5,11 +5,12 @@ import SnapKit
 
 class RootViewController: UIViewController {
     
-//    var mainCityPageViewController: MainCityPageViewController? {
-//        didSet {
-//            mainCityPageViewController?.delegateMain = self
-//        }
-//    }
+    var mainCityPageViewController: MainCityPageViewController? {
+        didSet {
+            mainCityPageViewController?.delegateMain = self
+        }
+    }
+    
     
     private lazy var leftButton: UIButton = {
         let button = UIButton()
@@ -63,13 +64,18 @@ class RootViewController: UIViewController {
         self.setupNavigationController(navigationItem: navigationItem, navigationController: navigationController ?? UINavigationController())
         self.setupUi()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(editIndex(notification:)), name: Notification.Name.init("editIndex"), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(editIndex(notification:)), name: Notification.Name.init("editIndex"), object: nil)
+        
+        mainCityPageViewController?.tapAction = { [weak self] index in
+            print("index", index)
+            self?.pageControl.currentPage = index
+        }
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self, name: Notification.Name.init("editIndex"), object: nil)
-        print("notification remove")
-    }
+//    deinit {
+//        NotificationCenter.default.removeObserver(self, name: Notification.Name.init("editIndex"), object: nil)
+//        print("notification remove")
+//    }
     
     func setupNavigationController(navigationItem: UINavigationItem, navigationController: UINavigationController) {
         
@@ -92,14 +98,15 @@ class RootViewController: UIViewController {
     private func setupUi() {
         
         self.addChild(viewCity)
-        self.view.addSubview(viewCity.view)
+        self.view.addSubview(self.viewCity.view)
+        self.viewCity.didMove(toParent: self)
         self.view.addSubview(self.pageControl)
         
         self.pageControl.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             make.centerX.equalTo(self.view.safeAreaLayoutGuide.snp.centerX)
         }
-        viewCity.view.snp.makeConstraints { make in
+        self.viewCity.view.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).inset(25)
             make.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading)
             make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing)
@@ -114,12 +121,12 @@ class RootViewController: UIViewController {
 //        print("didChangePageControl", pageControl.currentPage)
     }
     
-    @objc private func editIndex(notification: Notification) {
-        guard let dictIndex = notification.userInfo as? [String: Int] else { return }
-        
-        let index = dictIndex["index"] ?? 0
-        pageControl.currentPage = index
-    }
+//    @objc private func editIndex(notification: Notification) {
+//        guard let dictIndex = notification.userInfo as? [String: Int] else { return }
+//
+//        let index = dictIndex["index"] ?? 0
+//        pageControl.currentPage = index
+//    }
     
     @objc private func showSettings() {
         let settings = SettingsViewController()
@@ -127,8 +134,8 @@ class RootViewController: UIViewController {
     }
     
     @objc private func showPermissionToUseLocation() {
-        let permissionToUseLocation = PermissionToUseLocationViewController()
-        navigationController?.pushViewController(permissionToUseLocation, animated: true)
+//        let permissionToUseLocation = PermissionToUseLocationViewController()
+//        navigationController?.pushViewController(permissionToUseLocation, animated: true)
     }
 }
 

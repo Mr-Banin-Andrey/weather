@@ -17,7 +17,24 @@ class MainCityView: UIView {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .systemBackground
         tableView.separatorStyle = .none
+//        tableView.isHidden = true
         return tableView
+    }()
+        
+    private lazy var horizontalView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .black
+        view.isHidden = true
+        return view
+    }()
+    
+    private lazy var verticalView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .black
+        view.isHidden = true
+        return view
     }()
     
     init(delegate: MainCityViewDelegate) {
@@ -46,14 +63,44 @@ class MainCityView: UIView {
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "defaultId")
     }
     
+//    func changeView(hidden: Bool) {
+//        if tableView.isHidden {
+//            emptyView.isHidden = false
+//            self.tableView.reloadData()
+//        } else {
+//            emptyView.isHidden = true
+//            self.tableView.reloadData()
+//        }
+//
+////        self.tableView.isHidden = toggle()
+////        self.tableView.reloadData()
+////        self.emptyView.isHidden = toggle()
+//    }
+    
     private func setupUi() {
         self.addSubview(self.tableView)
+        self.addSubview(self.horizontalView)
+        self.addSubview(self.verticalView)
         
         self.tableView.snp.makeConstraints { make in
             make.top.equalTo(self.snp.top)
             make.leading.equalTo(self.snp.leading)
             make.trailing.equalTo(self.snp.trailing)
             make.bottom.equalTo(self.snp.bottom)
+        }
+        
+        self.horizontalView.snp.makeConstraints { make in
+            make.centerX.equalTo(self.snp.centerX)
+            make.centerY.equalTo(self.snp.centerY)
+            make.width.equalTo(150)
+            make.height.equalTo(10)
+        }
+        
+        self.verticalView.snp.makeConstraints { make in
+            make.centerX.equalTo(self.snp.centerX)
+            make.centerY.equalTo(self.snp.centerY)
+            make.width.equalTo(10)
+            make.height.equalTo(150)
         }
     }
     

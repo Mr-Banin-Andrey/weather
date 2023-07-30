@@ -2,14 +2,14 @@
 import UIKit
 
 protocol MainCityPageViewControllerDelegate: AnyObject {
-    
 //    func didUpdatePageCount(mainCityPageViewController: UIPageViewController, didUpdatePageCount count: Int)
-//
 //    func didUpdatePageIndex(mainCityPageViewController: UIPageViewController, didUpdatePageIndex index: Int)
 }
 
 class MainCityPageViewController: UIPageViewController {
-        
+    
+    var tapAction: ((_ index: Int) -> Void)?
+    
     var cities = [CardOfTheDayModel]()
         
     weak var delegateMain: MainCityPageViewControllerDelegate?
@@ -57,7 +57,6 @@ class MainCityPageViewController: UIPageViewController {
         direction: UIPageViewController.NavigationDirection = .forward
     ) {
         setViewControllers([viewController], direction: direction, animated: true
-                           
 //                           completion: { (finished) -> Void in
 //            self.notifyPageControlOfNewIndex()
 //        }
@@ -72,7 +71,6 @@ class MainCityPageViewController: UIPageViewController {
             setViewControllerToBeDisplayed(viewController: nextViewController, direction: direction)
         }
     }
-    
     
 //    private func notifyPageControlOfNewIndex() {
 //        if let firstViewController = viewControllers?.first,
@@ -121,10 +119,12 @@ extension MainCityPageViewController: UIPageViewControllerDelegate {
             if let currentViewController = pageViewController.viewControllers?.first,
                let index = arrayCityViewController.firstIndex(of: currentViewController as! MainCityViewController) {
                 
-                let dict = ["index": index]
-                
-                NotificationCenter.default.post(name: Notification.Name.init("editIndex"), object: self, userInfo: dict)
+//                let dict = ["index": index]
+//                
+//                NotificationCenter.default.post(name: Notification.Name.init("editIndex"), object: self, userInfo: dict)
 
+                tapAction?(index)
+                
 //                delegateMain?.didUpdatePageIndex(mainCityPageViewController: self, didUpdatePageIndex: index)
             }
         }

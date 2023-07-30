@@ -21,7 +21,8 @@ class MainCityCoordinator: Coordinatable {
         navigationController.pushViewController(mainCityVc, animated: true)
     }
     
-//    func showSettings() {
-//        
+//    func showPerToUseLocalVc() {
+//        let perToUseLocalVc = PermissionToUseLocationViewController()
+//        navigationController.pushViewController(perToUseLocalVc, animated: true)
 //    }
 }

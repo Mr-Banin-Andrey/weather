@@ -1,7 +1,8 @@
 
 import Foundation
 
-struct NetworkServiceWeatherModel: Decodable {
+
+struct NetworkServiceWeatherModel: Codable {
     
     let now: Int // Время сервера в формате Unixtime.
     let now_dt: String // Время сервера в UTC.
@@ -18,20 +19,20 @@ struct NetworkServiceWeatherModel: Decodable {
     }
 }
 
-struct Info: Decodable {
+struct Info: Codable {
     let lat: Double //Широта (в градусах).
     let lon: Double //Долгота (в градусах).
     let tzinfo: Tzinfo
 }
 
-struct Tzinfo: Decodable {
+struct Tzinfo: Codable {
     let offset: Int // Часовой пояс в секундах от UTC.
     let name: String // Название часового пояса.
     let abbr: String // Сокращенное название часового пояса.
     let dst: Bool // Признак летнего времени.
 }
 
-struct Fact: Decodable {
+struct Fact: Codable {
     let temp: Int // температура
     let wind_speed: Double // Скорость ветра (в м/с).
     let wind_dir: String // Направление ветра.
@@ -39,11 +40,11 @@ struct Fact: Decodable {
     let condition: String // описание погоды
     let prec_strength: Int // Сила осадков.
     let feels_like: Int // ощущения температура
-    let cloudness: Int // Облачность
+    let cloudness: Double // Облачность
     let is_thunder: Bool // Признак грозы.
 }
 
-struct Forecasts: Decodable {
+struct Forecasts: Codable {
     let date: String // Дата прогноза в формате ГГГГ-ММ-ДД.
     let date_ts: Int // Дата прогноза в формате Unixtime.
     let rise_begin: String? // Время начала восхода Солнца, локальное время (может отсутствовать для полярных регионов).
@@ -54,7 +55,7 @@ struct Forecasts: Decodable {
     let hours: [Hours]
 }
 
-struct Parts: Decodable {
+struct Parts: Codable {
     let night: Night
     let morning: Morning
     let day: DayWeather
@@ -63,7 +64,7 @@ struct Parts: Decodable {
     let night_short: NightShort
 }
 
-struct Night: Decodable {
+struct Night: Codable {
     let cloudness: Double // Облачность
     let condition: String // описание погоды
     let feels_like: Int // ощущения температура
@@ -77,7 +78,7 @@ struct Night: Decodable {
     let wind_speed: Double? // Скорость ветра (в м/с).
 }
 
-struct Morning: Decodable {
+struct Morning: Codable {
     let cloudness: Double // Облачность
     let condition: String // описание погоды
     let feels_like: Int // ощущения температура
@@ -91,7 +92,7 @@ struct Morning: Decodable {
     let wind_speed: Double? // Скорость ветра (в м/с).
 }
 
-struct DayWeather: Decodable {
+struct DayWeather: Codable {
     let cloudness: Double // Облачность
     let condition: String // описание погоды
     let feels_like: Int // ощущения температура
@@ -105,7 +106,7 @@ struct DayWeather: Decodable {
     let wind_speed: Double? // Скорость ветра (в м/с).
 }
 
-struct Evening: Decodable {
+struct Evening: Codable {
     let cloudness: Double // Облачность
     let condition: String // описание погоды
     let feels_like: Int // ощущения температура
@@ -119,7 +120,7 @@ struct Evening: Decodable {
     let wind_speed: Double? // Скорость ветра (в м/с).
 }
 
-struct DayShort: Decodable {
+struct DayShort: Codable {
     let temp: Int // температура
     let temp_min: Int // температура мин
     let feels_like: Int // ощущения температура
@@ -131,7 +132,7 @@ struct DayShort: Decodable {
     let cloudness: Double // Облачность
 }
 
-struct NightShort: Decodable {
+struct NightShort: Codable {
     let temp: Int // температура мин за ночь
     let feels_like: Int // ощущения температура
     let condition: String // описание погоды
@@ -142,7 +143,7 @@ struct NightShort: Decodable {
     let cloudness: Double // Облачность
 }
 
-struct Hours: Decodable {
+struct Hours: Codable {
     let hour: String // Значение часа, для которого дается прогноз (0-23), локальное время.
     let hour_ts: Int // Время прогноза в Unixtime.
     let temp: Int // Максимальная дневная или минимальная ночная температура (°C).
