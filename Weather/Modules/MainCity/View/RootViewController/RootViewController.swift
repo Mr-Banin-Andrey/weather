@@ -4,14 +4,7 @@ import UIKit
 import SnapKit
 
 class RootViewController: UIViewController {
-    
-    var mainCityPageViewController: MainCityPageViewController? {
-        didSet {
-            mainCityPageViewController?.delegateMain = self
-        }
-    }
-    
-    
+        
     private lazy var leftButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "бургер"), for: .normal)
@@ -41,7 +34,7 @@ class RootViewController: UIViewController {
         return label
     }()
     
-    lazy var pageControl: UIPageControl = {
+    private lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         pageControl.currentPageIndicatorTintColor = .black
@@ -54,7 +47,7 @@ class RootViewController: UIViewController {
         return pageControl
     }()
     
-    private lazy var viewCity = MainCityPageViewController()
+    private lazy var mainCityPageViewController = MainCityPageViewController(delegateM: self)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,18 +57,8 @@ class RootViewController: UIViewController {
         self.setupNavigationController(navigationItem: navigationItem, navigationController: navigationController ?? UINavigationController())
         self.setupUi()
         
-//        NotificationCenter.default.addObserver(self, selector: #selector(editIndex(notification:)), name: Notification.Name.init("editIndex"), object: nil)
-        
-        mainCityPageViewController?.tapAction = { [weak self] index in
-            print("index", index)
-            self?.pageControl.currentPage = index
-        }
     }
     
-//    deinit {
-//        NotificationCenter.default.removeObserver(self, name: Notification.Name.init("editIndex"), object: nil)
-//        print("notification remove")
-//    }
     
     func setupNavigationController(navigationItem: UINavigationItem, navigationController: UINavigationController) {
         
@@ -96,17 +79,16 @@ class RootViewController: UIViewController {
     
     
     private func setupUi() {
-        
-        self.addChild(viewCity)
-        self.view.addSubview(self.viewCity.view)
-        self.viewCity.didMove(toParent: self)
+        self.addChild(mainCityPageViewController)
+        self.view.addSubview(self.mainCityPageViewController.view)
+        self.mainCityPageViewController.didMove(toParent: self)
         self.view.addSubview(self.pageControl)
         
         self.pageControl.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             make.centerX.equalTo(self.view.safeAreaLayoutGuide.snp.centerX)
         }
-        self.viewCity.view.snp.makeConstraints { make in
+        self.mainCityPageViewController.view.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).inset(25)
             make.leading.equalTo(self.view.safeAreaLayoutGuide.snp.leading)
             make.trailing.equalTo(self.view.safeAreaLayoutGuide.snp.trailing)
@@ -115,18 +97,8 @@ class RootViewController: UIViewController {
     }
     
     @objc private func didChangePageControl() {
-        
-//        mainCityPageViewController?.scrollToViewController(index: pageControl.currentPage)
-        viewCity.scrollToViewController(index: pageControl.currentPage)
-//        print("didChangePageControl", pageControl.currentPage)
+        mainCityPageViewController.scrollToViewController(index: pageControl.currentPage)
     }
-    
-//    @objc private func editIndex(notification: Notification) {
-//        guard let dictIndex = notification.userInfo as? [String: Int] else { return }
-//
-//        let index = dictIndex["index"] ?? 0
-//        pageControl.currentPage = index
-//    }
     
     @objc private func showSettings() {
         let settings = SettingsViewController()
@@ -141,17 +113,15 @@ class RootViewController: UIViewController {
 
 extension RootViewController: MainCityPageViewControllerDelegate {
     
-//    func didUpdatePageCount(mainCityPageViewController: UIPageViewController, didUpdatePageCount count: Int) {
-//
-//        pageControl.numberOfPages = count
-//        print("RootViewController count", count)
-//    }
-//    
-//    func didUpdatePageIndex(mainCityPageViewController: UIPageViewController, didUpdatePageIndex index: Int) {
-//        pageControl.currentPage = index
-//        print("RootViewController index", index)
-//        
-//    }
+    func didUpdatePageCount(_ mainCityPageViewController: UIPageViewController, didUpdatePageCount count: Int) {
+        pageControl.numberOfPages = count
+        print("RootViewController count", count)
+    }
+    
+    func didUpdatePageIndex(_ mainCityPageViewController: UIPageViewController, didUpdatePageIndex index: Int) {
+        pageControl.currentPage = index
+        print("RootViewController index", index)
+    }
     
 }
 

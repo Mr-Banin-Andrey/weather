@@ -2,17 +2,17 @@
 import UIKit
 
 protocol MainCityPageViewControllerDelegate: AnyObject {
-//    func didUpdatePageCount(mainCityPageViewController: UIPageViewController, didUpdatePageCount count: Int)
-//    func didUpdatePageIndex(mainCityPageViewController: UIPageViewController, didUpdatePageIndex index: Int)
+    func didUpdatePageCount(_ mainCityPageViewController: UIPageViewController, didUpdatePageCount count: Int)
+    func didUpdatePageIndex(_ mainCityPageViewController: UIPageViewController, didUpdatePageIndex index: Int)
 }
 
 class MainCityPageViewController: UIPageViewController {
     
-    var tapAction: ((_ index: Int) -> Void)?
+//    var tapAction: ((_ index: Int) -> Void)?
     
     var cities = [CardOfTheDayModel]()
         
-    weak var delegateMain: MainCityPageViewControllerDelegate?
+    private weak var delegateMain: MainCityPageViewControllerDelegate?
     
     lazy var arrayCityViewController: [MainCityViewController] = {
         var citiesVC = [MainCityViewController]()
@@ -27,25 +27,23 @@ class MainCityPageViewController: UIPageViewController {
 
         cities = CardDay().cardDay
     }
-        
-    override init(
-        transitionStyle style: UIPageViewController.TransitionStyle,
-        navigationOrientation: UIPageViewController.NavigationOrientation,
-        options: [UIPageViewController.OptionsKey : Any]? = nil
+    
+    init(
+        transitionStyle style: UIPageViewController.TransitionStyle = .scroll,
+        navigationOrientation: UIPageViewController.NavigationOrientation = .horizontal,
+        options: [UIPageViewController.OptionsKey : Any]? = nil,
+        delegateM: MainCityPageViewControllerDelegate
     ) {
         super.init(transitionStyle: .scroll, navigationOrientation: navigationOrientation, options: nil)
-        
+
         self.view.backgroundColor = .cyan
         self.dataSource = self
         self.delegate = self
+        self.delegateMain = delegateM
 
-        
         if let initialVc = arrayCityViewController.first {
             setViewControllerToBeDisplayed(viewController: initialVc)
         }
-        
-//        delegateMain?.didUpdatePageCount(mainCityPageViewController: self, didUpdatePageCount: 2)
-//        delegateMain?.didUpdatePageIndex(mainCityPageViewController: self, didUpdatePageIndex: 0)
     }
 
     required init?(coder: NSCoder) {
@@ -56,11 +54,10 @@ class MainCityPageViewController: UIPageViewController {
         viewController: UIViewController,
         direction: UIPageViewController.NavigationDirection = .forward
     ) {
-        setViewControllers([viewController], direction: direction, animated: true
-//                           completion: { (finished) -> Void in
-//            self.notifyPageControlOfNewIndex()
-//        }
-        )
+        setViewControllers([viewController], direction: direction, animated: true,
+                           completion: { (finished) -> Void in
+            self.notifyPageControlOfNewIndex()
+        } )
     }
     
     func scrollToViewController(index newIndex: Int) {
@@ -72,13 +69,13 @@ class MainCityPageViewController: UIPageViewController {
         }
     }
     
-//    private func notifyPageControlOfNewIndex() {
-//        if let firstViewController = viewControllers?.first,
-//           let index = arrayCityViewController.firstIndex(of: firstViewController as! MainCityViewController) {
-//            print("notifyPageControlOfNewIndex", index)
-//            delegateMain?.didUpdatePageIndex(mainCityPageViewController: self, didUpdatePageIndex: index)
-//        }
-//    }
+    private func notifyPageControlOfNewIndex() {
+        if let firstViewController = viewControllers?.first,
+           let index = arrayCityViewController.firstIndex(of: firstViewController as! MainCityViewController) {
+            print("notifyPageControlOfNewIndex", index)
+            delegateMain?.didUpdatePageIndex(self, didUpdatePageIndex: index)
+        }
+    }
 }
 
 extension MainCityPageViewController: UIPageViewControllerDataSource {
@@ -114,22 +111,6 @@ extension MainCityPageViewController: UIPageViewControllerDelegate {
         previousViewControllers: [UIViewController],
         transitionCompleted completed: Bool
     ) {
-
-        if completed {
-            if let currentViewController = pageViewController.viewControllers?.first,
-               let index = arrayCityViewController.firstIndex(of: currentViewController as! MainCityViewController) {
-                
-//                let dict = ["index": index]
-//                
-//                NotificationCenter.default.post(name: Notification.Name.init("editIndex"), object: self, userInfo: dict)
-
-                tapAction?(index)
-                
-//                delegateMain?.didUpdatePageIndex(mainCityPageViewController: self, didUpdatePageIndex: index)
-            }
-        }
-        
-//        notifyPageControlOfNewIndex()
-        
+        notifyPageControlOfNewIndex()
     }
 }
