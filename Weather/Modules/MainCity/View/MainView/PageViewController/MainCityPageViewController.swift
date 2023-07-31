@@ -10,9 +10,9 @@ class MainCityPageViewController: UIPageViewController {
     
 //    var tapAction: ((_ index: Int) -> Void)?
     
-    var cities = [CardOfTheDayModel]()
+    var cities: [CardOfTheDayModel] = []
         
-    private weak var delegateMain: MainCityPageViewControllerDelegate?
+     weak var delegateMain: MainCityPageViewControllerDelegate?
     
     lazy var arrayCityViewController: [MainCityViewController] = {
         var citiesVC = [MainCityViewController]()
@@ -22,17 +22,18 @@ class MainCityPageViewController: UIPageViewController {
         return citiesVC
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        cities = CardDay().cardDay
-    }
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//
+//        cities = CardDay().cardDay
+//    }
     
     init(
         transitionStyle style: UIPageViewController.TransitionStyle = .scroll,
         navigationOrientation: UIPageViewController.NavigationOrientation = .horizontal,
         options: [UIPageViewController.OptionsKey : Any]? = nil,
-        delegateM: MainCityPageViewControllerDelegate
+        delegateM: MainCityPageViewControllerDelegate,
+        cities: [CardOfTheDayModel]
     ) {
         super.init(transitionStyle: .scroll, navigationOrientation: navigationOrientation, options: nil)
 
@@ -40,10 +41,13 @@ class MainCityPageViewController: UIPageViewController {
         self.dataSource = self
         self.delegate = self
         self.delegateMain = delegateM
+        self.cities = cities
 
         if let initialVc = arrayCityViewController.first {
             setViewControllerToBeDisplayed(viewController: initialVc)
         }
+        
+        delegateMain?.didUpdatePageCount(self, didUpdatePageCount: cities.count)
     }
 
     required init?(coder: NSCoder) {

@@ -5,49 +5,62 @@ import SnapKit
 
 class RootViewController: UIViewController {
         
-    private lazy var leftButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "бургер"), for: .normal)
-        button.tintColor = .black
-        button.addTarget(self, action: #selector(showSettings), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.widthAnchor.constraint(equalToConstant: 34).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 18).isActive = true
-        return button
-    }()
+    private let viewModel: MainCityViewModelProtocol
     
-    private lazy var rightButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setImage(UIImage(named: "месторасположение"), for: .normal)
-        button.tintColor = .black
-        button.addTarget(self, action: #selector(showPermissionToUseLocation), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.widthAnchor.constraint(equalToConstant: 24).isActive = true
-        button.heightAnchor.constraint(equalToConstant: 32).isActive = true
-        return button
-    }()
+    private lazy var rootView = RootView(delegate: self)
     
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont(name: ListFonts.medium500.rawValue, size: 18)
-        label.textColor = .black
-        return label
-    }()
+//    private lazy var leftButton: UIButton = {
+//        let button = UIButton()
+//        button.setImage(UIImage(named: "бургер"), for: .normal)
+//        button.tintColor = .black
+//        button.addTarget(self, action: #selector(showSettings), for: .touchUpInside)
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.widthAnchor.constraint(equalToConstant: 34).isActive = true
+//        button.heightAnchor.constraint(equalToConstant: 18).isActive = true
+//        return button
+//    }()
+//
+//    private lazy var rightButton: UIButton = {
+//        let button = UIButton(type: .custom)
+//        button.setImage(UIImage(named: "месторасположение"), for: .normal)
+//        button.tintColor = .black
+//        button.addTarget(self, action: #selector(showPermissionToUseLocation), for: .touchUpInside)
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.widthAnchor.constraint(equalToConstant: 24).isActive = true
+//        button.heightAnchor.constraint(equalToConstant: 32).isActive = true
+//        return button
+//    }()
+//
+//    private lazy var titleLabel: UILabel = {
+//        let label = UILabel()
+//        label.font = UIFont(name: ListFonts.medium500.rawValue, size: 18)
+//        label.textColor = .black
+//        return label
+//    }()
+//
+//    private lazy var pageControl: UIPageControl = {
+//        let pageControl = UIPageControl()
+//        pageControl.translatesAutoresizingMaskIntoConstraints = false
+//        pageControl.currentPageIndicatorTintColor = .black
+//        pageControl.pageIndicatorTintColor = .black
+//        pageControl.preferredIndicatorImage = UIImage(systemName: "circle")
+//        pageControl.preferredCurrentPageIndicatorImage = UIImage(systemName: "circle.fill")
+//        pageControl.currentPage = 0
+////        pageControl.numberOfPages = 1
+//        pageControl.addTarget(self, action: #selector(didChangePageControl), for: .valueChanged)
+//        return pageControl
+//    }()
+        
+//    private lazy var mainCityPageViewController = MainCityPageViewController(delegateM: self, cities: CardDay().cardDay)
     
-    private lazy var pageControl: UIPageControl = {
-        let pageControl = UIPageControl()
-        pageControl.translatesAutoresizingMaskIntoConstraints = false
-        pageControl.currentPageIndicatorTintColor = .black
-        pageControl.pageIndicatorTintColor = .black
-        pageControl.preferredIndicatorImage = UIImage(systemName: "circle")
-        pageControl.preferredCurrentPageIndicatorImage = UIImage(systemName: "circle.fill")
-        pageControl.currentPage = 0
-        pageControl.numberOfPages = CardDay().cardDay.count
-        pageControl.addTarget(self, action: #selector(didChangePageControl), for: .valueChanged)
-        return pageControl
-    }()
+    init(viewModel: MainCityViewModelProtocol) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
     
-    private lazy var mainCityPageViewController = MainCityPageViewController(delegateM: self)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,11 +69,36 @@ class RootViewController: UIViewController {
         
         self.setupNavigationController(navigationItem: navigationItem, navigationController: navigationController ?? UINavigationController())
         self.setupUi()
-        
     }
     
     
-    func setupNavigationController(navigationItem: UINavigationItem, navigationController: UINavigationController) {
+    func bindViewModel() {
+        viewModel.onStateDidChange = { [weak self] state in
+            guard let self = self else {
+                return
+            }
+            
+            switch state {
+            case .firstLaunchDoNotUseLocation:
+                print("firstLaunchDoNotUseLocation")
+            case .firstLaunchUseLocation:
+                print("firstLaunchUseLocation")
+            case .loadWeather:
+                print("loadWeather")
+            case .loadedWeather:
+                print("loadedWeather")
+            case .loadedWeatherAndSaveInCoreDate:
+                print("loadedWeatherAndSaveInCoreDate")
+            case .subsequentLaunch:
+                print("subsequentLaunch")
+            case .error(_):
+                print("error")
+            }
+        }
+    }
+    
+    
+    private func setupNavigationController(navigationItem: UINavigationItem, navigationController: UINavigationController) {
         
         navigationItem.titleView = titleLabel
         
@@ -96,32 +134,35 @@ class RootViewController: UIViewController {
         }
     }
     
-    @objc private func didChangePageControl() {
-        mainCityPageViewController.scrollToViewController(index: pageControl.currentPage)
-    }
-    
-    @objc private func showSettings() {
-        let settings = SettingsViewController()
-        navigationController?.pushViewController(settings, animated: true)
-    }
-    
-    @objc private func showPermissionToUseLocation() {
-//        let permissionToUseLocation = PermissionToUseLocationViewController()
-//        navigationController?.pushViewController(permissionToUseLocation, animated: true)
-    }
+   
 }
 
 extension RootViewController: MainCityPageViewControllerDelegate {
     
     func didUpdatePageCount(_ mainCityPageViewController: UIPageViewController, didUpdatePageCount count: Int) {
         pageControl.numberOfPages = count
-        print("RootViewController count", count)
+        print("MainCityPageViewControllerDelegate - count", count)
     }
     
     func didUpdatePageIndex(_ mainCityPageViewController: UIPageViewController, didUpdatePageIndex index: Int) {
         pageControl.currentPage = index
-        print("RootViewController index", index)
+        print("MainCityPageViewControllerDelegate - index", index)
     }
     
 }
 
+extension RootViewController: RootViewProtocol {
+    func didChangePageControl() {
+        mainCityPageViewController.scrollToViewController(index: pageControl.currentPage)
+    }
+    
+    func showSettings() {
+        let settings = SettingsViewController()
+        navigationController?.pushViewController(settings, animated: true)
+    }
+    
+    func showPermissionToUseLocation() {
+//        let permissionToUseLocation = PermissionToUseLocationViewController()
+//        navigationController?.pushViewController(permissionToUseLocation, animated: true)
+    }
+}
