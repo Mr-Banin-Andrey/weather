@@ -6,16 +6,16 @@ struct NetworkServiceWeatherModel: Codable {
     
     let now: Int // Время сервера в формате Unixtime.
     let now_dt: String // Время сервера в UTC.
-    let info: Info
-    let fact: Fact
-    let forecasts: [Forecasts]
+    let info: Info // Объект информации о населенном пункте.
+    let fact: Fact // Объект фактической информации о погоде.
+    let forecasts: [Forecasts] // Объект прогнозной информации о погоде.
 
     enum CodingKeys: String, CodingKey {
         case now
         case now_dt
-        case info // ключ вложенного запроса
-        case fact // ключ вложенного запроса
-        case forecasts // ключ вложенного запроса
+        case info
+        case fact
+        case forecasts
     }
 }
 

@@ -6,7 +6,6 @@ import SnapKit
 protocol RootViewProtocol: AnyObject {
     func showSettings()
     func showPermissionToUseLocation()
-    func didChangePageControl()
 }
 
 class RootView: UIView {
@@ -42,28 +41,32 @@ class RootView: UIView {
         return label
     }()
     
-    private lazy var pageControl: UIPageControl = {
-        let pageControl = UIPageControl()
-        pageControl.translatesAutoresizingMaskIntoConstraints = false
-        pageControl.currentPageIndicatorTintColor = .black
-        pageControl.pageIndicatorTintColor = .black
-        pageControl.preferredIndicatorImage = UIImage(systemName: "circle")
-        pageControl.preferredCurrentPageIndicatorImage = UIImage(systemName: "circle.fill")
-        pageControl.currentPage = 0
-//        pageControl.numberOfPages = 1
-        pageControl.addTarget(self, action: #selector(didChangePageControl), for: .valueChanged)
-        return pageControl
-    }()
-        
-    private lazy var mainCityPageViewController = MainCityPageViewController(delegateM: self, cities: CardDay().cardDay)
-    
     init(delegate: RootViewProtocol) {
         self.delegate = delegate
         
+        super.init(frame: .zero)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupNavigationController(navigationItem: UINavigationItem, navigationController: UINavigationController, title: String) {
+        
+        self.titleLabel.text = title
+        navigationItem.titleView = titleLabel
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = .systemBackground
+        navigationController.navigationBar.scrollEdgeAppearance = appearance
+        
+        let barCustomRightButtom = UIBarButtonItem(customView: rightButton)
+        navigationItem.rightBarButtonItems = [barCustomRightButtom]
+        navigationItem.rightBarButtonItem = barCustomRightButtom
+
+        let barCustomLeftButtom = UIBarButtonItem(customView: leftButton)
+        navigationItem.leftBarButtonItems = [barCustomLeftButtom]
+        navigationItem.leftBarButtonItem = barCustomLeftButtom
     }
     
     @objc private func showSettings() {
@@ -74,7 +77,4 @@ class RootView: UIView {
         delegate?.showPermissionToUseLocation()
     }
     
-    @objc private func didChangePageControl() {
-        delegate?.didChangePageControl()
-    }
 }

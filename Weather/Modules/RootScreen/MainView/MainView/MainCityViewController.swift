@@ -4,13 +4,15 @@ import UIKit
 
 class MainCityViewController: UIViewController {
     
+    private let viewModel: MainViewModelProtocol
+    
     private lazy var manCityView = MainCityView(delegate: self)    
 
     private var cardOfTheDayModel: CardOfTheDayModel
     
-    init(cardOfTheDayModel: CardOfTheDayModel) {  // NetworkServiceWeatherModel
+    init(viewModel: MainViewModelProtocol, cardOfTheDayModel: CardOfTheDayModel) {  // NetworkServiceWeatherModel
+        self.viewModel = viewModel
         self.cardOfTheDayModel = cardOfTheDayModel
-        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -28,53 +30,48 @@ class MainCityViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .systemBackground
-        manCityView.configureTableView(delegateTable: self, dataSourceTable: self)
-        
-//        DispatchQueue.main.async {
-//            let urlYan = "https://api.weather.yandex.ru/v2/forecast"
-//
-//            let headers = [
-//                "X-Yandex-API-Key":"4a008062-0c53-450d-a584-132047fd7220"
-//            ]
-//            NetworkServiceWeather(
-//                data: [
-//                    "lat":"55.75198",
-//                    "lon":"37.604860",
-//                    "lang":"ru_RU",
-//                    "limit":"7",
-//                    "hours":"true",
-//                    "extra":"false"
-//                ],
-//                headers: headers,
-//                url: urlYan,
-//                method: .get,
-//                isJSONRequest: false
-//            ).executeQuery() { (result: Result<NetworkServiceWeatherModel,Error>) in
-//                switch result {
-//                case .success(let weather):
-//                    print("✅", weather)
-//                case .failure(let error):
-//                    print("🔞", error)
-//                }
-//            }
-//        }
+        manCityView.configureTableView(
+            delegateTable: self,
+            dataSourceTable: self
+        )
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.navigationController?.navigationBar.isHidden = false
+    private func bindViewModel() {
+        viewModel.otStateDidChange = { [weak self] state in
+            guard let self = self else {
+                return
+            }
+            
+            switch state {
+            case .firstLaunchDoNotUseLocation:
+                print("firstLaunchDoNotUseLocation")
+            case .firstLaunchUseLocation:
+                print("firstLaunchUseLocation")
+//                self.mainCityPageViewController.
+            case .selectCity:
+                print("selectCity")
+            case .loadWeather:
+                print("loadWeather")
+            case .loadedWeather:
+                print("loadedWeather")
+            case .loadedWeatherAndSaveInCoreDate:
+                print("loadedWeatherAndSaveInCoreDate")
+            case .subsequentLaunch:
+                print("subsequentLaunch")
+            case .error:
+                print("error")
+            
+            }
+        }
     }
     
+    // targets headers
     @objc private func showAllDay() {
-        let allDay = AllDay24HourViewController()
-        navigationController?.pushViewController(allDay, animated: true)
+       let allDay = AllDay24HourViewController()
+       navigationController?.pushViewController(allDay, animated: true)
     }
     
     @objc private func showTwentyFiveDays() {
-//        var abs = false
-//        abs.toggle()
-//        manCityView.changeView(hidden: )
         print("showTwentyFiveDays")
     }
 }
@@ -83,7 +80,7 @@ extension MainCityViewController: MainCityViewDelegate {
 
 }
 
-extension MainCityViewController: UITableViewDelegate, UITableViewDataSource {
+extension MainCityViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
@@ -93,7 +90,6 @@ extension MainCityViewController: UITableViewDelegate, UITableViewDataSource {
         if section == 1 {
             return 7
         }
-        
         return 0
     }
     
@@ -126,12 +122,11 @@ extension MainCityViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "CollectionViewCell", for: indexPath) as? HourlyWeatherCollectionViewCell else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "defaultId", for: indexPath)
-                
                 return cell
             }
+            
             
             cell.backgroundColor = .systemBackground
             return cell
@@ -140,9 +135,9 @@ extension MainCityViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "DailyForecastCell", for: indexPath) as? DailyForecastCell else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "defaultId", for: indexPath)
-                
                 return cell
             }
+            
             
             cell.backgroundColor = .systemBackground
             return cell
@@ -158,5 +153,4 @@ extension MainCityViewController: UITableViewDelegate, UITableViewDataSource {
             self.navigationController?.pushViewController(summaryOfTheDay, animated: true)
         }
     }
-    
 }

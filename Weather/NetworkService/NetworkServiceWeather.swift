@@ -58,3 +58,32 @@ class NetworkServiceWeather: NSObject{
         })
     }
 }
+
+//        DispatchQueue.main.async {
+//            let urlYan = "https://api.weather.yandex.ru/v2/forecast"
+//
+//            let headers = [
+//                "X-Yandex-API-Key":"4a008062-0c53-450d-a584-132047fd7220"
+//            ]
+//            NetworkServiceWeather(
+//                data: [
+//                    "lat":"55.75198",
+//                    "lon":"37.604860",
+//                    "lang":"ru_RU",
+//                    "limit":"7",
+//                    "hours":"true",
+//                    "extra":"false"
+//                ],
+//                headers: headers,
+//                url: urlYan,
+//                method: .get,
+//                isJSONRequest: false
+//            ).executeQuery() { (result: Result<NetworkServiceWeatherModel,Error>) in
+//                switch result {
+//                case .success(let weather):
+//                    print("✅", weather)
+//                case .failure(let error):
+//                    print("🔞", error)
+//                }
+//            }
+//        }

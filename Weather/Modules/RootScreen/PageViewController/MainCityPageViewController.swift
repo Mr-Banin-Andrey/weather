@@ -12,12 +12,12 @@ class MainCityPageViewController: UIPageViewController {
     
     var cities: [CardOfTheDayModel] = []
         
-     weak var delegateMain: MainCityPageViewControllerDelegate?
+    weak var delegateMain: MainCityPageViewControllerDelegate?
     
     lazy var arrayCityViewController: [MainCityViewController] = {
         var citiesVC = [MainCityViewController]()
             for city in cities {
-                citiesVC.append(MainCityViewController(cardOfTheDayModel: city))
+                citiesVC.append(MainCityViewController(viewModel: MainViewModel(), cardOfTheDayModel: city))
             }
         return citiesVC
     }()
@@ -25,7 +25,9 @@ class MainCityPageViewController: UIPageViewController {
 //    override func viewDidLoad() {
 //        super.viewDidLoad()
 //
-//        cities = CardDay().cardDay
+//        if cities.isEmpty {
+////            delegateMain.
+//        }
 //    }
     
     init(
@@ -76,7 +78,7 @@ class MainCityPageViewController: UIPageViewController {
     private func notifyPageControlOfNewIndex() {
         if let firstViewController = viewControllers?.first,
            let index = arrayCityViewController.firstIndex(of: firstViewController as! MainCityViewController) {
-            print("notifyPageControlOfNewIndex", index)
+//            print("notifyPageControlOfNewIndex", index)
             delegateMain?.didUpdatePageIndex(self, didUpdatePageIndex: index)
         }
     }
