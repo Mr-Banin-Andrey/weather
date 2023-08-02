@@ -12,15 +12,15 @@
 		9D555ED42A78277100138EB4 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D555ED32A78277100138EB4 /* RootView.swift */; };
 		9D555EDA2A793E9B00138EB4 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D555ED92A793E9B00138EB4 /* MainViewModel.swift */; };
 		9D555EDC2A793EC300138EB4 /* Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D555EDB2A793EC300138EB4 /* Module.swift */; };
+		9D555EDF2A7A730700138EB4 /* AppFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D555EDE2A7A730700138EB4 /* AppFactory.swift */; };
 		9D573BEA2A38B84100F8E4F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D573BE92A38B84100F8E4F3 /* AppDelegate.swift */; };
 		9D573BEC2A38B84100F8E4F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D573BEB2A38B84100F8E4F3 /* SceneDelegate.swift */; };
 		9D573BEE2A38B84100F8E4F3 /* MainCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D573BED2A38B84100F8E4F3 /* MainCityViewController.swift */; };
 		9D573BF32A38B84300F8E4F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D573BF22A38B84300F8E4F3 /* Assets.xcassets */; };
 		9D573BF62A38B84300F8E4F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D573BF42A38B84300F8E4F3 /* LaunchScreen.storyboard */; };
-		9D573C0C2A38C64800F8E4F3 /* MainCityCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D573C0B2A38C64800F8E4F3 /* MainCityCoordinator.swift */; };
+		9D573C0C2A38C64800F8E4F3 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D573C0B2A38C64800F8E4F3 /* RootCoordinator.swift */; };
 		9D573C0E2A38C65B00F8E4F3 /* Coordinatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D573C0D2A38C65B00F8E4F3 /* Coordinatable.swift */; };
 		9D573C182A38CE5B00F8E4F3 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 9D573C172A38CE5B00F8E4F3 /* Alamofire */; };
-		9D573C1B2A38D0D100F8E4F3 /* PermissionToUseLocationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D573C1A2A38D0D100F8E4F3 /* PermissionToUseLocationCoordinator.swift */; };
 		9D5907B82A49CB9700A53961 /* Rubik-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9D5907B72A49CB9700A53961 /* Rubik-VariableFont_wght.ttf */; };
 		9D6CF66C2A6B12E400259A3C /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6CF66B2A6B12E400259A3C /* RootViewController.swift */; };
 		9D7D89A42A3CC34000CB0ED0 /* PermissionToUseLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7D89A32A3CC34000CB0ED0 /* PermissionToUseLocationView.swift */; };
@@ -71,6 +71,7 @@
 		9D555ED32A78277100138EB4 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		9D555ED92A793E9B00138EB4 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		9D555EDB2A793EC300138EB4 /* Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Module.swift; sourceTree = "<group>"; };
+		9D555EDE2A7A730700138EB4 /* AppFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFactory.swift; sourceTree = "<group>"; };
 		9D573BE62A38B84100F8E4F3 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D573BE92A38B84100F8E4F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9D573BEB2A38B84100F8E4F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,9 +79,8 @@
 		9D573BF22A38B84300F8E4F3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9D573BF52A38B84300F8E4F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9D573BF72A38B84300F8E4F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9D573C0B2A38C64800F8E4F3 /* MainCityCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCityCoordinator.swift; sourceTree = "<group>"; };
+		9D573C0B2A38C64800F8E4F3 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		9D573C0D2A38C65B00F8E4F3 /* Coordinatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinatable.swift; sourceTree = "<group>"; };
-		9D573C1A2A38D0D100F8E4F3 /* PermissionToUseLocationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionToUseLocationCoordinator.swift; sourceTree = "<group>"; };
 		9D5907B72A49CB9700A53961 /* Rubik-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		9D6CF66B2A6B12E400259A3C /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		9D7D89A32A3CC34000CB0ED0 /* PermissionToUseLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionToUseLocationView.swift; sourceTree = "<group>"; };
@@ -181,6 +181,14 @@
 			path = MainModel;
 			sourceTree = "<group>";
 		};
+		9D555EDD2A7A72EE00138EB4 /* AppFactory */ = {
+			isa = PBXGroup;
+			children = (
+				9D555EDE2A7A730700138EB4 /* AppFactory.swift */,
+			);
+			path = AppFactory;
+			sourceTree = "<group>";
+		};
 		9D573BDD2A38B84100F8E4F3 = {
 			isa = PBXGroup;
 			children = (
@@ -201,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				9D573BFD2A38BF4400F8E4F3 /* App */,
+				9D555EDD2A7A72EE00138EB4 /* AppFactory */,
 				9D573BFE2A38BF4A00F8E4F3 /* Coordinators */,
 				9DB90D382A55F6E500F57180 /* extensionSystemValue */,
 				9D573BFF2A38BF5A00F8E4F3 /* Modules */,
@@ -222,10 +231,9 @@
 		9D573BFE2A38BF4A00F8E4F3 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
-				9D573C0D2A38C65B00F8E4F3 /* Coordinatable.swift */,
 				9DB90D122A51A0CD00F57180 /* AppCoordinator.swift */,
-				9D573C0B2A38C64800F8E4F3 /* MainCityCoordinator.swift */,
-				9D573C1A2A38D0D100F8E4F3 /* PermissionToUseLocationCoordinator.swift */,
+				9D573C0D2A38C65B00F8E4F3 /* Coordinatable.swift */,
+				9D573C0B2A38C64800F8E4F3 /* RootCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -720,12 +728,12 @@
 				9DB90D6D2A5FF43900F57180 /* ListFonts.swift in Sources */,
 				9DB90D852A65943800F57180 /* SummaryOfTheDayCollectionViewCell.swift in Sources */,
 				9DB90D5B2A5D592900F57180 /* AllDay24HourViewController.swift in Sources */,
-				9D573C1B2A38D0D100F8E4F3 /* PermissionToUseLocationCoordinator.swift in Sources */,
 				9DB90D342A555CBA00F57180 /* CustomImageView.swift in Sources */,
 				9DB90D622A5D9D0000F57180 /* AllDay24HourTimetableHeader.swift in Sources */,
 				9DB90D972A67F97800F57180 /* CardDay.swift in Sources */,
 				9DB90D4D2A5C2BAC00F57180 /* SettingsViewController.swift in Sources */,
 				9DB90D752A605E4500F57180 /* SummaryOfTheDayViewController.swift in Sources */,
+				9D555EDF2A7A730700138EB4 /* AppFactory.swift in Sources */,
 				9DB90D9C2A67FD3400F57180 /* ImageWeather.swift in Sources */,
 				9DB90D992A67FAF100F57180 /* HourlyWeather.swift in Sources */,
 				9D7D89A42A3CC34000CB0ED0 /* PermissionToUseLocationView.swift in Sources */,
@@ -734,7 +742,7 @@
 				9D6CF66C2A6B12E400259A3C /* RootViewController.swift in Sources */,
 				9DB90D6B2A5FE73900F57180 /* AllDay24HourTimetableCell.swift in Sources */,
 				9DB90D432A599B7D00F57180 /* TwentyFiveDaysLabelHeader.swift in Sources */,
-				9D573C0C2A38C64800F8E4F3 /* MainCityCoordinator.swift in Sources */,
+				9D573C0C2A38C64800F8E4F3 /* RootCoordinator.swift in Sources */,
 				9D555ED42A78277100138EB4 /* RootView.swift in Sources */,
 				9DB90D902A67EED200F57180 /* CardOfTheDayModel.swift in Sources */,
 				9D573BEC2A38B84100F8E4F3 /* SceneDelegate.swift in Sources */,

@@ -2,7 +2,17 @@
 import UIKit
 
 protocol Coordinatable: AnyObject {
-    var child: [Coordinatable] { get set }
-    var navigationController: UINavigationController { get set }
-    func start()
+    var childCoordinators: [Coordinatable] { get }
+    func start() -> UIViewController
+    func addChildCoordinator(_ coordinator: Coordinatable)
+    func removeChildCoordinator(_ coordinator: Coordinatable)
+}
+
+protocol ModuleCoordinatable: Coordinatable {
+    var module: Module? { get }
+}
+
+extension Coordinatable {
+    func addChildCoordinator(_ coordinator: Coordinatable) {}
+    func removeChildCoordinator(_ coordinator: Coordinatable) {}
 }

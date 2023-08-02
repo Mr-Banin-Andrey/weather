@@ -5,9 +5,7 @@ import UIKit
 import CoreLocation
 
 class PermissionToUseLocationViewController: UIViewController {
-    
-    var coordinator: PermissionToUseLocationCoordinator?
-    
+        
     private lazy var permissionToUseLocationView = PermissionToUseLocationView(delegate: self)
  
     private lazy var locationManager = CLLocationManager()

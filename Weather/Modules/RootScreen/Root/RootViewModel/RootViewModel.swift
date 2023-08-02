@@ -20,8 +20,6 @@ class RootViewModel: RootViewModelProtocol {
 //        case firstLaunchUseLocation // первый пуск с допуском к локации
 //        case subsequentLaunch // (subsequent) загрузка из хранилища
 //        case selectCity // выбор города в алерте
-        
-//
 //        case loadedWeatherAndSaveInCoreDate // ||(subsequent)  добавление обновленной погоды в хранилище
     }
     
@@ -31,7 +29,7 @@ class RootViewModel: RootViewModelProtocol {
         case addCity(city: String)
     }
     
-    // coordinator
+    weak var coordinator: RootCoordinator?
     var onStateDidChange: ((State) -> Void)?
     
     private(set) var state: State = .initial {
