@@ -9,6 +9,8 @@ class RootViewController: UIViewController {
     
     private lazy var rootView = RootView(delegate: self)
     
+    private var weather: [NetworkServiceWeatherModel] = []
+    
     private lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
         pageControl.translatesAutoresizingMaskIntoConstraints = false
@@ -22,8 +24,8 @@ class RootViewController: UIViewController {
     }()
         
     private lazy var mainCityPageViewController = MainCityPageViewController(
-        delegateM: self
-        ,cities: CardDay().cardDay
+        delegateM: self,
+        cities: CardDay().cardDay
     )
     
     init(viewModel: RootViewModelProtocol) {
@@ -51,6 +53,21 @@ class RootViewController: UIViewController {
         self.bindViewModel()
     }
     
+    private func showAlert() {
+        let alert = UIAlertController(
+            title: "Поиск города",
+            message: nil,
+            preferredStyle: .alert
+        )
+        let createAction =  UIAlertAction(
+            title: "Добавить",
+            style: .default
+        ) { _ in
+            let city = alert.textFields?.first?.text ?? ""
+            self.viewModel.updateState(viewInput: .addCity(city: city))
+        }
+        self.rootView.alert(vc: self, alert: alert, createAction: createAction)
+    }
     
     private func bindViewModel() {
         viewModel.onStateDidChange = { [weak self] state in
@@ -59,33 +76,37 @@ class RootViewController: UIViewController {
             }
             
             switch state {
+            case .initial:
+                print("initial")
+            
+            case .selectCity:
+                self.showAlert()
+            
+            case .loadWeather:
+                print("loadWeather")
+            
+            case let .loadedWeather(weather):
+                print("loadedWeather")
+                // put it in dispatchQueue
+                self.weather = weather
+                
+            case .error(_):
+                print("error")
+        
 //            case .firstLaunchDoNotUseLocation:
 //                print("firstLaunchDoNotUseLocation")
 //            case .firstLaunchUseLocation:
 //                print("firstLaunchUseLocation")
 ////                self.mainCityPageViewController.
-//            case .loadWeather:
-//                print("loadWeather")
-//            case .loadedWeather:
-//                print("loadedWeather")
+//
 //            case .loadedWeatherAndSaveInCoreDate:
 //                print("loadedWeatherAndSaveInCoreDate")
 //            case .subsequentLaunch:
 //                print("subsequentLaunch")
-            case .initial:
-                print("initial")
-                
-            case .selectCity:
-                print("selectCity")
-                // тут вызываем алерт
-                
-            case .error(_):
-                print("error")
             }
         }
     }
-    
-        
+            
     private func setupUi() {
         self.addChild(mainCityPageViewController)
         self.view.addSubview(self.mainCityPageViewController.view)
@@ -129,7 +150,6 @@ extension RootViewController: RootViewProtocol {
     }
     
     func showPermissionToUseLocation() {
-//        let permissionToUseLocation = PermissionToUseLocationViewController()
-//        navigationController?.pushViewController(permissionToUseLocation, animated: true)
+        viewModel.updateState(viewInput: .buttonAlertSelectCity)
     }
 }

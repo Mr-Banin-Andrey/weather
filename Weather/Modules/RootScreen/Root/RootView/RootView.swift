@@ -69,6 +69,23 @@ class RootView: UIView {
         navigationItem.leftBarButtonItem = barCustomLeftButtom
     }
     
+    func alert(vc: UIViewController, alert: UIAlertController, createAction: UIAlertAction) {
+        
+        alert.addTextField() {
+            $0.placeholder = "название города"
+        }
+        
+        let cancelAction = UIAlertAction(
+            title: "Отмена",
+            style: .cancel
+        )
+        
+        alert.addAction(createAction)
+        alert.addAction(cancelAction)
+                
+        vc.present(alert, animated: true)
+    }
+    
     @objc private func showSettings() {
         delegate?.showSettings()
     }

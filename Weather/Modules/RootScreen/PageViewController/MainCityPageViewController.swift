@@ -17,7 +17,10 @@ class MainCityPageViewController: UIPageViewController {
     lazy var arrayCityViewController: [MainCityViewController] = {
         var citiesVC = [MainCityViewController]()
             for city in cities {
-                citiesVC.append(MainCityViewController(viewModel: MainViewModel(), cardOfTheDayModel: city))
+                citiesVC.append(MainCityViewController(
+//                    viewModel: MainViewModel(),
+                    cardOfTheDayModel: city
+                ))
             }
         return citiesVC
     }()

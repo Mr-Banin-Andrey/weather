@@ -63,19 +63,12 @@ class MainCityView: UIView {
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "defaultId")
     }
     
-//    func changeView(hidden: Bool) {
-//        if tableView.isHidden {
-//            emptyView.isHidden = false
-//            self.tableView.reloadData()
-//        } else {
-//            emptyView.isHidden = true
-//            self.tableView.reloadData()
-//        }
-//
-////        self.tableView.isHidden = toggle()
-////        self.tableView.reloadData()
-////        self.emptyView.isHidden = toggle()
-//    }
+    func changeView(tableHidden: Bool, viewHiden: Bool) {
+        self.tableView.isHidden = tableHidden
+        self.horizontalView.isHidden = viewHiden
+        self.verticalView.isHidden = viewHiden
+        self.tableView.reloadData()
+    }
     
     private func setupUi() {
         self.addSubview(self.tableView)

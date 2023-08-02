@@ -14,7 +14,7 @@ class NetworkServiceWeather: NSObject{
         data: [String:Any],
         headers: [String:String] = [:],
         url :String,
-        method: HTTPMethod = .post,
+        method: HTTPMethod = .get,
         isJSONRequest: Bool = true
     ){
         super.init()
@@ -59,31 +59,33 @@ class NetworkServiceWeather: NSObject{
     }
 }
 
-//        DispatchQueue.main.async {
-//            let urlYan = "https://api.weather.yandex.ru/v2/forecast"
+//    let urlYan = "https://api.weather.yandex.ru/v2/forecast"
+//    let headers = [
+//        "X-Yandex-API-Key":"4a008062-0c53-450d-a584-132047fd7220"
+//    ]
+//    var abs = "1"
+
+//DispatchQueue.main.async {
+//                    NetworkServiceWeather(
+//                        data: [
+//                            "lat":"55.75198",
+//                            "lon":"37.604860",
+//                            "lang":"ru_RU",
+//                            "limit":"7",
+//                            "hours":"true",
+//                            "extra":"false"
+//                        ],
+//                        headers: self.headers,
+//                        url: self.urlYan,
+////                        method: .get,
+//                        isJSONRequest: false
+//                    ).executeQuery() { (result: Result<NetworkServiceWeatherModel,Error>) in
+//                        switch result {
+//                        case .success(let weather):
+//                            print("✅", weather)
 //
-//            let headers = [
-//                "X-Yandex-API-Key":"4a008062-0c53-450d-a584-132047fd7220"
-//            ]
-//            NetworkServiceWeather(
-//                data: [
-//                    "lat":"55.75198",
-//                    "lon":"37.604860",
-//                    "lang":"ru_RU",
-//                    "limit":"7",
-//                    "hours":"true",
-//                    "extra":"false"
-//                ],
-//                headers: headers,
-//                url: urlYan,
-//                method: .get,
-//                isJSONRequest: false
-//            ).executeQuery() { (result: Result<NetworkServiceWeatherModel,Error>) in
-//                switch result {
-//                case .success(let weather):
-//                    print("✅", weather)
-//                case .failure(let error):
-//                    print("🔞", error)
+//                        case .failure(let error):
+//                            print("🔞", error)
+//                        }
+//                    }
 //                }
-//            }
-//        }

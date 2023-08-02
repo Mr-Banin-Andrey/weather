@@ -4,14 +4,17 @@ import UIKit
 
 class MainCityViewController: UIViewController {
     
-    private let viewModel: MainViewModelProtocol
+//    private let viewModel: MainViewModelProtocol
     
     private lazy var manCityView = MainCityView(delegate: self)    
 
     private var cardOfTheDayModel: CardOfTheDayModel
     
-    init(viewModel: MainViewModelProtocol, cardOfTheDayModel: CardOfTheDayModel) {  // NetworkServiceWeatherModel
-        self.viewModel = viewModel
+    init(
+//        viewModel: MainViewModelProtocol,
+        cardOfTheDayModel: CardOfTheDayModel
+    ) {  // NetworkServiceWeatherModel
+//        self.viewModel = viewModel
         self.cardOfTheDayModel = cardOfTheDayModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -34,36 +37,45 @@ class MainCityViewController: UIViewController {
             delegateTable: self,
             dataSourceTable: self
         )
+        self.showTableOrView()
     }
     
-    private func bindViewModel() {
-        viewModel.otStateDidChange = { [weak self] state in
-            guard let self = self else {
-                return
-            }
-            
-            switch state {
-            case .firstLaunchDoNotUseLocation:
-                print("firstLaunchDoNotUseLocation")
-            case .firstLaunchUseLocation:
-                print("firstLaunchUseLocation")
-//                self.mainCityPageViewController.
-            case .selectCity:
-                print("selectCity")
-            case .loadWeather:
-                print("loadWeather")
-            case .loadedWeather:
-                print("loadedWeather")
-            case .loadedWeatherAndSaveInCoreDate:
-                print("loadedWeatherAndSaveInCoreDate")
-            case .subsequentLaunch:
-                print("subsequentLaunch")
-            case .error:
-                print("error")
-            
-            }
+    private func showTableOrView() {
+        if CardDay().cardDay.isEmpty {
+            self.manCityView.changeView(tableHidden: true, viewHiden: false)
+        } else {
+            self.manCityView.changeView(tableHidden: false, viewHiden: true)
         }
     }
+    
+//    private func bindViewModel() {
+//        viewModel.otStateDidChange = { [weak self] state in
+//            guard let self = self else {
+//                return
+//            }
+//
+//            switch state {
+//            case .firstLaunchDoNotUseLocation:
+//                print("firstLaunchDoNotUseLocation")
+//            case .firstLaunchUseLocation:
+//                print("firstLaunchUseLocation")
+////                self.mainCityPageViewController.
+//            case .selectCity:
+//                print("selectCity")
+//            case .loadWeather:
+//                print("loadWeather")
+//            case .loadedWeather:
+//                print("loadedWeather")
+//            case .loadedWeatherAndSaveInCoreDate:
+//                print("loadedWeatherAndSaveInCoreDate")
+//            case .subsequentLaunch:
+//                print("subsequentLaunch")
+//            case .error:
+//                print("error")
+//
+//            }
+//        }
+//    }
     
     // targets headers
     @objc private func showAllDay() {
@@ -149,6 +161,9 @@ extension MainCityViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
+            
+//            guard let day = 
+            
             let summaryOfTheDay = SummaryOfTheDayViewController()
             self.navigationController?.pushViewController(summaryOfTheDay, animated: true)
         }
