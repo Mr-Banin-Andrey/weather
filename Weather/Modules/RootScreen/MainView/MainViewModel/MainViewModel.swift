@@ -1,7 +1,7 @@
-
-import Foundation
-
-
+//
+//import Foundation
+//
+//
 //protocol MainViewModelProtocol: ViewModelProtocol {
 //    var otStateDidChange: ((MainViewModel.State) -> Void)? { get set }
 //    func updateState(viewInput: MainViewModel.ViewInput)
@@ -9,6 +9,7 @@ import Foundation
 //
 //class MainViewModel: MainViewModelProtocol {
 //    enum State {
+//        case initial
 //        case firstLaunchDoNotUseLocation // первый пуск без допуска к локации
 //        case firstLaunchUseLocation // первый пуск с допуском к локации
 //        case subsequentLaunch // (subsequent) загрузка из хранилища
@@ -24,10 +25,10 @@ import Foundation
 //        case buttonSummaryOfTheDay // подгрузить день погоды
 //    }
 //    
-//    // coordinator
+////    coordinator.
 //    var otStateDidChange: ((State) -> Void)?
 //    
-//    private(set) var state: State = .firstLaunchDoNotUseLocation {
+//    private(set) var state: State = .initial {
 //        didSet {
 //            otStateDidChange?(state)
 //        }

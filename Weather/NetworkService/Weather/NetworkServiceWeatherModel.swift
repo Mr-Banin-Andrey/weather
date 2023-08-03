@@ -38,7 +38,7 @@ struct Fact: Codable {
     let wind_dir: String // Направление ветра.
     let uv_index: Int // uv index
     let condition: String // описание погоды
-    let prec_strength: Int // Сила осадков.
+    let prec_strength: Double // Сила осадков.
     let feels_like: Int // ощущения температура
     let cloudness: Double // Облачность
     let is_thunder: Bool // Признак грозы.

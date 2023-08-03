@@ -18,7 +18,7 @@ class DailyForecastCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: ListFonts.regular400.rawValue, size: 16)
         label.textColor = UIColor(named: ListColors.gray.rawValue)
-        label.text = "08/07"
+//        label.text = "08/07"
         return label
     }()
     
@@ -43,7 +43,7 @@ class DailyForecastCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: ListFonts.regular400.rawValue, size: 16)
         label.textColor = .black
-        label.text = "Местами дождь"
+//        label.text = "Местами дождь"
         return label
     }()
     
@@ -71,6 +71,16 @@ class DailyForecastCell: UITableViewCell {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    func setupCell(for weather: NetworkServiceWeatherModel, index: Int) {
+        
+//        let index = index
+        
+//        self.dateLabel.text = EditingFunctions().codeDate(unixTime: weather.forecasts[index].hours[index].hour_ts, dateFormat: .dayMonths)
+//        self.precipitationLabel.text = EditingFunctions().condition[weather.forecasts[index].parts.day_short.condition]
+        self.descriptionWeather.text = EditingFunctions().condition[weather.forecasts[index].parts.day_short.condition]
+//        self.fromMinToMaxDegreeLabel.text =
     }
     
     private func setupUi() {

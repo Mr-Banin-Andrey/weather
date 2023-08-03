@@ -21,5 +21,9 @@ class RootCoordinator: ModuleCoordinatable {
         return viewController
     }
     
+    func pushSettingsViewController() {
+        let viewControllerToPush = SettingsViewController()
+        (module?.view as? UINavigationController)?.pushViewController(viewControllerToPush, animated: true)
+    }
     
 }

@@ -25,7 +25,7 @@ class RootViewController: UIViewController {
         
     private lazy var mainCityPageViewController = MainCityPageViewController(
         delegateM: self,
-        cities: CardDay().cardDay
+        cities: weather
     )
     
     init(viewModel: RootViewModelProtocol) {
@@ -51,6 +51,12 @@ class RootViewController: UIViewController {
         
         self.setupUi()
         self.bindViewModel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     private func showAlert() {
@@ -88,7 +94,9 @@ class RootViewController: UIViewController {
             case let .loadedWeather(weather):
                 print("loadedWeather")
                 // put it in dispatchQueue
+                
                 self.weather = weather
+                mainCityPageViewController.updatePageViewController(weather)
                 
             case .error(_):
                 print("error")

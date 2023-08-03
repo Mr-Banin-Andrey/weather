@@ -5,17 +5,20 @@ import UIKit
 class MainCityViewController: UIViewController {
     
 //    private let viewModel: MainViewModelProtocol
-    
-    private lazy var manCityView = MainCityView(delegate: self)    
+//    private var cardOfTheDayModel: CardOfTheDayModel
 
-    private var cardOfTheDayModel: CardOfTheDayModel
+    private lazy var manCityView = MainCityView(delegate: self)
+    private var weather: NetworkServiceWeatherModel
+    
+    private var weatherCity: [NetworkServiceWeatherModel] = []
     
     init(
 //        viewModel: MainViewModelProtocol,
-        cardOfTheDayModel: CardOfTheDayModel
-    ) {  // NetworkServiceWeatherModel
+//        cardOfTheDayModel: CardOfTheDayModel
+        weather: NetworkServiceWeatherModel
+    ) {
 //        self.viewModel = viewModel
-        self.cardOfTheDayModel = cardOfTheDayModel
+        self.weather = weather
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -33,20 +36,9 @@ class MainCityViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .systemBackground
-        manCityView.configureTableView(
-            delegateTable: self,
-            dataSourceTable: self
-        )
-        self.showTableOrView()
+        manCityView.configureTableView(delegateTable: self, dataSourceTable: self)
     }
     
-    private func showTableOrView() {
-        if CardDay().cardDay.isEmpty {
-            self.manCityView.changeView(tableHidden: true, viewHiden: false)
-        } else {
-            self.manCityView.changeView(tableHidden: false, viewHiden: true)
-        }
-    }
     
 //    private func bindViewModel() {
 //        viewModel.otStateDidChange = { [weak self] state in
@@ -55,6 +47,8 @@ class MainCityViewController: UIViewController {
 //            }
 //
 //            switch state {
+//            case .initial:
+//                print("initial")
 //            case .firstLaunchDoNotUseLocation:
 //                print("firstLaunchDoNotUseLocation")
 //            case .firstLaunchUseLocation:
@@ -116,7 +110,7 @@ extension MainCityViewController: UITableViewDataSource, UITableViewDelegate {
             else { return nil }
             
             header.detailedWeatherForTheDayButton.addTarget(self, action: #selector(showAllDay), for: .touchUpInside)
-            header.setupValue(weather: cardOfTheDayModel)
+            header.setupValue(weather: weather)
             return header
         }
 
@@ -150,7 +144,7 @@ extension MainCityViewController: UITableViewDataSource, UITableViewDelegate {
                 return cell
             }
             
-            
+            cell.setupCell(for: weather, index: indexPath.row)
             cell.backgroundColor = .systemBackground
             return cell
         }
@@ -161,9 +155,7 @@ extension MainCityViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
-            
-//            guard let day = 
-            
+//            guard let day =            
             let summaryOfTheDay = SummaryOfTheDayViewController()
             self.navigationController?.pushViewController(summaryOfTheDay, animated: true)
         }

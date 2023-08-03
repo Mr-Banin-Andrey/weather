@@ -10,35 +10,27 @@ class MainCityPageViewController: UIPageViewController {
     
 //    var tapAction: ((_ index: Int) -> Void)?
     
-    var cities: [CardOfTheDayModel] = []
-        
+//    var cities: [CardOfTheDayModel] = []
+    var cities: [NetworkServiceWeatherModel] = []
+    
     weak var delegateMain: MainCityPageViewControllerDelegate?
     
     lazy var arrayCityViewController: [MainCityViewController] = {
         var citiesVC = [MainCityViewController]()
-            for city in cities {
+        for city in cities {
                 citiesVC.append(MainCityViewController(
-//                    viewModel: MainViewModel(),
-                    cardOfTheDayModel: city
+                    weather: city
                 ))
             }
         return citiesVC
     }()
-    
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//        if cities.isEmpty {
-////            delegateMain.
-//        }
-//    }
     
     init(
         transitionStyle style: UIPageViewController.TransitionStyle = .scroll,
         navigationOrientation: UIPageViewController.NavigationOrientation = .horizontal,
         options: [UIPageViewController.OptionsKey : Any]? = nil,
         delegateM: MainCityPageViewControllerDelegate,
-        cities: [CardOfTheDayModel]
+        cities: [NetworkServiceWeatherModel]
     ) {
         super.init(transitionStyle: .scroll, navigationOrientation: navigationOrientation, options: nil)
 
@@ -57,6 +49,28 @@ class MainCityPageViewController: UIPageViewController {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func updatePageViewController(_ weatherCity: [NetworkServiceWeatherModel]) {
+        
+        self.cities = weatherCity
+        
+        let arrayCityViewController1: [MainCityViewController] = {
+            var citiesVC = [MainCityViewController]()
+            for city in cities {
+                    citiesVC.append(MainCityViewController(
+                        weather: city
+                    ))
+                }
+            return citiesVC
+        }()
+        
+        setViewControllers(arrayCityViewController1, direction: .forward, animated: false,
+                           completion: { (finished) -> Void in
+            self.notifyPageControlOfNewIndex()
+        } )
+        delegateMain?.didUpdatePageIndex(self, didUpdatePageIndex: 0)
+        delegateMain?.didUpdatePageCount(self, didUpdatePageCount: cities.count)
     }
     
     private func setViewControllerToBeDisplayed(
@@ -81,7 +95,7 @@ class MainCityPageViewController: UIPageViewController {
     private func notifyPageControlOfNewIndex() {
         if let firstViewController = viewControllers?.first,
            let index = arrayCityViewController.firstIndex(of: firstViewController as! MainCityViewController) {
-//            print("notifyPageControlOfNewIndex", index)
+            print("notifyPageControlOfNewIndex", index)
             delegateMain?.didUpdatePageIndex(self, didUpdatePageIndex: index)
         }
     }

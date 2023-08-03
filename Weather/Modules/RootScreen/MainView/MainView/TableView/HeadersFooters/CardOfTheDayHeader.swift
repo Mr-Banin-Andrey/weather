@@ -191,6 +191,12 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         return button
     }()
     
+    let date = Date()
+    let calendar = Calendar.current
+//    let hour = calendar.component(.hour, from: date)
+//    let minute = calendar.component(.minute, from: date)
+//    let second = calendar.component(.second, from: date)
+    
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         
@@ -201,18 +207,26 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupValue(weather: CardOfTheDayModel) {
+    func setupValue(weather: NetworkServiceWeatherModel) {
         
-        self.sunriseTimeLabel.text = weather.sunriseTime
-        self.sunsetTimeLabel.text = weather.sunsetTime
+        self.sunriseTimeLabel.text = weather.forecasts[0].rise_begin //.sunriseTime
+        self.sunsetTimeLabel.text = weather.forecasts[0].set_end
         
-        self.fromMinToMaxDegreeLabel.text = weather.tempMinMax
-        self.degreeNowLabel.attributedText = twoFontInLabel(value: weather.tempNow)
-        self.probabilityOfPrecipitationLabel.text = weather.descriptionWeather
-        self.uVIndexLabel.text = "\(String(weather.uvIndex)) УФ"
-        self.windLabel.text = "\(String(weather.windSpeed)) м/с"
-        self.precipitationLabel.text = "\(String(weather.precipitation)) %"
+        self.fromMinToMaxDegreeLabel.text = "\(String(weather.forecasts[0].parts.night.temp_min))°/\(String(weather.forecasts[0].parts.night.temp_max))°"
+        self.degreeNowLabel.attributedText = twoFontInLabel(value: String(weather.fact.temp))
+        self.probabilityOfPrecipitationLabel.text =  EditingFunctions().condition[weather.fact.condition]
+        self.uVIndexLabel.text = "\(String(weather.fact.uv_index)) УФ"
+        self.windLabel.text = "\(String(weather.fact.wind_speed)) м/с \(EditingFunctions().windDir[weather.fact.wind_dir] ?? "")"
+        self.precipitationLabel.text = "\(String((weather.fact.prec_strength).rounded())) %"
+        
+//        self.timeAndDateNowLabel.text = "\(calendar.component(.hour, from: date)):\(calendar.component(.minute, from: date)):\(calendar.)"
     }
+    
+//    private func realTime() -> String{
+//
+//        print("Текущее время: \(hour):\(minute):\(second)")
+//    }
+//
     
     private func twoFontInLabel(value:String) -> NSMutableAttributedString {
         let fontFirst = [NSAttributedString.Key.font : UIFont(name: ListFonts.medium500.rawValue, size: 36)]

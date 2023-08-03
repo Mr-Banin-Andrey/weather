@@ -15,7 +15,6 @@ class RootViewModel: RootViewModelProtocol {
         case loadedWeather(weather: [NetworkServiceWeatherModel])  //  ||(subsequent)  обновление погоды на Юай
         
         case error(Error)
-        
 //        case firstLaunchDoNotUseLocation // первый пуск без допуска к локации
 //        case firstLaunchUseLocation // первый пуск с допуском к локации
 //        case subsequentLaunch // (subsequent) загрузка из хранилища
@@ -38,19 +37,80 @@ class RootViewModel: RootViewModelProtocol {
         }
     }
     
+    
     func updateState(viewInput: RootViewModel.ViewInput) {
         switch viewInput {
         case .buttonSettings:
             print("buttonSettings")
-//            coordinator?.pushBookViewController()
-//            let settings = SettingsViewController()
-//            navigationController?.pushViewController(settings, animated: true)
+            coordinator?.pushSettingsViewController()
         case let .addCity(city):
             print(city)
-//            state = .loadWeather
-//             - loadWeather
+            NetworkService(
+                data: headGeo(city: city),
+                headers: [:],
+                url: urlGeo,
+                method: .get,
+                isJSONRequest: false
+            ).executeQuery() { (result: Result<GeocodeModel,Error>) in
+                switch result {
+                case .success(let weather):
+                    let latLon = self.latLon(point: weather.response.geoObjectCollection.featureMember[0].geoObject.point.pos)
+                    let lat = latLon.0
+                    let lon = latLon.1
+                    print("✅", weather.response.geoObjectCollection.featureMember[0].geoObject)
+            
+            
+                    NetworkService(
+                        data: ["lat":lat,
+                               "lon":lon,
+                               "lang":"ru_RU",
+                               "limit":"7",
+                               "hours":"true",
+                               "extra":"false"] ,
+                        headers: self.headers,
+                        url: self.urlYan,
+                        method: .get,
+                        isJSONRequest: false
+                    ).executeQuery() { (result: Result<NetworkServiceWeatherModel,Error>) in
+                        switch result {
+                        case .success(let weather):
+                            print("🅿️", weather)
+                            self.state = .loadedWeather(weather: [weather])
+                            
+                        case .failure(let error):
+                            print("❌", error)
+                        }
+                    }
+                case .failure(let error):
+                    print("🔞", error)
+                }
+            }
+
+            state = .initial
         case  .buttonAlertSelectCity:
             state = .selectCity
         }
+    }
+    private func latLon(point: String) -> (String, String) {
+        let myStringArr = point.components(separatedBy: " ")
+        let lon = myStringArr[0]
+        let lat = myStringArr[1]
+        print("🟣", lat, lon)
+        return (lat, lon)
+    }
+
+    let urlYan = "https://api.weather.yandex.ru/v2/forecast"
+    let headers = ["X-Yandex-API-Key":"4a008062-0c53-450d-a584-132047fd7220"]
+    
+    let urlGeo = "https://geocode-maps.yandex.ru/1.x"
+    func headGeo(city: String) -> [String:String] {
+        let headersGeo = [
+            "apikey":"653bb56c-4ee4-4a72-99cc-9e645a1f5872",
+            "geocode":city,
+            "lang":"ru_RU",
+            "format":"json"
+        ]
+        print(headersGeo)
+        return headersGeo
     }
 }
