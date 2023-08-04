@@ -12,6 +12,7 @@ class RootViewModel: RootViewModelProtocol {
         case initial // 1.
         case selectCity // выбор города в алерте
         case loadWeather// загрузка по локации или по выбору в алерте города ||(subsequent) фоном загрузка погоды
+        case loadedCity(city: String)
         case loadedWeather(weather: [NetworkServiceWeatherModel])  //  ||(subsequent)  обновление погоды на Юай
         
         case error(Error)
@@ -57,6 +58,7 @@ class RootViewModel: RootViewModelProtocol {
                     let latLon = self.latLon(point: weather.response.geoObjectCollection.featureMember[0].geoObject.point.pos)
                     let lat = latLon.0
                     let lon = latLon.1
+                    let city1 = weather.response.geoObjectCollection.featureMember[0].geoObject.name
                     print("✅", weather.response.geoObjectCollection.featureMember[0].geoObject)
             
             
@@ -74,7 +76,17 @@ class RootViewModel: RootViewModelProtocol {
                     ).executeQuery() { (result: Result<NetworkServiceWeatherModel,Error>) in
                         switch result {
                         case .success(let weather):
-                            print("🅿️", weather)
+//                            print("🅿️", weather)
+                            print("🅿️ fact", weather.info)
+                            print("🅿️ fact", weather.fact)
+                            print("🅿️ forecasts", weather.forecasts.count)
+                            weather.forecasts.forEach{ print($0.date) }
+                            weather.forecasts.forEach{ print($0.date_ts) }
+                            weather.forecasts.forEach{ print($0.parts) }
+                            weather.forecasts.forEach{ print($0.hours) }
+                            //класс.массив.forEach { код }
+                            print(city1)
+                            self.state = .loadedCity(city: city1)
                             self.state = .loadedWeather(weather: [weather])
                             
                         case .failure(let error):

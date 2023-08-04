@@ -37,6 +37,9 @@ class RootView: UIView {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: ListFonts.medium500.rawValue, size: 18)
+        label.textAlignment = .center
+        label.lineBreakMode = .byWordWrapping
+        label.text = ""
         label.textColor = .black
         return label
     }()
@@ -51,10 +54,13 @@ class RootView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupNavigationController(navigationItem: UINavigationItem, navigationController: UINavigationController, title: String) {
-        
-        self.titleLabel.text = title
+    func setupTitle(text: String) {
+        self.titleLabel.text = text
+    }
+    
+    func setupNavigationController(navigationItem: UINavigationItem, navigationController: UINavigationController) {
         navigationItem.titleView = titleLabel
+        navigationItem.titleView?.widthAnchor.constraint(equalToConstant: 230).isActive = true
         
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = .systemBackground

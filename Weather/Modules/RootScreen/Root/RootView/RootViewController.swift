@@ -45,8 +45,7 @@ class RootViewController: UIViewController {
         
         self.rootView.setupNavigationController(
             navigationItem: navigationItem,
-            navigationController: navigationController ?? UINavigationController(),
-            title: ""
+            navigationController: navigationController ?? UINavigationController()
         )
         
         self.setupUi()
@@ -91,10 +90,12 @@ class RootViewController: UIViewController {
             case .loadWeather:
                 print("loadWeather")
             
+            case let .loadedCity(city):
+                self.rootView.setupTitle(text: city)
+                self.viewWillLayoutSubviews()
             case let .loadedWeather(weather):
                 print("loadedWeather")
                 // put it in dispatchQueue
-                
                 self.weather = weather
                 mainCityPageViewController.updatePageViewController(weather)
                 

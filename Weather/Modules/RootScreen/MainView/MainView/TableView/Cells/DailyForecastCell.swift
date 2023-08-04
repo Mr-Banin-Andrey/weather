@@ -77,10 +77,10 @@ class DailyForecastCell: UITableViewCell {
         
 //        let index = index
         
-//        self.dateLabel.text = EditingFunctions().codeDate(unixTime: weather.forecasts[index].hours[index].hour_ts, dateFormat: .dayMonths)
-//        self.precipitationLabel.text = EditingFunctions().condition[weather.forecasts[index].parts.day_short.condition]
+        self.dateLabel.text = EditingFunctions().codeDate(unixTime: weather.forecasts[index].date_ts, dateFormat: .dayMonths, secondsFromGMT: weather.info.tzinfo.offset)
+        self.precipitationLabel.text = String(weather.forecasts[index].parts.day_short.prec_strength)
         self.descriptionWeather.text = EditingFunctions().condition[weather.forecasts[index].parts.day_short.condition]
-//        self.fromMinToMaxDegreeLabel.text =
+        self.fromMinToMaxDegreeLabel.text = "\(String(weather.forecasts[index].parts.day_short.temp_min))°-\(String(weather.forecasts[index].parts.night_short.temp))°"
     }
     
     private func setupUi() {
