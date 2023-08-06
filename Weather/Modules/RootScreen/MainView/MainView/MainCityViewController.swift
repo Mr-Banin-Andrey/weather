@@ -35,8 +35,10 @@ class MainCityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .systemBackground
-        manCityView.configureTableView(delegateTable: self, dataSourceTable: self)
+        self.view.backgroundColor = .systemBackground
+        self.manCityView.configureTableView(delegateTable: self, dataSourceTable: self)
+        
+        self.weatherCity.append(weather)
     }
     
     
@@ -73,8 +75,9 @@ class MainCityViewController: UIViewController {
     
     // targets headers
     @objc private func showAllDay() {
-       let allDay = AllDay24HourViewController()
-       navigationController?.pushViewController(allDay, animated: true)
+        let allDay = AllDay24HourViewController(weather: weather)
+        
+        navigationController?.pushViewController(allDay, animated: true)
     }
     
     @objc private func showTwentyFiveDays() {
@@ -94,7 +97,7 @@ extension MainCityViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         if section == 1 {
-            return 7
+            return 6
         }
         return 0
     }
@@ -133,7 +136,7 @@ extension MainCityViewController: UITableViewDataSource, UITableViewDelegate {
                 return cell
             }
             
-            
+            cell.addWeatherInArray(weather: weather)
             cell.backgroundColor = .systemBackground
             return cell
         }
@@ -144,7 +147,7 @@ extension MainCityViewController: UITableViewDataSource, UITableViewDelegate {
                 return cell
             }
             
-            cell.setupCell(for: weather, index: indexPath.row)
+            cell.setupCell(for: weather, index: indexPath.row + 1)
             cell.backgroundColor = .systemBackground
             return cell
         }
@@ -155,6 +158,8 @@ extension MainCityViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
+            let cell = tableView.cellForRow(at: indexPath) as! DailyForecastCell
+            let weatherDay = cell.setWeather()
 //            guard let day =            
             let summaryOfTheDay = SummaryOfTheDayViewController()
             self.navigationController?.pushViewController(summaryOfTheDay, animated: true)

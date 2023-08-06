@@ -35,7 +35,6 @@ class SummaryOfTheDayCollectionView: UITableViewCell {
     private func setupUi() {
         self.contentView.addSubview(collectionView)
         
-//        let widthScreen = UIScreen.main.bounds.width
         NSLayoutConstraint.activate([
             self.collectionView.topAnchor.constraint(equalTo: self.contentView.topAnchor),
             self.collectionView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),

@@ -76,13 +76,13 @@ class RootViewModel: RootViewModelProtocol {
                     ).executeQuery() { (result: Result<NetworkServiceWeatherModel,Error>) in
                         switch result {
                         case .success(let weather):
-//                            print("🅿️", weather)
-                            print("🅿️ fact", weather.info)
+                            print("🅿️", weather.now, weather.now_dt)
+                            print("🅿️ info", weather.info)
                             print("🅿️ fact", weather.fact)
                             print("🅿️ forecasts", weather.forecasts.count)
-                            weather.forecasts.forEach{ print($0.date) }
-                            weather.forecasts.forEach{ print($0.date_ts) }
-                            weather.forecasts.forEach{ print($0.parts) }
+//                            weather.forecasts.forEach{ print($0.date) }
+//                            weather.forecasts.forEach{ print($0.date_ts) }
+//                            weather.forecasts.forEach{ print($0.parts) }
                             weather.forecasts.forEach{ print($0.hours) }
                             //класс.массив.forEach { код }
                             print(city1)

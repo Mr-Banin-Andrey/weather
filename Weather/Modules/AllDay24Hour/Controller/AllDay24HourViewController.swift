@@ -8,6 +8,20 @@ class AllDay24HourViewController: UIViewController {
     
     private lazy var allDay24HourView = AllDay24HourView(delegate: self)
     
+    private let weather: NetworkServiceWeatherModel
+    
+    init(weather: NetworkServiceWeatherModel) {
+        self.weather = weather
+        super.init(nibName: nil, bundle: nil)
+        
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+//    self.allDay24HourView.setupTitle(text: weather)
+    
     override func loadView() {
         super.loadView()
         

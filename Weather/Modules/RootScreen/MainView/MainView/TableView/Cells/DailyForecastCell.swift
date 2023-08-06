@@ -18,7 +18,6 @@ class DailyForecastCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: ListFonts.regular400.rawValue, size: 16)
         label.textColor = UIColor(named: ListColors.gray.rawValue)
-//        label.text = "08/07"
         return label
     }()
     
@@ -34,7 +33,6 @@ class DailyForecastCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: ListFonts.regular400.rawValue, size: 12)
         label.textColor = UIColor(named: ListColors.blue.rawValue)
-        label.text = "57%"
         return label
     }()
     
@@ -43,7 +41,6 @@ class DailyForecastCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: ListFonts.regular400.rawValue, size: 16)
         label.textColor = .black
-//        label.text = "Местами дождь"
         return label
     }()
     
@@ -63,6 +60,8 @@ class DailyForecastCell: UITableViewCell {
         return image
     }()
     
+    private var varibleDate: Int = 0
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -75,12 +74,24 @@ class DailyForecastCell: UITableViewCell {
     
     func setupCell(for weather: NetworkServiceWeatherModel, index: Int) {
         
-//        let index = index
+        varibleDate = weather.forecasts[index].date_ts
         
-        self.dateLabel.text = EditingFunctions().codeDate(unixTime: weather.forecasts[index].date_ts, dateFormat: .dayMonths, secondsFromGMT: weather.info.tzinfo.offset)
-        self.precipitationLabel.text = String(weather.forecasts[index].parts.day_short.prec_strength)
-        self.descriptionWeather.text = EditingFunctions().condition[weather.forecasts[index].parts.day_short.condition]
-        self.fromMinToMaxDegreeLabel.text = "\(String(weather.forecasts[index].parts.day_short.temp_min))°-\(String(weather.forecasts[index].parts.night_short.temp))°"
+        self.dateLabel.text = DecodingOfDate.shared.codeDate(unixTime: weather.forecasts[index].date_ts,
+                                                             dateFormat: .dayMonths,
+                                                             secondsFromGMT: weather.info.tzinfo.offset)
+        
+        self.precipitationLabel.text = WeatherDescription().precipitationOrCloudness[weather.forecasts[index].parts.day_short.prec_strength]
+        
+        self.descriptionWeather.text = WeatherDescription().condition[weather.forecasts[index].parts.day_short.condition]
+
+        self.fromMinToMaxDegreeLabel.text = DecodingOfDegree.shared.minToMaxDegree(weather: weather,
+                                                                                   index: index,
+                                                                                   separator: .dash)
+    }
+    
+    func setWeather() -> Int {
+        print("DailyForecastCell - setWeather -> varibleDate -", varibleDate)
+        return varibleDate
     }
     
     private func setupUi() {
@@ -121,7 +132,6 @@ class DailyForecastCell: UITableViewCell {
         self.descriptionWeather.snp.makeConstraints { make in
             make.top.equalTo(self.backView.snp.top).inset(19)
             make.leading.equalTo(self.dateLabel.snp.trailing).offset(16)
-            make.trailing.equalTo(self.backView.snp.trailing).inset(75)
             make.height.equalTo(19)
             make.bottom.equalTo(self.backView.snp.bottom).inset(18)
         }
@@ -129,6 +139,7 @@ class DailyForecastCell: UITableViewCell {
         self.fromMinToMaxDegreeLabel.snp.makeConstraints { make in
             make.top.equalTo(self.backView.snp.top).inset(17)
             make.leading.equalTo(self.descriptionWeather.snp.trailing).offset(5)
+            make.trailing.equalTo(self.backView.snp.trailing).inset(24)
             make.height.equalTo(22)
             make.bottom.equalTo(self.backView.snp.bottom).inset(17)
         }
@@ -136,8 +147,8 @@ class DailyForecastCell: UITableViewCell {
         self.transitionImage.snp.makeConstraints { make in
             make.top.equalTo(self.backView.snp.top).inset(23)
             make.trailing.equalTo(self.backView.snp.trailing).inset(10)
-            make.height.equalTo(10)
-            make.width.equalTo(6)
+            make.height.equalTo(9)
+            make.width.equalTo(7)
         }
         
     }

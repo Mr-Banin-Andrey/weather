@@ -48,21 +48,26 @@ class HourlyWeatherCellInTableViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    func setupCell(hour: Hours, weather: NetworkServiceWeatherModel) {
+//        let timeNow = Int(DecodingOfDate.shared.codeDate(unixTime: weather.now, dateFormat: .hour, secondsFromGMT: weather.info.tzinfo.offset))
+        
+        self.clockLabel.text = DecodingOfDate.shared.codeDate(unixTime: hour.hour_ts, dateFormat: .hourMin, secondsFromGMT: weather.info.tzinfo.offset)
+        self.gradusLabel.text = String(hour.temp)
+//        pictureWeatherImage
+    }
     
-//    func setup() {
-//        backView.backgroundColor = UIColor(named: ListColors.blue.rawValue)
-//        clockLabel.textColor = .white
-//        gradusLabel.textColor = .white
-//    }
     
-//    func setupSelect() {
-//        self.backView.backgroundColor = UIColor(named: ListColors.blue.rawValue)
-//        self.dateLabel.textColor = .white
-//    }
-//    
+    func setupSelect() {
+        self.backView.backgroundColor = UIColor(named: ListColors.blue.rawValue)
+        self.clockLabel.textColor = .white
+        self.gradusLabel.textColor = .white
+    }
+//
 //    func setupDeselect() {
 //        self.backView.backgroundColor = nil
-//        self.dateLabel.textColor = .black
+//        self.clockLabel.textColor = .black
+//        self.gradusLabel.textColor = .black
 //    }
     
     private func setupConstraints() {
@@ -94,4 +99,9 @@ class HourlyWeatherCellInTableViewCell: UICollectionViewCell {
         }
     }
     
+    private func addTwoArray() {
+        
+    }
 }
+
+//

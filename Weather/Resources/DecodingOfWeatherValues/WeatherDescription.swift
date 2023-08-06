@@ -1,7 +1,7 @@
 
 import Foundation
 
-class EditingFunctions {
+class WeatherDescription {
    public let condition = [
         "clear":"ясно",
         "partly-cloudy":"малооблачно",
@@ -33,26 +33,11 @@ class EditingFunctions {
         "c":"ш"
     ]
     
-    enum DateFormat: String {
-        case dayMonths = "dd/MM"
-        case hourMin = "HH:mm"
-        case dayWeekDayMonth = "EE dd/MM"
-        case hourMinDayWeekDayMonth = "HH:mm, EE dd MMMM"
-//        case
-    }
-    
-    func codeDate(unixTime: Int, dateFormat: DateFormat, secondsFromGMT: Int) -> String {
-        
-        guard let timeZone = TimeZone(secondsFromGMT: secondsFromGMT) else { return "errorTime" }
-        
-        let date = Date(timeIntervalSince1970: TimeInterval(unixTime))
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "ru_RU")
-        dateFormatter.timeStyle = DateFormatter.Style.short
-        dateFormatter.dateFormat = dateFormat.rawValue
-        dateFormatter.timeZone = .some(timeZone)
-        
-        let localDate = dateFormatter.string(from: date)
-        return localDate
-    }
+    public let precipitationOrCloudness = [
+        0.0:"0%",
+        0.25:"25%",
+        0.5:"50%",
+        0.75:"75%",
+        1.0:"100%"
+    ]
 }

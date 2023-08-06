@@ -41,10 +41,7 @@ class AllDay24HourView: UIView {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor =  .systemBackground
-//        tableView.backgroundColor = .cyan
         tableView.separatorStyle = .none
-//        tableView.separatorStyle = .singleLine
-//        tableView.separatorColor = UIColor(named: ListColors.blue.rawValue)
         return tableView
     }()
     
@@ -66,6 +63,10 @@ class AllDay24HourView: UIView {
         let leftButtonTwo = UIBarButtonItem(customView: backButton)
         
         navItem.leftBarButtonItems = [leftButtonTwo, barCustomLeftButtom]
+    }
+    
+    func setupTitle(text: String) {
+        self.titleLabel.text = text
     }
     
     func configureTableView(
