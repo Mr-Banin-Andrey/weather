@@ -58,7 +58,7 @@ class RootViewModel: RootViewModelProtocol {
                     let latLon = self.latLon(point: weather.response.geoObjectCollection.featureMember[0].geoObject.point.pos)
                     let lat = latLon.0
                     let lon = latLon.1
-                    let city1 = weather.response.geoObjectCollection.featureMember[0].geoObject.name
+                    let cityName = weather.response.geoObjectCollection.featureMember[0].geoObject.name
                     print("✅", weather.response.geoObjectCollection.featureMember[0].geoObject)
             
             
@@ -80,15 +80,16 @@ class RootViewModel: RootViewModelProtocol {
                             print("🅿️ info", weather.info)
                             print("🅿️ fact", weather.fact)
                             print("🅿️ forecasts", weather.forecasts.count)
+                            print("🅿️ forecasts", weather.forecasts)
 //                            weather.forecasts.forEach{ print($0.date) }
 //                            weather.forecasts.forEach{ print($0.date_ts) }
-//                            weather.forecasts.forEach{ print($0.parts) }
-                            weather.forecasts.forEach{ print($0.hours) }
+                            weather.forecasts.forEach{ print($0.parts) }
+//                            weather.forecasts.forEach{ print($0.hours) }
                             //класс.массив.forEach { код }
-                            print(city1)
-                            self.state = .loadedCity(city: city1)
+//                            print(city1)
+                            self.state = .loadedCity(city: cityName)
                             self.state = .loadedWeather(weather: [weather])
-                            
+                    
                         case .failure(let error):
                             print("❌", error)
                         }

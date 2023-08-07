@@ -59,9 +59,7 @@ class DailyForecastCell: UITableViewCell {
         image.image = UIImage(named: "next1")
         return image
     }()
-    
-    private var varibleDate: Int = 0
-    
+        
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -73,9 +71,7 @@ class DailyForecastCell: UITableViewCell {
     }
     
     func setupCell(for weather: NetworkServiceWeatherModel, index: Int) {
-        
-        varibleDate = weather.forecasts[index].date_ts
-        
+                
         self.dateLabel.text = DecodingOfDate.shared.codeDate(unixTime: weather.forecasts[index].date_ts,
                                                              dateFormat: .dayMonths,
                                                              secondsFromGMT: weather.info.tzinfo.offset)
@@ -84,14 +80,9 @@ class DailyForecastCell: UITableViewCell {
         
         self.descriptionWeather.text = WeatherDescription().condition[weather.forecasts[index].parts.day_short.condition]
 
-        self.fromMinToMaxDegreeLabel.text = DecodingOfDegree.shared.minToMaxDegree(weather: weather,
+        self.fromMinToMaxDegreeLabel.text = DecodingOfDegreeMinMax.shared.minToMaxDegree(weather: weather,
                                                                                    index: index,
                                                                                    separator: .dash)
-    }
-    
-    func setWeather() -> Int {
-        print("DailyForecastCell - setWeather -> varibleDate -", varibleDate)
-        return varibleDate
     }
     
     private func setupUi() {

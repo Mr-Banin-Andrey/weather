@@ -130,6 +130,7 @@ struct DayShort: Codable {
     let prec_type: Double // Тип осадков
     let prec_strength: Double // Сила осадков.
     let cloudness: Double // Облачность
+    let uv_index: Int?
 }
 
 struct NightShort: Codable {
@@ -141,6 +142,7 @@ struct NightShort: Codable {
     let prec_type: Double // Тип осадков
     let prec_strength: Double // Сила осадков.
     let cloudness: Double // Облачность
+    let uv_index: Int?
 }
 
 struct Hours: Codable {

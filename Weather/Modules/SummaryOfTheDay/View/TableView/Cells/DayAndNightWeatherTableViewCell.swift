@@ -359,6 +359,85 @@ class DayAndNightWeatherTableViewCell: UITableViewCell {
     
     //MARK: - Methods
 
+    func day(forecast: Forecasts) {
+        guard
+            let speed = forecast.parts.day_short.wind_speed,
+            let speedDes = forecast.parts.day_short.wind_dir
+//            let uvIndex = forecast.parts.day_short.uv_index
+        else { return }
+        
+        let description = WeatherDescription()
+        
+        self.partOfTheDayLabel.text = "День"
+        self.degreeLabel.text = String(forecast.parts.day_short.temp)
+        self.weatherImage.image = selectImageDay(date: forecast.parts.day_short)
+        self.degreeDescripsionLabel.text = description.condition[forecast.parts.day_short.condition]
+
+        self.temperatureFeelsValueLabel.text = String(forecast.parts.day_short.feels_like)
+        self.speedWindValueLabel.text = "\(DecodingOfSpeed.shared.toMsOrKmH(ms: speed)) \(description.windDir[speedDes] ?? "")"
+        self.uvIndexValueLabel.text = "\(description.uvIndexDescription(forecast.parts.day_short.uv_index ?? 0))"
+        self.rainValueLabel.text = description.precipitationOrCloudness[forecast.parts.day_short.prec_strength]
+        self.cloudinessValueLabel.text = description.precipitationOrCloudness[forecast.parts.day_short.cloudness]
+    }
+    
+    
+    func night(forecast: Forecasts) {
+        guard
+            let speed = forecast.parts.night_short.wind_speed,
+            let speedDes = forecast.parts.night_short.wind_dir
+        else { return }
+        
+        let description = WeatherDescription()
+        
+        self.partOfTheDayLabel.text = "Ночь"
+        self.degreeLabel.text = String(forecast.parts.night_short.temp)
+        self.weatherImage.image = selectImageNight(date: forecast.parts.night_short)
+        self.degreeDescripsionLabel.text = description.condition[forecast.parts.night_short.condition]
+
+        self.temperatureFeelsValueLabel.text = String(forecast.parts.night_short.feels_like)
+        self.speedWindValueLabel.text = "\(DecodingOfSpeed.shared.toMsOrKmH(ms: speed)) \(description.windDir[speedDes] ?? "")"
+        self.uvIndexValueLabel.text = "\(description.uvIndexDescription(forecast.parts.night_short.uv_index ?? 0))"
+        self.rainValueLabel.text = description.precipitationOrCloudness[forecast.parts.night_short.prec_strength]
+        self.cloudinessValueLabel.text = description.precipitationOrCloudness[forecast.parts.night_short.cloudness]
+    }
+    
+    private func selectImageDay(date: DayShort) -> UIImage {
+        
+        switch date.condition {
+        case "clear","partly-cloudy":
+            return UIImage(named: ImageWeather.sun.rawValue) ?? UIImage()
+        case "cloudy","overcast":
+            return UIImage(named: ImageWeather.cloudiness.rawValue) ?? UIImage()
+        case "light-rain","rain","light-snow","snow":
+            return UIImage(named: ImageWeather.smallRain.rawValue) ?? UIImage()
+        case "heavy-rain","showers","wet-snow","snow-showers","hail":
+            return UIImage(named: ImageWeather.rain.rawValue) ?? UIImage()
+        case "thunderstorm","thunderstorm-with-rain","thunderstorm-with-hail":
+            return UIImage(named: ImageWeather.lightning.rawValue) ?? UIImage()
+        default:
+            ()
+        }
+        return UIImage()
+    }
+    
+    private func selectImageNight(date: NightShort) -> UIImage {
+        switch date.condition {
+        case "clear","partly-cloudy":
+            return UIImage(named: ImageWeather.sun.rawValue) ?? UIImage()
+        case "cloudy","overcast":
+            return UIImage(named: ImageWeather.cloudiness.rawValue) ?? UIImage()
+        case "light-rain","rain","light-snow","snow":
+            return UIImage(named: ImageWeather.smallRain.rawValue) ?? UIImage()
+        case "heavy-rain","showers","wet-snow","snow-showers","hail":
+            return UIImage(named: ImageWeather.rain.rawValue) ?? UIImage()
+        case "thunderstorm","thunderstorm-with-rain","thunderstorm-with-hail":
+            return UIImage(named: ImageWeather.lightning.rawValue) ?? UIImage()
+        default:
+            ()
+        }
+        return UIImage()
+    }
+    
     private func setupUi() {
         
         self.addSubview(self.backView)

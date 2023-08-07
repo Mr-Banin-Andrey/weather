@@ -203,18 +203,22 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
     
     func setupValue(weather: NetworkServiceWeatherModel) {
         
+        let description = WeatherDescription()
+        
         self.sunriseTimeLabel.text = weather.forecasts[0].rise_begin
         self.sunsetTimeLabel.text = weather.forecasts[0].set_end
         
-        self.fromMinToMaxDegreeLabel.text = DecodingOfDegree.shared.minToMaxDegree(weather: weather,
+        self.fromMinToMaxDegreeLabel.text = DecodingOfDegreeMinMax.shared.minToMaxDegree(weather: weather,
                                                                                    index: 0,
                                                                                    separator: .slash)
         
         self.degreeNowLabel.attributedText = twoFontInLabel(value: String(weather.fact.temp))
-        self.probabilityOfPrecipitationLabel.text =  WeatherDescription().condition[weather.fact.condition]
+        self.probabilityOfPrecipitationLabel.text =  description.condition[weather.fact.condition]
         self.uVIndexLabel.text = "\(String(weather.fact.uv_index)) УФ"
-        self.windLabel.text = "\(String(weather.fact.wind_speed)) м/с \(WeatherDescription().windDir[weather.fact.wind_dir] ?? "")"
-        self.precipitationLabel.text = WeatherDescription().precipitationOrCloudness[weather.forecasts[0].parts.day_short.prec_strength]
+        
+        self.windLabel.text = "\(DecodingOfSpeed.shared.toMsOrKmH(ms: weather.fact.wind_speed)) \(description.windDir[weather.fact.wind_dir] ?? "")"
+        
+        self.precipitationLabel.text = description.precipitationOrCloudness[weather.fact.prec_strength]
         
         self.timeAndDateNowLabel.text = DecodingOfDate.shared.codeDate(
             unixTime: weather.now,

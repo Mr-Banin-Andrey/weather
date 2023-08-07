@@ -40,4 +40,23 @@ class WeatherDescription {
         0.75:"75%",
         1.0:"100%"
     ]
+    
+    public func uvIndexDescription(_ uvIndex: Int) -> String {
+        switch uvIndex {
+        case 0...2:
+            return "\(uvIndex)(низкий)"
+        case 3...5:
+            return "\(uvIndex)(умерен.)"
+        case 6...7:
+            return "\(uvIndex)(высокий)"
+        case 8...10:
+            return "\(uvIndex)(очень выс.)"
+        case 11...:
+            return "\(uvIndex)(экстрем.)"
+        default:
+            ()
+        }
+        return String()
+    }
+    
 }

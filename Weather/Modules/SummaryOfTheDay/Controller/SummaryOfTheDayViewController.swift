@@ -7,6 +7,21 @@ class SummaryOfTheDayViewController: UIViewController {
     
     private lazy var summaryOfTheDayView = SummaryOfTheDayView(delegate: self)
     
+    private var forecast: Forecasts
+    
+//    private var forecast = [Forecasts]()
+    
+    init(
+        forecast: Forecasts
+    ) {
+        self.forecast = forecast
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func loadView() {
         super.loadView()
         
@@ -42,18 +57,7 @@ extension SummaryOfTheDayViewController: UITableViewDelegate, UITableViewDataSou
     func numberOfSections(in tableView: UITableView) -> Int {
         2
     }
-    
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        if section == 0 {
-//            guard
-//                let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "headerId") as? AllDay24HourTimetableHeader
-//            else { return nil }
-//
-//            return header
-//        }
-//        return nil
-//    }
-    
+        
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             guard
@@ -65,7 +69,6 @@ extension SummaryOfTheDayViewController: UITableViewDelegate, UITableViewDataSou
             cell.selectionStyle = .none
             return cell
         }
-//        self.tableView.register(SummaryOfTheDayTableViewCell.self, forCellReuseIdentifier: "weatherId")
         
         if indexPath.section == 1 {
             
@@ -76,6 +79,14 @@ extension SummaryOfTheDayViewController: UITableViewDelegate, UITableViewDataSou
                     let cell = tableView.dequeueReusableCell(withIdentifier: "defaultId", for: indexPath)
                     return cell
                 }
+                if indexPath.row == 0 {
+                    cell.day(forecast: forecast)
+                }
+                if indexPath.row == 1 {
+                    cell.night(forecast: forecast)
+                    
+                }
+                
                 cell.selectionStyle = .none
                 return cell
             }

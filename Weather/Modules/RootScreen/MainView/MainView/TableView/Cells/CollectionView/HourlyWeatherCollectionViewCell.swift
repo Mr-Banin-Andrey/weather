@@ -4,9 +4,8 @@ import UIKit
 
 class HourlyWeatherCollectionViewCell: UITableViewCell {
     
-    var weather = [NetworkServiceWeatherModel]()
-    
-    var hours = [Hours]()
+    private var weather = [NetworkServiceWeatherModel]()
+    private var hours = [Hours]()
         
     private lazy var layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
@@ -43,25 +42,23 @@ class HourlyWeatherCollectionViewCell: UITableViewCell {
     func addWeatherInArray(weather: NetworkServiceWeatherModel) {
         if self.weather.isEmpty {
             self.weather.append(weather)
-            addHoursInArray(weather: weather, nowHour: test())
+            addHoursInArray(weather: weather)
         } else {
             self.weather.removeAll()
             self.weather.append(weather)
-            addHoursInArray(weather: weather, nowHour: test())
+            addHoursInArray(weather: weather)
         }
     }
     
-    func test () -> Int {
-        let weather = weather[0]
-        let weatherTime = Int(DecodingOfDate.shared.codeDate(unixTime: weather.now, dateFormat: .hour, secondsFromGMT: weather.info.tzinfo.offset))
-        return weatherTime!
-    }
     
-    func addHoursInArray(weather: NetworkServiceWeatherModel, nowHour: Int) {
-        hours.removeAll()
+    func addHoursInArray(weather: NetworkServiceWeatherModel) {
+        
+        self.hours.removeAll()
+        
+        let weatherTime = Int(DecodingOfDate.shared.codeDate(unixTime: weather.now, dateFormat: .hour, secondsFromGMT: weather.info.tzinfo.offset))
+        guard let nowHour = weatherTime else { return }
         
         let array = switchArray(time: nowHour)
-        
         let index = 0
         
         for (i, hour) in array.enumerated() {
@@ -79,7 +76,6 @@ class HourlyWeatherCollectionViewCell: UITableViewCell {
                 
                 if let indexTwentyOne = array.firstIndex(of: 21) {
                     for (indexTwo, hourTwo) in array.enumerated() {
-                        
                         if (indexTwo > indexTwentyOne) && (hourTwo == 0) && (hours.count < 7) {
                             hours.append(weather.forecasts[index+1].hours[hourTwo])
                         }
@@ -158,8 +154,8 @@ extension HourlyWeatherCollectionViewCell:  UICollectionViewDataSource, UICollec
         } else {
             
         }
-        
-//        cell.setupCell(weather: )
+        let hour = hours[indexPath.row]
+        cell.setupCell(hour: hour, weather: weather[0])
         return cell
     }
     

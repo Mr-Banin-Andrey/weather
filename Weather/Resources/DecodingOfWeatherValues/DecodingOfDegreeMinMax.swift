@@ -6,9 +6,9 @@ enum Separator: String {
     case dash = "-"
 }
 
-class DecodingOfDegree {
+class DecodingOfDegreeMinMax {
     
-    static let shared = DecodingOfDegree()
+    static let shared = DecodingOfDegreeMinMax()
     
     private init() {}
     
@@ -42,4 +42,10 @@ class DecodingOfDegree {
         
         return "\(String(min))°\(separator.rawValue)\(String(max))°"
     }
+    
+    //func celsiusToFahrenheit(degree: Int) -> String {
+    //    let tempC = Double(degree)
+    //    let tempF = 9.0 / 5.0 * tempC + 32.0
+    //    return "\(tempF)°"
+    //}
 }

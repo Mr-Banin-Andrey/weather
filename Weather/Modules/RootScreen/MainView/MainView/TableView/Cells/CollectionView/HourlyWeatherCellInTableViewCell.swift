@@ -50,11 +50,10 @@ class HourlyWeatherCellInTableViewCell: UICollectionViewCell {
     }
 
     func setupCell(hour: Hours, weather: NetworkServiceWeatherModel) {
-//        let timeNow = Int(DecodingOfDate.shared.codeDate(unixTime: weather.now, dateFormat: .hour, secondsFromGMT: weather.info.tzinfo.offset))
         
         self.clockLabel.text = DecodingOfDate.shared.codeDate(unixTime: hour.hour_ts, dateFormat: .hourMin, secondsFromGMT: weather.info.tzinfo.offset)
         self.gradusLabel.text = String(hour.temp)
-//        pictureWeatherImage
+        self.pictureWeatherImage.image = selectImage(hour: hour)
     }
     
     
@@ -62,6 +61,25 @@ class HourlyWeatherCellInTableViewCell: UICollectionViewCell {
         self.backView.backgroundColor = UIColor(named: ListColors.blue.rawValue)
         self.clockLabel.textColor = .white
         self.gradusLabel.textColor = .white
+    }
+    
+    private func selectImage(hour: Hours) -> UIImage {
+        
+        switch hour.condition {
+        case "clear","partly-cloudy":
+            return UIImage(named: ImageWeather.sun.rawValue) ?? UIImage()
+        case "cloudy","overcast":
+            return UIImage(named: ImageWeather.cloudiness.rawValue) ?? UIImage()
+        case "light-rain","rain","light-snow","snow":
+            return UIImage(named: ImageWeather.smallRain.rawValue) ?? UIImage()
+        case "heavy-rain","showers","wet-snow","snow-showers","hail":
+            return UIImage(named: ImageWeather.rain.rawValue) ?? UIImage()
+        case "thunderstorm","thunderstorm-with-rain","thunderstorm-with-hail":
+            return UIImage(named: ImageWeather.lightning.rawValue) ?? UIImage()
+        default:
+            ()
+        }
+        return UIImage()
     }
 //
 //    func setupDeselect() {
@@ -98,10 +116,4 @@ class HourlyWeatherCellInTableViewCell: UICollectionViewCell {
             make.centerX.equalTo(self.backView.snp.centerX)
         }
     }
-    
-    private func addTwoArray() {
-        
-    }
 }
-
-//
