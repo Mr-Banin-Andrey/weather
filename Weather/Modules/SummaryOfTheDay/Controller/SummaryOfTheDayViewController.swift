@@ -6,15 +6,19 @@ import SnapKit
 class SummaryOfTheDayViewController: UIViewController {
     
     private lazy var summaryOfTheDayView = SummaryOfTheDayView(delegate: self)
-    
+        
+    private var nameCity: String
     private var forecast: Forecasts
-    
-//    private var forecast = [Forecasts]()
-    
+    private var weather: NetworkServiceWeatherModel
+        
     init(
-        forecast: Forecasts
+        nameCity: String,
+        forecast: Forecasts,
+        weather: NetworkServiceWeatherModel
     ) {
+        self.nameCity = nameCity
         self.forecast = forecast
+        self.weather = weather
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -33,6 +37,13 @@ class SummaryOfTheDayViewController: UIViewController {
         
         self.summaryOfTheDayView.navigationController(navItem: navigationItem)
         self.summaryOfTheDayView.configureTableView(delegateTable: self, dataSourceTable: self)
+        self.summaryOfTheDayView.setupTitle(text: nameCity)
+        
+    }
+    
+    private func loadAnotherDay(forecast: Forecasts) {
+        self.forecast = forecast
+        self.summaryOfTheDayView.reloadTableView()
     }
 }
 
@@ -41,6 +52,7 @@ extension SummaryOfTheDayViewController: SummaryOfTheDayViewDelegate {
         self.navigationController?.popViewController(animated: true)
     }
 }
+
 
 extension SummaryOfTheDayViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -66,6 +78,12 @@ extension SummaryOfTheDayViewController: UITableViewDelegate, UITableViewDataSou
                 let cell = tableView.dequeueReusableCell(withIdentifier: "defaultId", for: indexPath)
                 return cell
             }
+            
+            cell.tapAction = { [unowned self] forecast in
+                self.loadAnotherDay(forecast: forecast)
+            }
+            
+            cell.addForecast(forecast: forecast, weather: weather)
             cell.selectionStyle = .none
             return cell
         }
@@ -84,7 +102,6 @@ extension SummaryOfTheDayViewController: UITableViewDelegate, UITableViewDataSou
                 }
                 if indexPath.row == 1 {
                     cell.night(forecast: forecast)
-                    
                 }
                 
                 cell.selectionStyle = .none
@@ -98,6 +115,8 @@ extension SummaryOfTheDayViewController: UITableViewDelegate, UITableViewDataSou
                     let cell = tableView.dequeueReusableCell(withIdentifier: "defaultId", for: indexPath)
                     return cell
                 }
+                
+                cell.setup(forecast: forecast)
                 cell.selectionStyle = .none
                 return cell
             }

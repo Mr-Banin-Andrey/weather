@@ -3,7 +3,12 @@ import Foundation
 import UIKit
 
 class SummaryOfTheDayCollectionView: UITableViewCell {
-            
+    
+    var tapAction: ((Forecasts) -> Void)?
+        
+    private var forecast = [Forecasts]()
+    private var weather: NetworkServiceWeatherModel?
+    
     private lazy var layout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -22,14 +27,28 @@ class SummaryOfTheDayCollectionView: UITableViewCell {
     }()
     
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    private override init(
+        style: UITableViewCell.CellStyle,
+        reuseIdentifier: String?
+    ) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
+        
         self.setupUi()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    func addForecast(forecast: Forecasts, weather: NetworkServiceWeatherModel) {
+        if self.forecast.isEmpty {
+            self.forecast.append(forecast)
+            self.weather = weather
+        } else {
+            self.forecast.removeAll()
+            self.forecast.append(forecast)
+            self.weather = weather
+        }
     }
     
     private func setupUi() {
@@ -49,37 +68,43 @@ class SummaryOfTheDayCollectionView: UITableViewCell {
 
 extension SummaryOfTheDayCollectionView:  UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 14
+        guard let count = weather?.forecasts.count else { return 0 }
+        return count - 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SummaryOfTheDayCustomCell", for: indexPath) as? SummaryOfTheDayCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SummaryOfTheDayCustomCell", for: indexPath) as? SummaryOfTheDayCollectionViewCell,
+            let weather = weather
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "summaryOfTheDayDefaultId", for: indexPath)
             return cell
         }
         
-        if cell.isSelected {
-            cell.setupSelect()
-        } else {
-            cell.setupDeselect()
+        if forecast[0].date_ts == weather.forecasts[indexPath.row+1].date_ts {
+            cell.isSelected = true
+            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
         }
-
+        
+        cell.setupDate(weather: weather, index: (indexPath.row))
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? SummaryOfTheDayCollectionViewCell {
-            cell.setupSelect()
+
+            guard let forecast = cell.forecast else { return }
+            tapAction?(forecast)
+            cell.isSelected = true
         }
+//        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+//        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? SummaryOfTheDayCollectionViewCell {
-            cell.setupDeselect()
+            cell.isSelected = false
         }
     }
     

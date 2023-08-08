@@ -9,7 +9,8 @@ class RootViewController: UIViewController {
     
     private lazy var rootView = RootView(delegate: self)
     
-    private var weather: [NetworkServiceWeatherModel] = []
+//    private var weather: [NetworkServiceWeatherModel] = []
+    private var cityNameAndWeather: [CityNameAndWeatherModel] = []
     
     private lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
@@ -25,7 +26,8 @@ class RootViewController: UIViewController {
         
     private lazy var mainCityPageViewController = MainCityPageViewController(
         delegateM: self,
-        cities: weather
+//        cities: weather,
+        cityNameAndWeather: cityNameAndWeather
     )
     
     init(viewModel: RootViewModelProtocol) {
@@ -91,13 +93,15 @@ class RootViewController: UIViewController {
                 print("loadWeather")
             
             case let .loadedCity(city):
-                self.rootView.setupTitle(text: city)
-                self.viewWillLayoutSubviews()
-            case let .loadedWeather(weather):
+                print("loadedCity", city)
+//                self.rootView.setupTitle(text: city)
+            case let .loadedWeather(city, weather):
                 print("loadedWeather")
                 // put it in dispatchQueue
-                self.weather = weather
-                mainCityPageViewController.updatePageViewController(weather)
+//                self.weather = weather
+                self.rootView.setupTitle(text: city)
+                self.cityNameAndWeather = [CityNameAndWeatherModel(nameCity: city, weather: weather)]
+                self.mainCityPageViewController.updatePageViewController([CityNameAndWeatherModel(nameCity: city, weather: weather)])
                 
             case .error(_):
                 print("error")

@@ -282,6 +282,50 @@ class SunAndMoonTableViewCell: UITableViewCell {
     
     //MARK: - Methods
 
+    func setup(forecast: Forecasts) {
+        self.sunTimeLabel.text = convertTime(forecast: forecast)
+        self.sunriseTimeLabel.text = String(forecast.rise_begin ?? "")
+        self.sunsetTimeLabel.text = String(forecast.set_end ?? "")
+        
+        self.fullMoonTitleLabel.text = WeatherDescription().moonText[forecast.moon_text]
+//        self.moonTimeLabel.text = WeatherDescription().moonText[forecast.moon_text]
+//        self.moonriseTimeLabel.text =
+//        self.moonsetTimeLabel.text =
+    }
+    
+    private func convertTime(forecast: Forecasts) -> String {
+        
+        let sunrise = forecast.rise_begin
+        let sunset =  forecast.set_end
+        
+        guard
+            let sunrise = sunrise,
+            let sunset = sunset
+        else { return ""}
+        
+        let sunriseArray = sunrise.components(separatedBy: ":")
+        let sunsetArray = sunset.components(separatedBy: ":")
+        
+        
+        let sunriseHour: Int = Int(sunriseArray[0]) ?? 0
+        let sunriseMin: Int = Int(sunriseArray[0]) ?? 0
+        
+        let hourToMinRise = (sunriseHour * 60) + sunriseMin
+        
+        let sunsetHour: Int = Int(sunsetArray[0]) ?? 0
+        let sunsetMin: Int = Int(sunsetArray[0]) ?? 0
+        
+        let hourToMinSet = (sunsetHour * 60) + sunsetMin
+        
+        let min = hourToMinSet - hourToMinRise
+        
+        let a = (min / 60)
+        let b = (min % 60)
+        
+        print("\(a):\(b)")
+        return "\(a)ч \(b)мин"
+    }
+    
     private func setupUi() {
         self.addSubview(self.backView)
         self.addSubview(self.sunAndMoonTitleLabel)

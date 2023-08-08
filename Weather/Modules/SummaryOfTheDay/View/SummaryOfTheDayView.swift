@@ -59,7 +59,13 @@ class SummaryOfTheDayView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-
+    func setupTitle(text: String) {
+        self.titleLabel.text = text
+    }
+    
+    func reloadTableView() {
+        self.tableView.reloadSections(IndexSet(integer: 1), with: .automatic)
+    }
     
     func configureTableView(
         delegateTable: UITableViewDelegate,

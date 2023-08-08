@@ -9,7 +9,7 @@ class DecodingOfSpeed {
     
     func toMsOrKmH(ms: Double) -> String{
 
-//        return "\(String(ms * 3.6)) km/h"
-        return "\(String(ms)) m/s"
+//        return "\(String(ms * 3.6)) км/ч"
+        return "\(String(ms)) м/с"
     }
 }

@@ -13,7 +13,7 @@ class RootViewModel: RootViewModelProtocol {
         case selectCity // выбор города в алерте
         case loadWeather// загрузка по локации или по выбору в алерте города ||(subsequent) фоном загрузка погоды
         case loadedCity(city: String)
-        case loadedWeather(weather: [NetworkServiceWeatherModel])  //  ||(subsequent)  обновление погоды на Юай
+        case loadedWeather(city: String, weather: NetworkServiceWeatherModel)  //  ||(subsequent)  обновление погоды на Юай
         
         case error(Error)
 //        case firstLaunchDoNotUseLocation // первый пуск без допуска к локации
@@ -87,8 +87,8 @@ class RootViewModel: RootViewModelProtocol {
 //                            weather.forecasts.forEach{ print($0.hours) }
                             //класс.массив.forEach { код }
 //                            print(city1)
-                            self.state = .loadedCity(city: cityName)
-                            self.state = .loadedWeather(weather: [weather])
+//                            self.state = .loadedCity(city: cityName)
+                            self.state = .loadedWeather(city: cityName, weather: weather)
                     
                         case .failure(let error):
                             print("❌", error)

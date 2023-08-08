@@ -7,13 +7,16 @@ class MainCityViewController: UIViewController {
 //    private let viewModel: MainViewModelProtocol
 
     private lazy var manCityView = MainCityView(delegate: self)
-    private var weather: NetworkServiceWeatherModel
+//    private var weather: NetworkServiceWeatherModel
+//    private var weatherCity: [NetworkServiceWeatherModel] = []
     
-    private var weatherCity: [NetworkServiceWeatherModel] = []
+    private var weather: CityNameAndWeatherModel
+    private var weatherCity: [CityNameAndWeatherModel] = []
     
     init(
 //        viewModel: MainViewModelProtocol,
-        weather: NetworkServiceWeatherModel
+//        weather: NetworkServiceWeatherModel
+        weather: CityNameAndWeatherModel
     ) {
 //        self.viewModel = viewModel
         self.weather = weather
@@ -110,7 +113,7 @@ extension MainCityViewController: UITableViewDataSource, UITableViewDelegate {
             else { return nil }
             
             header.detailedWeatherForTheDayButton.addTarget(self, action: #selector(showAllDay), for: .touchUpInside)
-            header.setupValue(weather: weather)
+            header.setupValue(weather: weather.weather)
             return header
         }
 
@@ -133,7 +136,7 @@ extension MainCityViewController: UITableViewDataSource, UITableViewDelegate {
                 return cell
             }
             
-            cell.addWeatherInArray(weather: weather)
+            cell.addWeatherInArray(weather: weather.weather)
             cell.backgroundColor = .systemBackground
             cell.selectionStyle = .none
             return cell
@@ -145,7 +148,7 @@ extension MainCityViewController: UITableViewDataSource, UITableViewDelegate {
                 return cell
             }
             
-            cell.setupCell(for: weather, index: indexPath.row + 1)
+            cell.setupCell(for: weather.weather, index: indexPath.row + 1)
             cell.backgroundColor = .systemBackground
             cell.selectionStyle = .none
             return cell
@@ -158,8 +161,12 @@ extension MainCityViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             
-            if let cell = tableView.cellForRow(at: indexPath) as? DailyForecastCell {
-                let summaryOfTheDay = SummaryOfTheDayViewController(forecast: weather.forecasts[indexPath.row+1])
+            if tableView.cellForRow(at: indexPath) is DailyForecastCell {
+                let summaryOfTheDay = SummaryOfTheDayViewController(
+                    nameCity: weather.nameCity,
+                    forecast: weather.weather.forecasts[indexPath.row+1],
+                    weather: weather.weather
+                )
                 self.navigationController?.pushViewController(summaryOfTheDay, animated: true)
             }
         }

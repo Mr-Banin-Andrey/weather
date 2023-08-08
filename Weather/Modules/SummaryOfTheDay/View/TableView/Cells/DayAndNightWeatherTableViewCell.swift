@@ -363,7 +363,6 @@ class DayAndNightWeatherTableViewCell: UITableViewCell {
         guard
             let speed = forecast.parts.day_short.wind_speed,
             let speedDes = forecast.parts.day_short.wind_dir
-//            let uvIndex = forecast.parts.day_short.uv_index
         else { return }
         
         let description = WeatherDescription()
