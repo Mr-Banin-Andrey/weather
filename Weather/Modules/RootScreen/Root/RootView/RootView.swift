@@ -46,7 +46,6 @@ class RootView: UIView {
     
     init(delegate: RootViewProtocol) {
         self.delegate = delegate
-        
         super.init(frame: .zero)
     }
     

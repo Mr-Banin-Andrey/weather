@@ -87,9 +87,9 @@ class HourlyWeatherCollectionViewCell: UITableViewCell {
                 }
             }
         }
-        hours.forEach { v in
-            print(v)
-        }
+//        hours.forEach { v in
+//            print(v)
+//        }
     }
     
     private func switchArray(time: Int) -> [Int] {

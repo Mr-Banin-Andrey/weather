@@ -41,6 +41,10 @@ class SummaryOfTheDayViewController: UIViewController {
         
     }
     
+    deinit {
+        print("deinit SummaryOfTheDayViewController")
+    }
+    
     private func loadAnotherDay(forecast: Forecasts) {
         self.forecast = forecast
         self.summaryOfTheDayView.reloadTableView()

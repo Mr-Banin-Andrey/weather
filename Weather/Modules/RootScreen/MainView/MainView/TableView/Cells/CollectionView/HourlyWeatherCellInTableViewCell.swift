@@ -52,7 +52,7 @@ class HourlyWeatherCellInTableViewCell: UICollectionViewCell {
     func setupCell(hour: Hours, weather: NetworkServiceWeatherModel) {
         
         self.clockLabel.text = DecodingOfDate.shared.codeDate(unixTime: hour.hour_ts, dateFormat: .hourMin, secondsFromGMT: weather.info.tzinfo.offset)
-        self.gradusLabel.text = String(hour.temp)
+        self.gradusLabel.text = "\(hour.temp)°"
         self.pictureWeatherImage.image = selectImage(hour: hour)
     }
     
@@ -81,7 +81,7 @@ class HourlyWeatherCellInTableViewCell: UICollectionViewCell {
         }
         return UIImage()
     }
-//
+
 //    func setupDeselect() {
 //        self.backView.backgroundColor = nil
 //        self.clockLabel.textColor = .black

@@ -254,6 +254,21 @@ class AllDay24HourTimetableCell: UITableViewCell {
     }
     
     //MARK: - Methods
+    
+    func setupCell(hour: Hours, weather: NetworkServiceWeatherModel) {
+        
+        let description = WeatherDescription()
+        
+        self.dateLabel.text = DecodingOfDate.shared.codeDate(unixTime: hour.hour_ts, dateFormat: .dayWeekDayMonth, secondsFromGMT: weather.info.tzinfo.offset)
+        self.timeLabel.text = DecodingOfDate.shared.codeDate(unixTime: hour.hour_ts, dateFormat: .hourMin, secondsFromGMT: weather.info.tzinfo.offset)
+        self.degreeLabel.text = "\(hour.temp)°"
+        
+        self.descriptionLabel.text = "\(WeatherDescription().condition[hour.condition] ?? "") По ощущению \(hour.feels_like)°"
+        self.windSpeedValueLabel.text = "\(DecodingOfSpeed.shared.toMsOrKmH(ms: hour.wind_speed ?? 0.0)) \(description.windDir[hour.wind_dir ?? ""] ?? "")"
+        self.precipitationValueLabel.text = description.precipitationOrCloudness[hour.prec_strength]
+        self.cloudinessValueLabel.text = description.precipitationOrCloudness[hour.cloudness]
+    }
+    
     private func setupUi() {
         
         self.addSubview(self.backView)

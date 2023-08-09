@@ -8,23 +8,9 @@ protocol MainCityPageViewControllerDelegate: AnyObject {
 
 class MainCityPageViewController: UIPageViewController {
     
-//    var tapAction: ((_ index: Int) -> Void)?
-    
-//    var cities: [NetworkServiceWeatherModel] = []
-    
     var cityNameAndWeather: [CityNameAndWeatherModel] = []
-    
+        
     weak var delegateMain: MainCityPageViewControllerDelegate?
-    
-//    lazy var arrayCityViewController: [MainCityViewController] = {
-//        var citiesVC = [MainCityViewController]()
-//        for city in cities {
-//                citiesVC.append(MainCityViewController(
-//                    weather: city
-//                ))
-//            }
-//        return citiesVC
-//    }()
     
     lazy var arrayCityViewController: [MainCityViewController] = {
         var citiesVC = [MainCityViewController]()
@@ -42,68 +28,43 @@ class MainCityPageViewController: UIPageViewController {
         options: [UIPageViewController.OptionsKey : Any]? = nil,
         delegateM: MainCityPageViewControllerDelegate,
         cityNameAndWeather: [CityNameAndWeatherModel]
-//        cities: [NetworkServiceWeatherModel]
     ) {
         super.init(transitionStyle: .scroll, navigationOrientation: navigationOrientation, options: nil)
 
-        self.view.backgroundColor = .cyan
         self.dataSource = self
         self.delegate = self
         self.delegateMain = delegateM
-//        self.cities = cities
         self.cityNameAndWeather = cityNameAndWeather
-
+        
         if let initialVc = arrayCityViewController.first {
             setViewControllerToBeDisplayed(viewController: initialVc)
         }
         
-//        delegateMain?.didUpdatePageCount(self, didUpdatePageCount: cities.count)
-        delegateMain?.didUpdatePageCount(self, didUpdatePageCount: cityNameAndWeather.count)
+        delegateMain?.didUpdatePageCount(self, didUpdatePageCount: self.cityNameAndWeather.count)
+        
+        if self.cityNameAndWeather.isEmpty {
+            self.view.backgroundColor = .clear
+        }
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    func updatePageViewController(_ weatherCity: [NetworkServiceWeatherModel]) {
-//
-//        self.cities = weatherCity
-//
-//        let arrayCityViewController1: [MainCityViewController] = {
-//            var citiesVC = [MainCityViewController]()
-//            for city in cities {
-//                    citiesVC.append(MainCityViewController(
-//                        weather: city
-//                    ))
-//                }
-//            return citiesVC
-//        }()
-//
-//        setViewControllers(arrayCityViewController1, direction: .forward, animated: false,
-//                           completion: { (finished) -> Void in
-//            self.notifyPageControlOfNewIndex()
-//        } )
-//        delegateMain?.didUpdatePageIndex(self, didUpdatePageIndex: 0)
-//        delegateMain?.didUpdatePageCount(self, didUpdatePageCount: cities.count)
-//    }
     func updatePageViewController(_ weatherCity: [CityNameAndWeatherModel]) {
         
-        self.cityNameAndWeather = weatherCity
+        self.cityNameAndWeather.removeAll()
+        self.arrayCityViewController.removeAll()
         
-        let arrayCityViewController1: [MainCityViewController] = {
-            var citiesVC = [MainCityViewController]()
-            for city in cityNameAndWeather {
-                    citiesVC.append(MainCityViewController(
-                        weather: city
-                    ))
-                }
-            return citiesVC
-        }()
+        weatherCity.forEach { city in
+            arrayCityViewController.append(MainCityViewController(weather: city))
+            cityNameAndWeather.append(city)
+        }
+
+        if let initialVc = arrayCityViewController.first {
+            setViewControllerToBeDisplayed(viewController: initialVc)
+        }
         
-        setViewControllers(arrayCityViewController1, direction: .forward, animated: false,
-                           completion: { (finished) -> Void in
-            self.notifyPageControlOfNewIndex()
-        } )
         delegateMain?.didUpdatePageIndex(self, didUpdatePageIndex: 0)
         delegateMain?.didUpdatePageCount(self, didUpdatePageCount: cityNameAndWeather.count)
     }
@@ -112,10 +73,13 @@ class MainCityPageViewController: UIPageViewController {
         viewController: UIViewController,
         direction: UIPageViewController.NavigationDirection = .forward
     ) {
-        setViewControllers([viewController], direction: direction, animated: true,
-                           completion: { (finished) -> Void in
+        setViewControllers(
+            [viewController],
+            direction: direction,
+            animated: true,
+            completion: { (finished) -> Void in
             self.notifyPageControlOfNewIndex()
-        } )
+        })
     }
     
     func scrollToViewController(index newIndex: Int) {
@@ -130,7 +94,7 @@ class MainCityPageViewController: UIPageViewController {
     private func notifyPageControlOfNewIndex() {
         if let firstViewController = viewControllers?.first,
            let index = arrayCityViewController.firstIndex(of: firstViewController as! MainCityViewController) {
-            print("notifyPageControlOfNewIndex", index)
+//            print("notifyPageControlOfNewIndex", index)
             delegateMain?.didUpdatePageIndex(self, didUpdatePageIndex: index)
         }
     }
@@ -150,14 +114,6 @@ extension MainCityPageViewController: UIPageViewControllerDataSource {
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        
-//        guard let viewController = viewController as? MainCityViewController else { return nil }
-//        if let index = arrayCityViewController.firstIndex(of: viewController) {
-//            if index < cities.count - 1 {
-//                return arrayCityViewController[index + 1]
-//            }
-//        }
-//        return nil
         guard let viewController = viewController as? MainCityViewController else { return nil }
         if let index = arrayCityViewController.firstIndex(of: viewController) {
             if index < cityNameAndWeather.count - 1 {

@@ -4,21 +4,13 @@ import UIKit
 
 class MainCityViewController: UIViewController {
     
-//    private let viewModel: MainViewModelProtocol
-
     private lazy var manCityView = MainCityView(delegate: self)
-//    private var weather: NetworkServiceWeatherModel
-//    private var weatherCity: [NetworkServiceWeatherModel] = []
     
-    private var weather: CityNameAndWeatherModel
-    private var weatherCity: [CityNameAndWeatherModel] = []
+    var weather: CityNameAndWeatherModel
     
     init(
-//        viewModel: MainViewModelProtocol,
-//        weather: NetworkServiceWeatherModel
         weather: CityNameAndWeatherModel
     ) {
-//        self.viewModel = viewModel
         self.weather = weather
         super.init(nibName: nil, bundle: nil)
     }
@@ -38,45 +30,14 @@ class MainCityViewController: UIViewController {
 
         self.view.backgroundColor = .systemBackground
         self.manCityView.configureTableView(delegateTable: self, dataSourceTable: self)
-        
-        self.weatherCity.append(weather)
+                
     }
     
-    
-//    private func bindViewModel() {
-//        viewModel.otStateDidChange = { [weak self] state in
-//            guard let self = self else {
-//                return
-//            }
-//
-//            switch state {
-//            case .initial:
-//                print("initial")
-//            case .firstLaunchDoNotUseLocation:
-//                print("firstLaunchDoNotUseLocation")
-//            case .firstLaunchUseLocation:
-//                print("firstLaunchUseLocation")
-////                self.mainCityPageViewController.
-//            case .selectCity:
-//                print("selectCity")
-//            case .loadWeather:
-//                print("loadWeather")
-//            case .loadedWeather:
-//                print("loadedWeather")
-//            case .loadedWeatherAndSaveInCoreDate:
-//                print("loadedWeatherAndSaveInCoreDate")
-//            case .subsequentLaunch:
-//                print("subsequentLaunch")
-//            case .error:
-//                print("error")
-//
-//            }
-//        }
-//    }
     
     // targets headers
     @objc private func showAllDay() {
         let allDay = AllDay24HourViewController(weather: weather)
+        allDay.addWeatherInArray(weather: weather.weather)
         navigationController?.pushViewController(allDay, animated: true)
     }
     

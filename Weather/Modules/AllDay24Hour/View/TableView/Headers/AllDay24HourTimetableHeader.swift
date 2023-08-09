@@ -729,41 +729,43 @@ class AllDay24HourTimetableHeader: UITableViewHeaderFooterView {
         return array
     }
     
-    func setupForecast() {
+    
+    
+    func setupHeader(hour: [Hours], weather: NetworkServiceWeatherModel) {
     // переписать высоту для кружочков
 //        circleOneImage.snp.makeConstraints { make in
 //            make.top.equalTo(self.backView.snp.top).inset(27)   --- min
 //            make.top.equalTo(self.backView.snp.top).inset(45)   --- max
 //        }
-    
-//        degreeLabelOne.text
-//        precipitationLabelOne.text
-//        precipitationTimeLabelOne.text
+        let description = WeatherDescription()
         
-//        degreeLabelTwo.text
-//        precipitationLabelTwo.text
-//        precipitationTimeLabelTwo.text
-
-//        degreeLabelThree.text
-//        precipitationLabelThree.text
-//        precipitationTimeLabelThree.text
-
-//        degreeLabelFour.text
-//        precipitationLabelFour.text
-//        precipitationTimeLabelFour.text
-
-//        degreeLabelFive.text
-//        precipitationLabelFive.text
-//        precipitationTimeLabelFive.text
-
-//        degreeLabelSix.text
-//        precipitationLabelSix.text
-//        precipitationTimeLabelSix.text
+        self.degreeLabelOne.text = "\(hour[0].temp)°"
+        self.precipitationLabelOne.text = description.precipitationOrCloudness[hour[0].prec_strength]
+        self.precipitationTimeLabelOne.text = DecodingOfDate.shared.codeDate(unixTime: hour[0].hour_ts, dateFormat: .hourMin, secondsFromGMT: weather.info.tzinfo.offset)
         
-//        degreeLabelSeven.text
-//        precipitationLabelSeven.text
-//        precipitationTimeLabelSeven.text
+        self.degreeLabelTwo.text = "\(hour[1].temp)°"
+        self.precipitationLabelTwo.text = description.precipitationOrCloudness[hour[1].prec_strength]
+        self.precipitationTimeLabelTwo.text = DecodingOfDate.shared.codeDate(unixTime: hour[1].hour_ts, dateFormat: .hourMin, secondsFromGMT: weather.info.tzinfo.offset)
 
+        self.degreeLabelThree.text = "\(hour[2].temp)°"
+        self.precipitationLabelThree.text = description.precipitationOrCloudness[hour[2].prec_strength]
+        self.precipitationTimeLabelThree.text = DecodingOfDate.shared.codeDate(unixTime: hour[2].hour_ts, dateFormat: .hourMin, secondsFromGMT: weather.info.tzinfo.offset)
+
+        self.degreeLabelFour.text = "\(hour[3].temp)°"
+        self.precipitationLabelFour.text = description.precipitationOrCloudness[hour[3].prec_strength]
+        self.precipitationTimeLabelFour.text = DecodingOfDate.shared.codeDate(unixTime: hour[3].hour_ts, dateFormat: .hourMin, secondsFromGMT: weather.info.tzinfo.offset)
+
+        self.degreeLabelFive.text = "\(hour[4].temp)°"
+        self.precipitationLabelFive.text = description.precipitationOrCloudness[hour[4].prec_strength]
+        self.precipitationTimeLabelFive.text = DecodingOfDate.shared.codeDate(unixTime: hour[4].hour_ts, dateFormat: .hourMin, secondsFromGMT: weather.info.tzinfo.offset)
+
+        self.degreeLabelSix.text = "\(hour[5].temp)°"
+        self.precipitationLabelSix.text = description.precipitationOrCloudness[hour[5].prec_strength]
+        self.precipitationTimeLabelSix.text = DecodingOfDate.shared.codeDate(unixTime: hour[5].hour_ts, dateFormat: .hourMin, secondsFromGMT: weather.info.tzinfo.offset)
+        
+        self.degreeLabelSeven.text = "\(hour[6].temp)°"
+        self.precipitationLabelSeven.text = description.precipitationOrCloudness[hour[6].prec_strength]
+        self.precipitationTimeLabelSeven.text = DecodingOfDate.shared.codeDate(unixTime: hour[6].hour_ts, dateFormat: .hourMin, secondsFromGMT: weather.info.tzinfo.offset)
     }
 }
 
