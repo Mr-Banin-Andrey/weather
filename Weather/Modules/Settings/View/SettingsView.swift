@@ -5,10 +5,10 @@ import UIKit
 import SnapKit
 
 protocol SettingsViewDelegate: AnyObject {
-    func selectedTemp()
-    func selectedSpeedWind()
-    func selectedTimeFormat()
-    func selectedNotifications()
+    func selectedTemp(сelsiusOrFahrenheit: String)
+    func selectedSpeedWind(milesOrKilometers: String)
+    func selectedTimeFormat(twelveOrTwentyFour: String)
+    func selectedNotifications(onOrOff: String)
     func installSettings()
 }
 
@@ -68,6 +68,7 @@ class SettingsView: UIView {
         segmentedControl.backgroundColor = UIColor(named: ListColors.beige.rawValue )
         segmentedControl.addTarget(self, action: #selector(selectedTemp), for: .valueChanged)
         settingsFontSegmentedControl(segmentedControl: segmentedControl)
+        segmentedControl.selectedSegmentIndex = 0
         return segmentedControl
     }()
     
@@ -260,27 +261,31 @@ class SettingsView: UIView {
     }
     
     @objc private func selectedTemp() {
-        delegate?.selectedTemp()
-        let selected = tempSegmentedControl.titleForSegment(at: tempSegmentedControl.selectedSegmentIndex)
-        print("selectedTemp", selected!)
+        guard let selected = tempSegmentedControl.titleForSegment(at: tempSegmentedControl.selectedSegmentIndex) else { return }
+        
+        delegate?.selectedTemp(сelsiusOrFahrenheit: selected)
+        print("selectedTemp", selected)
     }
     
     @objc private func selectedSpeedWind() {
-        delegate?.selectedSpeedWind()
-        let selected = speedWindSegmentedControl.titleForSegment(at: speedWindSegmentedControl.selectedSegmentIndex)
-        print("selectedSpeedWind", selected!)
+        guard let selected = speedWindSegmentedControl.titleForSegment(at: speedWindSegmentedControl.selectedSegmentIndex) else { return }
+        
+        delegate?.selectedSpeedWind(milesOrKilometers: selected)
+        print("selectedSpeedWind", selected)
     }
     
     @objc private func selectedTimeFormat() {
-        delegate?.selectedTimeFormat()
-        let selected = timeFormatSegmentedControl.titleForSegment(at: timeFormatSegmentedControl.selectedSegmentIndex)
-        print("selectedTimeFormat", selected!)
+        guard let selected = timeFormatSegmentedControl.titleForSegment(at: timeFormatSegmentedControl.selectedSegmentIndex) else { return }
+        
+        delegate?.selectedTimeFormat(twelveOrTwentyFour: selected)
+        print("selectedTimeFormat", selected)
     }
     
     @objc private func selectedNotifications() {
-        delegate?.selectedNotifications()
-        let selected = notificationsSegmentedControl.titleForSegment(at: notificationsSegmentedControl.selectedSegmentIndex)
-        print("selectedTemp", selected!)
+        guard let selected = notificationsSegmentedControl.titleForSegment(at: notificationsSegmentedControl.selectedSegmentIndex) else { return }
+        
+        delegate?.selectedNotifications(onOrOff: selected)
+        print("selectedTemp", selected)
     }
     
     @objc private func installSettings() {

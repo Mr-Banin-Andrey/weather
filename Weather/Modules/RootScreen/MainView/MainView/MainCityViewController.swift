@@ -33,6 +33,11 @@ class MainCityViewController: UIViewController {
                 
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.manCityView.reloadTableView()
+    }
     
     // targets headers
     @objc private func showAllDay() {

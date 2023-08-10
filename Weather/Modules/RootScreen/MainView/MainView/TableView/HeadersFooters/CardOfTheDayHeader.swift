@@ -64,7 +64,7 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         return stack
     }()
     
-    private lazy var fromMinToMaxDegreeLabel: UILabel = {
+    private lazy var fromMinToMaxGradusLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: ListFonts.regular400.rawValue, size: 16)
@@ -72,7 +72,7 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         return label
     }()
     
-    private lazy var degreeNowLabel: UILabel = {
+    private lazy var gradusNowLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: ListFonts.medium500.rawValue, size: 36)
@@ -204,15 +204,19 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
     func setupValue(weather: NetworkServiceWeatherModel) {
         
         let description = WeatherDescription()
+        let gradus = DecodingOfGradus.shared
+        let keyTemp = SettingsUserDefaults().getValue(key: .temperature)
         
         self.sunriseTimeLabel.text = weather.forecasts[0].rise_begin
         self.sunsetTimeLabel.text = weather.forecasts[0].set_end
         
-        self.fromMinToMaxDegreeLabel.text = DecodingOfDegreeMinMax.shared.minToMaxDegree(weather: weather,
-                                                                                   index: 0,
-                                                                                   separator: .slash)
+        self.fromMinToMaxGradusLabel.text = gradus.minToMaxGradus(weather: weather,
+                                                                  index: 0,
+                                                                  separator: .slash,
+                                                                  toFahrenheit: keyTemp)
         
-        self.degreeNowLabel.attributedText = twoFontInLabel(value: String(weather.fact.temp))
+        self.gradusNowLabel.text = gradus.celsiusToFahrenheit(gradus: weather.fact.temp, toFahrenheit: keyTemp)
+        
         self.probabilityOfPrecipitationLabel.text =  description.condition[weather.fact.condition]
         self.uVIndexLabel.text = "\(String(weather.fact.uv_index)) УФ"
         
@@ -227,15 +231,15 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         )
     }
     
-    private func twoFontInLabel(value:String) -> NSMutableAttributedString {
-        let fontFirst = [NSAttributedString.Key.font : UIFont(name: ListFonts.medium500.rawValue, size: 36)]
-        let fontSecond = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 40, weight: .ultraLight) ]
-        let mutblStringFirst = NSMutableAttributedString(string:value, attributes:fontFirst as [NSAttributedString.Key : Any])
-        let mutblStringSecond = NSMutableAttributedString(string:"°", attributes:fontSecond as [NSAttributedString.Key : Any])
-        
-        mutblStringFirst.append(mutblStringSecond)
-        return mutblStringFirst
-    }
+//    private func twoFontInLabel(value:String) -> NSMutableAttributedString {
+//        let fontFirst = [NSAttributedString.Key.font : UIFont(name: ListFonts.medium500.rawValue, size: 36)]
+//        let fontSecond = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 40, weight: .ultraLight) ]
+//        let mutblStringFirst = NSMutableAttributedString(string:value, attributes:fontFirst as [NSAttributedString.Key : Any])
+//        let mutblStringSecond = NSMutableAttributedString(string:"°", attributes:fontSecond as [NSAttributedString.Key : Any])
+//
+//        mutblStringFirst.append(mutblStringSecond)
+//        return mutblStringFirst
+//    }
     
     private func setupUi() {
                 
@@ -247,8 +251,8 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         self.addSubview(self.sunsetTimeLabel)
         
         self.addSubview(self.weatherDayStackView)
-        self.weatherDayStackView.addArrangedSubview(self.fromMinToMaxDegreeLabel)
-        self.weatherDayStackView.addArrangedSubview(self.degreeNowLabel)
+        self.weatherDayStackView.addArrangedSubview(self.fromMinToMaxGradusLabel)
+        self.weatherDayStackView.addArrangedSubview(self.gradusNowLabel)
         self.weatherDayStackView.addArrangedSubview(self.probabilityOfPrecipitationLabel)
         
         self.addSubview(self.precipitationDayStackView)

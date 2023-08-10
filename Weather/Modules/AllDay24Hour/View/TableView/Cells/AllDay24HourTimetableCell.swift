@@ -14,7 +14,7 @@ class AllDay24HourTimetableCell: UITableViewCell {
         return view
     }()
     
-    private lazy var dateTimeDegreeStackView: UIStackView = {
+    private lazy var dateTimeGradusStackView: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
@@ -42,7 +42,7 @@ class AllDay24HourTimetableCell: UITableViewCell {
         return label
     }()
     
-    private lazy var degreeLabel: UILabel = {
+    private lazy var gradusLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: ListFonts.medium500.rawValue, size: 18)
@@ -68,7 +68,7 @@ class AllDay24HourTimetableCell: UITableViewCell {
         return stack
     }()
     
-    //MARK: - -degree
+    //MARK: - -gradus description
     private lazy var descriptionStackView: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -258,12 +258,14 @@ class AllDay24HourTimetableCell: UITableViewCell {
     func setupCell(hour: Hours, weather: NetworkServiceWeatherModel) {
         
         let description = WeatherDescription()
+        let gradus = DecodingOfGradus.shared
+        let keyTemp = SettingsUserDefaults().getValue(key: .temperature)
         
         self.dateLabel.text = DecodingOfDate.shared.codeDate(unixTime: hour.hour_ts, dateFormat: .dayWeekDayMonth, secondsFromGMT: weather.info.tzinfo.offset)
         self.timeLabel.text = DecodingOfDate.shared.codeDate(unixTime: hour.hour_ts, dateFormat: .hourMin, secondsFromGMT: weather.info.tzinfo.offset)
-        self.degreeLabel.text = "\(hour.temp)°"
+        self.gradusLabel.text = gradus.celsiusToFahrenheit(gradus: hour.temp, toFahrenheit: keyTemp)
         
-        self.descriptionLabel.text = "\(WeatherDescription().condition[hour.condition] ?? "") По ощущению \(hour.feels_like)°"
+        self.descriptionLabel.text = "\(WeatherDescription().condition[hour.condition] ?? "") По ощущению \(gradus.celsiusToFahrenheit(gradus: hour.feels_like, toFahrenheit: keyTemp))"
         self.windSpeedValueLabel.text = "\(DecodingOfSpeed.shared.toMsOrKmH(ms: hour.wind_speed ?? 0.0)) \(description.windDir[hour.wind_dir ?? ""] ?? "")"
         self.precipitationValueLabel.text = description.precipitationOrCloudness[hour.prec_strength]
         self.cloudinessValueLabel.text = description.precipitationOrCloudness[hour.cloudness]
@@ -274,10 +276,10 @@ class AllDay24HourTimetableCell: UITableViewCell {
         self.addSubview(self.backView)
         self.addSubview(self.cellUnderlineView)
         
-        self.addSubview(self.dateTimeDegreeStackView)
-        self.dateTimeDegreeStackView.addArrangedSubview(self.dateLabel)
-        self.dateTimeDegreeStackView.addArrangedSubview(self.timeLabel)
-        self.dateTimeDegreeStackView.addArrangedSubview(self.degreeLabel)
+        self.addSubview(self.dateTimeGradusStackView)
+        self.dateTimeGradusStackView.addArrangedSubview(self.dateLabel)
+        self.dateTimeGradusStackView.addArrangedSubview(self.timeLabel)
+        self.dateTimeGradusStackView.addArrangedSubview(self.gradusLabel)
         
         self.addSubview(self.generalStackView)
         

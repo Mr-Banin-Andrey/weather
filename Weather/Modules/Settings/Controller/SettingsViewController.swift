@@ -27,20 +27,21 @@ class SettingsViewController: UIViewController {
 }
 
 extension SettingsViewController: SettingsViewDelegate {
-    func selectedTemp() {
-        print("selectedTemp")
+    func selectedTemp(сelsiusOrFahrenheit: String) {
+        SettingsUserDefaults().addValue(key: .temperature, value: сelsiusOrFahrenheit)
+        print("")
     }
     
-    func selectedSpeedWind() {
-        print("selectedSpeedWind")
+    func selectedSpeedWind(milesOrKilometers: String) {
+        print("")
     }
     
-    func selectedTimeFormat() {
-        print("selectedTimeFormat")
+    func selectedTimeFormat(twelveOrTwentyFour: String) {
+        print("")
     }
     
-    func selectedNotifications() {
-        print("selectedNotifications")
+    func selectedNotifications(onOrOff: String) {
+        print("")
     }
     
     func installSettings() {

@@ -30,7 +30,7 @@ struct FeatureMember: Codable  {
 
 struct GeoObject: Codable {
     let name: String
-    let description: String
+    let description: String?
     let point: Point
     
     enum CodingKeys: String, CodingKey {

@@ -46,6 +46,10 @@ class MainCityView: UIView {
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "defaultId")
     }
     
+    func reloadTableView() {
+        self.tableView.reloadData()
+    }
+    
     private func setupUi() {
         self.addSubview(self.tableView)
         

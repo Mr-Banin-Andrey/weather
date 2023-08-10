@@ -50,9 +50,11 @@ class HourlyWeatherCellInTableViewCell: UICollectionViewCell {
     }
 
     func setupCell(hour: Hours, weather: NetworkServiceWeatherModel) {
+
+        let keyTemp = SettingsUserDefaults().getValue(key: .temperature)
         
         self.clockLabel.text = DecodingOfDate.shared.codeDate(unixTime: hour.hour_ts, dateFormat: .hourMin, secondsFromGMT: weather.info.tzinfo.offset)
-        self.gradusLabel.text = "\(hour.temp)°"
+        self.gradusLabel.text = DecodingOfGradus.shared.celsiusToFahrenheit(gradus: hour.temp, toFahrenheit: keyTemp)
         self.pictureWeatherImage.image = selectImage(hour: hour)
     }
     
@@ -95,8 +97,8 @@ class HourlyWeatherCellInTableViewCell: UICollectionViewCell {
         self.contentView.addSubview(self.gradusLabel)
         
         self.backView.snp.makeConstraints { make in
-            make.height.equalTo(84)
-            make.width.equalTo(42)
+            make.height.equalTo(95)
+            make.width.equalTo(50)
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
         }

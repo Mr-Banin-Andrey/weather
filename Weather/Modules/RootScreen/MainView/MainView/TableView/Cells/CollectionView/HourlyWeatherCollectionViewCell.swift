@@ -132,7 +132,7 @@ class HourlyWeatherCollectionViewCell: UITableViewCell {
             self.collectionView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
             self.collectionView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16),
             self.collectionView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -5),
-            self.collectionView.heightAnchor.constraint(equalToConstant: 85)
+            self.collectionView.heightAnchor.constraint(equalToConstant: 95)
         ])
     }
     
@@ -165,7 +165,7 @@ extension HourlyWeatherCollectionViewCell:  UICollectionViewDataSource, UICollec
         sizeForItemAt indexPath: IndexPath
    ) -> CGSize {
 
-        return CGSize(width: 42, height: 85)
+        return CGSize(width: 50, height: 95)
     }
     
 }

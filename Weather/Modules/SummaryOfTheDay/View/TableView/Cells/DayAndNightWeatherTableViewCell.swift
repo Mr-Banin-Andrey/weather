@@ -23,21 +23,21 @@ class DayAndNightWeatherTableViewCell: UITableViewCell {
         return label
     }()
     
-    private lazy var degreeStackView: UIStackView = {
+    private lazy var gradusStackView: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
-        stack.distribution = .equalCentering
+        stack.distribution = .fillEqually
+        
         return stack
     }()
     
-    private lazy var degreeLabel: UILabel = {
+    private lazy var gradusLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: ListFonts.regular400.rawValue, size: 25)
         label.textColor = .black
         label.text = "13°"
-        label.widthAnchor.constraint(equalToConstant: 36).isActive = true
         return label
     }()
     
@@ -50,7 +50,7 @@ class DayAndNightWeatherTableViewCell: UITableViewCell {
         return image
     }()
     
-    private lazy var degreeDescripsionLabel: UILabel = {
+    private lazy var gradusDescripsionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: ListFonts.medium500.rawValue, size: 18)
@@ -366,13 +366,15 @@ class DayAndNightWeatherTableViewCell: UITableViewCell {
         else { return }
         
         let description = WeatherDescription()
+        let gradus = DecodingOfGradus.shared
+        let keyTemp = SettingsUserDefaults().getValue(key: .temperature)
         
         self.partOfTheDayLabel.text = "День"
-        self.degreeLabel.text = String(forecast.parts.day_short.temp)
+        self.gradusLabel.text = gradus.celsiusToFahrenheit(gradus: forecast.parts.day_short.temp, toFahrenheit: keyTemp)
         self.weatherImage.image = selectImageDay(date: forecast.parts.day_short)
-        self.degreeDescripsionLabel.text = description.condition[forecast.parts.day_short.condition]
+        self.gradusDescripsionLabel.text = description.condition[forecast.parts.day_short.condition]
 
-        self.temperatureFeelsValueLabel.text = String(forecast.parts.day_short.feels_like)
+        self.temperatureFeelsValueLabel.text = gradus.celsiusToFahrenheit(gradus: forecast.parts.day_short.feels_like, toFahrenheit: keyTemp)
         self.speedWindValueLabel.text = "\(DecodingOfSpeed.shared.toMsOrKmH(ms: speed)) \(description.windDir[speedDes] ?? "")"
         self.uvIndexValueLabel.text = "\(description.uvIndexDescription(forecast.parts.day_short.uv_index ?? 0))"
         self.rainValueLabel.text = description.precipitationOrCloudness[forecast.parts.day_short.prec_strength]
@@ -387,13 +389,15 @@ class DayAndNightWeatherTableViewCell: UITableViewCell {
         else { return }
         
         let description = WeatherDescription()
+        let gradus = DecodingOfGradus.shared
+        let keyTemp = SettingsUserDefaults().getValue(key: .temperature)
         
         self.partOfTheDayLabel.text = "Ночь"
-        self.degreeLabel.text = String(forecast.parts.night_short.temp)
+        self.gradusLabel.text = gradus.celsiusToFahrenheit(gradus: forecast.parts.night_short.temp, toFahrenheit: keyTemp)
         self.weatherImage.image = selectImageNight(date: forecast.parts.night_short)
-        self.degreeDescripsionLabel.text = description.condition[forecast.parts.night_short.condition]
+        self.gradusDescripsionLabel.text = description.condition[forecast.parts.night_short.condition]
 
-        self.temperatureFeelsValueLabel.text = String(forecast.parts.night_short.feels_like)
+        self.temperatureFeelsValueLabel.text = gradus.celsiusToFahrenheit(gradus: forecast.parts.night_short.feels_like, toFahrenheit: keyTemp)
         self.speedWindValueLabel.text = "\(DecodingOfSpeed.shared.toMsOrKmH(ms: speed)) \(description.windDir[speedDes] ?? "")"
         self.uvIndexValueLabel.text = "\(description.uvIndexDescription(forecast.parts.night_short.uv_index ?? 0))"
         self.rainValueLabel.text = description.precipitationOrCloudness[forecast.parts.night_short.prec_strength]
@@ -480,10 +484,10 @@ class DayAndNightWeatherTableViewCell: UITableViewCell {
         self.addSubview(self.underFiveLineView)
         
         self.addSubview(self.partOfTheDayLabel)
-        self.addSubview(self.degreeStackView)
-        self.degreeStackView.addArrangedSubview(self.weatherImage)
-        self.degreeStackView.addArrangedSubview(self.degreeLabel)
-        self.addSubview(self.degreeDescripsionLabel)
+        self.addSubview(self.gradusStackView)
+        self.gradusStackView.addArrangedSubview(self.weatherImage)
+        self.gradusStackView.addArrangedSubview(self.gradusLabel)
+        self.addSubview(self.gradusDescripsionLabel)
         
         self.backView.snp.makeConstraints { make in
             make.height.equalTo(341)
@@ -564,15 +568,15 @@ class DayAndNightWeatherTableViewCell: UITableViewCell {
             make.leading.equalTo(self.backView.snp.leading).inset(15)
         }
         
-        self.degreeStackView.snp.makeConstraints { make in
-            make.width.equalTo(72)
+        self.gradusStackView.snp.makeConstraints { make in
+            make.width.equalTo(110)
             make.height.equalTo(37)
             make.top.equalTo(self.backView.snp.top).inset(15)
             make.centerX.equalTo(self.backView.snp.centerX)
         }
         
-        self.degreeDescripsionLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.degreeStackView.snp.bottom).offset(10)
+        self.gradusDescripsionLabel.snp.makeConstraints { make in
+            make.top.equalTo(self.gradusStackView.snp.bottom).offset(10)
             make.centerX.equalTo(self.backView.snp.centerX)
         }
     }
