@@ -263,9 +263,9 @@ class AllDay24HourTimetableCell: UITableViewCell {
         
         self.dateLabel.text = DecodingOfDate.shared.codeDate(unixTime: hour.hour_ts, dateFormat: .dayWeekDayMonth, secondsFromGMT: weather.info.tzinfo.offset)
         self.timeLabel.text = DecodingOfDate.shared.codeDate(unixTime: hour.hour_ts, dateFormat: .hourMin, secondsFromGMT: weather.info.tzinfo.offset)
-        self.gradusLabel.text = gradus.celsiusToFahrenheit(gradus: hour.temp, toFahrenheit: keyTemp)
+        self.gradusLabel.text = gradus.celsiusToFahrenheit(gradus: hour.temp, toFahrenheit: keyTemp.value)
         
-        self.descriptionLabel.text = "\(WeatherDescription().condition[hour.condition] ?? "") По ощущению \(gradus.celsiusToFahrenheit(gradus: hour.feels_like, toFahrenheit: keyTemp))"
+        self.descriptionLabel.text = "\(WeatherDescription().condition[hour.condition] ?? "") По ощущению \(gradus.celsiusToFahrenheit(gradus: hour.feels_like, toFahrenheit: keyTemp.value))"
         self.windSpeedValueLabel.text = "\(DecodingOfSpeed.shared.toMsOrKmH(ms: hour.wind_speed ?? 0.0)) \(description.windDir[hour.wind_dir ?? ""] ?? "")"
         self.precipitationValueLabel.text = description.precipitationOrCloudness[hour.prec_strength]
         self.cloudinessValueLabel.text = description.precipitationOrCloudness[hour.cloudness]

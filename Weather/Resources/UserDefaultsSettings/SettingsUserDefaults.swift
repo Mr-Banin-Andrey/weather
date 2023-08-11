@@ -8,7 +8,6 @@
 import Foundation
 
 
-
 class SettingsUserDefaults {
     enum Keys: String {
         case temperature //= "temperatureKey"
@@ -18,14 +17,24 @@ class SettingsUserDefaults {
     
     private let userDefaults = UserDefaults.standard
     
-    func getValue(key: Keys) -> String {
-        if let value = userDefaults.string(forKey: key.rawValue) {
-            return value
+    func addValue(key: Keys, value: SettingsUserDefaultsModel) {
+        do {
+            let data = try JSONEncoder().encode(value)
+            userDefaults.set(data, forKey: key.rawValue)
+        } catch let error {
+            print(error)
         }
-        return ""
     }
     
-    func addValue(key: Keys, value: String) {
-        userDefaults.set(value, forKey: key.rawValue)
+    func getValue(key: Keys) -> SettingsUserDefaultsModel {
+        if let data = userDefaults.data(forKey: key.rawValue) {
+            do {
+                let value = try JSONDecoder().decode(SettingsUserDefaultsModel.self, from: data)
+                return value
+            } catch let error {
+                print(error)
+            }
+        }
+        return SettingsUserDefaultsModel(indexSelected: 99, value: "")
     }
 }

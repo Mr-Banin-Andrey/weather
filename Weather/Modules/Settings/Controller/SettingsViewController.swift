@@ -15,6 +15,8 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let userDefaults = SettingsUserDefaults().getValue(key: .temperature)
+        self.settingsView.getIndexSelected(temp: userDefaults.indexSelected)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -27,7 +29,7 @@ class SettingsViewController: UIViewController {
 }
 
 extension SettingsViewController: SettingsViewDelegate {
-    func selectedTemp(сelsiusOrFahrenheit: String) {
+    func selectedTemp(сelsiusOrFahrenheit: SettingsUserDefaultsModel) {
         SettingsUserDefaults().addValue(key: .temperature, value: сelsiusOrFahrenheit)
         print("")
     }

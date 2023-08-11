@@ -213,9 +213,9 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         self.fromMinToMaxGradusLabel.text = gradus.minToMaxGradus(weather: weather,
                                                                   index: 0,
                                                                   separator: .slash,
-                                                                  toFahrenheit: keyTemp)
+                                                                  toFahrenheit: keyTemp.value)
         
-        self.gradusNowLabel.text = gradus.celsiusToFahrenheit(gradus: weather.fact.temp, toFahrenheit: keyTemp)
+        self.gradusNowLabel.text = gradus.celsiusToFahrenheit(gradus: weather.fact.temp, toFahrenheit: keyTemp.value)
         
         self.probabilityOfPrecipitationLabel.text =  description.condition[weather.fact.condition]
         self.uVIndexLabel.text = "\(String(weather.fact.uv_index)) УФ"

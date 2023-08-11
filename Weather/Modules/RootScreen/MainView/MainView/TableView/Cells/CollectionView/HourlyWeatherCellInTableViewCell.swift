@@ -54,7 +54,7 @@ class HourlyWeatherCellInTableViewCell: UICollectionViewCell {
         let keyTemp = SettingsUserDefaults().getValue(key: .temperature)
         
         self.clockLabel.text = DecodingOfDate.shared.codeDate(unixTime: hour.hour_ts, dateFormat: .hourMin, secondsFromGMT: weather.info.tzinfo.offset)
-        self.gradusLabel.text = DecodingOfGradus.shared.celsiusToFahrenheit(gradus: hour.temp, toFahrenheit: keyTemp)
+        self.gradusLabel.text = DecodingOfGradus.shared.celsiusToFahrenheit(gradus: hour.temp, toFahrenheit: keyTemp.value)
         self.pictureWeatherImage.image = selectImage(hour: hour)
     }
     

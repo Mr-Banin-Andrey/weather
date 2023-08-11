@@ -742,31 +742,31 @@ class AllDay24HourTimetableHeader: UITableViewHeaderFooterView {
         let date = DecodingOfDate.shared
         let keyTemp = SettingsUserDefaults().getValue(key: .temperature)
         
-        self.gradusLabelOne.text = gradus.celsiusToFahrenheit(gradus: hour[0].temp, toFahrenheit: keyTemp)
+        self.gradusLabelOne.text = gradus.celsiusToFahrenheit(gradus: hour[0].temp, toFahrenheit: keyTemp.value)
         self.precipitationLabelOne.text = description.precipitationOrCloudness[hour[0].prec_strength]
         self.precipitationTimeLabelOne.text = date.codeDate(unixTime: hour[0].hour_ts, dateFormat: .hourMin, secondsFromGMT: weather.info.tzinfo.offset)
         
-        self.gradusLabelTwo.text = gradus.celsiusToFahrenheit(gradus: hour[1].temp, toFahrenheit: keyTemp)
+        self.gradusLabelTwo.text = gradus.celsiusToFahrenheit(gradus: hour[1].temp, toFahrenheit: keyTemp.value)
         self.precipitationLabelTwo.text = description.precipitationOrCloudness[hour[1].prec_strength]
         self.precipitationTimeLabelTwo.text = date.codeDate(unixTime: hour[1].hour_ts, dateFormat: .hourMin, secondsFromGMT: weather.info.tzinfo.offset)
 
-        self.gradusLabelThree.text = gradus.celsiusToFahrenheit(gradus: hour[2].temp, toFahrenheit: keyTemp)
+        self.gradusLabelThree.text = gradus.celsiusToFahrenheit(gradus: hour[2].temp, toFahrenheit: keyTemp.value)
         self.precipitationLabelThree.text = description.precipitationOrCloudness[hour[2].prec_strength]
         self.precipitationTimeLabelThree.text = date.codeDate(unixTime: hour[2].hour_ts, dateFormat: .hourMin, secondsFromGMT: weather.info.tzinfo.offset)
 
-        self.gradusLabelFour.text = gradus.celsiusToFahrenheit(gradus: hour[3].temp, toFahrenheit: keyTemp)
+        self.gradusLabelFour.text = gradus.celsiusToFahrenheit(gradus: hour[3].temp, toFahrenheit: keyTemp.value)
         self.precipitationLabelFour.text = description.precipitationOrCloudness[hour[3].prec_strength]
         self.precipitationTimeLabelFour.text = date.codeDate(unixTime: hour[3].hour_ts, dateFormat: .hourMin, secondsFromGMT: weather.info.tzinfo.offset)
 
-        self.gradusLabelFive.text = gradus.celsiusToFahrenheit(gradus: hour[4].temp, toFahrenheit: keyTemp)
+        self.gradusLabelFive.text = gradus.celsiusToFahrenheit(gradus: hour[4].temp, toFahrenheit: keyTemp.value)
         self.precipitationLabelFive.text = description.precipitationOrCloudness[hour[4].prec_strength]
         self.precipitationTimeLabelFive.text = date.codeDate(unixTime: hour[4].hour_ts, dateFormat: .hourMin, secondsFromGMT: weather.info.tzinfo.offset)
 
-        self.gradusLabelSix.text = gradus.celsiusToFahrenheit(gradus: hour[5].temp, toFahrenheit: keyTemp)
+        self.gradusLabelSix.text = gradus.celsiusToFahrenheit(gradus: hour[5].temp, toFahrenheit: keyTemp.value)
         self.precipitationLabelSix.text = description.precipitationOrCloudness[hour[5].prec_strength]
         self.precipitationTimeLabelSix.text = date.codeDate(unixTime: hour[5].hour_ts, dateFormat: .hourMin, secondsFromGMT: weather.info.tzinfo.offset)
         
-        self.gradusLabelSeven.text = gradus.celsiusToFahrenheit(gradus: hour[6].temp, toFahrenheit: keyTemp)
+        self.gradusLabelSeven.text = gradus.celsiusToFahrenheit(gradus: hour[6].temp, toFahrenheit: keyTemp.value)
         self.precipitationLabelSeven.text = description.precipitationOrCloudness[hour[6].prec_strength]
         self.precipitationTimeLabelSeven.text = date.codeDate(unixTime: hour[6].hour_ts, dateFormat: .hourMin, secondsFromGMT: weather.info.tzinfo.offset)
     }

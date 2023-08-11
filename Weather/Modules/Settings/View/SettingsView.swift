@@ -5,7 +5,7 @@ import UIKit
 import SnapKit
 
 protocol SettingsViewDelegate: AnyObject {
-    func selectedTemp(сelsiusOrFahrenheit: String)
+    func selectedTemp(сelsiusOrFahrenheit: SettingsUserDefaultsModel)
     func selectedSpeedWind(milesOrKilometers: String)
     func selectedTimeFormat(twelveOrTwentyFour: String)
     func selectedNotifications(onOrOff: String)
@@ -184,6 +184,10 @@ class SettingsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func getIndexSelected(temp: Int) {
+        self.tempSegmentedControl.selectedSegmentIndex = temp
+    }
+    
     private func setupUi() {
         self.addSubview(self.backView)
         self.addSubview(self.titleLabel)
@@ -263,8 +267,9 @@ class SettingsView: UIView {
     @objc private func selectedTemp() {
         guard let selected = tempSegmentedControl.titleForSegment(at: tempSegmentedControl.selectedSegmentIndex) else { return }
         
-        delegate?.selectedTemp(сelsiusOrFahrenheit: selected)
-        print("selectedTemp", selected)
+        print("🚺 tempSegmentedControl.selectedSegmentIndex", tempSegmentedControl.selectedSegmentIndex)
+        print("🚺 selectedTemp", selected)
+        delegate?.selectedTemp(сelsiusOrFahrenheit: SettingsUserDefaultsModel(indexSelected: tempSegmentedControl.selectedSegmentIndex, value: selected))
     }
     
     @objc private func selectedSpeedWind() {

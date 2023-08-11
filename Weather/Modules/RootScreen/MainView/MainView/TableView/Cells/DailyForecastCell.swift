@@ -86,7 +86,7 @@ class DailyForecastCell: UITableViewCell {
         self.fromMinToMaxDegreeLabel.text = DecodingOfGradus.shared.minToMaxGradus(weather: weather,
                                                                                    index: index,
                                                                                    separator: .dash,
-                                                                                   toFahrenheit: keyTemp)
+                                                                                   toFahrenheit: keyTemp.value)
     }
     
     private func setupUi() {
