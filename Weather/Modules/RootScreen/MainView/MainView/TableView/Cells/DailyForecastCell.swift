@@ -75,9 +75,7 @@ class DailyForecastCell: UITableViewCell {
         
         let keyTemp = SettingsUserDefaults().getValue(key: .temperature)
         
-        self.dateLabel.text = DecodingOfDate.shared.codeDate(unixTime: weather.forecasts[index].date_ts,
-                                                             dateFormat: .dayMonths,
-                                                             secondsFromGMT: weather.info.tzinfo.offset)
+        self.dateLabel.text = DecodingOfDate().codeDate(unixTime: weather.forecasts[index].date_ts, dateFormat: .dayMonths, secondsFromGMT: weather.info.tzinfo.offset)
         
         self.precipitationLabel.text = WeatherDescription().precipitationOrCloudness[weather.forecasts[index].parts.day_short.prec_strength]
         
@@ -127,7 +125,6 @@ class DailyForecastCell: UITableViewCell {
         self.descriptionWeather.snp.makeConstraints { make in
             make.top.equalTo(self.backView.snp.top).inset(19)
             make.leading.equalTo(self.dateLabel.snp.trailing).offset(16)
-//            make.trailing.equalTo(self.fromMinToMaxDegreeLabel.snp.leading).offset(5)
             make.height.equalTo(19)
             make.bottom.equalTo(self.backView.snp.bottom).inset(18)
         }

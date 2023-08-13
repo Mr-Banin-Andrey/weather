@@ -1,18 +1,12 @@
-//
-//  SettingsUserDefaults.swift
-//  Weather
-//
-//  Created by Андрей Банин on 10.8.23..
-//
 
 import Foundation
 
 
 class SettingsUserDefaults {
     enum Keys: String {
-        case temperature //= "temperatureKey"
-        case windSpeed //= "windSpeedKey"
-        case timeFormat //= "timeFormatKey"
+        case temperature
+        case windSpeed
+        case timeFormat
     }
     
     private let userDefaults = UserDefaults.standard

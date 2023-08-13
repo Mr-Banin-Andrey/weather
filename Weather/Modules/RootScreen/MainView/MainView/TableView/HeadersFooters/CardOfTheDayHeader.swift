@@ -43,6 +43,8 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: ListFonts.medium500.rawValue, size: 14)
         label.textColor = .white
+        label.numberOfLines = 2
+        label.textAlignment = .center
         return label
     }()
     
@@ -51,6 +53,8 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: ListFonts.medium500.rawValue, size: 14)
         label.textColor = .white
+        label.numberOfLines = 2
+        label.textAlignment = .center
         return label
     }()
     
@@ -206,9 +210,11 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         let description = WeatherDescription()
         let gradus = DecodingOfGradus.shared
         let keyTemp = SettingsUserDefaults().getValue(key: .temperature)
+        let keyTime = SettingsUserDefaults().getValue(key: .timeFormat)
+        let keySpeed = SettingsUserDefaults().getValue(key: .windSpeed)
         
-        self.sunriseTimeLabel.text = weather.forecasts[0].rise_begin
-        self.sunsetTimeLabel.text = weather.forecasts[0].set_end
+        self.sunriseTimeLabel.text = DecodingOfDate().convertTimeFormater(time: weather.forecasts[0].rise_begin, AmPm: keyTime.value, twoLines: true)
+        self.sunsetTimeLabel.text = DecodingOfDate().convertTimeFormater(time: weather.forecasts[0].set_end, AmPm: keyTime.value, twoLines: true)
         
         self.fromMinToMaxGradusLabel.text = gradus.minToMaxGradus(weather: weather,
                                                                   index: 0,
@@ -220,26 +226,12 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         self.probabilityOfPrecipitationLabel.text =  description.condition[weather.fact.condition]
         self.uVIndexLabel.text = "\(String(weather.fact.uv_index)) УФ"
         
-        self.windLabel.text = "\(DecodingOfSpeed.shared.toMsOrKmH(ms: weather.fact.wind_speed)) \(description.windDir[weather.fact.wind_dir] ?? "")"
+        self.windLabel.text = "\(DecodingOfSpeed().toMsOrKmH(ms: weather.fact.wind_speed, mph: keySpeed.value)) \(description.windDir[weather.fact.wind_dir] ?? "")"
         
         self.precipitationLabel.text = description.precipitationOrCloudness[weather.fact.prec_strength]
         
-        self.timeAndDateNowLabel.text = DecodingOfDate.shared.codeDate(
-            unixTime: weather.now,
-            dateFormat: .hourMinDayWeekDayMonth,
-            secondsFromGMT: weather.info.tzinfo.offset
-        )
+        self.timeAndDateNowLabel.text = DecodingOfDate().codeTime(unixTime: weather.now, secondsFromGMT: weather.info.tzinfo.offset, timeFormat: .hourMinDayWeekDayMonth, AmPm: keyTime.value)
     }
-    
-//    private func twoFontInLabel(value:String) -> NSMutableAttributedString {
-//        let fontFirst = [NSAttributedString.Key.font : UIFont(name: ListFonts.medium500.rawValue, size: 36)]
-//        let fontSecond = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 40, weight: .ultraLight) ]
-//        let mutblStringFirst = NSMutableAttributedString(string:value, attributes:fontFirst as [NSAttributedString.Key : Any])
-//        let mutblStringSecond = NSMutableAttributedString(string:"°", attributes:fontSecond as [NSAttributedString.Key : Any])
-//
-//        mutblStringFirst.append(mutblStringSecond)
-//        return mutblStringFirst
-//    }
     
     private func setupUi() {
                 
@@ -296,7 +288,6 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         self.sunriseTimeLabel.snp.makeConstraints { make in
             make.top.equalTo(self.sunriseImageView.snp.bottom).offset(5)
             make.leading.equalTo(self.cardView.snp.leading).inset(16)
-            make.bottom.equalTo(self.cardView.snp.bottom).inset(26)
         }
         
         self.sunsetImageView.snp.makeConstraints { make in
@@ -309,7 +300,6 @@ class CardOfTheDayHeader: UITableViewHeaderFooterView {
         self.sunsetTimeLabel.snp.makeConstraints { make in
             make.top.equalTo(self.sunriseImageView.snp.bottom).offset(5)
             make.trailing.equalTo(self.cardView.snp.trailing).inset(16)
-            make.bottom.equalTo(self.cardView.snp.bottom).inset(26)
         }
         
         self.weatherDayStackView.snp.makeConstraints { make in

@@ -31,13 +31,11 @@ class MainCityViewController: UIViewController {
         self.view.backgroundColor = .systemBackground
         self.manCityView.configureTableView(delegateTable: self, dataSourceTable: self)
                 
+        NotificationCenter.default.addObserver(forName: UserDefaults.didChangeNotification, object: nil, queue: nil) { notification in
+            self.manCityView.reloadTableView()
+        }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        self.manCityView.reloadTableView()
-    }
     
     // targets headers
     @objc private func showAllDay() {
@@ -100,6 +98,10 @@ extension MainCityViewController: UITableViewDataSource, UITableViewDelegate {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "CollectionViewCell", for: indexPath) as? HourlyWeatherCollectionViewCell else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "defaultId", for: indexPath)
                 return cell
+            }
+            
+            NotificationCenter.default.addObserver(forName: UserDefaults.didChangeNotification, object: nil, queue: nil) { notification in
+                cell.reloadCollectionView()
             }
             
             cell.addWeatherInArray(weather: weather.weather)

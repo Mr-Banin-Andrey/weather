@@ -8,14 +8,11 @@ class AllDay24HourViewController: UIViewController {
     
     private lazy var allDay24HourView = AllDay24HourView(delegate: self)
     
-//    private var weather = [NetworkServiceWeatherModel]()
     private var hours = [Hours]()
     
-//    private let weather: NetworkServiceWeatherModel
     private let weather: CityNameAndWeatherModel
     
     init(
-//        weather: NetworkServiceWeatherModel
         weather: CityNameAndWeatherModel
     ) {
         self.weather = weather
@@ -58,7 +55,7 @@ class AllDay24HourViewController: UIViewController {
         
         self.hours.removeAll()
         
-        let weatherTime = Int(DecodingOfDate.shared.codeDate(unixTime: weather.now, dateFormat: .hour, secondsFromGMT: weather.info.tzinfo.offset))
+        let weatherTime = Int(DecodingOfDate().codeDate(unixTime: weather.now, dateFormat: .hour, secondsFromGMT: weather.info.tzinfo.offset))
         guard let nowHour = weatherTime else { return }
         
         let array = switchArray(time: nowHour)

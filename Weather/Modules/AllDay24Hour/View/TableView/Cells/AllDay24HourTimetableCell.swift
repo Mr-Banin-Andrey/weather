@@ -39,6 +39,8 @@ class AllDay24HourTimetableCell: UITableViewCell {
         label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.textColor = UIColor(named: ListColors.gray.rawValue)
         label.text = "00:00"
+        label.numberOfLines = 2
+        label.textAlignment = .left
         return label
     }()
     
@@ -260,13 +262,17 @@ class AllDay24HourTimetableCell: UITableViewCell {
         let description = WeatherDescription()
         let gradus = DecodingOfGradus.shared
         let keyTemp = SettingsUserDefaults().getValue(key: .temperature)
+        let keyTime = SettingsUserDefaults().getValue(key: .timeFormat)
+        let keySpeed = SettingsUserDefaults().getValue(key: .windSpeed)
         
-        self.dateLabel.text = DecodingOfDate.shared.codeDate(unixTime: hour.hour_ts, dateFormat: .dayWeekDayMonth, secondsFromGMT: weather.info.tzinfo.offset)
-        self.timeLabel.text = DecodingOfDate.shared.codeDate(unixTime: hour.hour_ts, dateFormat: .hourMin, secondsFromGMT: weather.info.tzinfo.offset)
+        self.dateLabel.text = DecodingOfDate().codeDate(unixTime: hour.hour_ts, dateFormat: .dayWeekDayMonth, secondsFromGMT: weather.info.tzinfo.offset)
+        
+        self.timeLabel.text = DecodingOfDate().codeTime(unixTime: hour.hour_ts, secondsFromGMT: weather.info.tzinfo.offset, timeFormat: .hourMin, AmPm: keyTime.value)
+        
         self.gradusLabel.text = gradus.celsiusToFahrenheit(gradus: hour.temp, toFahrenheit: keyTemp.value)
         
         self.descriptionLabel.text = "\(WeatherDescription().condition[hour.condition] ?? "") По ощущению \(gradus.celsiusToFahrenheit(gradus: hour.feels_like, toFahrenheit: keyTemp.value))"
-        self.windSpeedValueLabel.text = "\(DecodingOfSpeed.shared.toMsOrKmH(ms: hour.wind_speed ?? 0.0)) \(description.windDir[hour.wind_dir ?? ""] ?? "")"
+        self.windSpeedValueLabel.text = "\(DecodingOfSpeed().toMsOrKmH(ms: hour.wind_speed ?? 0.0, mph: keySpeed.value)) \(description.windDir[hour.wind_dir ?? ""] ?? "")"
         self.precipitationValueLabel.text = description.precipitationOrCloudness[hour.prec_strength]
         self.cloudinessValueLabel.text = description.precipitationOrCloudness[hour.cloudness]
     }

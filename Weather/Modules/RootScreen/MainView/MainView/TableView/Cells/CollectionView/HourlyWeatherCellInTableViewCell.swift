@@ -20,6 +20,8 @@ class HourlyWeatherCellInTableViewCell: UICollectionViewCell {
         label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.text = "09:41"
         label.textColor = .black
+        label.numberOfLines = 2
+        label.textAlignment = .center
         return label
     }()
     
@@ -52,8 +54,11 @@ class HourlyWeatherCellInTableViewCell: UICollectionViewCell {
     func setupCell(hour: Hours, weather: NetworkServiceWeatherModel) {
 
         let keyTemp = SettingsUserDefaults().getValue(key: .temperature)
+        let keyTime = SettingsUserDefaults().getValue(key: .timeFormat)
         
-        self.clockLabel.text = DecodingOfDate.shared.codeDate(unixTime: hour.hour_ts, dateFormat: .hourMin, secondsFromGMT: weather.info.tzinfo.offset)
+        
+        self.clockLabel.text = DecodingOfDate().codeTime(unixTime: hour.hour_ts, secondsFromGMT: weather.info.tzinfo.offset, timeFormat: .hourMin, AmPm: keyTime.value)
+        
         self.gradusLabel.text = DecodingOfGradus.shared.celsiusToFahrenheit(gradus: hour.temp, toFahrenheit: keyTemp.value)
         self.pictureWeatherImage.image = selectImage(hour: hour)
     }
@@ -63,6 +68,12 @@ class HourlyWeatherCellInTableViewCell: UICollectionViewCell {
         self.backView.backgroundColor = UIColor(named: ListColors.blue.rawValue)
         self.clockLabel.textColor = .white
         self.gradusLabel.textColor = .white
+    }
+    
+    func setupDeselect() {
+        self.backView.backgroundColor = nil
+        self.clockLabel.textColor = .black
+        self.gradusLabel.textColor = .black
     }
     
     private func selectImage(hour: Hours) -> UIImage {
@@ -104,13 +115,14 @@ class HourlyWeatherCellInTableViewCell: UICollectionViewCell {
         }
         
         self.clockLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.backView.snp.top).inset(15)
+            make.top.equalTo(self.backView.snp.top).inset(12)
             make.centerX.equalTo(self.backView.snp.centerX)
         }
         
         self.pictureWeatherImage.snp.makeConstraints { make in
-            make.centerY.equalTo(self.backView.snp.centerY)
+//            make.centerY.equalTo(self.backView.snp.centerY).inset(5)
             make.centerX.equalTo(self.backView.snp.centerX)
+            make.top.equalTo(self.clockLabel.snp.bottom).offset(2)
         }
         
         self.gradusLabel.snp.makeConstraints { make in

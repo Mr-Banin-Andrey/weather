@@ -369,6 +369,7 @@ class DayAndNightWeatherTableViewCell: UITableViewCell {
         let description = WeatherDescription()
         let gradus = DecodingOfGradus.shared
         let keyTemp = SettingsUserDefaults().getValue(key: .temperature)
+        let keySpeed = SettingsUserDefaults().getValue(key: .windSpeed)
         
         self.partOfTheDayLabel.text = "День"
         self.gradusLabel.text = gradus.celsiusToFahrenheit(gradus: forecast.parts.day_short.temp, toFahrenheit: keyTemp.value)
@@ -376,7 +377,7 @@ class DayAndNightWeatherTableViewCell: UITableViewCell {
         self.gradusDescripsionLabel.text = description.condition[forecast.parts.day_short.condition]
 
         self.temperatureFeelsValueLabel.text = gradus.celsiusToFahrenheit(gradus: forecast.parts.day_short.feels_like, toFahrenheit: keyTemp.value)
-        self.speedWindValueLabel.text = "\(DecodingOfSpeed.shared.toMsOrKmH(ms: speed)) \(description.windDir[speedDes] ?? "")"
+        self.speedWindValueLabel.text = "\(DecodingOfSpeed().toMsOrKmH(ms: speed, mph: keySpeed.value)) \(description.windDir[speedDes] ?? "")"
         self.uvIndexValueLabel.text = "\(description.uvIndexDescription(forecast.parts.day_short.uv_index ?? 0))"
         self.rainValueLabel.text = description.precipitationOrCloudness[forecast.parts.day_short.prec_strength]
         self.cloudinessValueLabel.text = description.precipitationOrCloudness[forecast.parts.day_short.cloudness]
@@ -392,6 +393,7 @@ class DayAndNightWeatherTableViewCell: UITableViewCell {
         let description = WeatherDescription()
         let gradus = DecodingOfGradus.shared
         let keyTemp = SettingsUserDefaults().getValue(key: .temperature)
+        let keySpeed = SettingsUserDefaults().getValue(key: .windSpeed)
         
         self.partOfTheDayLabel.text = "Ночь"
         self.gradusLabel.text = gradus.celsiusToFahrenheit(gradus: forecast.parts.night_short.temp, toFahrenheit: keyTemp.value)
@@ -399,7 +401,7 @@ class DayAndNightWeatherTableViewCell: UITableViewCell {
         self.gradusDescripsionLabel.text = description.condition[forecast.parts.night_short.condition]
 
         self.temperatureFeelsValueLabel.text = gradus.celsiusToFahrenheit(gradus: forecast.parts.night_short.feels_like, toFahrenheit: keyTemp.value)
-        self.speedWindValueLabel.text = "\(DecodingOfSpeed.shared.toMsOrKmH(ms: speed)) \(description.windDir[speedDes] ?? "")"
+        self.speedWindValueLabel.text = "\(DecodingOfSpeed().toMsOrKmH(ms: speed, mph: keySpeed.value)) \(description.windDir[speedDes] ?? "")"
         self.uvIndexValueLabel.text = "\(description.uvIndexDescription(forecast.parts.night_short.uv_index ?? 0))"
         self.rainValueLabel.text = description.precipitationOrCloudness[forecast.parts.night_short.prec_strength]
         self.cloudinessValueLabel.text = description.precipitationOrCloudness[forecast.parts.night_short.cloudness]

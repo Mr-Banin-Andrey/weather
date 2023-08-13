@@ -283,9 +283,12 @@ class SunAndMoonTableViewCell: UITableViewCell {
     //MARK: - Methods
 
     func setup(forecast: Forecasts) {
+        
+        let keyTime = SettingsUserDefaults().getValue(key: .timeFormat)
+        
         self.sunTimeLabel.text = convertTime(forecast: forecast)
-        self.sunriseTimeLabel.text = String(forecast.rise_begin ?? "")
-        self.sunsetTimeLabel.text = String(forecast.set_end ?? "")
+        self.sunriseTimeLabel.text = DecodingOfDate().convertTimeFormater(time: forecast.rise_begin, AmPm: keyTime.value, twoLines: false)
+        self.sunsetTimeLabel.text = DecodingOfDate().convertTimeFormater(time: forecast.set_end, AmPm: keyTime.value, twoLines: false)
         
         self.fullMoonTitleLabel.text = WeatherDescription().moonText[forecast.moon_text]
 //        self.moonTimeLabel.text = WeatherDescription().moonText[forecast.moon_text]

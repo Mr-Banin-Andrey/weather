@@ -15,8 +15,11 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let userDefaults = SettingsUserDefaults().getValue(key: .temperature)
-        self.settingsView.getIndexSelected(temp: userDefaults.indexSelected)
+        let userDefaultsTemp = SettingsUserDefaults().getValue(key: .temperature)
+        let userDefaultsTime = SettingsUserDefaults().getValue(key: .timeFormat)
+        let userDefaultsSpeed = SettingsUserDefaults().getValue(key: .windSpeed)
+        self.settingsView.getIndexSelected(temp: userDefaultsTemp.indexSelected, time: userDefaultsTime.indexSelected, speed: userDefaultsSpeed.indexSelected)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,11 +37,13 @@ extension SettingsViewController: SettingsViewDelegate {
         print("")
     }
     
-    func selectedSpeedWind(milesOrKilometers: String) {
+    func selectedSpeedWind(milesOrKilometers: SettingsUserDefaultsModel) {
+        SettingsUserDefaults().addValue(key: .windSpeed, value: milesOrKilometers)
         print("")
     }
     
-    func selectedTimeFormat(twelveOrTwentyFour: String) {
+    func selectedTimeFormat(twelveOrTwentyFour: SettingsUserDefaultsModel) {
+        SettingsUserDefaults().addValue(key: .timeFormat, value: twelveOrTwentyFour)
         print("")
     }
     

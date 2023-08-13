@@ -36,6 +36,7 @@ class AllDay24HourTimetableHeader: UITableViewHeaderFooterView {
         return line
     }()
     
+    //MARK: - gradus - CircleImage, Label
 //    gradus - CircleImage, Label - One
     private lazy var circleOneImage: UIImageView = {
         let image = UIImageView()
@@ -162,7 +163,7 @@ class AllDay24HourTimetableHeader: UITableViewHeaderFooterView {
         return label
     }()
     
-    
+    //MARK: - precipitation Stack, Image, Label, divisionLineView, TimeLabel
 //    precipitation Stack, Image, Label, divisionLineView, TimeLabel - One
     private lazy var precipitationStackViewOne: UIStackView = {
         let stack = UIStackView()
@@ -205,7 +206,9 @@ class AllDay24HourTimetableHeader: UITableViewHeaderFooterView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.textColor = .black
-        label.text = "12:00"
+        label.text = "12:00 \n PM"
+        label.numberOfLines = 2
+        label.textAlignment = .center
         return label
     }()
     
@@ -252,6 +255,8 @@ class AllDay24HourTimetableHeader: UITableViewHeaderFooterView {
         label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.textColor = .black
         label.text = "12:00"
+        label.numberOfLines = 2
+        label.textAlignment = .center
         return label
     }()
 
@@ -298,6 +303,8 @@ class AllDay24HourTimetableHeader: UITableViewHeaderFooterView {
         label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.textColor = .black
         label.text = "12:00"
+        label.numberOfLines = 2
+        label.textAlignment = .center
         return label
     }()
     
@@ -344,6 +351,8 @@ class AllDay24HourTimetableHeader: UITableViewHeaderFooterView {
         label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.textColor = .black
         label.text = "12:00"
+        label.numberOfLines = 2
+        label.textAlignment = .center
         return label
     }()
 
@@ -390,6 +399,8 @@ class AllDay24HourTimetableHeader: UITableViewHeaderFooterView {
         label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.textColor = .black
         label.text = "12:00"
+        label.numberOfLines = 2
+        label.textAlignment = .center
         return label
     }()
 
@@ -436,6 +447,8 @@ class AllDay24HourTimetableHeader: UITableViewHeaderFooterView {
         label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.textColor = .black
         label.text = "12:00"
+        label.numberOfLines = 2
+        label.textAlignment = .center
         return label
     }()
 
@@ -482,6 +495,8 @@ class AllDay24HourTimetableHeader: UITableViewHeaderFooterView {
         label.font = UIFont(name: ListFonts.regular400.rawValue, size: 14)
         label.textColor = .black
         label.text = "12:00"
+        label.numberOfLines = 2
+        label.textAlignment = .center
         return label
     }()
     
@@ -566,7 +581,7 @@ class AllDay24HourTimetableHeader: UITableViewHeaderFooterView {
         
         
         self.backView.snp.makeConstraints { make in
-            make.height.equalTo(152)
+            make.height.equalTo(162)
             make.top.equalTo(self.snp.top)
             make.leading.equalTo(self.snp.leading)
             make.trailing.equalTo(self.snp.trailing)
@@ -588,7 +603,7 @@ class AllDay24HourTimetableHeader: UITableViewHeaderFooterView {
         self.timeLineView.snp.makeConstraints { make in
             make.leading.equalTo(self.backView.snp.leading).inset(18)
             make.trailing.equalTo(self.backView.snp.trailing).inset(18)
-            make.bottom.equalTo(self.backView.snp.bottom).inset(36)
+            make.bottom.equalTo(self.backView.snp.bottom).inset(46)
             make.height.equalTo(1)
         }
         // circle and gradus One
@@ -600,7 +615,7 @@ class AllDay24HourTimetableHeader: UITableViewHeaderFooterView {
         }
         self.gradusLabelOne.snp.makeConstraints { make in
             make.bottom.equalTo(self.circleOneImage.snp.top)
-            make.leading.equalTo(self.backView.snp.leading).inset(array[0])
+            make.centerX.equalTo(self.circleOneImage.snp.centerX)
         }
         // circle and gradus Two
         self.circleTwoImage.snp.makeConstraints { make in
@@ -611,7 +626,7 @@ class AllDay24HourTimetableHeader: UITableViewHeaderFooterView {
         }
         self.gradusLabelTwo.snp.makeConstraints { make in
             make.bottom.equalTo(self.circleTwoImage.snp.top)
-            make.leading.equalTo(self.backView.snp.leading).inset(array[1])
+            make.centerX.equalTo(self.circleTwoImage.snp.centerX)
         }
         // circle and gradus Three
         self.circleThreeImage.snp.makeConstraints { make in
@@ -622,7 +637,7 @@ class AllDay24HourTimetableHeader: UITableViewHeaderFooterView {
         }
         self.gradusLabelThree.snp.makeConstraints { make in
             make.bottom.equalTo(self.circleThreeImage.snp.top)
-            make.leading.equalTo(self.backView.snp.leading).inset(array[2])
+            make.centerX.equalTo(self.circleThreeImage.snp.centerX)
         }
         // circle and gradus Four
         self.circleFourImage.snp.makeConstraints { make in
@@ -633,7 +648,7 @@ class AllDay24HourTimetableHeader: UITableViewHeaderFooterView {
         }
         self.gradusLabelFour.snp.makeConstraints { make in
             make.bottom.equalTo(self.circleFourImage.snp.top)
-            make.leading.equalTo(self.backView.snp.leading).inset(array[3])
+            make.centerX.equalTo(self.circleFourImage.snp.centerX)
         }
         // circle and gradus Five
         self.circleFiveImage.snp.makeConstraints { make in
@@ -644,7 +659,7 @@ class AllDay24HourTimetableHeader: UITableViewHeaderFooterView {
         }
         self.gradusLabelFive.snp.makeConstraints { make in
             make.bottom.equalTo(self.circleFiveImage.snp.top)
-            make.leading.equalTo(self.backView.snp.leading).inset(array[4])
+            make.centerX.equalTo(self.circleFiveImage.snp.centerX)
         }
         // circle and gradus Six
         self.circleSixImage.snp.makeConstraints { make in
@@ -655,7 +670,7 @@ class AllDay24HourTimetableHeader: UITableViewHeaderFooterView {
         }
         self.gradusLabelSix.snp.makeConstraints { make in
             make.bottom.equalTo(self.circleSixImage.snp.top)
-            make.leading.equalTo(self.backView.snp.leading).inset(array[5])
+            make.centerX.equalTo(self.circleSixImage.snp.centerX)
         }
         // circle and gradus Seven
         self.circleSevenImage.snp.makeConstraints { make in
@@ -666,49 +681,49 @@ class AllDay24HourTimetableHeader: UITableViewHeaderFooterView {
         }
         self.gradusLabelSeven.snp.makeConstraints { make in
             make.bottom.equalTo(self.circleSevenImage.snp.top)
-            make.leading.equalTo(self.backView.snp.leading).inset(array[6])
+            make.centerX.equalTo(self.circleSevenImage.snp.centerX)
         }
         
         // precipitation Image, Label, divisionLineView, TimeLabel - one
         self.divisionLineViewOne.snp.makeConstraints { make in
             make.leading.equalTo(self.backView.snp.leading).inset(array[0])
-            make.bottom.equalTo(self.backView.snp.bottom).inset(32)
+            make.bottom.equalTo(self.backView.snp.bottom).inset(42)
         }
         
         // precipitation Image, Label, divisionLineView, TimeLabel - two
         self.divisionLineViewTwo.snp.makeConstraints { make in
             make.leading.equalTo(self.backView.snp.leading).inset(array[1])
-            make.bottom.equalTo(self.backView.snp.bottom).inset(32)
+            make.bottom.equalTo(self.backView.snp.bottom).inset(42)
         }
         
         // precipitation Image, Label, divisionLineView, TimeLabel - three
         self.divisionLineViewThree.snp.makeConstraints { make in
             make.leading.equalTo(self.backView.snp.leading).inset(array[2])
-            make.bottom.equalTo(self.backView.snp.bottom).inset(32)
+            make.bottom.equalTo(self.backView.snp.bottom).inset(42)
         }
         
         // precipitation Image, Label, divisionLineView, TimeLabel - Four
         self.divisionLineViewFour.snp.makeConstraints { make in
             make.leading.equalTo(self.backView.snp.leading).inset(array[3])
-            make.bottom.equalTo(self.backView.snp.bottom).inset(32)
+            make.bottom.equalTo(self.backView.snp.bottom).inset(42)
         }
         
         // precipitation Image, Label, divisionLineView, TimeLabel - Five
         self.divisionLineViewFive.snp.makeConstraints { make in
             make.leading.equalTo(self.backView.snp.leading).inset(array[4])
-            make.bottom.equalTo(self.backView.snp.bottom).inset(32)
+            make.bottom.equalTo(self.backView.snp.bottom).inset(42)
         }
         
         // precipitation Image, Label, divisionLineView, TimeLabel - Six
         self.divisionLineViewSix.snp.makeConstraints { make in
             make.leading.equalTo(self.backView.snp.leading).inset(array[5])
-            make.bottom.equalTo(self.backView.snp.bottom).inset(32)
+            make.bottom.equalTo(self.backView.snp.bottom).inset(42)
         }
         
         // precipitation Image, Label, divisionLineView, TimeLabel - Seven
         self.divisionLineViewSeven.snp.makeConstraints { make in
             make.leading.equalTo(self.backView.snp.leading).inset(array[6])
-            make.bottom.equalTo(self.backView.snp.bottom).inset(32)
+            make.bottom.equalTo(self.backView.snp.bottom).inset(42)
         }
     }
 
@@ -739,36 +754,38 @@ class AllDay24HourTimetableHeader: UITableViewHeaderFooterView {
 //        }
         let description = WeatherDescription()
         let gradus = DecodingOfGradus.shared
-        let date = DecodingOfDate.shared
+        let date = DecodingOfDate()
+        
         let keyTemp = SettingsUserDefaults().getValue(key: .temperature)
+        let keyTime = SettingsUserDefaults().getValue(key: .timeFormat)
         
         self.gradusLabelOne.text = gradus.celsiusToFahrenheit(gradus: hour[0].temp, toFahrenheit: keyTemp.value)
         self.precipitationLabelOne.text = description.precipitationOrCloudness[hour[0].prec_strength]
-        self.precipitationTimeLabelOne.text = date.codeDate(unixTime: hour[0].hour_ts, dateFormat: .hourMin, secondsFromGMT: weather.info.tzinfo.offset)
+        self.precipitationTimeLabelOne.text = date.codeTime(unixTime: hour[0].hour_ts, secondsFromGMT: weather.info.tzinfo.offset, timeFormat: .hourMin, AmPm: keyTime.value)
         
         self.gradusLabelTwo.text = gradus.celsiusToFahrenheit(gradus: hour[1].temp, toFahrenheit: keyTemp.value)
         self.precipitationLabelTwo.text = description.precipitationOrCloudness[hour[1].prec_strength]
-        self.precipitationTimeLabelTwo.text = date.codeDate(unixTime: hour[1].hour_ts, dateFormat: .hourMin, secondsFromGMT: weather.info.tzinfo.offset)
+        self.precipitationTimeLabelTwo.text = date.codeTime(unixTime: hour[1].hour_ts, secondsFromGMT: weather.info.tzinfo.offset, timeFormat: .hourMin, AmPm: keyTime.value)
 
         self.gradusLabelThree.text = gradus.celsiusToFahrenheit(gradus: hour[2].temp, toFahrenheit: keyTemp.value)
         self.precipitationLabelThree.text = description.precipitationOrCloudness[hour[2].prec_strength]
-        self.precipitationTimeLabelThree.text = date.codeDate(unixTime: hour[2].hour_ts, dateFormat: .hourMin, secondsFromGMT: weather.info.tzinfo.offset)
+        self.precipitationTimeLabelThree.text = date.codeTime(unixTime: hour[2].hour_ts, secondsFromGMT: weather.info.tzinfo.offset, timeFormat: .hourMin, AmPm: keyTime.value)
 
         self.gradusLabelFour.text = gradus.celsiusToFahrenheit(gradus: hour[3].temp, toFahrenheit: keyTemp.value)
         self.precipitationLabelFour.text = description.precipitationOrCloudness[hour[3].prec_strength]
-        self.precipitationTimeLabelFour.text = date.codeDate(unixTime: hour[3].hour_ts, dateFormat: .hourMin, secondsFromGMT: weather.info.tzinfo.offset)
+        self.precipitationTimeLabelFour.text = date.codeTime(unixTime: hour[3].hour_ts, secondsFromGMT: weather.info.tzinfo.offset, timeFormat: .hourMin, AmPm: keyTime.value)
 
         self.gradusLabelFive.text = gradus.celsiusToFahrenheit(gradus: hour[4].temp, toFahrenheit: keyTemp.value)
         self.precipitationLabelFive.text = description.precipitationOrCloudness[hour[4].prec_strength]
-        self.precipitationTimeLabelFive.text = date.codeDate(unixTime: hour[4].hour_ts, dateFormat: .hourMin, secondsFromGMT: weather.info.tzinfo.offset)
+        self.precipitationTimeLabelFive.text = date.codeTime(unixTime: hour[4].hour_ts, secondsFromGMT: weather.info.tzinfo.offset, timeFormat: .hourMin, AmPm: keyTime.value)
 
         self.gradusLabelSix.text = gradus.celsiusToFahrenheit(gradus: hour[5].temp, toFahrenheit: keyTemp.value)
         self.precipitationLabelSix.text = description.precipitationOrCloudness[hour[5].prec_strength]
-        self.precipitationTimeLabelSix.text = date.codeDate(unixTime: hour[5].hour_ts, dateFormat: .hourMin, secondsFromGMT: weather.info.tzinfo.offset)
+        self.precipitationTimeLabelSix.text = date.codeTime(unixTime: hour[5].hour_ts, secondsFromGMT: weather.info.tzinfo.offset, timeFormat: .hourMin, AmPm: keyTime.value)
         
         self.gradusLabelSeven.text = gradus.celsiusToFahrenheit(gradus: hour[6].temp, toFahrenheit: keyTemp.value)
         self.precipitationLabelSeven.text = description.precipitationOrCloudness[hour[6].prec_strength]
-        self.precipitationTimeLabelSeven.text = date.codeDate(unixTime: hour[6].hour_ts, dateFormat: .hourMin, secondsFromGMT: weather.info.tzinfo.offset)
+        self.precipitationTimeLabelSeven.text = date.codeTime(unixTime: hour[6].hour_ts, secondsFromGMT: weather.info.tzinfo.offset, timeFormat: .hourMin, AmPm: keyTime.value)
     }
 }
 

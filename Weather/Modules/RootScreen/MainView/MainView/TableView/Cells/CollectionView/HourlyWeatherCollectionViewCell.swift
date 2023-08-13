@@ -37,7 +37,9 @@ class HourlyWeatherCollectionViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-
+    func reloadCollectionView() {
+        self.collectionView.reloadData()
+    }
     
     func addWeatherInArray(weather: NetworkServiceWeatherModel) {
         if self.weather.isEmpty {
@@ -55,7 +57,7 @@ class HourlyWeatherCollectionViewCell: UITableViewCell {
         
         self.hours.removeAll()
         
-        let weatherTime = Int(DecodingOfDate.shared.codeDate(unixTime: weather.now, dateFormat: .hour, secondsFromGMT: weather.info.tzinfo.offset))
+        let weatherTime = Int(DecodingOfDate().codeDate(unixTime: weather.now, dateFormat: .hour, secondsFromGMT: weather.info.tzinfo.offset))
         guard let nowHour = weatherTime else { return }
         
         let array = switchArray(time: nowHour)
@@ -152,7 +154,7 @@ extension HourlyWeatherCollectionViewCell:  UICollectionViewDataSource, UICollec
         if indexPath.row == 0 {
             cell.setupSelect()
         } else {
-            
+            cell.setupDeselect()
         }
         let hour = hours[indexPath.row]
         cell.setupCell(hour: hour, weather: weather[0])

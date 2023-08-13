@@ -47,7 +47,7 @@ class SummaryOfTheDayCollectionViewCell: UICollectionViewCell {
     
     
     func setupDate(weather: NetworkServiceWeatherModel, index: Int)  {
-        self.dateLabel.text = DecodingOfDate.shared.codeDate(
+        self.dateLabel.text = DecodingOfDate().codeDate(
             unixTime: weather.forecasts[index+1].date_ts,
             dateFormat: .dayWeekDayMonth,
             secondsFromGMT: weather.info.tzinfo.offset

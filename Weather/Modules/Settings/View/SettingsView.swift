@@ -6,8 +6,8 @@ import SnapKit
 
 protocol SettingsViewDelegate: AnyObject {
     func selectedTemp(сelsiusOrFahrenheit: SettingsUserDefaultsModel)
-    func selectedSpeedWind(milesOrKilometers: String)
-    func selectedTimeFormat(twelveOrTwentyFour: String)
+    func selectedSpeedWind(milesOrKilometers: SettingsUserDefaultsModel)
+    func selectedTimeFormat(twelveOrTwentyFour: SettingsUserDefaultsModel)
     func selectedNotifications(onOrOff: String)
     func installSettings()
 }
@@ -98,6 +98,7 @@ class SettingsView: UIView {
         segmentedControl.backgroundColor = UIColor(named: ListColors.beige.rawValue )
         segmentedControl.addTarget(self, action: #selector(selectedSpeedWind), for: .valueChanged)
         settingsFontSegmentedControl(segmentedControl: segmentedControl)
+        segmentedControl.selectedSegmentIndex = 1
         return segmentedControl
     }()
     
@@ -127,6 +128,7 @@ class SettingsView: UIView {
         segmentedControl.backgroundColor = UIColor(named: ListColors.beige.rawValue )
         segmentedControl.addTarget(self, action: #selector(selectedTimeFormat), for: .valueChanged)
         settingsFontSegmentedControl(segmentedControl: segmentedControl)
+        segmentedControl.selectedSegmentIndex = 1
         return segmentedControl
     }()
     
@@ -184,8 +186,10 @@ class SettingsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func getIndexSelected(temp: Int) {
+    func getIndexSelected(temp: Int, time: Int, speed: Int) {
         self.tempSegmentedControl.selectedSegmentIndex = temp
+        self.timeFormatSegmentedControl.selectedSegmentIndex = time
+        self.speedWindSegmentedControl.selectedSegmentIndex = speed
     }
     
     private func setupUi() {
@@ -267,23 +271,26 @@ class SettingsView: UIView {
     @objc private func selectedTemp() {
         guard let selected = tempSegmentedControl.titleForSegment(at: tempSegmentedControl.selectedSegmentIndex) else { return }
         
-        print("🚺 tempSegmentedControl.selectedSegmentIndex", tempSegmentedControl.selectedSegmentIndex)
-        print("🚺 selectedTemp", selected)
+//        print("🚺 tempSegmentedControl.selectedSegmentIndex", tempSegmentedControl.selectedSegmentIndex)
+//        print("🚺 selectedTemp", selected)
         delegate?.selectedTemp(сelsiusOrFahrenheit: SettingsUserDefaultsModel(indexSelected: tempSegmentedControl.selectedSegmentIndex, value: selected))
     }
     
     @objc private func selectedSpeedWind() {
         guard let selected = speedWindSegmentedControl.titleForSegment(at: speedWindSegmentedControl.selectedSegmentIndex) else { return }
         
-        delegate?.selectedSpeedWind(milesOrKilometers: selected)
+        print("🚺 timeFormatSegmentedControl.selectedSegmentIndex", timeFormatSegmentedControl.selectedSegmentIndex)
+        print("🚺 selectedTimeFormat", selected)
+        delegate?.selectedSpeedWind(milesOrKilometers: SettingsUserDefaultsModel(indexSelected: speedWindSegmentedControl.selectedSegmentIndex, value: selected))
         print("selectedSpeedWind", selected)
     }
     
     @objc private func selectedTimeFormat() {
         guard let selected = timeFormatSegmentedControl.titleForSegment(at: timeFormatSegmentedControl.selectedSegmentIndex) else { return }
         
-        delegate?.selectedTimeFormat(twelveOrTwentyFour: selected)
-        print("selectedTimeFormat", selected)
+//        print("🚺 timeFormatSegmentedControl.selectedSegmentIndex", timeFormatSegmentedControl.selectedSegmentIndex)
+//        print("🚺 selectedTimeFormat", selected)
+        delegate?.selectedTimeFormat(twelveOrTwentyFour: SettingsUserDefaultsModel(indexSelected: timeFormatSegmentedControl.selectedSegmentIndex, value: selected))
     }
     
     @objc private func selectedNotifications() {
