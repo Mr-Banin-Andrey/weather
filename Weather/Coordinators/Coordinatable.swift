@@ -3,13 +3,9 @@ import UIKit
 
 protocol Coordinatable: AnyObject {
     var childCoordinators: [Coordinatable] { get }
-    func start() -> UIViewController
+    func start()
     func addChildCoordinator(_ coordinator: Coordinatable)
     func removeChildCoordinator(_ coordinator: Coordinatable)
-}
-
-protocol ModuleCoordinatable: Coordinatable {
-    var module: Module? { get }
 }
 
 extension Coordinatable {

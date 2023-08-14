@@ -34,21 +34,17 @@ class SettingsViewController: UIViewController {
 extension SettingsViewController: SettingsViewDelegate {
     func selectedTemp(сelsiusOrFahrenheit: SettingsUserDefaultsModel) {
         SettingsUserDefaults().addValue(key: .temperature, value: сelsiusOrFahrenheit)
-        print("")
     }
     
     func selectedSpeedWind(milesOrKilometers: SettingsUserDefaultsModel) {
         SettingsUserDefaults().addValue(key: .windSpeed, value: milesOrKilometers)
-        print("")
     }
     
     func selectedTimeFormat(twelveOrTwentyFour: SettingsUserDefaultsModel) {
         SettingsUserDefaults().addValue(key: .timeFormat, value: twelveOrTwentyFour)
-        print("")
     }
     
-    func selectedNotifications(onOrOff: String) {
-        print("")
+    func selectedNotifications(onOrOff: SettingsUserDefaultsModel) {
     }
     
     func installSettings() {

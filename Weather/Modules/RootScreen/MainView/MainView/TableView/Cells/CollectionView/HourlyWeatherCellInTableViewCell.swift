@@ -94,12 +94,6 @@ class HourlyWeatherCellInTableViewCell: UICollectionViewCell {
         }
         return UIImage()
     }
-
-//    func setupDeselect() {
-//        self.backView.backgroundColor = nil
-//        self.clockLabel.textColor = .black
-//        self.gradusLabel.textColor = .black
-//    }
     
     private func setupConstraints() {
         self.contentView.addSubview(self.backView)
@@ -120,7 +114,6 @@ class HourlyWeatherCellInTableViewCell: UICollectionViewCell {
         }
         
         self.pictureWeatherImage.snp.makeConstraints { make in
-//            make.centerY.equalTo(self.backView.snp.centerY).inset(5)
             make.centerX.equalTo(self.backView.snp.centerX)
             make.top.equalTo(self.clockLabel.snp.bottom).offset(2)
         }

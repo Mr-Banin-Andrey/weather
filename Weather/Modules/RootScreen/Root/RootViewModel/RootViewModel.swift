@@ -38,6 +38,7 @@ class RootViewModel: RootViewModelProtocol {
         }
     }
     
+//    var latLonArray = [Double]()
     
     func updateState(viewInput: RootViewModel.ViewInput) {
         switch viewInput {
@@ -76,18 +77,10 @@ class RootViewModel: RootViewModelProtocol {
                     ).executeQuery() { (result: Result<NetworkServiceWeatherModel,Error>) in
                         switch result {
                         case .success(let weather):
-                            print("🅿️", weather.now, weather.now_dt)
                             print("🅿️ info", weather.info)
                             print("🅿️ fact", weather.fact)
-//                            print("🅿️ forecasts", weather.forecasts.count)
 //                            print("🅿️ forecasts", weather.forecasts)
 //                            weather.forecasts.forEach{ print($0.date) }
-//                            weather.forecasts.forEach{ print($0.date_ts) }
-//                            weather.forecasts.forEach{ print($0.parts) }
-//                            weather.forecasts.forEach{ print($0.hours) }
-                            //класс.массив.forEach { код }
-//                            print(city1)
-//                            self.state = .loadedCity(city: cityName)
                             self.state = .loadedWeather(city: cityName, weather: weather)
                     
                         case .failure(let error):
@@ -101,6 +94,25 @@ class RootViewModel: RootViewModelProtocol {
 
             state = .initial
         case  .buttonAlertSelectCity:
+            
+           
+//            let permissionToUse = PermissionToUseLocationViewController()
+//            //permissionToUse.delegateRoot = self
+//               permissionToUse.tapAction = { [weak self] result in
+//                    guard let self = self else {
+//                       return
+//                    }
+////            permissionToUse.tapAction = { [unowned self] result in
+//                print("result -", result)
+//            //permissionToUse.tapAction = { lat, lon in
+//            ////
+//            //self.latLonArray.append(lat)
+//            //self.latLonArray.append(lon)
+//            //print("1 📫📗 latAndlon", lat, lon)
+//            }
+//            //
+//            //print("2 📫📗 latAndlon", latLonArray)
+
             state = .selectCity
         }
     }
@@ -108,7 +120,7 @@ class RootViewModel: RootViewModelProtocol {
         let myStringArr = point.components(separatedBy: " ")
         let lon = myStringArr[0]
         let lat = myStringArr[1]
-        print("🟣", lat, lon)
+//        print("🟣", lat, lon)
         return (lat, lon)
     }
 
@@ -123,7 +135,6 @@ class RootViewModel: RootViewModelProtocol {
             "lang":"ru_RU",
             "format":"json"
         ]
-        print(headersGeo)
         return headersGeo
     }
 }

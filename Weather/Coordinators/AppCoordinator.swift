@@ -4,20 +4,19 @@ import UIKit
 
 class AppCoordinator: Coordinatable {
     private(set) var childCoordinators: [Coordinatable] = []
+        
+    private let navigationController: UINavigationController
     
-    private let factory: AppFactory
-    
-    init(factory: AppFactory) {
-        self.factory = factory
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
     }
     
-    func start() -> UIViewController {
-        let rootCoordinator = RootCoordinator(factory: factory)
+    func start() {
+        let rootCoordinator = RootCoordinator(navigationController: navigationController)
         
-        let rootStart = rootCoordinator.start()
+        rootCoordinator.start()
         
         addChildCoordinator(rootCoordinator)
-        return rootStart
     }
     
     func addChildCoordinator(_ coordinator: Coordinatable) {

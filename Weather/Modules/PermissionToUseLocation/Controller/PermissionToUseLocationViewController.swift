@@ -6,22 +6,13 @@ import CoreLocation
 
 class PermissionToUseLocationViewController: UIViewController {
     
-//    private let viewModel: PermissionToUseLocationViewModelProtocol
-    
+    var tapAction: ((LocationModel) -> Void)?
+        
     private lazy var permissionToUseLocationView = PermissionToUseLocationView(delegate: self)
  
     private lazy var locationManager = CLLocationManager()
     
-    var coordinator: RootCoordinator?
-    
-//    init(viewModel: PermissionToUseLocationViewModelProtocol) {
-//        self.viewModel = viewModel
-//        super.init(nibName: nil, bundle: nil)
-//    }
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-
+    weak var coordinator: RootCoordinator?
     
     override func loadView() {
         super.loadView()
@@ -36,24 +27,6 @@ class PermissionToUseLocationViewController: UIViewController {
         
         self.navigationController?.navigationBar.isHidden = true
     }
-        
-//    func bindViewModel() {
-//        viewModel.onStateDidChange = { [weak self] state in
-//            guard let self = self else {
-//                return
-//            }
-//            switch state {
-//            case.initial:
-//                print("initial")
-//            case.firstLaunchUseLocation:
-//                print("firstLaunchUseLocation")
-//            case.firstLaunchDoNotUseLocation:
-//                print("firstLaunchDoNotUseLocation")
-//            case.subsequentLaunch:
-//                print("subsequentLaunch")
-//            }
-//        }
-//    }
 }
 
 extension PermissionToUseLocationViewController: PermissionToUseLocationDelegate {
@@ -62,16 +35,15 @@ extension PermissionToUseLocationViewController: PermissionToUseLocationDelegate
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.delegate = self
         UserDefaults.standard.set("Yes", forKey: "acceptedTerms")
-//        coordinator?.push()
+        coordinator?.start()
         print("🍋 give")
     }
     
     func doNotGiveAccessToTheLocation() {
-//        viewModel.updateState(viewInput: .refuseButton)
         self.locationManager.requestWhenInUseAuthorization()
         self.locationManager.delegate = self
         UserDefaults.standard.set("Yes", forKey: "acceptedTerms")
-//        coordinator?.push()
+        coordinator?.start()
         print("do not give ❌")
     }
 }
@@ -80,11 +52,13 @@ extension PermissionToUseLocationViewController: CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let userLocation = locations.first?.coordinate else { return }
-        print("userLocation", userLocation)
         let lat = userLocation.latitude
         let lon = userLocation.longitude
-        print(lat, lon)
-//        viewModel.updateState(viewInput: .agreeButton(lat: lat, lon: lon))
+        print("lat, lon", lat, lon)
+//        var array = LocationArray()
+//        array.locationArray.append(LocationModel(latitude: lat, longitude: lon))
+//        delegateRoot?.getLocation(lat: lat, lon: lon)
+        tapAction?(LocationModel(latitude: lat, longitude: lon))
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {

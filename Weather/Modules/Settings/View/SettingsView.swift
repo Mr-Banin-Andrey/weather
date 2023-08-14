@@ -8,7 +8,7 @@ protocol SettingsViewDelegate: AnyObject {
     func selectedTemp(сelsiusOrFahrenheit: SettingsUserDefaultsModel)
     func selectedSpeedWind(milesOrKilometers: SettingsUserDefaultsModel)
     func selectedTimeFormat(twelveOrTwentyFour: SettingsUserDefaultsModel)
-    func selectedNotifications(onOrOff: String)
+    func selectedNotifications(onOrOff: SettingsUserDefaultsModel)
     func installSettings()
 }
 
@@ -271,32 +271,25 @@ class SettingsView: UIView {
     @objc private func selectedTemp() {
         guard let selected = tempSegmentedControl.titleForSegment(at: tempSegmentedControl.selectedSegmentIndex) else { return }
         
-//        print("🚺 tempSegmentedControl.selectedSegmentIndex", tempSegmentedControl.selectedSegmentIndex)
-//        print("🚺 selectedTemp", selected)
         delegate?.selectedTemp(сelsiusOrFahrenheit: SettingsUserDefaultsModel(indexSelected: tempSegmentedControl.selectedSegmentIndex, value: selected))
     }
     
     @objc private func selectedSpeedWind() {
         guard let selected = speedWindSegmentedControl.titleForSegment(at: speedWindSegmentedControl.selectedSegmentIndex) else { return }
         
-        print("🚺 timeFormatSegmentedControl.selectedSegmentIndex", timeFormatSegmentedControl.selectedSegmentIndex)
-        print("🚺 selectedTimeFormat", selected)
         delegate?.selectedSpeedWind(milesOrKilometers: SettingsUserDefaultsModel(indexSelected: speedWindSegmentedControl.selectedSegmentIndex, value: selected))
-        print("selectedSpeedWind", selected)
     }
     
     @objc private func selectedTimeFormat() {
         guard let selected = timeFormatSegmentedControl.titleForSegment(at: timeFormatSegmentedControl.selectedSegmentIndex) else { return }
         
-//        print("🚺 timeFormatSegmentedControl.selectedSegmentIndex", timeFormatSegmentedControl.selectedSegmentIndex)
-//        print("🚺 selectedTimeFormat", selected)
         delegate?.selectedTimeFormat(twelveOrTwentyFour: SettingsUserDefaultsModel(indexSelected: timeFormatSegmentedControl.selectedSegmentIndex, value: selected))
     }
     
     @objc private func selectedNotifications() {
         guard let selected = notificationsSegmentedControl.titleForSegment(at: notificationsSegmentedControl.selectedSegmentIndex) else { return }
         
-        delegate?.selectedNotifications(onOrOff: selected)
+//        delegate?.selectedNotifications(onOrOff: SettingsUserDefaultsModel(indexSelected: notificationsSegmentedControl.selectedSegmentIndex, value: selected))
         print("selectedTemp", selected)
     }
     

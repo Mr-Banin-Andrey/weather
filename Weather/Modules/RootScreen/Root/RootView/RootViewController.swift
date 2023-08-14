@@ -70,14 +70,8 @@ class RootViewController: UIViewController {
         super.viewWillAppear(animated)
         
         self.navigationController?.navigationBar.isHidden = false
-//        self.setNeedsFocusUpdate()
-//        self.loadViewIfNeeded()
-//        self.reloadInputViews()
-        
     }
-    
-    
-    
+        
     private func bindViewModel() {
         viewModel.onStateDidChange = { [weak self] state in
             guard let self = self else {

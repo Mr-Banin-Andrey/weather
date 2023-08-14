@@ -52,8 +52,6 @@ final class PermissionToUseLocationView: UIView {
         return label
     }()
     
-    
-    
     private lazy var agreeButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false

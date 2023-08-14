@@ -1,43 +1,42 @@
 
-
 import UIKit
 
-class RootCoordinator: ModuleCoordinatable {
-    
-    private let factory: AppFactory
+class RootCoordinator: Coordinatable {
     
     private(set) var childCoordinators: [Coordinatable] = []
-    private(set) var module: Module?
     
-    private let navigationController = UINavigationController()
+    private let navigationController: UINavigationController
     
-    init(factory: AppFactory) {
-        self.factory = factory
+
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
     }
     
-    func start() -> UIViewController {
-//        let acceptedTerms = UserDefaults.standard.string(forKey: "acceptedTerms")
-//        if acceptedTerms != nil && acceptedTerms == "Yes" {
-            return mainViewStart()
-//        } else {
-//            return permToUse()
-//        }
+    func start() {
+        let userDefaults = UserDefaults.standard
+        if userDefaults.string(forKey: "acceptedTerms") == "Yes" {
+            mainViewStart()
+        } else {
+            locationStart()
+        }
     }
     
-    func mainViewStart() -> UIViewController {
-        let module = factory.makeModule()
-        let viewController = module.view
-        (module.viewModel as? RootViewModel)?.coordinator = self
-        self.module = module
-        return viewController
+    
+    func mainViewStart()  {
+        let viewModel = RootViewModel()
+        let rootVc = RootViewController(viewModel: viewModel)
+        viewModel.coordinator = self
+        navigationController.pushViewController(rootVc, animated: true)
     }
     
-    func locationStart() -> UIViewController {
-        return PermissionToUseLocationViewController()
+    func locationStart() {
+        let permissionToUse = PermissionToUseLocationViewController()
+        permissionToUse.coordinator = self
+        navigationController.pushViewController(permissionToUse, animated: true)
     }
     
     func pushSettingsViewController() {
         let viewControllerToPush = SettingsViewController()
-        (module?.view as? UINavigationController)?.pushViewController(viewControllerToPush, animated: true)
+        navigationController.pushViewController(viewControllerToPush, animated: true)
     }
 }
