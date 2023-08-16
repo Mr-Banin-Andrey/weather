@@ -121,40 +121,40 @@ struct Evening: Codable {
 }
 
 struct DayShort: Codable {
-    let temp: Int // температура
-    let temp_min: Int // температура мин
-    let feels_like: Int // ощущения температура
+    let cloudness: Double // Облачность
     let condition: String // описание погоды
-    let wind_speed: Double? // Скорость ветра (в м/с).
-    let wind_dir: String? // Направление ветра.
+    let feels_like: Int // ощущения температура
     let prec_type: Double // Тип осадков
     let prec_strength: Double // Сила осадков.
-    let cloudness: Double // Облачность
+    let temp: Int // температура
+    let temp_min: Int // температура мин
     let uv_index: Int?
+    let wind_dir: String? // Направление ветра.
+    let wind_speed: Double? // Скорость ветра (в м/с).
 }
 
 struct NightShort: Codable {
-    let temp: Int // температура мин за ночь
-    let feels_like: Int // ощущения температура
+    let cloudness: Double // Облачность
     let condition: String // описание погоды
-    let wind_speed: Double? // Скорость ветра (в м/с).
-    let wind_dir: String? // Направление ветра.
+    let feels_like: Int // ощущения температура
     let prec_type: Double // Тип осадков
     let prec_strength: Double // Сила осадков.
-    let cloudness: Double // Облачность
+    let temp: Int // температура мин за ночь
     let uv_index: Int?
+    let wind_dir: String? // Направление ветра.
+    let wind_speed: Double? // Скорость ветра (в м/с).
 }
 
 struct Hours: Codable {
     let hour: String // Значение часа, для которого дается прогноз (0-23), локальное время.
     let hour_ts: Int // Время прогноза в Unixtime.
-    let temp: Int // Максимальная дневная или минимальная ночная температура (°C).
-    let feels_like: Int //Ощущаемая температура (°C).
+    let cloudness: Double // Облачность
     let condition: String // Код расшифровки погодного описания.
+    let feels_like: Int //Ощущаемая температура (°C).
     let prec_type: Double // Тип осадков
     let prec_strength: Double // Сила осадков.
-    let is_thunder: Bool // Признак грозы.
-    let cloudness: Double // Облачностm
-    let wind_speed: Double? // Скорость ветра (в м/с).
+    let temp: Int // Максимальная дневная или минимальная ночная температура (°C).
     let wind_dir: String? // Направление ветра.
+    let wind_speed: Double? // Скорость ветра (в м/с).
+    let is_thunder: Bool // Признак грозы.
 }
