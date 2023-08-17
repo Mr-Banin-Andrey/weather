@@ -42,6 +42,8 @@ class RootViewController: UIViewController {
         return view
     }()
     
+    private let realmService: RealmServiceProtocol = RealmService()
+    
     init(viewModel: RootViewModelProtocol) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -70,6 +72,7 @@ class RootViewController: UIViewController {
         super.viewWillAppear(animated)
         
         self.navigationController?.navigationBar.isHidden = false
+        viewModel.updateState(viewInput: .loadCityAndWeather)
     }
         
     private func bindViewModel() {
@@ -81,24 +84,37 @@ class RootViewController: UIViewController {
             switch state {
             case .initial:
                 print("initial")
-            
+                
             case .selectCity:
                 self.showAlert()
-            
-            case .loadWeather:
-                print("loadWeather")
-            
+                
+            case let .loadedWeatherFromCache(cititsAndWeather):
+                
+                print("loadWeatherFromCash")
+                if !cititsAndWeather.isEmpty {
+                    self.horizontalView.isHidden = true
+                    self.verticalView.isHidden = true
+
+                    self.cityNameAndWeatherArray = cititsAndWeather
+                    self.mainCityPageViewController.updatePageViewController(cityNameAndWeatherArray)
+                    self.view.layoutIfNeeded()
+                }
+            case let .updateWeather(cititsAndWeather):
+//                self.cityNameAndWeatherArray = cititsAndWeather
+//                self.mainCityPageViewController.updatePageViewController(cityNameAndWeatherArray)
+//                self.view.layoutIfNeeded()
+                print("updateWeather")
             case let .loadedCity(city):
                 print("loadedCity", city)
-            case let .loadedWeather(city, weather):
+            case let .loadedWeatherFromNetwork(cityAndWeather):
                 
-                print("loadedWeather")
+                print("loadedWeatherFromNetwork")
                 // put it in dispatchQueue
                 self.horizontalView.isHidden = true
                 self.verticalView.isHidden = true
                 
-                let cityWeatherAndName = [CityNameAndWeatherModel(nameCity: city, weather: weather)]
-                self.cityNameAndWeatherArray.insert(contentsOf: cityWeatherAndName, at: 0)
+                let cityNameAndWeather = [cityAndWeather]
+                self.cityNameAndWeatherArray.insert(contentsOf: cityNameAndWeather, at: 0)
                 self.mainCityPageViewController.updatePageViewController(cityNameAndWeatherArray)
                 self.view.layoutIfNeeded()
             case .error(_):
@@ -171,7 +187,9 @@ extension RootViewController: MainCityPageViewControllerDelegate {
     
     func didUpdatePageIndex(_ mainCityPageViewController: UIPageViewController, didUpdatePageIndex index: Int) {
         pageControl.currentPage = index
-        self.rootView.setupTitle(text: cityNameAndWeatherArray[index].nameCity)
+        if !cityNameAndWeatherArray.isEmpty {
+            self.rootView.setupTitle(text: cityNameAndWeatherArray[index].nameCity)
+        }
 //        print("MainCityPageViewControllerDelegate - index", index)
     }
 }

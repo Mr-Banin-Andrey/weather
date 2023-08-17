@@ -35,6 +35,8 @@
 		9D9363D82A8A786100F84974 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9D9363D72A8A786100F84974 /* RealmSwift */; };
 		9D9363DB2A8A7C5B00F84974 /* NameCityAndWeatherRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9363DA2A8A7C5B00F84974 /* NameCityAndWeatherRealmModel.swift */; };
 		9D9363DD2A8A7C6F00F84974 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9363DC2A8A7C6F00F84974 /* RealmService.swift */; };
+		9D9363E92A8E19DE00F84974 /* ConvertWeatherModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9363E82A8E19DE00F84974 /* ConvertWeatherModels.swift */; };
+		9D9363EB2A8E79AA00F84974 /* NetworkServiceLoadFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9363EA2A8E79AA00F84974 /* NetworkServiceLoadFunc.swift */; };
 		9DB90D112A518F0D00F57180 /* MainCityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D102A518F0D00F57180 /* MainCityView.swift */; };
 		9DB90D132A51A0CD00F57180 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D122A51A0CD00F57180 /* AppCoordinator.swift */; };
 		9DB90D2D2A53038900F57180 /* CardOfTheDayHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB90D2C2A53038900F57180 /* CardOfTheDayHeader.swift */; };
@@ -99,6 +101,8 @@
 		9D9363D22A8A557300F84974 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		9D9363DA2A8A7C5B00F84974 /* NameCityAndWeatherRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameCityAndWeatherRealmModel.swift; sourceTree = "<group>"; };
 		9D9363DC2A8A7C6F00F84974 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
+		9D9363E82A8E19DE00F84974 /* ConvertWeatherModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertWeatherModels.swift; sourceTree = "<group>"; };
+		9D9363EA2A8E79AA00F84974 /* NetworkServiceLoadFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceLoadFunc.swift; sourceTree = "<group>"; };
 		9DB90D102A518F0D00F57180 /* MainCityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCityView.swift; sourceTree = "<group>"; };
 		9DB90D122A51A0CD00F57180 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		9DB90D2C2A53038900F57180 /* CardOfTheDayHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardOfTheDayHeader.swift; sourceTree = "<group>"; };
@@ -333,6 +337,7 @@
 		9D573C072A38C47400F8E4F3 /* NetworkService */ = {
 			isa = PBXGroup;
 			children = (
+				9D9363EA2A8E79AA00F84974 /* NetworkServiceLoadFunc.swift */,
 				9DDCDB2B2A6D106300CD6CBC /* NetworkService.swift */,
 				9D555EE12A7ADE7500138EB4 /* Geocode */,
 				9D555EE02A7ADE6500138EB4 /* Weather */,
@@ -405,6 +410,7 @@
 			children = (
 				9D9363DC2A8A7C6F00F84974 /* RealmService.swift */,
 				9D9363DA2A8A7C5B00F84974 /* NameCityAndWeatherRealmModel.swift */,
+				9D9363E82A8E19DE00F84974 /* ConvertWeatherModels.swift */,
 			);
 			path = RealmService;
 			sourceTree = "<group>";
@@ -739,6 +745,7 @@
 				9D573BEA2A38B84100F8E4F3 /* AppDelegate.swift in Sources */,
 				9DB90D372A5587FC00F57180 /* CustomView.swift in Sources */,
 				9DB90D112A518F0D00F57180 /* MainCityView.swift in Sources */,
+				9D9363E92A8E19DE00F84974 /* ConvertWeatherModels.swift in Sources */,
 				9DB90D772A605E5400F57180 /* SummaryOfTheDayView.swift in Sources */,
 				9D555EEC2A7E410200138EB4 /* DecodingOfDate.swift in Sources */,
 				9D9363D32A8A557300F84974 /* LocationModel.swift in Sources */,
@@ -778,6 +785,7 @@
 				9DDCDB2C2A6D106300CD6CBC /* NetworkService.swift in Sources */,
 				9D9363CD2A86CEA500F84974 /* SettingsUserDefaultsModel.swift in Sources */,
 				9DC53BAA2A84F14800DAEF5D /* SettingsUserDefaults.swift in Sources */,
+				9D9363EB2A8E79AA00F84974 /* NetworkServiceLoadFunc.swift in Sources */,
 				9DB90D412A5756F700F57180 /* HourlyWeatherCellInTableViewCell.swift in Sources */,
 				9DB90D812A65811F00F57180 /* AirQualityTableViewCell.swift in Sources */,
 				9D555EC12A72AA7A00138EB4 /* NetworkServiceWeatherModel.swift in Sources */,
