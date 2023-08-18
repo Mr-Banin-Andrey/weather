@@ -102,20 +102,17 @@ class RootViewController: UIViewController {
                     self.mainCityPageViewController.updatePageViewController(cityNameAndWeatherArray)
                     self.view.layoutIfNeeded()
                 }
-            case let .updateWeather(cititsAndWeather):
-                
-                DispatchQueue.main.async {
+            case .updateWeather:
+                print("updateWeather")
+                viewModel.updateState(viewInput: .updateDate)
+            case let .updatedWeather(cititsAndWeather):
                     print("updateWeather")
                     self.cityNameAndWeatherArray = cititsAndWeather
                     self.mainCityPageViewController.updatePageViewController(self.cityNameAndWeatherArray)
                     self.view.setNeedsDisplay()
-//                    self.view.layoutIfNeeded()
-                }
-                
             case let .loadedWeatherFromNetwork(cityAndWeather):
                 
                 print("loadedWeatherFromNetwork")
-                // put it in dispatchQueue
                 self.horizontalView.isHidden = true
                 self.verticalView.isHidden = true
                 

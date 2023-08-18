@@ -11,19 +11,18 @@ class RootViewModel: RootViewModelProtocol {
         //загрузка погоды (в момент первого пуска показать данные по умолчанию)
         case initial // 1.
         case selectCity // выбор города в алерте
-        
-        case updateWeather(cityAndWeather: [CityNameAndWeatherModel]) // загрузка сразу всех городов из сети
-        
+        case updateWeather
+        case updatedWeather(cityAndWeather: [CityNameAndWeatherModel]) // загрузка сразу всех городов из сети
         case loadedWeatherFromCache(cityAndWeather: [CityNameAndWeatherModel]) // загрузка из базы сразу всех городов
         case loadedWeatherFromNetwork(cityAndWeather: CityNameAndWeatherModel) // загрузка по одному городу
-        
         case error(Error)
     }
     
     enum ViewInput {
+        case updateDate
         case loadCityAndWeather
         case buttonSettings
-        case buttonAlertSelectCity //(word: String)
+        case buttonAlertSelectCity 
         case addCity(city: String)
     }
     
@@ -40,129 +39,41 @@ class RootViewModel: RootViewModelProtocol {
     
     var weathersArray = [CityNameAndWeatherModel]()
     
-    
-    
-    //    let updateWeatherQueue = DispatchQueue(label: "ru.weather.updateWeatherQueue", qos: .utility, attributes: [.concurrent])
-    
-    private lazy var updateWeatherQueue = DispatchQueue(label: "ru.weather.updateWeatherQueue", qos: .userInteractive, attributes: [.concurrent])
-    
-    private lazy var updateWeatherQueueSerial = DispatchQueue(label: "ru.weather.updateWeatherQueueSerial")
-        
-        
-//    func testRun(array: [CityNameAndWeatherModel], completion: @escaping ([CityNameAndWeatherModel]) -> Void) {
-//        var arrayTwo = [CityNameAndWeatherModel]()
-//        let clearBase = self.realmService.clearBase()
-//        print("🛜clearBase", clearBase)
-//
-//        array.forEach { cityAndWeather in
-//            NetworkServiceLoadFunc().loadFunc(city: cityAndWeather.nameCity) { [weak self] resultCityNameAndWeather in
-//                switch resultCityNameAndWeather {
-//                case let .success(cityNameAndWeather):
-//                    arrayTwo.append(cityNameAndWeather)
-//                    self?.realmService.addCityAndWeather(cityAndWeather: cityNameAndWeather)
-//                    print("🛜 testRun arrayTwo.count - ", arrayTwo.count)
-//                case let .failure(Error):
-//                    print(Error)
-//                }
-//            }
-//        }
-//    }
-
-    
-    
-//    func testRun2() async throws -> [CityNameAndWeatherModel] {
-//        var arrayTwo = [CityNameAndWeatherModel]()
-//        let clearBase = self.realmService.clearBase()
-//        print("🛜clearBase", clearBase)
-//        weathersArray.forEach { cityAndWeather in
-//            NetworkServiceLoadFunc().loadFunc(city: cityAndWeather.nameCity) { [weak self] resultCityNameAndWeather in
-//                switch resultCityNameAndWeather {
-//                case let .success(cityNameAndWeather):
-//                    arrayTwo.append(cityNameAndWeather)
-//                    self?.realmService.addCityAndWeather(cityAndWeather: cityNameAndWeather)
-//                    print("🛜 testRun arrayTwo.count - ", arrayTwo.count)
-//                case let .failure(Error):
-//                    print(Error)
-//                }
-//            }
-//        }
-//
-//        return try await withCheckedThrowingContinuation { continuation in
-//            testRun2() { result in
-//                continuation.resume(returning: result)
-//            }
-//        }
-//    }
-    
     func updateState(viewInput: RootViewModel.ViewInput) {
         switch viewInput {
+        case .updateDate:
+            print("updateDate")
+            self.state = .updatedWeather(cityAndWeather: self.weathersArray)
         case .loadCityAndWeather:
-            // 1. загрузка из базы
+
             let cititsAndWeather = self.realmService.fetch()
             print("cititsAndWeather count -", cititsAndWeather.count)
             if !cititsAndWeather.isEmpty {
-                // 2. отображение на экране
+
                 self.state = .loadedWeatherFromCache(cityAndWeather: cititsAndWeather)
-                
-                // 3. обновляю данные погоды
-                
-                //    // 1
-                //    var storedError: NSError?
-                    let downloadGroup = DispatchGroup()
-                //    for address in [
-                //      PhotoURLString.overlyAttachedGirlfriend,
-                //      PhotoURLString.successKid,
-                //      PhotoURLString.lotsOfFaces
-                //    ] {
-                //      guard let url = URL(string: address) else { return }
-                //      downloadGroup.enter()
-                //      let photo = DownloadPhoto(url: url) { _, error in
-                //        storedError = error
-                //        downloadGroup.leave()
-                //      }
-                //      PhotoManager.shared.addPhoto(photo)
-                //    }
-                //
-                //    // 2
-                //    downloadGroup.notify(queue: DispatchQueue.main) {
-                //      completion?(storedError)
-                //    }
-                downloadGroup.enter()
+
+                let downloadGroup = DispatchGroup()
+                let clearBase = self.realmService.clearBase()
+                print("🛜clearBase", clearBase)
                 cititsAndWeather.forEach { cityAndWeather in
+                    downloadGroup.enter()
                     NetworkServiceLoadFunc().loadFunc(city: cityAndWeather.nameCity) { [weak self] resultCityNameAndWeather in
+                        downloadGroup.enter()
                         switch resultCityNameAndWeather {
                         case let .success(cityNameAndWeather):
                             self?.weathersArray.append(cityNameAndWeather)
                             self?.realmService.addCityAndWeather(cityAndWeather: cityNameAndWeather)
+                            downloadGroup.leave()
                         case let .failure(Error):
                             print(Error)
+                            downloadGroup.leave()
                         }
+                        downloadGroup.leave()
                     }
-                    downloadGroup.leave()
                 }
                 downloadGroup.notify(queue: DispatchQueue.main) {
-                      completion?(storedError)
+                    self.state = .updateWeather
                 }
-//                updateWeatherQueue.async {
-//                    self.testRun(array: cititsAndWeather) { value in
-//                        print("value",value)
-//                    }
-//                    cititsAndWeather.forEach { cityAndWeather in
-//                        NetworkServiceLoadFunc().loadFunc(city: cityAndWeather.nameCity) { [weak self] resultCityNameAndWeather in
-//                            switch resultCityNameAndWeather {
-//                            case let .success(cityNameAndWeather):
-//                                self?.weathersArray.append(cityNameAndWeather)
-//                                self?.realmService.addCityAndWeather(cityAndWeather: cityNameAndWeather)
-//                            case let .failure(Error):
-//                                print(Error)
-//                            }
-//                        }
-                    
-//                }
-
-//                DispatchQueue.asyncAndWait(<#T##self: DispatchQueue##DispatchQueue#>)
-                
-//                self.state = .updateWeather(cityAndWeather: self.weathersArray)
 
 
             } else {
