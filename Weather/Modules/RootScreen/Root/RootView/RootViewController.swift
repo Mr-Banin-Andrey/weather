@@ -66,13 +66,16 @@ class RootViewController: UIViewController {
         
         self.setupUi()
         self.bindViewModel()
+        
+        if !realmService.fetch().isEmpty {
+            viewModel.updateState(viewInput: .loadCityAndWeather)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.navigationController?.navigationBar.isHidden = false
-        viewModel.updateState(viewInput: .loadCityAndWeather)
     }
         
     private func bindViewModel() {
@@ -100,12 +103,15 @@ class RootViewController: UIViewController {
                     self.view.layoutIfNeeded()
                 }
             case let .updateWeather(cititsAndWeather):
-//                self.cityNameAndWeatherArray = cititsAndWeather
-//                self.mainCityPageViewController.updatePageViewController(cityNameAndWeatherArray)
-//                self.view.layoutIfNeeded()
-                print("updateWeather")
-            case let .loadedCity(city):
-                print("loadedCity", city)
+                
+                DispatchQueue.main.async {
+                    print("updateWeather")
+                    self.cityNameAndWeatherArray = cititsAndWeather
+                    self.mainCityPageViewController.updatePageViewController(self.cityNameAndWeatherArray)
+                    self.view.setNeedsDisplay()
+//                    self.view.layoutIfNeeded()
+                }
+                
             case let .loadedWeatherFromNetwork(cityAndWeather):
                 
                 print("loadedWeatherFromNetwork")

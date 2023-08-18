@@ -5,7 +5,7 @@ import RealmSwift
 protocol RealmServiceProtocol: AnyObject {
     func addCityAndWeather(cityAndWeather: CityNameAndWeatherModel) -> Bool
     func fetch() -> [CityNameAndWeatherModel]
-//    func removeUser(user: CityNameAndWeatherModel) -> Bool
+    func clearBase() -> Bool
 }
 
 class RealmService {
@@ -45,9 +45,17 @@ extension RealmService: RealmServiceProtocol {
         }
     }
     
-//    func removeUser(user: CityNameAndWeatherModel) -> Bool {
-//        <#code#>
-//    }
-    
+    func clearBase() -> Bool {
+        do {
+            let realm = try Realm()
+            try realm.write {
+                realm.deleteAll()
+            }
+            return true
+        } catch let error {
+            print("Error: \(error)")
+            return false
+        }
+    }
     
 }

@@ -32,7 +32,7 @@ class NetworkServiceLoadFunc {
         return (lat, lon)
     }
     
-    func loadFunc(city: String, completion: @escaping (CityNameAndWeatherModel) -> Void) { //@escaping ([DocumentsModel]) -> Void)
+    func loadFunc(city: String, completion: @escaping (Result<CityNameAndWeatherModel, Error>) -> Void) { // ((Result<[Value], Error>) -> Void)) -> Value {
         NetworkService(
             data: headGeo(city: city),
             headers: [:],
@@ -62,21 +62,22 @@ class NetworkServiceLoadFunc {
                 ).executeQuery() { (result: Result<NetworkServiceWeatherModel,Error>) in
                     switch result {
                     case .success(let weather):
-                        print("🅿️ info", weather.info)
-                        print("🅿️ fact", weather.fact)
+//                        print("🅿️ info", weather.info)
+//                        print("🅿️ fact", weather.fact)
 //                            print("🅿️ forecasts", weather.forecasts)
 //                            weather.forecasts.forEach{ print($0.date) }
-                        
 //                        self.state = .loadedWeather(city: cityName, weather: weather)
 //                        self.realmService.addCityAndWeather(cityAndWeather: CityNameAndWeatherModel(nameCity: cityName, weather: weather))
                         
-                        completion(CityNameAndWeatherModel(nameCity: cityName, weather: weather))
+                        completion(.success(CityNameAndWeatherModel(nameCity: cityName, weather: weather)))
                     case .failure(let error):
                         print("❌", error)
+                        completion(.failure(error))
                     }
                 }
             case .failure(let error):
                 print("🔞", error)
+                completion(.failure(error))
             }
         }
     }

@@ -1,9 +1,4 @@
-//
-//  ConvertWeatherModels.swift
-//  Weather
-//
-//  Created by Андрей Банин on 17.8.23..
-//
+
 
 import Foundation
 

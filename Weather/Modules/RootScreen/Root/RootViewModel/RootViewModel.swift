@@ -11,17 +11,13 @@ class RootViewModel: RootViewModelProtocol {
         //загрузка погоды (в момент первого пуска показать данные по умолчанию)
         case initial // 1.
         case selectCity // выбор города в алерте
-        case loadedWeatherFromCache(cityAndWeather: [CityNameAndWeatherModel])// загрузка по локации или по выбору в алерте города ||(subsequent) фоном загрузка погоды
-        case updateWeather(cityAndWeather: [CityNameAndWeatherModel])
-        case loadedCity(city: String)
-        case loadedWeatherFromNetwork(cityAndWeather: CityNameAndWeatherModel)  //  ||(subsequent)  обновление погоды на Юай
+        
+        case updateWeather(cityAndWeather: [CityNameAndWeatherModel]) // загрузка сразу всех городов из сети
+        
+        case loadedWeatherFromCache(cityAndWeather: [CityNameAndWeatherModel]) // загрузка из базы сразу всех городов
+        case loadedWeatherFromNetwork(cityAndWeather: CityNameAndWeatherModel) // загрузка по одному городу
         
         case error(Error)
-//        case firstLaunchDoNotUseLocation // первый пуск без допуска к локации
-//        case firstLaunchUseLocation // первый пуск с допуском к локации
-//        case subsequentLaunch // (subsequent) загрузка из хранилища
-//        case selectCity // выбор города в алерте
-//        case loadedWeatherAndSaveInCoreDate // ||(subsequent)  добавление обновленной погоды в хранилище
     }
     
     enum ViewInput {
@@ -41,41 +37,157 @@ class RootViewModel: RootViewModelProtocol {
     }
     
     private let realmService: RealmServiceProtocol = RealmService()
-//    var latLonArray = [Double]()
+    
+    var weathersArray = [CityNameAndWeatherModel]()
+    
+    
+    
+    //    let updateWeatherQueue = DispatchQueue(label: "ru.weather.updateWeatherQueue", qos: .utility, attributes: [.concurrent])
+    
+    private lazy var updateWeatherQueue = DispatchQueue(label: "ru.weather.updateWeatherQueue", qos: .userInteractive, attributes: [.concurrent])
+    
+    private lazy var updateWeatherQueueSerial = DispatchQueue(label: "ru.weather.updateWeatherQueueSerial")
+        
+        
+//    func testRun(array: [CityNameAndWeatherModel], completion: @escaping ([CityNameAndWeatherModel]) -> Void) {
+//        var arrayTwo = [CityNameAndWeatherModel]()
+//        let clearBase = self.realmService.clearBase()
+//        print("🛜clearBase", clearBase)
+//
+//        array.forEach { cityAndWeather in
+//            NetworkServiceLoadFunc().loadFunc(city: cityAndWeather.nameCity) { [weak self] resultCityNameAndWeather in
+//                switch resultCityNameAndWeather {
+//                case let .success(cityNameAndWeather):
+//                    arrayTwo.append(cityNameAndWeather)
+//                    self?.realmService.addCityAndWeather(cityAndWeather: cityNameAndWeather)
+//                    print("🛜 testRun arrayTwo.count - ", arrayTwo.count)
+//                case let .failure(Error):
+//                    print(Error)
+//                }
+//            }
+//        }
+//    }
+
+    
+    
+//    func testRun2() async throws -> [CityNameAndWeatherModel] {
+//        var arrayTwo = [CityNameAndWeatherModel]()
+//        let clearBase = self.realmService.clearBase()
+//        print("🛜clearBase", clearBase)
+//        weathersArray.forEach { cityAndWeather in
+//            NetworkServiceLoadFunc().loadFunc(city: cityAndWeather.nameCity) { [weak self] resultCityNameAndWeather in
+//                switch resultCityNameAndWeather {
+//                case let .success(cityNameAndWeather):
+//                    arrayTwo.append(cityNameAndWeather)
+//                    self?.realmService.addCityAndWeather(cityAndWeather: cityNameAndWeather)
+//                    print("🛜 testRun arrayTwo.count - ", arrayTwo.count)
+//                case let .failure(Error):
+//                    print(Error)
+//                }
+//            }
+//        }
+//
+//        return try await withCheckedThrowingContinuation { continuation in
+//            testRun2() { result in
+//                continuation.resume(returning: result)
+//            }
+//        }
+//    }
     
     func updateState(viewInput: RootViewModel.ViewInput) {
         switch viewInput {
         case .loadCityAndWeather:
-            let cititsAndWeather = realmService.fetch()
+            // 1. загрузка из базы
+            let cititsAndWeather = self.realmService.fetch()
+            print("cititsAndWeather count -", cititsAndWeather.count)
             if !cititsAndWeather.isEmpty {
+                // 2. отображение на экране
                 self.state = .loadedWeatherFromCache(cityAndWeather: cititsAndWeather)
-                // очистить реалм
-                // обновить данные
-                var weathersArray = [CityNameAndWeatherModel]()
+                
+                // 3. обновляю данные погоды
+                
+                //    // 1
+                //    var storedError: NSError?
+                    let downloadGroup = DispatchGroup()
+                //    for address in [
+                //      PhotoURLString.overlyAttachedGirlfriend,
+                //      PhotoURLString.successKid,
+                //      PhotoURLString.lotsOfFaces
+                //    ] {
+                //      guard let url = URL(string: address) else { return }
+                //      downloadGroup.enter()
+                //      let photo = DownloadPhoto(url: url) { _, error in
+                //        storedError = error
+                //        downloadGroup.leave()
+                //      }
+                //      PhotoManager.shared.addPhoto(photo)
+                //    }
+                //
+                //    // 2
+                //    downloadGroup.notify(queue: DispatchQueue.main) {
+                //      completion?(storedError)
+                //    }
+                downloadGroup.enter()
                 cititsAndWeather.forEach { cityAndWeather in
-                    NetworkServiceLoadFunc().loadFunc(city: cityAndWeather.nameCity) { cityNameAndWeather in
-                        weathersArray.append(cityNameAndWeather)
+                    NetworkServiceLoadFunc().loadFunc(city: cityAndWeather.nameCity) { [weak self] resultCityNameAndWeather in
+                        switch resultCityNameAndWeather {
+                        case let .success(cityNameAndWeather):
+                            self?.weathersArray.append(cityNameAndWeather)
+                            self?.realmService.addCityAndWeather(cityAndWeather: cityNameAndWeather)
+                        case let .failure(Error):
+                            print(Error)
+                        }
                     }
+                    downloadGroup.leave()
                 }
-                state = .updateWeather(cityAndWeather: weathersArray)
+                downloadGroup.notify(queue: DispatchQueue.main) {
+                      completion?(storedError)
+                }
+//                updateWeatherQueue.async {
+//                    self.testRun(array: cititsAndWeather) { value in
+//                        print("value",value)
+//                    }
+//                    cititsAndWeather.forEach { cityAndWeather in
+//                        NetworkServiceLoadFunc().loadFunc(city: cityAndWeather.nameCity) { [weak self] resultCityNameAndWeather in
+//                            switch resultCityNameAndWeather {
+//                            case let .success(cityNameAndWeather):
+//                                self?.weathersArray.append(cityNameAndWeather)
+//                                self?.realmService.addCityAndWeather(cityAndWeather: cityNameAndWeather)
+//                            case let .failure(Error):
+//                                print(Error)
+//                            }
+//                        }
+                    
+//                }
+
+//                DispatchQueue.asyncAndWait(<#T##self: DispatchQueue##DispatchQueue#>)
+                
+//                self.state = .updateWeather(cityAndWeather: self.weathersArray)
+
+
             } else {
-                state = .initial
+                self.state = .initial
             }
         case .buttonSettings:
-            print("buttonSettings")
             coordinator?.pushSettingsViewController()
-        case let .addCity(city):
-            print(city)
             
-            NetworkServiceLoadFunc().loadFunc(city: city) { cityNameAndWeather in
-                self.state = .loadedWeatherFromNetwork(cityAndWeather: cityNameAndWeather)
-                let result = self.realmService.addCityAndWeather(cityAndWeather: CityNameAndWeatherModel(nameCity: cityNameAndWeather.nameCity, weather: cityNameAndWeather.weather))
-                print("networkServiceResult -", result)
+        case let .addCity(city):
+            
+            NetworkServiceLoadFunc().loadFunc(city: city) { [weak self] resultCityNameAndWeather in
+                switch resultCityNameAndWeather {
+                case let .success(cityNameAndWeather):
+                    self?.state = .loadedWeatherFromNetwork(cityAndWeather: cityNameAndWeather)
+                    let result = self?.realmService.addCityAndWeather(cityAndWeather: CityNameAndWeatherModel(nameCity: cityNameAndWeather.nameCity,
+                                                                                                              weather: cityNameAndWeather.weather))
+                    print("networkServiceResult -", result!)
+                case let .failure(Error):
+                    print(Error)
+                }
             }
 
-            state = .initial
+            self.state = .initial
         case  .buttonAlertSelectCity:
-            
+            self.state = .selectCity
            
 //            let permissionToUse = PermissionToUseLocationViewController()
 //            //permissionToUse.delegateRoot = self
@@ -93,8 +205,6 @@ class RootViewModel: RootViewModelProtocol {
 //            }
 //            //
 //            //print("2 📫📗 latAndlon", latLonArray)
-
-            state = .selectCity
         }
     }
 }
