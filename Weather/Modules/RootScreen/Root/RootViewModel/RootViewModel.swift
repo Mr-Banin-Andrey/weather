@@ -8,7 +8,6 @@ protocol RootViewModelProtocol: ViewModelProtocol {
 
 class RootViewModel: RootViewModelProtocol {
     enum State {
-        //загрузка погоды (в момент первого пуска показать данные по умолчанию)
         case initial // 1.
         case selectCity // выбор города в алерте
         case updateWeather
@@ -62,7 +61,8 @@ class RootViewModel: RootViewModelProtocol {
                         switch resultCityNameAndWeather {
                         case let .success(cityNameAndWeather):
                             self?.weathersArray.append(cityNameAndWeather)
-                            self?.realmService.addCityAndWeather(cityAndWeather: cityNameAndWeather)
+                            let addCityAndWeather = self?.realmService.addCityAndWeather(cityAndWeather: cityNameAndWeather)
+                            print("addCityAndWeather - ", addCityAndWeather)
                             downloadGroup.leave()
                         case let .failure(Error):
                             print(Error)

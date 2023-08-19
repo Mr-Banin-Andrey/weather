@@ -1,11 +1,6 @@
-//
-//  Network.swift
-//  Weather
-//
-//  Created by Андрей Банин on 17.8.23..
-
 
 import Foundation
+import UIKit
 
 class NetworkServiceLoadFunc {
     
@@ -14,6 +9,7 @@ class NetworkServiceLoadFunc {
     private let headers = ["X-Yandex-API-Key":"4a008062-0c53-450d-a584-132047fd7220"]
     
     private let urlGeo = "https://geocode-maps.yandex.ru/1.x"
+    
     private func headGeo(city: String) -> [String:String] {
         let headersGeo = [
             "apikey":"653bb56c-4ee4-4a72-99cc-9e645a1f5872",
@@ -28,11 +24,10 @@ class NetworkServiceLoadFunc {
         let myStringArr = point.components(separatedBy: " ")
         let lon = myStringArr[0]
         let lat = myStringArr[1]
-//        print("🟣", lat, lon)
         return (lat, lon)
     }
     
-    func loadFunc(city: String, completion: @escaping (Result<CityNameAndWeatherModel, Error>) -> Void) { // ((Result<[Value], Error>) -> Void)) -> Value {
+    func loadFunc(city: String, completion: @escaping (Result<CityNameAndWeatherModel, Error>) -> Void) {
         NetworkService(
             data: headGeo(city: city),
             headers: [:],
@@ -42,38 +37,40 @@ class NetworkServiceLoadFunc {
         ).executeQuery() { (result: Result<GeocodeModel,Error>) in
             switch result {
             case .success(let weather):
-                let latLon = self.latLon(point: weather.response.geoObjectCollection.featureMember[0].geoObject.point.pos)
-                let lat = latLon.0
-                let lon = latLon.1
-                let cityName = weather.response.geoObjectCollection.featureMember[0].geoObject.name
-                print("✅", weather.response.geoObjectCollection.featureMember[0].geoObject)
-        
-                NetworkService(
-                    data: ["lat":lat,
-                           "lon":lon,
-                           "lang":"ru_RU",
-                           "limit":"7",
-                           "hours":"true",
-                           "extra":"false"] ,
-                    headers: self.headers,
-                    url: self.urlYan,
-                    method: .get,
-                    isJSONRequest: false
-                ).executeQuery() { (result: Result<NetworkServiceWeatherModel,Error>) in
-                    switch result {
-                    case .success(let weather):
-//                        print("🅿️ info", weather.info)
-//                        print("🅿️ fact", weather.fact)
-//                            print("🅿️ forecasts", weather.forecasts)
-//                            weather.forecasts.forEach{ print($0.date) }
-//                        self.state = .loadedWeather(city: cityName, weather: weather)
-//                        self.realmService.addCityAndWeather(cityAndWeather: CityNameAndWeatherModel(nameCity: cityName, weather: weather))
-                        
-                        completion(.success(CityNameAndWeatherModel(nameCity: cityName, weather: weather)))
-                    case .failure(let error):
-                        print("❌", error)
-                        completion(.failure(error))
+                if !weather.response.geoObjectCollection.featureMember.isEmpty {
+                    print("✅ 1", weather)
+                    print("✅ 2", weather.response.geoObjectCollection.featureMember[0].geoObject)
+                    let latLon = self.latLon(point: weather.response.geoObjectCollection.featureMember[0].geoObject.point.pos)
+                    let lat = latLon.0
+                    let lon = latLon.1
+                    let cityName = weather.response.geoObjectCollection.featureMember[0].geoObject.name
+            
+                    NetworkService(
+                        data: ["lat":lat,
+                               "lon":lon,
+                               "lang":"ru_RU",
+                               "limit":"7",
+                               "hours":"true",
+                               "extra":"false"] ,
+                        headers: self.headers,
+                        url: self.urlYan,
+                        method: .get,
+                        isJSONRequest: false
+                    ).executeQuery() { (result: Result<NetworkServiceWeatherModel,Error>) in
+                        switch result {
+                        case .success(let weather):
+                            completion(.success(CityNameAndWeatherModel(nameCity: cityName, weather: weather)))
+                        case .failure(let error):
+                            print("❌", error)
+                            completion(.failure(error))
+                        }
                     }
+                } else {
+                    print("alert")
+                    let alert = UIAlertController(title: "Город не найден", message: nil, preferredStyle: .alert)
+                    let action = UIAlertAction(title: "Попробовать ещё раз", style: .default)
+                    alert.addAction(action)
+                    UIApplication.shared.windows.filter { $0.isKeyWindow }.first?.rootViewController?.present(alert, animated: true)
                 }
             case .failure(let error):
                 print("🔞", error)

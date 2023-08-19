@@ -26,7 +26,6 @@ class RootCoordinator: Coordinatable {
         let viewModel = RootViewModel()
         let rootVc = RootViewController(viewModel: viewModel)
         viewModel.coordinator = self
-        viewModel
         navigationController.pushViewController(rootVc, animated: true)
     }
     
