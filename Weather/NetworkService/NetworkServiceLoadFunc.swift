@@ -6,7 +6,7 @@ class NetworkServiceLoadFunc {
     
 
     private let urlYan = "https://api.weather.yandex.ru/v2/forecast"
-    private let headers = ["X-Yandex-API-Key":"4a008062-0c53-450d-a584-132047fd7220"]
+    private let headers = ["X-Yandex-API-Key":"36395295-7e87-4403-947e-eeb446b60ed2"]
     
     private let urlGeo = "https://geocode-maps.yandex.ru/1.x"
     
@@ -46,12 +46,14 @@ class NetworkServiceLoadFunc {
                     let cityName = weather.response.geoObjectCollection.featureMember[0].geoObject.name
             
                     NetworkService(
-                        data: ["lat":lat,
-                               "lon":lon,
-                               "lang":"ru_RU",
-                               "limit":"7",
-                               "hours":"true",
-                               "extra":"false"] ,
+                        data: [
+                            "lat":lat,
+                            "lon":lon,
+                            "lang":"ru_RU",
+                            "limit":"7",
+                            "hours":"true",
+                            "extra":"false"
+                              ] ,
                         headers: self.headers,
                         url: self.urlYan,
                         method: .get,
