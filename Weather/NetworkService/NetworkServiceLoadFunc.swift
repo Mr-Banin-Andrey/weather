@@ -14,6 +14,7 @@ class NetworkServiceLoadFunc {
         let headersGeo = [
             "apikey":"653bb56c-4ee4-4a72-99cc-9e645a1f5872",
             "geocode":city,
+            "kind":"locality",
             "lang":"ru_RU",
             "format":"json"
         ]
@@ -27,8 +28,8 @@ class NetworkServiceLoadFunc {
         return (lat, lon)
     }
     
-    func loadFunc(city: String, completion: @escaping (Result<CityNameAndWeatherModel, Error>) -> Void) {
-        NetworkService(
+    func downloadWeatherInTheCityByName(city: String, completion: @escaping (Result<CityNameAndWeatherModel, Error>) -> Void) {
+        NetworkServiceWeather(
             data: headGeo(city: city),
             headers: [:],
             url: urlGeo,
@@ -45,7 +46,7 @@ class NetworkServiceLoadFunc {
                     let lon = latLon.1
                     let cityName = weather.response.geoObjectCollection.featureMember[0].geoObject.name
             
-                    NetworkService(
+                    NetworkServiceWeather(
                         data: [
                             "lat":lat,
                             "lon":lon,
@@ -74,6 +75,63 @@ class NetworkServiceLoadFunc {
                     alert.addAction(action)
                     UIApplication.shared.windows.filter { $0.isKeyWindow }.first?.rootViewController?.present(alert, animated: true)
                 }
+            case .failure(let error):
+                print("🔞", error)
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func downloadWeatherInTheCityByCoordinates(lat: Double, lon : Double, completion: @escaping (Result<CityNameAndWeatherModel, Error>) -> Void) {
+        NetworkServiceWeather(
+            data: headGeo(city: "\(lon),\(lat)"),
+            headers: [:],
+            url: urlGeo,
+            method: .get,
+            isJSONRequest: false
+        ).executeQuery() { (result: Result<GeocodeModel,Error>) in
+            switch result {
+            case .success(let city):
+//                if !city.response.geoObjectCollection.featureMember.isEmpty {
+                    print("✅ 1", city)
+                    print("✅ 2", city.response.geoObjectCollection.featureMember[0].geoObject)
+                    let latLon = self.latLon(point: city.response.geoObjectCollection.featureMember[0].geoObject.point.pos)
+                    let lat = latLon.0
+                    let lon = latLon.1
+                    let cityName = city.response.geoObjectCollection.featureMember[0].geoObject.name
+            
+                    NetworkServiceWeather(
+                        data: [
+                            "lat":lat,
+                            "lon":lon,
+                            "lang":"ru_RU",
+                            "limit":"7",
+                            "hours":"true",
+                            "extra":"false"
+                              ] ,
+                        headers: self.headers,
+                        url: self.urlYan,
+                        method: .get,
+                        isJSONRequest: false
+                    ).executeQuery() { (result: Result<NetworkServiceWeatherModel,Error>) in
+                        switch result {
+                        case .success(let weather):
+                            print("✅ 2.5", cityName)
+                            print("✅ 3", weather)
+                            
+                            completion(.success(CityNameAndWeatherModel(nameCity: cityName, weather: weather)))
+                        case .failure(let error):
+                            print("❌", error)
+                            completion(.failure(error))
+                        }
+                    }
+//                } else {
+//                    print("alert")
+//                    let alert = UIAlertController(title: "Город не найден", message: nil, preferredStyle: .alert)
+//                    let action = UIAlertAction(title: "Попробовать ещё раз", style: .default)
+//                    alert.addAction(action)
+//                    UIApplication.shared.windows.filter { $0.isKeyWindow }.first?.rootViewController?.present(alert, animated: true)
+//                }
             case .failure(let error):
                 print("🔞", error)
                 completion(.failure(error))

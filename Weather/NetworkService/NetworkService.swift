@@ -2,7 +2,7 @@
 import Foundation
 import Alamofire
 
-class NetworkService: NSObject{
+class NetworkServiceWeather: NSObject{
     
     var parameters = Parameters()
     var headers = HTTPHeaders()

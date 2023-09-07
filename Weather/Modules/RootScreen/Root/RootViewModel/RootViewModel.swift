@@ -8,13 +8,14 @@ protocol RootViewModelProtocol: ViewModelProtocol {
 
 class RootViewModel: RootViewModelProtocol {
     enum State {
-        case initial // 1.
+        case initial // инициализация
         case selectCity // выбор города в алерте
-        case updateWeather
+        case updateWeather // передача погодных данных
         case updatedWeather(cityAndWeather: [CityNameAndWeatherModel]) // загрузка сразу всех городов из сети
         case loadedWeatherFromCache(cityAndWeather: [CityNameAndWeatherModel]) // загрузка из базы сразу всех городов
         case loadedWeatherFromNetwork(cityAndWeather: CityNameAndWeatherModel) // загрузка по одному городу
         case error(Error)
+        case sendLocation(cityAndWeather: CityNameAndWeatherModel) // загрузка по локации
     }
     
     enum ViewInput {
@@ -23,6 +24,7 @@ class RootViewModel: RootViewModelProtocol {
         case buttonSettings
         case buttonAlertSelectCity 
         case addCity(city: String)
+        case useLocationCity(lat: Double, lon: Double)
     }
     
     weak var coordinator: RootCoordinator?
@@ -38,15 +40,38 @@ class RootViewModel: RootViewModelProtocol {
     
     var weathersArray = [CityNameAndWeatherModel]()
     
+//    func sendLocation(lat: Double, lon: Double){
+////        print("sendLocation", lat, lon)
+//        state = .sendLocation(lat: lat, lon: lon)
+//    }
+    
+    
     func updateState(viewInput: RootViewModel.ViewInput) {
         switch viewInput {
+            
+        case let .useLocationCity(lat, lon):
+            NetworkServiceLoadFunc().downloadWeatherInTheCityByCoordinates(lat: lat, lon: lon) { [weak self] resultCityNameAndWeather in
+                switch resultCityNameAndWeather {
+                case let .success(cityNameAndWeather):
+//                    self?.state = .loadedWeatherFromNetwork(cityAndWeather: cityNameAndWeather)
+                    self?.state = .sendLocation(cityAndWeather: cityNameAndWeather)
+                    let result = self?.realmService.addCityAndWeather(cityAndWeather: CityNameAndWeatherModel(nameCity: cityNameAndWeather.nameCity,
+                                                                                                              weather: cityNameAndWeather.weather))
+                    print("🔫networkServiceResult -", result)
+                    print("🔫cityNameAndWeather -", cityNameAndWeather)
+
+                case let .failure(Error):
+                    print(Error)
+                }
+            }
+            self.state = .initial
         case .updateDate:
-            print("updateDate")
+//            print("updateDate")
             self.state = .updatedWeather(cityAndWeather: self.weathersArray)
         case .loadCityAndWeather:
 
             let cititsAndWeather = self.realmService.fetch()
-            print("cititsAndWeather count -", cititsAndWeather.count)
+//            print("cititsAndWeather count -", cititsAndWeather.count)
             if !cititsAndWeather.isEmpty {
 
                 self.state = .loadedWeatherFromCache(cityAndWeather: cititsAndWeather)
@@ -56,13 +81,13 @@ class RootViewModel: RootViewModelProtocol {
                 print("🛜clearBase", clearBase)
                 cititsAndWeather.forEach { cityAndWeather in
                     downloadGroup.enter()
-                    NetworkServiceLoadFunc().loadFunc(city: cityAndWeather.nameCity) { [weak self] resultCityNameAndWeather in
+                    NetworkServiceLoadFunc().downloadWeatherInTheCityByName(city: cityAndWeather.nameCity) { [weak self] resultCityNameAndWeather in
                         downloadGroup.enter()
                         switch resultCityNameAndWeather {
                         case let .success(cityNameAndWeather):
                             self?.weathersArray.append(cityNameAndWeather)
                             let addCityAndWeather = self?.realmService.addCityAndWeather(cityAndWeather: cityNameAndWeather)
-                            print("addCityAndWeather - ", addCityAndWeather)
+//                            print("addCityAndWeather - ", addCityAndWeather)
                             downloadGroup.leave()
                         case let .failure(Error):
                             print(Error)
@@ -84,7 +109,7 @@ class RootViewModel: RootViewModelProtocol {
             
         case let .addCity(city):
             
-            NetworkServiceLoadFunc().loadFunc(city: city) { [weak self] resultCityNameAndWeather in
+            NetworkServiceLoadFunc().downloadWeatherInTheCityByName(city: city) { [weak self] resultCityNameAndWeather in
                 switch resultCityNameAndWeather {
                 case let .success(cityNameAndWeather):
                     self?.state = .loadedWeatherFromNetwork(cityAndWeather: cityNameAndWeather)

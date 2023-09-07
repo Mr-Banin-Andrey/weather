@@ -58,7 +58,9 @@ extension PermissionToUseLocationViewController: CLLocationManagerDelegate {
 //        var array = LocationArray()
 //        array.locationArray.append(LocationModel(latitude: lat, longitude: lon))
 //        delegateRoot?.getLocation(lat: lat, lon: lon)
-        tapAction?(LocationModel(latitude: lat, longitude: lon))
+//        tapAction?(LocationModel(latitude: lat, longitude: lon))
+//        RootViewController().getLocation(lat: lat, lon: lon)
+        RootViewModel().updateState(viewInput: .useLocationCity(lat: lat, lon: lon)) //.sendLocation(lat: lat, lon: lon)
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
