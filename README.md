@@ -15,11 +15,11 @@
 - показывать облачность, уф-индекс, вероятность осадков
 - при повторном открытие приложения, погода подгружается из кеша и обновляется на актуальную
 - показ погоды сразу нескольких городов с помощью свайпов
-![](file:///Users/Shared/Swift/Weather/screenshots/Simulator%20Screenshot%20-%20iPhone%2014%20Pro%20Max%20-%202023-09-08%20at%2016.36.42.png)
-![](file:///Users/Shared/Swift/Weather/screenshots/Simulator%20Screenshot%20-%20iPhone%2014%20Pro%20Max%20-%202023-09-08%20at%2016.37.11.png)
-![](file:///Users/Shared/Swift/Weather/screenshots/Simulator%20Screenshot%20-%20iPhone%2014%20Pro%20Max%20-%202023-09-08%20at%2016.37.24.png)
-![](file:///Users/Shared/Swift/Weather/screenshots/Simulator%20Screenshot%20-%20iPhone%2014%20Pro%20Max%20-%202023-09-08%20at%2016.38.45.png)
-![](file:///Users/Shared/Swift/Weather/screenshots/Simulator%20Screenshot%20-%20iPhone%2014%20Pro%20Max%20-%202023-09-08%20at%2016.39.31.png)
+![](https://github.com/Mr-Banin-Andrey/weather/blob/develop-1.0/screenshots/Simulator%20Screenshot%20-%20iPhone%2014%20Pro%20Max%20-%202023-09-08%20at%2016.36.42.png)
+![](https://github.com/Mr-Banin-Andrey/weather/blob/develop-1.0/screenshots/Simulator%20Screenshot%20-%20iPhone%2014%20Pro%20Max%20-%202023-09-08%20at%2016.37.11.png)
+![](https://github.com/Mr-Banin-Andrey/weather/blob/develop-1.0/screenshots/Simulator%20Screenshot%20-%20iPhone%2014%20Pro%20Max%20-%202023-09-08%20at%2016.37.24.png)
+![](https://github.com/Mr-Banin-Andrey/weather/blob/develop-1.0/screenshots/Simulator%20Screenshot%20-%20iPhone%2014%20Pro%20Max%20-%202023-09-08%20at%2016.38.45.png)
+![](https://github.com/Mr-Banin-Andrey/weather/blob/develop-1.0/screenshots/Simulator%20Screenshot%20-%20iPhone%2014%20Pro%20Max%20-%202023-09-08%20at%2016.39.05.png)
 
 
 
