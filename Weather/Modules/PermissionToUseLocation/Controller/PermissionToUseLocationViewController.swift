@@ -6,7 +6,7 @@ import CoreLocation
 
 class PermissionToUseLocationViewController: UIViewController {
     
-    var tapAction: ((LocationModel) -> Void)?
+    var tapAction: (() -> Void)?
         
     private lazy var permissionToUseLocationView = PermissionToUseLocationView(delegate: self)
  
@@ -36,7 +36,6 @@ extension PermissionToUseLocationViewController: PermissionToUseLocationDelegate
         self.locationManager.delegate = self
         UserDefaults.standard.set("Yes", forKey: "acceptedTerms")
         coordinator?.start()
-        print("🍋 give")
     }
     
     func doNotGiveAccessToTheLocation() {
@@ -44,7 +43,6 @@ extension PermissionToUseLocationViewController: PermissionToUseLocationDelegate
         self.locationManager.delegate = self
         UserDefaults.standard.set("Yes", forKey: "acceptedTerms")
         coordinator?.start()
-        print("do not give ❌")
     }
 }
 
@@ -55,12 +53,6 @@ extension PermissionToUseLocationViewController: CLLocationManagerDelegate {
         let lat = userLocation.latitude
         let lon = userLocation.longitude
         print("lat, lon", lat, lon)
-//        var array = LocationArray()
-//        array.locationArray.append(LocationModel(latitude: lat, longitude: lon))
-//        delegateRoot?.getLocation(lat: lat, lon: lon)
-//        tapAction?(LocationModel(latitude: lat, longitude: lon))
-//        RootViewController().getLocation(lat: lat, lon: lon)
-        RootViewModel().updateState(viewInput: .useLocationCity(lat: lat, lon: lon)) //.sendLocation(lat: lat, lon: lon)
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {

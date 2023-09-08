@@ -4,9 +4,7 @@ import UIKit
 import SnapKit
 
 
-protocol MainCityViewDelegate: AnyObject {
-
-}
+protocol MainCityViewDelegate: AnyObject { }
 
 class MainCityView: UIView {
     

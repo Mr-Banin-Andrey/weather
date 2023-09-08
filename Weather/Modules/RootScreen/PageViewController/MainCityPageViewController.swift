@@ -94,7 +94,6 @@ class MainCityPageViewController: UIPageViewController {
     private func notifyPageControlOfNewIndex() {
         if let firstViewController = viewControllers?.first,
            let index = arrayCityViewController.firstIndex(of: firstViewController as! MainCityViewController) {
-//            print("notifyPageControlOfNewIndex", index)
             delegateMain?.didUpdatePageIndex(self, didUpdatePageIndex: index)
         }
     }

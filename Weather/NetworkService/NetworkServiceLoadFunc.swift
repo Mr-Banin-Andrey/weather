@@ -92,7 +92,6 @@ class NetworkServiceLoadFunc {
         ).executeQuery() { (result: Result<GeocodeModel,Error>) in
             switch result {
             case .success(let city):
-//                if !city.response.geoObjectCollection.featureMember.isEmpty {
                     print("✅ 1", city)
                     print("✅ 2", city.response.geoObjectCollection.featureMember[0].geoObject)
                     let latLon = self.latLon(point: city.response.geoObjectCollection.featureMember[0].geoObject.point.pos)
@@ -116,22 +115,12 @@ class NetworkServiceLoadFunc {
                     ).executeQuery() { (result: Result<NetworkServiceWeatherModel,Error>) in
                         switch result {
                         case .success(let weather):
-                            print("✅ 2.5", cityName)
-                            print("✅ 3", weather)
-                            
                             completion(.success(CityNameAndWeatherModel(nameCity: cityName, weather: weather)))
                         case .failure(let error):
                             print("❌", error)
                             completion(.failure(error))
                         }
                     }
-//                } else {
-//                    print("alert")
-//                    let alert = UIAlertController(title: "Город не найден", message: nil, preferredStyle: .alert)
-//                    let action = UIAlertAction(title: "Попробовать ещё раз", style: .default)
-//                    alert.addAction(action)
-//                    UIApplication.shared.windows.filter { $0.isKeyWindow }.first?.rootViewController?.present(alert, animated: true)
-//                }
             case .failure(let error):
                 print("🔞", error)
                 completion(.failure(error))

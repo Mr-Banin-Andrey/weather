@@ -70,7 +70,6 @@ class RootViewController: UIViewController {
         if !realmService.fetch().isEmpty {
             viewModel.updateState(viewInput: .loadCityAndWeather)
         }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,12 +91,7 @@ class RootViewController: UIViewController {
             case .selectCity:
                 self.showAlert()
                 
-//            case let .sendLocation(lat, lon):
-//                viewModel.updateState(viewInput: .useLocationCity(lat: lat, lon: lon))
-//                print("sendLocation")
             case let .loadedWeatherFromCache(cititsAndWeather):
-                
-//                print("loadWeatherFromCash")
                 if !cititsAndWeather.isEmpty {
                     self.horizontalView.isHidden = true
                     self.verticalView.isHidden = true
@@ -107,31 +101,21 @@ class RootViewController: UIViewController {
                     self.view.layoutIfNeeded()
                 }
             case .updateWeather:
-//                print("updateWeather")
                 viewModel.updateState(viewInput: .updateDate)
                 
             case let .updatedWeather(cititsAndWeather):
-//                    print("updateWeather")
                 self.cityNameAndWeatherArray = cititsAndWeather
                 self.mainCityPageViewController.updatePageViewController(self.cityNameAndWeatherArray)
                 self.view.setNeedsDisplay()
                 
             case let .loadedWeatherFromNetwork(cityAndWeather):
-//                print("loadedWeatherFromNetwork")
                 self.horizontalView.isHidden = true
                 self.verticalView.isHidden = true
                 let cityNameAndWeather = [cityAndWeather]
                 self.cityNameAndWeatherArray.insert(contentsOf: cityNameAndWeather, at: 0)
                 self.mainCityPageViewController.updatePageViewController(cityNameAndWeatherArray)
                 self.view.layoutIfNeeded()
-                
-            case let .sendLocation(cityAndWeather):
-                self.horizontalView.isHidden = true
-                self.verticalView.isHidden = true
-                let cityNameAndWeather = [cityAndWeather]
-                self.cityNameAndWeatherArray.append(cityAndWeather)
-                self.mainCityPageViewController.updatePageViewController(cityNameAndWeatherArray)
-                self.view.layoutIfNeeded()
+
             case .error(_):
                 print("error")
             }
@@ -197,7 +181,6 @@ extension RootViewController: MainCityPageViewControllerDelegate {
     
     func didUpdatePageCount(_ mainCityPageViewController: UIPageViewController, didUpdatePageCount count: Int) {
         pageControl.numberOfPages = count
-//        print("MainCityPageViewControllerDelegate - count", count)
     }
     
     func didUpdatePageIndex(_ mainCityPageViewController: UIPageViewController, didUpdatePageIndex index: Int) {
@@ -205,7 +188,6 @@ extension RootViewController: MainCityPageViewControllerDelegate {
         if !cityNameAndWeatherArray.isEmpty {
             self.rootView.setupTitle(text: cityNameAndWeatherArray[index].nameCity)
         }
-//        print("MainCityPageViewControllerDelegate - index", index)
     }
 }
 

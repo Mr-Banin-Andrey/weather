@@ -27,8 +27,6 @@ class SettingsViewController: UIViewController {
         
         self.navigationController?.navigationBar.isHidden = true
     }
-    
-
 }
 
 extension SettingsViewController: SettingsViewDelegate {

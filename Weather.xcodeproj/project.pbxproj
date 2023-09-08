@@ -30,7 +30,6 @@
 		9D7D89A42A3CC34000CB0ED0 /* PermissionToUseLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7D89A32A3CC34000CB0ED0 /* PermissionToUseLocationView.swift */; };
 		9D7D89A62A3CC42500CB0ED0 /* PermissionToUseLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7D89A52A3CC42500CB0ED0 /* PermissionToUseLocationViewController.swift */; };
 		9D9363CD2A86CEA500F84974 /* SettingsUserDefaultsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9363CC2A86CEA500F84974 /* SettingsUserDefaultsModel.swift */; };
-		9D9363D32A8A557300F84974 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9363D22A8A557300F84974 /* LocationModel.swift */; };
 		9D9363D62A8A786100F84974 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 9D9363D52A8A786100F84974 /* Realm */; };
 		9D9363D82A8A786100F84974 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9D9363D72A8A786100F84974 /* RealmSwift */; };
 		9D9363DB2A8A7C5B00F84974 /* NameCityAndWeatherRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9363DA2A8A7C5B00F84974 /* NameCityAndWeatherRealmModel.swift */; };
@@ -98,7 +97,6 @@
 		9D7D89A32A3CC34000CB0ED0 /* PermissionToUseLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionToUseLocationView.swift; sourceTree = "<group>"; };
 		9D7D89A52A3CC42500CB0ED0 /* PermissionToUseLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionToUseLocationViewController.swift; sourceTree = "<group>"; };
 		9D9363CC2A86CEA500F84974 /* SettingsUserDefaultsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUserDefaultsModel.swift; sourceTree = "<group>"; };
-		9D9363D22A8A557300F84974 /* LocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		9D9363DA2A8A7C5B00F84974 /* NameCityAndWeatherRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameCityAndWeatherRealmModel.swift; sourceTree = "<group>"; };
 		9D9363DC2A8A7C6F00F84974 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		9D9363E82A8E19DE00F84974 /* ConvertWeatherModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertWeatherModels.swift; sourceTree = "<group>"; };
@@ -318,7 +316,6 @@
 			isa = PBXGroup;
 			children = (
 				9DB90D592A5D431E00F57180 /* Controller */,
-				9DB90D572A5D431200F57180 /* Model */,
 				9DB90D582A5D431800F57180 /* View */,
 			);
 			path = AllDay24Hour;
@@ -328,7 +325,6 @@
 			isa = PBXGroup;
 			children = (
 				9DB90D732A604AB000F57180 /* Controller */,
-				9DB90D712A604AA100F57180 /* Model */,
 				9DB90D722A604AAB00F57180 /* View */,
 			);
 			path = SummaryOfTheDay;
@@ -358,7 +354,6 @@
 			isa = PBXGroup;
 			children = (
 				9D555EF32A82390C00138EB4 /* CityNameAndWeatherModel.swift */,
-				9D9363D22A8A557300F84974 /* LocationModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -510,13 +505,6 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		9DB90D572A5D431200F57180 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		9DB90D582A5D431800F57180 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -574,13 +562,6 @@
 				9DB90D6F2A60048D00F57180 /* ListColors.swift */,
 			);
 			path = Colors;
-			sourceTree = "<group>";
-		};
-		9DB90D712A604AA100F57180 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		9DB90D722A604AAB00F57180 /* View */ = {
@@ -748,7 +729,6 @@
 				9D9363E92A8E19DE00F84974 /* ConvertWeatherModels.swift in Sources */,
 				9DB90D772A605E5400F57180 /* SummaryOfTheDayView.swift in Sources */,
 				9D555EEC2A7E410200138EB4 /* DecodingOfDate.swift in Sources */,
-				9D9363D32A8A557300F84974 /* LocationModel.swift in Sources */,
 				9DB90D642A5DED8600F57180 /* DashedViewHorizontal.swift in Sources */,
 				9DB90D2D2A53038900F57180 /* CardOfTheDayHeader.swift in Sources */,
 				9DB90D7F2A648B9C00F57180 /* SunAndMoonTableViewCell.swift in Sources */,
